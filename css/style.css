@@ -1,0 +1,24 @@
+@font-face{
+    font-family: NeueMachina; /* Гарнитура шрифта */
+    src: url(fonts/NeueMachina-Medium.ttf); /* Для IE5-8 */
+    src: local(NeueMachina), url(fonts/NeueMachina-Medium.ttf); /* Для остальных браузеров */
+}
+
+.head1{ 
+	/*display: block;*/
+	/*width: 100px;  */
+	/*height: 100px;  */
+	background-color: #f6f6f6; 
+} 
+
+h1{ 
+	color: black;
+	font: 12px;
+	font-family: NeueMachina;
+}
+/* h3{
+ width: ширина px; 
+ color: #цвет; 
+ font-style: стиль шрифта;
+ margin: расположение px; 
+ } */
