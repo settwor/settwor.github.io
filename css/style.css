@@ -1,7 +1,11 @@
-@font-face{
-    font-family: NeueMachina; /* Гарнитура шрифта */
-    src: url(fonts/NeueMachina-Medium.ttf); /* Для IE5-8 */
-    src: local(NeueMachina), url(fonts/NeueMachina-Medium.ttf); /* Для остальных браузеров */
+@font-face {
+	font-family: "Neue Machina Medium";
+	src: url('fonts/NeueMachina-Medium.ttf'), /*src: local(Neue Machina m),*/ format('truetype');
+}
+
+@font-face {
+	font-family: "Neue Machina Regular";
+	src: url('fonts/NeueMachina-Regular.ttf'), /*src: local(Neue Machina m),*/ format('truetype');
 }
 
 .head1{ 
@@ -14,11 +18,5 @@
 h1{ 
 	color: black;
 	font: 12px;
-	font-family: NeueMachina;
+	font-family: Neue Machina Regular;
 }
-/* h3{
- width: ширина px; 
- color: #цвет; 
- font-style: стиль шрифта;
- margin: расположение px; 
- } */
