@@ -1,11 +1,22 @@
-@font-face {
+/*@font-face {
 	font-family: "Neue Machina Medium";
-	src: url('fonts/NeueMachina-Medium.ttf'), /*src: local(Neue Machina m),*/ format('truetype');
+	src: url('fonts/NeueMachina-Medium.ttf'), format('truetype');
 }
 
 @font-face {
-	font-family: "Neue Machina Regular";
-	src: url('fonts/NeueMachina-Regular.ttf'), /*src: local(Neue Machina m),*/ format('truetype');
+	font-family: "Neue Machina R";
+	src: url('fonts/NeueMachina-Regular.ttf'), format('truetype');
+}
+*/
+
+@font-face{
+
+	font-family: 'MyWebFont';
+	src: url('fonts/NeueMachina-Bold.ttf');
+	src: url('fonts/NeueMachina-Bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+
 }
 
 .head1{ 
@@ -18,5 +29,5 @@
 h1{ 
 	color: black;
 	font: 12px;
-	font-family: Neue Machina Regular;
+	font-family: MyWebFont;
 }
