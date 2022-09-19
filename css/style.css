@@ -1,33 +1,38 @@
-/*@font-face {
-	font-family: "Neue Machina Medium";
-	src: url('fonts/NeueMachina-Medium.ttf'), format('truetype');
+body {
+		background-color:white;
+		font-family:Verdana,Tahoma,Arial,Sans-Serif;
+		color:black;
+		font-size:12px;
+	}
+
+.demo
+{
+	font-family:'Regular',Sans-Serif;
+	width:800px;
+	margin:10px auto;
+	text-align:left;
+	padding:10px;
 }
 
-@font-face {
-	font-family: "Neue Machina R";
-	src: url('fonts/NeueMachina-Regular.ttf'), format('truetype');
-}
-*/
-
-@font-face{
-
-	font-family: 'MyWebFont';
-	src: url('fonts/NeueMachina-Bold.ttf');
-	src: url('fonts/NeueMachina-Bold.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-
+h1{
+	font-family:'Medium',Sans-Serif;
+	width:800px;
+	margin:10px auto;
+	text-align:left;
+	padding:10px;
+	font-weight: 500;
 }
 
-.head1{ 
-	/*display: block;*/
-	/*width: 100px;  */
-	/*height: 100px;  */
-	background-color: #f6f6f6; 
-} 
+header{
+	background-color: #F6F6F6;
+	margin: -1em;
+}
 
-h1{ 
-	color: black;
-	font: 12px;
-	font-family: MyWebFont;
+.hint
+{
+	font-family:'Regular',Sans-Serif;
+	width:800px;
+	margin:10px auto;
+	text-align:left;
+	padding:10px;
 }
