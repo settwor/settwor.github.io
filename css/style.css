@@ -8,7 +8,7 @@ body {
 .demo
 {
 	font-family:'Regular',Sans-Serif;
-	width:800px;
+	width:500px;
 	margin:10px auto;
 	text-align:left;
 	padding:10px;
@@ -16,7 +16,7 @@ body {
 
 h1{
 	font-family:'Medium',Sans-Serif;
-	width:800px;
+	width:500px;
 	margin:10px auto;
 	text-align:left;
 	padding:10px;
@@ -31,8 +31,26 @@ header{
 .hint
 {
 	font-family:'Regular',Sans-Serif;
-	width:800px;
+	width:500px;
 	margin:10px auto;
 	text-align:left;
 	padding:10px;
+}
+
+@media  screen and (min-width: 525px) {
+  .header-pc {
+    display: block
+  }
+  .header-mobile {
+    display: none
+  }
+}
+
+@media  screen and (max-width: 525px) {
+  .header-pc {
+    display: none
+  }
+  .header-mobile {
+    display: block
+  }
 }
