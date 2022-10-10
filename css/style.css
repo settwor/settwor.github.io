@@ -29,7 +29,12 @@ body {
 
 h1{
 	
-	
+}
+
+body {
+width: 100%;
+min-width:960px;
+    margin: 0;
 }
 
 header{
@@ -46,8 +51,35 @@ header{
 	padding:10px;
 }
 
-@media  screen and (min-width: 525px) {
+/*@media  screen and (min-width: 525px) {
   .header-pc {
+    display: block
+  }
+  .header-mobile {
+    display: none
+  }
+}*/
+
+/*@media  screen and (max-width: 525px) {
+  .header-pc {
+    display: none
+  }
+  .header-mobile {
+    display: block
+  }
+}*/
+
+@media (max-width: 460px){
+	.header-pc {
+    display: none
+  }
+  .header-mobile {
+    display: block
+  }
+}
+
+@media (min-width: 461px){
+	.header-pc {
     display: block
   }
   .header-mobile {
@@ -55,11 +87,3 @@ header{
   }
 }
 
-@media  screen and (max-width: 525px) {
-  .header-pc {
-    display: none
-  }
-  .header-mobile {
-    display: block
-  }
-}
