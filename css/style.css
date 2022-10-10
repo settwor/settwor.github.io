@@ -78,14 +78,7 @@ header{
 
 
 
-/*@media screen and (orientation: landscape){
-	.header-pc {
-    display: none
-  }
-  .header-mobile {
-    display: none
-  }
-}*/
+
 
 
 
@@ -117,26 +110,29 @@ header{
 }*/
 
 
-@media (min-width: 768px) {
- /* Стили для устройств с маленьким экраном, размерами 768px - 991px (планшеты и подобные) */
-.header-pc {
+@media (min-device-width: 1px) and (min-width: 1px){
+	.header-pc {
     display: none
   }
   .header-mobile {
     display: block
   }
 }
-@media (min-width: 992px) {
-  /* Стили для ноутбуков и компьютеров с экранами в диапазоне 992px - 1199px */
-.header-pc {
+
+@media (min-device-width: 500px) and (min-width:  500px){
+	.header-pc {
     display: block
   }
   .header-mobile {
     display: none
   }
 }
-@media (min-width: 1200px) {
-  /* Стили для устройств с большой шириной экрана >1200px */
 
+@media screen and (orientation: landscape){
+	.header-pc {
+    display: none
+  }
+  .header-mobile {
+    display: none
+  }
 }
-
