@@ -1,115 +1,3 @@
-body {
-		background-color:white;
-		font-family:Verdana,Tahoma,Arial,Sans-Serif;
-		color:black;
-		font-size:12px;
-	}
-
-.demo
-{
-	font-family:'Regular',Sans-Serif;
-	width:500px;
-	margin:10px auto;
-	text-align:left;
-	padding:10px;
-}
-
-.main_text{
-	font-family:'Medium',Sans-Serif;
-	width:500px;
-	margin:10px auto;/**/
-	text-align: center;
-	padding:10px;
-	font-weight: 500;
-	font-size: 15px;
-}
-
-.header{
-}
-
-h1{
-	
-}
-
-body {
-width: 100%;
-min-width:960px;
-    margin: 0;
-}
-
-header{
-	background-color: #F6F6F6;
-	margin: -1em;
-}
-
-.hint
-{
-	font-family:'Regular',Sans-Serif;
-	width:500px;
-	margin:10px auto;
-	text-align:left;
-	padding:10px;
-}
-
-/*@media  screen and (min-width: 525px) {
-  .header-pc {
-    display: block
-  }
-  .header-mobile {
-    display: none
-  }
-}*/
-
-/*@media  screen and (max-width: 525px) {
-  .header-pc {
-    display: none
-  }
-  .header-mobile {
-    display: block
-  }
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*@media screen and (min-width: 460px) and (orientation: portrait){
-	.header-pc {
-    display: none
-  }
-  .header-mobile {
-    display: block
-  }
-}
-
-@media screen and (min-width: 461px) and (orientation: portrait){
-	.header-pc {
-    display: block
-  }
-  .header-mobile {
-    display: none
-  }
-}*/
-
-
 @media (min-device-width: 1px) and (min-width: 1px){
 	.header-pc {
     display: none
@@ -119,7 +7,7 @@ header{
   }
 }
 
-@media (min-device-width: 500px) and (min-width:  500px){
+@media (min-device-width: 500px) and (min-width: 500px){
 	.header-pc {
     display: block
   }
@@ -135,4 +23,41 @@ header{
   .header-mobile {
     display: none
   }
+}
+
+body {
+		background-color:white;
+		font-family:Verdana,Tahoma,Arial,Sans-Serif;
+		color:black;
+		font-size:12px;
+	}
+
+.main_text{
+	font-family:'Medium',Sans-Serif;
+	width: 100vw;
+	text-align: center;
+	font-weight: 500;
+	font-size: 25px;
+}
+
+body {
+	margin: 0;
+}
+
+header{
+	display: table-cell;
+	vertical-align: middle;
+	background-color: #F6F6F6;
+	height: 100px;
+	margin: -1em;
+	width: 100vw;
+}
+
+.hint
+{
+	font-family:'Regular',Sans-Serif;
+	width:500px;
+	margin:10px auto;
+	text-align:left;
+	padding:10px;
 }
