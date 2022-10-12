@@ -93,19 +93,37 @@ header{
 }
 
 .socnet{
-	width: 305px;
+	width: 315px;
 	height: 65px;
 	background-color: #F6F6F6;
 	border-radius: 116px;
 	border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .socNetButText{
-	margin-top: 3px;
 	font-family:'Medium',Sans-Serif;
-	width: 100%;
+	width: 59%;
 	text-align: center;
 	font-size: 22px;
+	margin-right: 20px;
+}
+
+.socNetButImg{
+	margin-left: 50px;
+	width: 25px;
+}
+
+.socnets{
+	width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
