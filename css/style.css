@@ -56,18 +56,26 @@ body {
 	}
 
 header{
-	display: table-cell;
-	vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 	background-color: #F6F6F6;
 	height: 140px;
-	margin: -1em;
 	width: 100vw;
 	box-shadow: 0 0 10px rgba(0,0,0,0.25);
 }
 
+.uaImgEmoji{
+	width: 40px;
+}
+
+.GerbUaImgEmoji{
+	width: 20px;
+}
+
 .main_text{
 	font-family:'Medium',Sans-Serif;
-	width: 100vw;
+	width: 80%;
 	text-align: center;
 	font-weight: 500;
 	font-size: 35px;
