@@ -52,12 +52,11 @@ header{
 	margin: -1em;
 	width: 100vw;
 	box-shadow: 0 0 10px rgba(0,0,0,0.25);
-  padding: 1px;
 }
 
 .centerdiv{
   width: 100%;
-  height: 300px;
+  height: 325px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,18 +72,19 @@ header{
 	background-color: #747474;
 	width:  100%;
 	height: 1px;
+	box-shadow: 0 0 1px rgba(0,0,0,0.1);
 }
 
 .socnettextdiv{
  width: 100%;
- height: 75px;
+ height: 85px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .socnettext{
-	margin-top: 10px;
+	margin-top: 11px;
 	font-family:'Regular',Sans-Serif;
 	width: 100%;
 	text-align: center;
