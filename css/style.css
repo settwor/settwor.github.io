@@ -51,6 +51,8 @@ header{
 	height: 140px;
 	margin: -1em;
 	width: 100vw;
+	box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  padding: 1px;
 }
 
 .hint
