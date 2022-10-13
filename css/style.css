@@ -1,29 +1,53 @@
+.noPcVerText{
+	font-family:'Medium',Sans-Serif;
+	width: 50%;
+	text-align: center;
+	font-weight: 500;
+	font-size: 15px;
+}
+.noPcVer{
+	margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
 @media (min-device-width: 1px) and (min-width: 1px){
-	.header-pc {
+	.noPcVer {
     display: none
   }
-  .header-mobile {
+  .mobilebody {
     display: block
   }
 }
 
 @media (min-device-width: 500px) and (min-width: 500px){
-	.header-pc {
-    display: block
+	.noPcVer {
+    display: flex
   }
-  .header-mobile {
+  .mobilebody {
     display: none
   }
 }
 
 @media screen and (orientation: landscape){
-	.header-pc {
-    display: none
+	.noPcVer {
+    display: flex
   }
-  .header-mobile {
+  .mobilebody {
     display: none
   }
 }
+
+/*.leftpanel{
+	width: 25%;
+	height: 100%;
+	background-color: black;
+	position: absolute;
+	left: 0;
+}*/
 
 a{
 	text-decoration: none;
@@ -85,6 +109,8 @@ header{
 	font-weight: 500;
 	font-size: 35px;
 }
+
+
 
 .centerdiv{
   width: 100%;
