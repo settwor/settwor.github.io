@@ -5,6 +5,27 @@
 	font-weight: 500;
 	font-size: 15px;
 }
+
+.medium{
+	font-family:'Medium',Sans-Serif;
+	width: 50%;
+	text-align: center;
+	font-weight: 500;
+	font-size: 15px;
+}
+
+.regular{
+	font-family:'Regular',Sans-Serif;
+	width: 100%;
+	text-align: center;
+	font-size: 21px;
+	font-weight: normal;
+}
+
+.nomargin{
+	margin: 0;
+}
+
 .noPcVer{
 	margin-top: 10px;
   display: flex;
@@ -185,6 +206,12 @@ header{
 }
 
 .goToHomeBut{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-align{
   display: flex;
   align-items: center;
   justify-content: center;
