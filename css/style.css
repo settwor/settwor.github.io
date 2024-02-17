@@ -143,6 +143,14 @@ header{
 	justify-content: center;
 }
 
+.mainbio p{
+	font-size: 30px;
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 5%;
+    font-family: 'Medium',Sans-Serif;
+}
+
 .centerdivbio{
 	width: 100%;
 	height: 325px;
