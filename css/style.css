@@ -266,3 +266,15 @@ header{
 	justify-content: center;
 	display: flex;
 }
+
+.bigphoto{
+
+}
+
+.bigphoto div{
+	width:100%;
+}
+
+.bigphoto div img {
+	width:100%;
+}
