@@ -143,6 +143,15 @@ header{
 	justify-content: center;
 }
 
+.centerdivbio{
+	width: 100%;
+	height: 325px;
+	display: flex;
+	align-items: center;
+	justify-content: left;
+	margin-left: 10%;
+}
+
 .mainphoto {
 	border-radius: 100%;
 	width: 200px;
