@@ -28,38 +28,38 @@
 
 .noPcVer{
 	margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
 	height: 100%;
 }
 
 @media (min-device-width: 1px) and (min-width: 1px){
 	.noPcVer {
-    display: none
-  }
-  .aboutPage {
-    display: block
-  }
+		display: none
+	}
+	.aboutPage {
+		display: block
+	}
 }
 
 @media (min-device-width: 500px) and (min-width: 500px){
 	.noPcVer {
-    display: flex
-  }
-  .aboutPage {
-    display: none
-  }
+		display: flex
+	}
+	.aboutPage {
+		display: none
+	}
 }
 
 @media screen and (orientation: landscape){
 	.noPcVer {
-    display: flex
-  }
-  .aboutPage {
-    display: none
-  }
+		display: flex
+	}
+	.aboutPage {
+		display: none
+	}
 }
 
 /*.leftpanel{
@@ -77,15 +77,15 @@ a{
 
 footer{
 	flex: 0 0 auto;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 135px;
-  background-color: #F6F6F6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 135px;
+	background-color: #F6F6F6;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	box-shadow: 0 0 10px rgba(0,0,0,0.25);
 }
 
@@ -105,12 +105,12 @@ body {
 	font-size:12px;
 	margin: 0;
 	height: 100%;
-	}
+}
 
 header{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background-color: #F6F6F6;
 	height: 140px;
 	width: 100vw;
@@ -136,17 +136,17 @@ header{
 
 
 .centerdiv{
-  width: 100%;
-  height: 325px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	width: 100%;
+	height: 325px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .mainphoto {
-  	border-radius: 100%;
-    width: 200px;
-    height: 200px;
+	border-radius: 100%;
+	width: 200px;
+	height: 200px;
 }
 
 .strip{
@@ -157,11 +157,11 @@ header{
 }
 
 .socnettextdiv{
- width: 100%;
- height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	width: 100%;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .socnettext{
@@ -202,21 +202,21 @@ header{
 
 .socnets{
 	width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .goToHomeBut{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .center-align{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .homeIc{
@@ -228,31 +228,31 @@ header{
 	margin-top: 40px;
 	width: 100%;
 	height: 460px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .image{
-    position: relative;
-    overflow:hidden;
-    width:300px;
-    height:300px;
-    display: inline-block;
-    padding: 1%;
+	position: relative;
+	overflow:hidden;
+	width:300px;
+	height:300px;
+	display: inline-block;
+	padding: 1%;
 }
 
 .image img {
-   position: absolute;
-   top:50%;
-   left:50%;
-   transform:translate(-50%,-50%);
-   width:300px;
-   height:300px;
-   object-fit:cover;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:300px;
+	height:300px;
+	object-fit:cover;
 }
 
 .photo{
-	  justify-content: center;
-    display: flex;
+	justify-content: center;
+	display: flex;
 }
