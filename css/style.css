@@ -243,7 +243,12 @@ header{
 	justify-content: center;
 }
 
-.image{
+.photo{
+	justify-content: center;
+	display: flex;
+}
+
+.photo div{
 	position: relative;
 	overflow:hidden;
 	width:300px;
@@ -252,7 +257,7 @@ header{
 	padding: 1%;
 }
 
-.image img {
+.photo div img {
 	position: absolute;
 	top:50%;
 	left:50%;
@@ -260,11 +265,6 @@ header{
 	width:300px;
 	height:300px;
 	object-fit:cover;
-}
-
-.photo{
-	justify-content: center;
-	display: flex;
 }
 
 .bigphoto{
