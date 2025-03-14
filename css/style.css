@@ -1,394 +1,382 @@
-.noPcVerText{
-	font-family:'Medium',Sans-Serif;
-	width: 50%;
-	text-align: center;
-	font-weight: 500;
-	font-size: 15px;
-}
-
-.medium{
-	font-family:'Medium',Sans-Serif;
-	width: 50%;
-	text-align: center;
-	font-weight: 500;
-	font-size: 15px;
-}
-
-.regular{
-	font-family:'Regular',Sans-Serif;
-	width: 100%;
-	text-align: center;
-	font-size: 21px;
-	font-weight: normal;
-}
-
-.nomargin{
-	margin: 0;
-}
-
-.noPcVer{
-	margin-top: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 100%;
-}
-
-@media (min-device-width: 1px) and (min-width: 1px){
-	.noPcVer {
-		display: none
-	}
-	.aboutPage {
-		display: block
-	}
-}
-
-@media (min-device-width: 500px) and (min-width: 500px){
-	.noPcVer {
-		display: flex
-	}
-	.aboutPage {
-		display: none
-	}
-}
-
-@media screen and (orientation: landscape){
-	.noPcVer {
-		display: flex
-	}
-	.aboutPage {
-		display: none
-	}
-}
-/*body {
-    max-width: 375px;
-    margin: 0 auto;
-    overflow-x: hidden; 
-}
-
-
-
-
-/*@media (min-device-width: 500px) and (min-width: 500px){
-	body {
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-}*/
-
-
-
-
-
-
-
-
-
-
-/*@media (min-device-width: 500px) and (min-width: 500px){
-	body {
-        max-width: 500px;
-        margin: 0 auto;
-    }
-}*/
-
-
-
-
-
-
-
-
-
-
-/*@media (min-width: 768px) {
-    body {
-        max-width: 400px;
-        margin: 0 auto;
-    }
-}*/
-
-/*.leftpanel{
-	width: 25%;
-	height: 100%;
-	background-color: black;
-	position: absolute;
-	left: 0;
-}*/
-
-a{
-	text-decoration: none;
-	color: black;
-}
-
-footer{
-	flex: 0 0 auto;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 135px;
-	background-color: #F6F6F6;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 0 10px rgba(0,0,0,0.25);
-}
-
-.notAvailableText{
-	color: #696969;
-	font-family:'Medium',Sans-Serif;
-	width: 100vw;
-	text-align: center;
-	font-weight: 500;
-	font-size: 22px;
-}
-
+/* Базовые стили для всех устройств */
 body {
-	background-color:white;
-	font-family:Verdana,Tahoma,Arial,Sans-Serif;
-	color:black;
-	font-size:12px;
-	margin: 0 auto;
-	height: 100%;
+    background-color: white;
+    font-family: Verdana, Tahoma, Arial, Sans-Serif;
+    color: black;
+    font-size: 12px;
+    margin: 0 auto;
+    height: 100%;
+    overflow-x: hidden;
 }
 
-header{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #F6F6F6;
-	height: 140px;
-	width: 100vw;
-	box-shadow: 0 0 10px rgba(0,0,0,0.25);
-}
-
-.uaImgEmoji{
-	width: 40px;
-}
-
-.GerbUaImgEmoji{
-	width: 23px;
-}
-
-.main_text{
-	font-family:'Medium',Sans-Serif;
-	width: 80%;
-	text-align: center;
-	font-weight: 500;
-	font-size: 35px;
-}
-
-
-
-.centerdiv{
-	width: 100%;
-	height: 325px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.mainbio p{
-	font-size: 30px;
+.noPcVerText {
+    font-family: 'Medium', Sans-Serif;
+    width: 50%;
     text-align: center;
-    padding-top: 3%;
-    padding-bottom: 5%;
-    font-family: 'Medium',Sans-Serif;
+    font-weight: 500;
+    font-size: 15px;
 }
 
-.centerdivbio{
-/*	width: 100%;*/
-	height: 325px;
-	display: flex;
-	align-items: center;
-	justify-content: left;
-	margin-left: 10%;
+.regular {
+    font-family: 'Regular', Sans-Serif;
+    width: 100%;
+    text-align: center;
+    font-size: 21px;
+    font-weight: normal;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+.noPcVer {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F6F6F6;
+    height: 140px;
+    width: 100vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.main_text {
+    font-family: 'Medium', Sans-Serif;
+    width: 80%;
+    text-align: center;
+    font-weight: 500;
+    font-size: 35px;
+}
+
+/* Стили для мобильных устройств (до 500px) */
+.centerdivbio {
+    height: 325px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-left: 10%;
+}
+
+.centerdiv {
+    width: 100%;
+    height: 325px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .mainphoto {
-	border-radius: 100%;
-	width: 200px;
-	height: 200px;
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
 }
 
-.strip{
-	background-color: #969191;
-	width:  100%;
-	height: 1px;
-	box-shadow: 0 0 1px rgba(0,0,0,0.1);
+.strip {
+    background-color: #969191;
+    width: 100%;
+    height: 1px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
-.socnettextdiv{
-	width: 100%;
-	height: 100px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.socnettextdiv {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.biotextdiv{
-	width: 100%;
-/*	height: 250px;*/
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.biotextdiv {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.biotext{
-	font-family:'Regular',Sans-Serif;
-	width: 90%;
-	text-align: center;
-	font-size: 30px;
-	font-weight: normal;
+.biotext {
+    font-family: 'Regular', Sans-Serif;
+    width: 90%;
+    text-align: center;
+    font-size: 20px; /* Увеличен размер для телефонов */
+    font-weight: normal;
 }
 
-
-.socnettext{
-	font-family:'Regular',Sans-Serif;
-	width: 100%;
-	text-align: center;
-	font-size: 30px;
-	font-weight: normal;
+.socnettext {
+    font-family: 'Regular', Sans-Serif;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: normal;
+    color: black; /* Черный цвет для всех страниц */
 }
 
-
-.socnet{
-	width: 350px;
-	height: 75px;
-	background-color: #F6F6F6;
-	border-radius: 116px;
-	border: 2px solid black;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 20px;
-	margin-left: 30px;
-	margin-right: 30px;
+.socnet {
+    width: 350px;
+    height: 75px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
-.socNetButText{
-	font-family:'Medium',Sans-Serif;
-	width: 59%;
-	text-align: center;
-	font-size: 25px;
-	margin-right: 20px;
-	font-weight: 500;
+.socNetButText {
+    font-family: 'Medium', Sans-Serif;
+    width: 59%;
+    text-align: center;
+    font-size: 25px;
+    margin-right: 20px;
+    font-weight: 500;
 }
 
-.socNetButImg{
-	margin-left: 50px;
-	width: 25px;
-  height: 25px;
+.socNetButImg {
+    margin-left: 50px;
+    width: 25px;
+    height: 25px;
 }
 
-.socnets{
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.socnets {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.goToHomeBut{
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.mainbio p {
+    font-size: 30px;
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 5%;
+    font-family: 'Medium', Sans-Serif;
 }
 
-.center-align{
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.ytVideos {
+    margin-top: 40px;
+    width: 100%;
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.homeIc{
-	width: 50px;
-	height: 50px;
+.photo {
+    justify-content: center;
+    display: flex;
 }
 
-.ytVideos{
-	margin-top: 40px;
-	width: 100%;
-	height: 460px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.photo{
-	justify-content: center;
-	display: flex;
-}
-
-.photo div{
-	position: relative;
-	overflow:hidden;
-	width:300px;
-	height:300px;
-	display: inline-block;
-	padding: 1%;
+.photo div {
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+    padding: 1%;
 }
 
 .photo div img {
-	position: absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	width:300px;
-	height:300px;
-	object-fit:cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
 }
 
-.bigphoto{
-
-}
-
-.bigphoto div{
-	width:100%;
-	margin-bottom: 5%;
+.bigphoto div {
+    width: 100%;
+    margin-bottom: 5%;
 }
 
 .bigphoto div img {
-	width:100%;
+    width: 100%;
 }
 
-
-table.iksweb{
-	width: 90%;
-	border-collapse:collapse;
-	border-spacing:0;
-	height: auto;
-
+table.iksweb {
+    width: 90%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    height: auto;
+    margin: auto;
 }
-table.iksweb,table.iksweb td, table.iksweb th {
-	border: 1px solid #595959;
-}
-table.iksweb td,table.iksweb th {
-	padding: 3px;
-	width: 30px;
-	height: 35px;
-	font-family:'Medium',Sans-Serif;
-	width: 100vw;
-	text-align: center;
-	font-weight: 500;
-	font-size: 22px;
-	font-weight: normal;
 
+table.iksweb, table.iksweb td, table.iksweb th {
+    border: 1px solid #595959;
+}
+
+table.iksweb td, table.iksweb th {
+    padding: 3px;
+    height: 35px;
+    font-family: 'Medium', Sans-Serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: 22px;
     height: 60px;
     width: 20%;
     border: 1px solid #969191;
 }
+
 table.iksweb th {
-/*	    background: #4e6982;*/
-/*	color: #fff; */
-	font-weight: normal;
-
-	font-family:'Medium',Sans-Serif;
-	width: 100vw;
-	text-align: center;
-	font-weight: 500;
-	font-size: 25px;
-
+    font-family: 'Medium', Sans-Serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: 25px;
     height: 75px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Оригинальные медиа-запросы для мобильных */
+@media (min-device-width: 1px) and (min-width: 1px) {
+    .noPcVer {
+        display: none;
+    }
+    .aboutPage {
+        display: block;
+    }
+}
+
+@media (min-device-width: 500px) and (min-width: 500px) {
+    .noPcVer {
+        display: flex;
+    }
+    .aboutPage {
+        display: none;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .noPcVer {
+        display: flex;
+    }
+    .aboutPage {
+        display: none;
+    }
+}
+
+/* Адаптация для больших экранов (500px и выше) */
+@media (min-width: 500px) {
+    .aboutPage {
+        display: block;
+        max-width: 980px; /* Ширина 980px */
+        margin: 0 auto; /* Центрируем с пустым местом по бокам */
+    }
+
+    .noPcVer {
+        display: none; /* Убираем сообщение */
+    }
+
+    header {
+        width: 100%; /* Ограничиваем ширину шапки */
+    }
+
+    .centerdivbio {
+        margin-left: 0;
+        justify-content: space-between; /* Распределяем фото и текст */
+        padding: 0 20px; /* Отступы по бокам */
+    }
+
+    .centerdiv {
+        margin-left: 0;
+    }
+
+    /* Убираем абсолютное позиционирование */
+    .center-align {
+        position: static;
+        margin: 0;
+    }
+
+    /* Специфично для страницы биографии */
+    .centerdivbio .mainphoto {
+        margin-left: 20px; /* Отступ слева для фото */
+    }
+
+    .centerdivbio .center-align p {
+        font-size: 25px; /* Размер текста "Биография SETTWOR" */
+        margin-right: 100px; /* Увеличиваем отступ справа, чтобы сместить текст левее */
+    }
+
+    .biotext {
+        font-size: 18px; /* Размер для десктопов */
+    }
+}
+
+
+
+/* Переключатель языков */
+.language-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.lang-btn {
+    padding: 10px 20px;
+    font-family: 'Medium', Sans-Serif;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #F6F6F6;
+    border: 2px solid #969191;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.lang-btn.active {
+    background-color: #969191;
+    color: white;
+}
+
+.lang-btn:hover:not(.active) {
+    background-color: #e0e0e0;
+}
+
+/* Скрытие контента */
+.hidden {
+    display: none;
+}
+
+/* Заголовок биографии */
+.bio-title {
+    font-family: 'Regular', Sans-Serif;
+    font-size: 35px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+/* Цитаты */
+.biotext.quote {
+    font-style: italic;
+    font-size: 14px;
+    color: #555;
+    border-left: 4px solid #969191;
+    padding-left: 15px;
+    margin: 10px 0;
+}
+
+/* Улучшение отступов */
+.biotextdiv {
+    padding: 15px 0;
+}
+
+.biotext {
+    margin: 10px 0;
+    line-height: 1.5; /* Улучшает читаемость */
 }
