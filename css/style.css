@@ -132,6 +132,47 @@ header {
     margin-right: 30px;
 }
 
+.nextPage {
+    width: 75px;
+    height: 75px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.previousPage {
+    width: 75px;
+    height: 75px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.NPpageButImg {
+    margin-left: 50px;
+    width: 25px;
+    height: 25px;
+}
+
+.NPpageButText {
+    font-family: 'Medium', Sans-Serif;
+    width: 59%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: auto;
+}
+
 .socNetButText {
     font-family: 'Medium', Sans-Serif;
     width: 59%;
