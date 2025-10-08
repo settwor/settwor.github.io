@@ -102,7 +102,7 @@ header {
 }
 
 .biotext {
-    font-family: 'Regular', Sans-Serif;
+    font-family: 'Medium', Sans-Serif;
     width: 90%;
     text-align: center;
     font-size: 20px; /* Увеличен размер для телефонов */
@@ -395,7 +395,7 @@ a {
 
 /* Заголовок биографии */
 .bio-title {
-    font-family: 'Regular', Sans-Serif;
+    font-family: 'Medium', Sans-Serif;
     font-size: 35px;
     font-weight: normal;
     margin: 0;
