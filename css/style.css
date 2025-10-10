@@ -132,11 +132,25 @@ header {
 }
 
 .socnet {
-    width: 350px;
-    height: 75px;
+    width: 367px;
+    height: 96px;
     background-color: #F6F6F6;
     border-radius: 116px;
     border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.viewBioBut{
+    width: 367px;
+    height: 96px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 1px solid #595959;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -144,6 +158,7 @@ header {
     margin-left: 30px;
     margin-right: 30px;
 }
+
 
 .languagesDiv{
     display: flex;
@@ -232,17 +247,24 @@ header {
 
 .socNetButText {
     font-family: 'Medium', Sans-Serif;
-    width: 59%;
+    width: 50%;
     text-align: center;
-    font-size: 25px;
-    margin-right: 20px;
+    font-size: 28px;
+    margin-right: 25px;
     font-weight: 500;
 }
-
+.viewFullBioButText{
+	font-family: 'Medium', Sans-Serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: 28px; 
+    margin-right: 0px;
+    width: 100%;
+}
 .socNetButImg {
     margin-left: 50px;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
 }
 
 .socnets {
@@ -348,8 +370,134 @@ a {
 
 
 
+
+
+@media (min-device-width: 500px) and (min-width: 500px) {
+    .noPcVer {
+        display: flex;
+    }
+    .aboutPage {
+        display: none;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .noPcVer {
+        display: flex;
+    }
+    .aboutPage {
+        display: none;
+    }
+}
+
+@media (min-device-width: 600px) and (min-width: 600px) {
+	.aboutPage {
+        display: block;
+        max-width: 980px;
+        margin: 0 auto; /* Центрируем с пустым местом по бокам */
+    }
+}
+
+
+
+
+/* Переключатель языков */
+.language-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.lang-btn {
+    padding: 10px 20px;
+    font-family: 'Medium', Sans-Serif;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #F6F6F6;
+    border: 2px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.lang-btn.active {
+    background-color: black;
+    color: white;
+}
+
+.lang-btn:hover:not(.active) {
+    background-color: #e0e0e0;
+}
+
+/* Скрытие контента */
+.hidden {
+    display: none;
+}
+
+/* Заголовок биографии */
+.bio-title {
+    font-family: 'Medium', Sans-Serif;
+    font-size: 35px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    font-size: 30px;
+    margin-right: 100px;
+    margin-left: 250px;
+    
+}
+.img-title {
+    font-family: 'Medium', Sans-Serif;
+    font-size: 30px;
+    padding: 0px 0px 0px 100px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+/* Цитаты */
+.biotext.quote {
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #969191;
+    padding-left: 15px;
+    margin: 10px 0;
+}
+
+/* Улучшение отступов */
+.biotextdiv {
+    padding: 15px 0;
+}
+
+.biotext {
+    margin: 10px 0;
+    line-height: 1.5; /* Улучшает читаемость */
+}
+
+
+
+
+
+
+
 /* Оригинальные медиа-запросы для мобильных */
+/*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ 
+
+
+
+
+
 @media (min-device-width: 1px) and (min-width: 1px) {
+
+	.viewFullBioButText{
+	font-family: 'Medium', Sans-Serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: 28px; 
+    margin-right: 0px;
+    width: 100%;
+}
 	.biotext.quote {
     	font-size: 25px;
 	}
@@ -399,43 +547,65 @@ a {
     }
 }
 
-@media (min-device-width: 500px) and (min-width: 500px) {
-    .noPcVer {
-        display: flex;
-    }
-    .aboutPage {
-        display: none;
-    }
-}
 
-@media screen and (orientation: landscape) {
-    .noPcVer {
-        display: flex;
-    }
-    .aboutPage {
-        display: none;
-    }
-}
 
-@media (min-device-width: 600px) and (min-width: 600px) {
-	.aboutPage {
-        display: block;
-        max-width: 980px;
-        margin: 0 auto; /* Центрируем с пустым местом по бокам */
-    }
-}
+
+
+
+
 
 
 
 
 
 /* Адаптация для больших экранов (500px и выше) */
-
-
 /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ 
 
 
+
+
+
+
 @media (min-device-width: 500px) {
+	.viewFullBioButText {
+        font-size: 20px;
+    }
+	.socNetButImg {
+    margin-left: 45px;
+    	width: 25px;
+    	height: 25px;
+	}
+	.socNetButText{
+		font-size: 20px;
+		width: 45%;
+	}
+	.socnet{
+		width: 300px;
+		height: 70px;
+	}
+	.viewBioBut{
+    width: 300px;
+    height: 60px;
+}
+	.bio-title {
+		font-size: 20px;
+    margin-left: 0px;
+	}
+	.nextPage {
+    	width: 60px;
+    	height: 60px;
+	}
+	.previousPage {
+    	width: 60px;
+    	height: 60px;
+	}
+	.NPpageButText {
+    margin-top: 13px;
+	}
+	.img-title{
+        font-size: 20px;
+        margin-right: 50px;
+	}
 	.socnettextdiv {
     height: 80px;
 	}
@@ -515,90 +685,8 @@ a {
     .centerdivbio .mainphoto {
         margin-left: 20px;
     }
-
-    .centerdivbio .center-align p {
-        font-size: 25px; /* Размер текста "Биография SETTWOR" */
-        margin-right: 100px; /* Увеличиваем отступ справа, чтобы сместить текст левее */
-                margin-left: 0px;
-    }
-
     .biotext {
         font-size: 18px;
     }
 }
 
-
-
-/* Переключатель языков */
-.language-switcher {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 20px 0;
-}
-
-.lang-btn {
-    padding: 10px 20px;
-    font-family: 'Medium', Sans-Serif;
-    font-size: 16px;
-    font-weight: 500;
-    background-color: #F6F6F6;
-    border: 2px solid black;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.lang-btn.active {
-    background-color: black;
-    color: white;
-}
-
-.lang-btn:hover:not(.active) {
-    background-color: #e0e0e0;
-}
-
-/* Скрытие контента */
-.hidden {
-    display: none;
-}
-
-/* Заголовок биографии */
-.bio-title {
-    font-family: 'Medium', Sans-Serif;
-    font-size: 35px;
-    font-weight: normal;
-    margin: 0;
-    text-align: center;
-    font-size: 30px;
-    margin-right: 100px;
-    margin-left: 250px;
-    
-}
-.img-title {
-    font-family: 'Medium', Sans-Serif;
-    font-size: 30px;
-    padding: 0px 0px 0px 100px;
-    font-weight: normal;
-    margin: 0;
-    text-align: center;
-}
-
-/* Цитаты */
-.biotext.quote {
-    font-style: italic;
-    color: #555;
-    border-left: 4px solid #969191;
-    padding-left: 15px;
-    margin: 10px 0;
-}
-
-/* Улучшение отступов */
-.biotextdiv {
-    padding: 15px 0;
-}
-
-.biotext {
-    margin: 10px 0;
-    line-height: 1.5; /* Улучшает читаемость */
-}
