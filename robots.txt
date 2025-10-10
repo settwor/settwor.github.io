@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://settwor.github.io/sitemap.xml
