@@ -118,7 +118,7 @@ header {
     font-family: 'Medium', Sans-Serif;
     width: 90%;
     text-align: center;
-    font-size: 20px; /* Увеличен размер для телефонов */
+    font-size: 25px; /* Увеличен размер для телефонов */
     font-weight: normal;
 }
 
@@ -143,6 +143,50 @@ header {
     margin-top: 20px;
     margin-left: 30px;
     margin-right: 30px;
+}
+
+.languagesDiv{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+}
+
+.changeLang {
+    width: 80px;
+    height: 60px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.changeLangSelected {
+    width: 80px;
+    height: 60px;
+    background-color: #000000;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+.changeLangButTextSelected {
+    font-family: 'Medium', Sans-Serif;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+     color: white;
+}
+
+.changeLangButText {
+    font-family: 'Medium', Sans-Serif;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
 }
 
 .nextPage {
@@ -306,6 +350,27 @@ a {
 
 /* Оригинальные медиа-запросы для мобильных */
 @media (min-device-width: 1px) and (min-width: 1px) {
+	.biotext.quote {
+    	font-size: 25px;
+	}
+	/*.changeLangSelected {
+    width: 80px;
+    height: 60px;
+	}
+
+	.changeLang {
+    width: 80px;
+    height: 60px;
+	}
+
+	.changeLangButTextSelected{
+		font-size: 25px;
+	}
+
+	.changeLangButText{
+		font-size: 25px;
+
+	}*/
 	.tdEmail{
 		font-size: 25px;
 	}
@@ -365,7 +430,40 @@ a {
 
 
 /* Адаптация для больших экранов (500px и выше) */
+
+
+/*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ 
+
+
 @media (min-device-width: 500px) {
+	.socnettextdiv {
+    height: 80px;
+	}
+	.socnettext {
+    font-size: 25px;
+	}
+	.biotext.quote {
+    	font-size: 15px;
+	}
+	.changeLangSelected {
+    width: 60px;
+    height: 40px;
+	}
+
+	.changeLang {
+    width: 60px;
+    height: 40px;
+	}
+
+	.changeLangButTextSelected{
+		font-size: 15px;
+	}
+
+	.changeLangButText{
+		font-size: 15px;
+
+	}
+
 	.tdEmail{
 		font-size: 22px;
 	}
@@ -421,6 +519,7 @@ a {
     .centerdivbio .center-align p {
         font-size: 25px; /* Размер текста "Биография SETTWOR" */
         margin-right: 100px; /* Увеличиваем отступ справа, чтобы сместить текст левее */
+                margin-left: 0px;
     }
 
     .biotext {
@@ -471,12 +570,23 @@ a {
     font-weight: normal;
     margin: 0;
     text-align: center;
+    font-size: 30px;
+    margin-right: 100px;
+    margin-left: 250px;
+    
+}
+.img-title {
+    font-family: 'Medium', Sans-Serif;
+    font-size: 30px;
+    padding: 0px 0px 0px 100px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
 }
 
 /* Цитаты */
 .biotext.quote {
     font-style: italic;
-    font-size: 14px;
     color: #555;
     border-left: 4px solid #969191;
     padding-left: 15px;
