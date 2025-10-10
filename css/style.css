@@ -61,6 +61,13 @@ header {
     font-weight: 500;
     font-size: 35px;
 }
+.main_text_bio {
+    font-family: 'Medium', Sans-Serif;
+    width: 80%;
+    text-align: center;
+    font-weight: 500;
+    font-size: 35px;
+}
 
 
 
@@ -490,7 +497,9 @@ a {
 
 
 @media (min-device-width: 1px) and (min-width: 1px) {
-
+	.main_text_bio{
+		margin-left: 280px;
+	}
 	.viewFullBioButText{
 	font-family: 'Medium', Sans-Serif;
     text-align: center;
@@ -568,6 +577,9 @@ a {
 
 
 @media (min-device-width: 500px) {
+	.main_text_bio{
+		margin-left: 222px;
+	}
 	.viewFullBioButText {
         font-size: 20px;
     }
