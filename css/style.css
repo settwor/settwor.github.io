@@ -432,7 +432,8 @@ a {
 
 /* Скрытие контента */
 .hidden {
-    display: none;
+    position: absolute;
+    left: -9999px;
 }
 
 /* Заголовок биографии */
