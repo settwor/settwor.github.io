@@ -11,8 +11,8 @@ body {
 
 .divPhotos{
     width: 100%;
-    display: flex;
-    justify-content: center;
+/*    display: flex;*/
+/*    justify-content: center;*/
 }
 
 .noPcVerText {
@@ -545,9 +545,6 @@ a {
 	table.iksweb th {
     	font-size: 30px;
 	}
-	.photo{
-	width: 980px;
-	}
 
     .noPcVer {
         display: none;
@@ -577,6 +574,14 @@ a {
 
 
 @media (min-device-width: 500px) {
+    .photo div {
+        width: 250px;
+        height: 250px;
+    }
+    .photo div img {
+        width: 250px;
+        height: 250px;
+    }
 	.main_text_bio{
 		margin-left: 222px;
 	}
