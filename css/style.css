@@ -45,13 +45,19 @@ body {
 }
 
 header {
-    display: flex;
+    /*display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center;*/
     background-color: #F6F6F6;
     height: 140px;
     width: 100vw;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Убедитесь, что шапка поверх другого контента */
 }
 
 .main_text {
@@ -86,6 +92,7 @@ header {
 }
 
 .centerdiv {
+    margin-top: 140px;
     width: 100%;
     height: 325px;
     display: flex;
@@ -680,7 +687,7 @@ a {
     }
 
     header {
-        width: 100%;
+        width: 800px;
     }
 
     .centerdivbio {
