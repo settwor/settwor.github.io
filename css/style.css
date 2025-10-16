@@ -84,6 +84,7 @@ header {
 
 /* Стили для мобильных устройств (до 500px) */
 .centerdivbio {
+    margin-top: 140px;
     height: 325px;
     display: flex;
     align-items: center;
