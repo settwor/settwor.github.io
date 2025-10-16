@@ -9,6 +9,10 @@ body {
     overflow-x: hidden;
 }
 
+.bgPage{
+
+}
+
 .divPhotos{
     width: 100%;
 /*    display: flex;*/
@@ -181,8 +185,37 @@ header {
     width: 400px;
 }
 
+.bioHeaderDiv{
+    display: flex;
+    justify-content: center;
+    width: 530px;
+}
+
 .changeLang {
     width: 80px;
+    height: 60px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.openBioBut {
+    width: 180px;
+    height: 60px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+.openBioButMain {
+    width: 180px;
     height: 60px;
     background-color: #F6F6F6;
     border-radius: 116px;
@@ -505,9 +538,16 @@ a {
 
 
 @media (min-device-width: 1px) and (min-width: 1px) {
+    
+    .openBioBut {
+        display: none;
+    }
 	.main_text_bio{
 		margin-left: 280px;
 	}
+    .main_text{
+        margin-left: 280px;
+    }
 	.viewFullBioButText{
 	font-family: 'Medium', Sans-Serif;
     text-align: center;
@@ -582,6 +622,10 @@ a {
 
 
 @media (min-device-width: 500px) {
+
+    .bioHeaderDiv{
+        width: 400px;
+    }
     .photo div {
         width: 250px;
         height: 250px;
@@ -593,6 +637,10 @@ a {
 	.main_text_bio{
 		margin-left: 222px;
 	}
+    .main_text{
+        margin-left: 385px;
+        width: 15%;
+    }
 	.viewFullBioButText {
         font-size: 20px;
     }
@@ -651,6 +699,17 @@ a {
     height: 40px;
 	}
 
+    .openBioBut {
+        width: 105px;
+        height: 40px;
+        display: block;
+    }
+
+    .openBioButMain {
+    width: 105px;
+    height: 40px;
+    }
+
 	.changeLangButTextSelected{
 		font-size: 15px;
 	}
@@ -688,7 +747,7 @@ a {
     }
 
     header {
-        width: 800px;
+/*        width: 800px;*/
     }
 
     .centerdivbio {
