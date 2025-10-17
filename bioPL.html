@@ -475,27 +475,5 @@
     </div>
   </div>
 </div>
-
-  <!-- JavaScript для переключения языков -->
-  <script>
-    document.querySelectorAll('.lang-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        const lang = button.getAttribute('data-lang');
-        
-        // Переключаем активный класс для кнопок
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        // Показываем/скрываем контент
-        document.querySelectorAll('.bio-content').forEach(content => {
-          if (content.getAttribute('data-lang') === lang) {
-            content.classList.remove('hidden');
-          } else {
-            content.classList.add('hidden');
-          }
-        });
-      });
-    });
-  </script>
 </body>
 </html>
