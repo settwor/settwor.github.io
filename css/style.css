@@ -731,10 +731,10 @@ a {
 	}
 	table.iksweb td, table.iksweb th{
 		height: 60px;
-    	font-size: 22px;
+    	font-size: 20px;
 	}
 	table.iksweb th {
-    font-size: 25px;
+    font-size: 20px;
 }
     .aboutPage {
         display: block;
