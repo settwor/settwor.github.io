@@ -388,8 +388,6 @@ header {
     font-size: 25px;
 }
 
-
-
 .photo div {
     position: relative;
     overflow: hidden;
@@ -527,7 +525,7 @@ a {
 /* Скрытие контента */
 .hidden {
     position: absolute;
-    left: -9999px;
+    left: -999999px;
 }
 
 /* Заголовок биографии */
