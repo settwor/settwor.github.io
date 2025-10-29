@@ -376,7 +376,7 @@ header {
 }
 
 .releaseName{
-    font-size: 25px;
+    font-size: 30px;
     margin-top: 20px;
     margin-bottom: 0px;
     font-family: 'Medium', Sans-Serif;
@@ -385,7 +385,7 @@ header {
 .releaseDate{
     font-family: 'Medium', Sans-Serif;
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 
