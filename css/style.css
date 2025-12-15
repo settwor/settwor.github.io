@@ -115,9 +115,23 @@ header {
     height: 200px;
 }
 
+.bio-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .strip {
     background-color: #969191;
     width: 100%;
+    height: 1px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.strip2 {
+    background-color: #969191;
+    width: 35%;
     height: 1px;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
@@ -129,7 +143,12 @@ header {
     align-items: center;
     justify-content: center;
 }
-
+.socnettextdiv2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .biotextdiv {
     width: 100%;
     display: flex;
@@ -146,10 +165,19 @@ header {
 }
 
 .socnettext {
-    font-family: 'Regular', Sans-Serif;
+    font-family: 'Medium', Sans-Serif;
     width: 100%;
     text-align: center;
     font-size: 30px;
+    font-weight: normal;
+    color: black; /* Черный цвет для всех страниц */
+}
+
+.socnettext2 {
+    font-family: 'Medium', Sans-Serif;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
     font-weight: normal;
     color: black; /* Черный цвет для всех страниц */
 }
@@ -744,9 +772,15 @@ a {
 	.socnettextdiv {
     height: 80px;
 	}
+    .socnettextdiv2 {
+    height: 50px;
+    }
 	.socnettext {
     font-size: 25px;
 	}
+    .socnettext2 {
+    font-size: 20px;
+    }
 	.biotext.quote {
     	font-size: 15px;
 	}
@@ -812,7 +846,7 @@ a {
     }
 
     .centerdivbio {
-        margin-left: 0;
+        margin-left: 20px;
         justify-content: space-between; /* Распределяем фото и текст */
         padding: 0 20px; /* Отступы по бокам */
     }
@@ -824,7 +858,7 @@ a {
     /* Убираем абсолютное позиционирование */
     .center-align {
         position: static;
-        margin: 0;
+        margin: 100px;
     }
 
     /* Специфично для страницы биографии */
