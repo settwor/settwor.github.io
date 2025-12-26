@@ -159,7 +159,7 @@ header {
 .biotext {
     font-family: 'Medium', Sans-Serif;
     width: 90%;
-    text-align: center;
+    text-align: left;
     font-size: 25px; /* Увеличен размер для телефонов */
     font-weight: normal;
 }
@@ -592,7 +592,7 @@ a {
 }
 
 .biotext {
-    margin: 10px 0;
+    margin: 0px 0;
     line-height: 1.5; /* Улучшает читаемость */
 }
 
@@ -770,13 +770,13 @@ a {
         margin-right: 50px;
 	}
 	.socnettextdiv {
-    height: 80px;
+    height: 70px;
 	}
     .socnettextdiv2 {
     height: 50px;
     }
 	.socnettext {
-    font-size: 25px;
+    font-size: 23px;
 	}
     .socnettext2 {
     font-size: 20px;
@@ -833,7 +833,7 @@ a {
 }
     .aboutPage {
         display: block;
-        max-width: 800px;
+        max-width: 1000px;
         margin: 0 auto; /* Центрируем с пустым местом по бокам */
     }
 
@@ -866,7 +866,7 @@ a {
         margin-left: 20px;
     }
     .biotext {
-        font-size: 18px;
+        font-size: 17px;
     }
 }
 
