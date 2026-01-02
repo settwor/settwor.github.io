@@ -99,6 +99,14 @@ header {
     justify-content: left;
     margin-left: 10%;
 }
+.centerdivbioTracklist {
+    margin-top: 140px;
+    height: 350px;
+    display: flex;
+    width: 900px;
+    align-items: center;
+    justify-content: left;
+}
 
 .centerdiv {
     margin-top: 140px;
@@ -113,6 +121,18 @@ header {
     border-radius: 100%;
     width: 200px;
     height: 200px;
+}
+
+.lyrics-photo {
+    border-radius: 0%;
+    width: 420px;
+    height: 420px;
+}
+
+.tracklistPhoto{
+    border-radius: 6%;
+    width: 270px;
+    height: 270px;
 }
 
 .bio-content{
@@ -234,6 +254,7 @@ header {
     justify-content: center;
     margin-right: 10px;
 }
+
 
 .openBioBut {
     width: 180px;
@@ -568,6 +589,131 @@ a {
     margin-left: 250px;
     
 }
+
+.tracklistTrackTable{
+    border-radius: 6px;
+    width: 900px;
+    height: 46px;
+    background-color: #F6F6F6;
+    display: flex;
+    align-items: center;
+
+}
+
+.tracklistTrackTableTransp{
+    border-radius: 6px;
+    width: 900px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+
+}
+
+.tracklistTableNumber{
+    font-family: 'Medium', Sans-Serif;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    color: #969191;
+    width: 39px;
+}
+
+.tracklistTableName{
+    font-family: 'Medium', Sans-Serif;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    color: #000000;
+    width: 450px;
+}
+
+.explicit{
+    width: 20px;
+    height: 20px;
+    padding-left: 10px;
+    fill: #696969;
+}
+
+.explicitSmall{
+    width: 10px;
+    height: 10px;
+    padding-left: 5px;
+    fill: #696969;
+}
+
+.lyricsReleaseName {
+    font-family: 'Medium', Sans-Serif;
+    font-size: 36px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+
+.tracklistReleaseName {
+    font-family: 'Bold', Sans-Serif;
+    font-size: 30px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+
+.lyricsArtistName {
+    color: #696969;
+    font-family: 'Regular', Sans-Serif;
+    font-size: 2px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+.tracklistArtistName {
+    color: #696969;
+    font-family: 'Medium', Sans-Serif;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.tracklistGenre{
+    color: #696969;
+    font-family: 'Bold', Sans-Serif;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+.divForLyricsButton{
+    width: 450px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.openLyrics{
+    width: 70px;
+    height: 30px;
+    border-radius: 116px;
+    border: 1px solid #969191;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.openLyricsText {
+    font-family: 'Regular', Sans-Serif;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+     color: #696969;
+}
+
 .img-title {
     font-family: 'Medium', Sans-Serif;
     font-size: 30px;
@@ -607,9 +753,99 @@ a {
 
 
 
+@media (max-device-width: 500px) {
 
+    .tracklistTrackTable{
+        border-radius: 15px;
+        height: 130px;
+        width: 850px;
+    }
+
+    .tracklistTrackTableTransp{
+        height: 130px;
+        width: 850px;
+    }
+    
+    .centerdivbioTracklist{
+        width: 850px;
+    flex-direction: column;
+     height: 1100px;
+    }
+
+    .center-align2 {
+/*        position: static;
+/*        margin: 100px;*/
+        margin-left: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tracklistPhoto{
+        margin-top: 130px;
+        width: 650px;
+        height: 650px;
+    }
+
+    .tracklistReleaseName{
+        margin-top: 40px;
+        font-size: 60px;
+    }
+
+    .tracklistArtistName{
+        font-size: 60px;
+    }
+
+    .tracklistGenre{
+        margin-top: 10px;
+        font-size: 35px;
+    }
+
+    .explicit{
+        margin-top: 40px;
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .tracklistTableNumber{
+        font-size: 35px;
+        width: 120px;
+    }
+
+    .tracklistTableName{
+        font-size: 35px;
+        width: 500px;
+    }
+
+
+    .explicitSmall{
+        margin-left: 10px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .divForLyricsButton{
+        width: 200px;
+    }
+
+    .openLyrics{
+        width: 140px;
+        height: 80px;
+
+    }
+
+    .openLyricsText{
+        font-size: 25px;
+    }
+
+}
 
 @media (min-device-width: 1px) and (min-width: 1px) {
+
+
+
+
     
     .openBioBut {
         display: none;
@@ -859,6 +1095,15 @@ a {
     .center-align {
         position: static;
         margin: 100px;
+    }
+
+    .center-align2 {
+/*        position: static;*/
+/*        margin: 100px;*/
+        margin-left: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     /* Специфично для страницы биографии */
