@@ -749,7 +749,7 @@ a {
 }
 
 .biotext {
-    margin: 0px 0;
+/*    margin: 0px 0;*/
     line-height: 1.5; /* Улучшает читаемость */
 }
 
