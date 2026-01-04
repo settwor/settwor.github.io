@@ -808,13 +808,13 @@ a {
     }
 
     .tracklistArtistName{
-        margin-top: 5px;
-        font-size: 50px;
+        margin-top: 10px;
+        font-size: 47px;
     }
 
     .tracklistGenre{
         margin-top: 10px;
-        font-size: 25px;
+        font-size: 27px;
     }
 
     .explicit{
