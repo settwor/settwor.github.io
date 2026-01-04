@@ -176,6 +176,14 @@ header {
     justify-content: center;
 }
 
+
+.biotextdivLyrics {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .biotext {
     font-family: 'Medium', Sans-Serif;
     width: 90%;
@@ -736,6 +744,9 @@ a {
 .biotextdiv {
     padding: 15px 0;
 }
+.biotextdivLyrics {
+    padding: 15px 0;
+}
 
 .biotext {
     margin: 0px 0;
@@ -754,6 +765,10 @@ a {
 
 
 @media (max-device-width: 500px) {
+
+    .biotextdivLyrics{
+        width: 850px;
+    }
 
     .tracklistTrackTable{
         border-radius: 15px;
@@ -793,12 +808,12 @@ a {
     }
 
     .tracklistArtistName{
-        font-size: 60px;
+        font-size: 55px;
     }
 
     .tracklistGenre{
         margin-top: 10px;
-        font-size: 35px;
+        font-size: 30px;
     }
 
     .explicit{
