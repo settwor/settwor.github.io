@@ -3,7 +3,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-    background-color: #F6F6F6;
+    background-color: white;
     font-family: Verdana, Tahoma, Arial, Sans-Serif;
     color: black;
     font-size: 12px;
@@ -17,10 +17,6 @@ html, body {
   padding: 0;
 }
 
-.aboutPage{
-    background-color: white;
-
-}
 
 .bgPage{
 
@@ -101,6 +97,17 @@ footer {
     font-weight: 500;
     font-size: 35px;
 }
+
+
+
+.mainSvg {
+    font-family: 'Medium', Sans-Serif;
+    width: 80%;
+    text-align: center;
+    font-weight: 500;
+    height: 35px;
+}
+
 .main_text_bio {
     font-family: 'Medium', Sans-Serif;
     width: 80%;
@@ -1033,6 +1040,9 @@ a {
     .main_text{
         margin-left: 280px;
     }
+    .mainSvg{
+        margin-left: 280px;
+    }
 	.viewFullBioButText{
 	font-family: 'Medium', Sans-Serif;
     text-align: center;
@@ -1114,6 +1124,9 @@ a {
     .main_text{
         font-size: 30px;
     }
+    .mainSvg{
+        font-size: 30px;
+    }
     .release{
         overflow: visible;
         height: 410px;
@@ -1148,6 +1161,11 @@ a {
     .main_text{
         margin-left: 385px;
         width: 15%;
+    }
+    .mainSvg{
+        margin-left: 385px;
+        width: 15%;
+        height: 30px;
     }
 	.viewFullBioButText {
         font-size: 20px;
