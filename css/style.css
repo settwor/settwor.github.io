@@ -128,6 +128,13 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.hamburgerDiv2{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -1008,6 +1015,13 @@ a {
 
 
 @media (max-device-width: 500px) {
+
+    .hamburgerDiv2{
+        display: none;
+    }
+    .hamburgerDiv{
+        display: flex;
+    }
     .pcHamburger{
         display: none;
     }
@@ -1263,6 +1277,12 @@ a {
 
 
 @media (min-device-width: 500px) {
+    .hamburgerDiv2{
+        display: flex;
+    }
+    .hamburgerDiv{
+        display: none;
+    }
 
     .pcHamburger{
         display: flex;
@@ -1300,6 +1320,10 @@ a {
     }
 
     .hamburgerDiv{
+        width: 40%;
+    }
+
+    .hamburgerDiv2{
         width: 40%;
     }
 

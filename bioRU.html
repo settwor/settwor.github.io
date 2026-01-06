@@ -137,31 +137,54 @@
   <div class="noPcVer"><h1 class="noPcVerText">На данный момент доступна только вертикальная мобильная версия сайта</h1></div>
 
   <div class="bgPage">
-      <header class="header">
-        <h1 class="main_text">
-          <a href="https://settwor.github.io/index.html" aria-label="settwor.github.io">
-          settwor
-        </a>
-        </h1>
 
-        <div class="languagesDiv">
-        <a href="https://settwor.github.io/bio.html" aria-label="eng">
-              <div class="changeLang">
-                <h1 class="changeLangButText">ENG</h1>
-              </div>
-        </a>
-        <a href="https://settwor.github.io/bioRU.html" aria-label="ru">
-              <div class="changeLangSelected">
-                <h1 class="changeLangButTextSelected">RU</h1>
-              </div>
-        </a>
-        <a href="https://settwor.github.io/bioPL.html" aria-label="pl">
-              <div class="changeLang">
-                <h1 class="changeLangButText">PL</h1>
-              </div>
-        </a>
+      <header class="header">
+        <div class="hamburgerDiv2">
+          <div class="pcHamburger">
+            <a href="https://settwor.github.io/bio.html" aria-label="eng">
+            <div class="openBioButMain" style="width: 140px;">
+              <h1 class="changeLangButText">All Releases</h1>
+            </div>
+          </a>
+          <a href="https://settwor.github.io/news/First Track in the Brazilian Funk Genre.html" aria-label="eng">
+            <div class="openBioButMain" style="width: 90px;">
+              <h1 class="changeLangButText">News</h1>
+            </div>
+          </a>
+          </div>
+        </div>
+        <div class="hamburgerDiv" id="burgerBut">
+        <button class="burger" id="burger" aria-label="menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        </div>
+        <nav class="mobile-menu" id="menu">
+          <a href="https://settwor.github.io/index.html">✪ Main</a>
+          <a href="https://settwor.github.io/bio.html">Biography</a>
+          <a href="https://settwor.github.io/photo.html">Photographs</a>
+          <a href="https://settwor.github.io/news/First Track in the Brazilian Funk Genre.html">News</a>
+          <a href="https://settwor.github.io/releases.html">Releases</a>
+        </nav>
+
+        <div class="divMainSvg"><a href="https://settwor.github.io/index.html" aria-label="settwor.github.io"><img src="images/SETTWOR vector.svg" class="mainSvg">
+          </a></div>
+
+        <div class="bioHeaderDiv">
+          <a href="https://settwor.github.io/bio.html" aria-label="eng">
+            <div class="openBioButMain">
+              <h1 class="changeLangButText">Biography</h1>
+            </div>
+          </a>
+          <a href="https://settwor.github.io/photo.html" aria-label="eng">
+            <div class="openBioButMainHidden" style="width: 100px;">
+              <h1 class="changeLangButText">Photos</h1>
+            </div>
+          </a>
         </div>
         </header>
+        
   <div class="aboutPage">
     <!-- Контейнер для биографии -->
     <div class="bio-container">
@@ -527,26 +550,18 @@
 </div>
 </div>
 
-  <!-- JavaScript для переключения языков -->
-  <script>
-    document.querySelectorAll('.lang-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        const lang = button.getAttribute('data-lang');
-        
-        // Переключаем активный класс для кнопок
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+<script>
+  
+const burger = document.getElementById('burger');
+const burgerBut = document.getElementById('burgerBut');
+const menu = document.getElementById('menu');
 
-        // Показываем/скрываем контент
-        document.querySelectorAll('.bio-content').forEach(content => {
-          if (content.getAttribute('data-lang') === lang) {
-            content.classList.remove('hidden');
-          } else {
-            content.classList.add('hidden');
-          }
-        });
-      });
-    });
-  </script>
+burgerBut.addEventListener('click', () => {
+  burger.classList.toggle('active');
+  menu.classList.toggle('active');
+});
+
+
+</script>
 </body>
 </html>
