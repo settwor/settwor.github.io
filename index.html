@@ -1297,12 +1297,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- <div class="leftpanel"></div> -->
 
 <div class="bgPage">
+
       <header class="header">
-        <h1 class="main_text">
-          <a href="https://settwor.github.io/index.html" aria-label="settwor.github.io">
-          settwor
-        </a>
-        </h1>
+        <div class="hamburgerDiv" id="burgerBut">
+        <button class="burger" id="burger" aria-label="menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        </div>
+        <nav class="mobile-menu" id="menu">
+          <a href="https://settwor.github.io/index.html">✪ Main</a>
+          <a href="https://settwor.github.io/bio.html">Biography</a>
+          <a href="https://settwor.github.io/photo.html">Photos</a>
+          <a href="https://settwor.github.io/news/First Track in the Brazilian Funk Genre.html">News</a>
+          <a href="https://settwor.github.io/releases.html">Releases</a>
+        </nav>
+
+        <div class="divMainSvg"><a href="https://settwor.github.io/index.html" aria-label="settwor.github.io"><img src="images/SETTWOR vector.svg" class="mainSvg">
+          </a></div>
 
         <div class="bioHeaderDiv">
           <a href="https://settwor.github.io/bio.html" aria-label="eng">
@@ -1322,6 +1335,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </a>
         </div>
         </header>
+
   <div class="aboutPage">
 
     <div class="centerdiv">
@@ -1373,16 +1387,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://settwor.github.io/bio.html" aria-label="instagram">
         <div class="viewBioBut">
           <h1 class="viewFullBioButText">View full bio..</h1>
-        </div></a>
-
-         <a href="https://settwor.github.io/releases.html" aria-label="instagram">
-        <div class="viewBioBut">
-          <h1 class="viewFullBioButText">View releases..</h1>
-        </div></a>
-
-         <a href="news/news.html" aria-label="instagram">
-        <div class="viewBioBut">
-          <h1 class="viewFullBioButText">Open news..</h1>
         </div></a>
 
         </div>
@@ -1580,5 +1584,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
     
 </div>
+<script>
+  
+const burger = document.getElementById('burger');
+const burgerBut = document.getElementById('burgerBut');
+const menu = document.getElementById('menu');
+
+burgerBut.addEventListener('click', () => {
+  burger.classList.toggle('active');
+  menu.classList.toggle('active');
+});
+
+
+</script>
 </body>
 </html>
