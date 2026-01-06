@@ -38,8 +38,27 @@
 
   <div class="bgPage">
       <header class="header">
+        <div class="hamburgerDiv">
 
-        <img src="../images/SETTWOR vector.svg" class="mainSvg">
+        <button class="burger" id="burger" aria-label="menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        </div>
+
+        <nav class="mobile-menu" id="menu">
+          <a href="https://settwor.github.io/index.html">✪ Main</a>
+          <a href="https://settwor.github.io/bio.html">Biography</a>
+          <a href="https://settwor.github.io/photo.html">Photos</a>
+          <a href="https://settwor.github.io/news/news.html">News</a>
+          <!-- <a href="#">Lyrics</a> -->
+          <a href="https://settwor.github.io/releases.html">Releases</a>
+        </nav>
+
+        <div class="divMainSvg"><img src="../images/SETTWOR vector.svg" class="mainSvg">
+          <a href="https://settwor.github.io/index.html" aria-label="settwor.github.io"></a></div>
         <!-- <h1 class="main_text">
           <a href="https://settwor.github.io/index.html" aria-label="settwor.github.io">
           settwor
@@ -112,5 +131,17 @@
     <!-- <p class="footerText2"></p> -->
   </div>
 </footer>
+<script>
+  
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+
+burger.addEventListener('click', () => {
+  burger.classList.toggle('active');
+  menu.classList.toggle('active');
+});
+
+
+</script>
 </body>
 </html>

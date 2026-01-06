@@ -1,7 +1,104 @@
+/** {
+  box-sizing: border-box;
+  margin: 0;
+}*/
+
+/* HEADER */
+/*.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  z-index: 1000;
+}*/
+
+/* BURGER */
+.burger {
+  width: 50px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  height: 5px;
+  background: #000;
+  margin: 6px 0;
+  transition: 0.3s;
+}
+
+/* КРЕСТИК */
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(7.5px, 7.5px);
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* MENU */
+.mobile-menu {
+  position: fixed;
+  top: 139px;
+  width: 100%;
+  height: calc(100vh - 56px);
+  background: #fff;
+  transform: translateX(100%);
+  transition: 0.3s;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+/*  gap: 40px;*/
+}
+
+.mobile-menu a {
+    margin-top: 60px;
+  font-size: 50px;
+  text-decoration: none;
+  color: #000;
+    text-align: center;
+    font-family: 'Medium', Sans-Serif;
+}
+
+/* ACTIVE */
+.mobile-menu.active {
+  transform: translateX(0);
+}
+
+.biosBurger{
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Базовые стили для всех устройств */
 body {
   min-height: 100vh;
-  display: flex;
+
   flex-direction: column;
     background-color: white;
     font-family: Verdana, Tahoma, Arial, Sans-Serif;
@@ -15,6 +112,20 @@ body {
 html, body {
   margin: 0;
   padding: 0;
+}
+
+.divMainSvg{
+    width: 40%;
+
+}
+
+.hamburgerDiv{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 
@@ -102,7 +213,7 @@ footer {
 
 .mainSvg {
     font-family: 'Medium', Sans-Serif;
-    width: 80%;
+    width: 100%;
     text-align: center;
     font-weight: 500;
     height: 35px;
@@ -330,7 +441,7 @@ footer {
 .bioHeaderDiv{
     display: flex;
     justify-content: center;
-    width: 530px;
+    width: 30%;
 }
 
 .changeLang {
@@ -1041,7 +1152,7 @@ a {
         margin-left: 280px;
     }
     .mainSvg{
-        margin-left: 280px;
+/*        margin-left: 280px;*/
     }
 	.viewFullBioButText{
 	font-family: 'Medium', Sans-Serif;
@@ -1118,13 +1229,14 @@ a {
 
 @media (min-device-width: 500px) {
 
+    .burger{
+        display: none;
+    }
+
     .header{
         height: 100px;
     }
     .main_text{
-        font-size: 30px;
-    }
-    .mainSvg{
         font-size: 30px;
     }
     .release{
@@ -1144,8 +1256,18 @@ a {
         font-size: 15px;
     }
 
+    .hamburgerDiv{
+        width: 40%;
+    }
+
     .bioHeaderDiv{
-        width: 400px;
+        width: 40%;
+
+    }
+
+    .divMainSvg{
+        width: 20%;
+
     }
     .photo div {
         width: 250px;
@@ -1163,9 +1285,9 @@ a {
         width: 15%;
     }
     .mainSvg{
-        margin-left: 385px;
-        width: 15%;
-        height: 30px;
+/*        margin-left: 385px;*/
+/*        width: 15%;*/
+        height: 25px;
     }
 	.viewFullBioButText {
         font-size: 20px;
