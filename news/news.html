@@ -38,7 +38,7 @@
 
   <div class="bgPage">
       <header class="header">
-        <div class="hamburgerDiv">
+        <div class="hamburgerDiv" id="burgerBut">
 
         <button class="burger" id="burger" aria-label="menu">
           <span></span>
@@ -57,8 +57,8 @@
           <a href="https://settwor.github.io/releases.html">Releases</a>
         </nav>
 
-        <div class="divMainSvg"><img src="../images/SETTWOR vector.svg" class="mainSvg">
-          <a href="https://settwor.github.io/index.html" aria-label="settwor.github.io"></a></div>
+        <div class="divMainSvg"><a href="https://settwor.github.io/index.html" aria-label="settwor.github.io"><img src="../images/SETTWOR vector.svg" class="mainSvg">
+          </a></div>
         <!-- <h1 class="main_text">
           <a href="https://settwor.github.io/index.html" aria-label="settwor.github.io">
           settwor
@@ -134,9 +134,10 @@
 <script>
   
 const burger = document.getElementById('burger');
+const burgerBut = document.getElementById('burgerBut');
 const menu = document.getElementById('menu');
 
-burger.addEventListener('click', () => {
+burgerBut.addEventListener('click', () => {
   burger.classList.toggle('active');
   menu.classList.toggle('active');
 });
