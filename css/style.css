@@ -483,6 +483,18 @@ footer {
     margin-right: 10px;
 }
 
+.openBioButMainHidden {
+    width: 180px;
+    height: 60px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
 .changeLangSelected {
     width: 80px;
     height: 60px;
@@ -503,7 +515,7 @@ footer {
 }
 
 .changeLangButText {
-    font-family: 'Medium', Sans-Serif;
+    font-family: 'Bold', Sans-Serif;
     text-align: center;
     font-size: 25px;
     font-weight: 500;
@@ -996,6 +1008,9 @@ a {
 
 
 @media (max-device-width: 500px) {
+    .pcHamburger{
+        display: none;
+    }
     .changeLangButText{
         font-family: 'Bold', Sans-Serif;
     }
@@ -1004,6 +1019,14 @@ a {
         height: 55px;
         border: 4px solid black;
     }
+
+    .openBioButMainHidden{
+        display: none;
+        width: 170px;
+        height: 55px;
+        border: 4px solid black;
+    }
+
 
 
     .NewsName{
@@ -1153,7 +1176,6 @@ a {
 
 
 
-
     
     .openBioBut {
         display: none;
@@ -1242,6 +1264,14 @@ a {
 
 @media (min-device-width: 500px) {
 
+    .pcHamburger{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
     .burger{
         display: none;
     }
@@ -1275,6 +1305,7 @@ a {
 
     .bioHeaderDiv{
         width: 40%;
+        justify-content: flex-start;
 
     }
 
@@ -1373,7 +1404,13 @@ a {
     }
 
     .openBioButMain {
-        width: 100px;
+        width: 125px;
+        height: 35px;
+        display: flex;
+    }
+
+    .openBioButMainHidden {
+        width: 125px;
         height: 35px;
         display: flex;
     }
