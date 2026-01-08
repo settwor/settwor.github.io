@@ -19,64 +19,64 @@
 
 /* BURGER */
 .burger {
-  width: 50px;
-  height: 40px;
-  background: none;
-  border: none;
-  cursor: pointer;
+    width: 50px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .burger span {
-  display: block;
-  height: 5px;
-  background: #000;
-  margin: 6px 0;
-  transition: 0.3s;
+    display: block;
+    height: 5px;
+    background: #000;
+    margin: 6px 0;
+    transition: 0.3s;
 }
 
 /* КРЕСТИК */
 .burger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(7.5px, 7.5px);
+    transform: rotate(45deg) translate(7.5px, 7.5px);
 }
 
 .burger.active span:nth-child(2) {
-  opacity: 0;
+    opacity: 0;
 }
 
 .burger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(8px, -8px);
+    transform: rotate(-45deg) translate(8px, -8px);
 }
 
 /* MENU */
 .mobile-menu {
-  position: fixed;
-  top: 139px;
-  width: 100%;
-  height: calc(100vh - 56px);
-  background: #fff;
-  transform: translateX(100%);
-  transition: 0.3s;
-  padding: 32px 16px;
-  display: flex;
-  flex-direction: column;
-/*  gap: 40px;*/
+    position: fixed;
+    top: 139px;
+    width: 100%;
+    height: calc(100vh - 56px);
+    background: #fff;
+    transform: translateX(100%);
+    transition: 0.3s;
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+    /*  gap: 40px;*/
 }
 
 .mobile-menu a {
     margin-top: 60px;
-  font-size: 50px;
-  text-decoration: none;
-  color: #000;
+    font-size: 50px;
+    text-decoration: none;
+    color: #000;
     text-align: center;
     font-family: 'Medium', Sans-Serif;
 }
 
 /* ACTIVE */
 .mobile-menu.active {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
-.biosBurger{
+.biosBurger {
     display: flex;
     justify-content: center;
 
@@ -97,14 +97,14 @@
 
 /* Базовые стили для всех устройств */
 body {
-  min-height: 100vh;
+    min-height: 100vh;
 
-  flex-direction: column;
+    flex-direction: column;
     background-color: white;
     font-family: Verdana, Tahoma, Arial, Sans-Serif;
     color: black;
     font-size: 12px;
-/*    margin: 0 auto;*/
+    /*    margin: 0 auto;*/
 
     margin: 0;
     padding-bottom: env(safe-area-inset-bottom);
@@ -112,13 +112,14 @@ body {
     overflow-x: hidden;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
+html,
+body {
+    margin: 0;
+    padding: 0;
 }
 
 
-.bioLangsDiv{
+.bioLangsDiv {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -127,19 +128,20 @@ html, body {
 }
 
 
-.divMainSvg{
+.divMainSvg {
     width: 40%;
 
 }
 
-.hamburgerDiv{
+.hamburgerDiv {
     height: 100%;
     width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.hamburgerDiv2{
+
+.hamburgerDiv2 {
     height: 100%;
     width: 30%;
     display: flex;
@@ -149,18 +151,14 @@ html, body {
 }
 
 
-.bgPage{
+.bgPage {}
 
-}
+.release {}
 
-.release{
-
-}
-
-.divPhotos{
+.divPhotos {
     width: 100%;
-/*    display: flex;*/
-/*    justify-content: center;*/
+    /*    display: flex;*/
+    /*    justify-content: center;*/
 }
 
 .noPcVerText {
@@ -205,15 +203,16 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* Убедитесь, что шапка поверх другого контента */
+    z-index: 1000;
+    /* Убедитесь, что шапка поверх другого контента */
 }
 
 footer {
-/*    margin-top: 20px;*/
+    /*    margin-top: 20px;*/
     background-color: #F6F6F6;
     height: 70px;
     width: 100%;
-/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);*/
+    /*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);*/
     /* position: fixed; */
     /* top: 0; */
     display: flex;
@@ -263,6 +262,7 @@ footer {
     justify-content: left;
     margin-left: 10%;
 }
+
 .centerdivbioTracklist {
     margin-top: 140px;
     height: 350px;
@@ -272,7 +272,7 @@ footer {
     justify-content: left;
 }
 
-.centerdivbioNews{
+.centerdivbioNews {
     margin-top: 140px;
     display: flex;
     width: 800px;
@@ -308,19 +308,20 @@ footer {
     height: 420px;
 }
 
-.tracklistPhoto{
+.tracklistPhoto {
     border-radius: 6%;
     width: 270px;
     height: 270px;
 }
-.NewsPhoto{
-/*    border-radius: 6%;*/ 
+
+.NewsPhoto {
+    /*    border-radius: 6%;*/
     width: 500px;
     height: 500px;
     margin-top: 30px;
 }
 
-.bio-content{
+.bio-content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -348,12 +349,14 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
 .socnettextdiv2 {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .biotextdiv {
     width: 100%;
     display: flex;
@@ -369,7 +372,7 @@ footer {
     justify-content: center;
 }
 
-.NewsMainText{
+.NewsMainText {
     width: 100%;
     display: flex;
     align-items: center;
@@ -380,13 +383,14 @@ footer {
     font-family: 'Medium', Sans-Serif;
     width: 800px;
     text-align: left;
-    font-size: 25px; /* Увеличен размер для телефонов */
+    font-size: 25px;
+    /* Увеличен размер для телефонов */
     font-weight: normal;
 }
 
 
 
-.footer{
+.footer {
     width: 800px;
     display: flex;
     align-items: center;
@@ -395,9 +399,10 @@ footer {
 
 .footerText {
     font-family: 'Medium', Sans-Serif;
-/*    width: 50%;*/
+    /*    width: 50%;*/
     text-align: left;
-    font-size: 15px; /* Увеличен размер для телефонов */
+    font-size: 15px;
+    /* Увеличен размер для телефонов */
     font-weight: normal;
 }
 
@@ -406,7 +411,8 @@ footer {
     font-family: 'Medium', Sans-Serif;
     width: 50%;
     text-align: right;
-    font-size: 15px; /* Увеличен размер для телефонов */
+    font-size: 15px;
+    /* Увеличен размер для телефонов */
     font-weight: normal;
 }
 
@@ -417,7 +423,8 @@ footer {
     text-align: center;
     font-size: 30px;
     font-weight: normal;
-    color: black; /* Черный цвет для всех страниц */
+    color: black;
+    /* Черный цвет для всех страниц */
 }
 
 .socnettext2 {
@@ -426,7 +433,8 @@ footer {
     text-align: center;
     font-size: 25px;
     font-weight: normal;
-    color: black; /* Черный цвет для всех страниц */
+    color: black;
+    /* Черный цвет для всех страниц */
 }
 
 .socnet {
@@ -443,7 +451,7 @@ footer {
     margin-right: 30px;
 }
 
-.viewBioBut{
+.viewBioBut {
     width: 367px;
     height: 96px;
     background-color: #F6F6F6;
@@ -458,13 +466,13 @@ footer {
 }
 
 
-.languagesDiv{
+.languagesDiv {
     display: flex;
     justify-content: center;
     width: 400px;
 }
 
-.bioHeaderDiv{
+.bioHeaderDiv {
     display: flex;
     justify-content: center;
     width: 30%;
@@ -494,6 +502,7 @@ footer {
     justify-content: center;
     margin-right: 10px;
 }
+
 .openBioButMain {
     width: 180px;
     height: 60px;
@@ -529,12 +538,13 @@ footer {
     justify-content: center;
     margin-right: 10px;
 }
+
 .changeLangButTextSelected {
     font-family: 'Medium', Sans-Serif;
     text-align: center;
     font-size: 25px;
     font-weight: 500;
-     color: white;
+    color: white;
 }
 
 .changeLangButText {
@@ -593,14 +603,16 @@ footer {
     margin-right: 25px;
     font-weight: 500;
 }
-.viewFullBioButText{
-	font-family: 'Medium', Sans-Serif;
+
+.viewFullBioButText {
+    font-family: 'Medium', Sans-Serif;
     text-align: center;
     font-weight: 500;
-    font-size: 28px; 
+    font-size: 28px;
     margin-right: 0px;
     width: 100%;
 }
+
 .socNetButImg {
     margin-left: 50px;
     width: 35px;
@@ -653,7 +665,7 @@ footer {
     align-items: center;
 }
 
-.release img{
+.release img {
     /* position: absolute; */
     top: 50%;
     left: 50%;
@@ -663,14 +675,14 @@ footer {
     object-fit: cover;
 }
 
-.releaseName{
+.releaseName {
     font-size: 30px;
     margin-top: 25px;
     margin-bottom: 0px;
     font-family: 'Medium', Sans-Serif;
 }
 
-.releaseDate{
+.releaseDate {
     font-family: 'Medium', Sans-Serif;
     margin-top: 12px;
     font-size: 25px;
@@ -712,11 +724,14 @@ table.iksweb {
     margin: auto;
 }
 
-table.iksweb, table.iksweb td, table.iksweb th {
+table.iksweb,
+table.iksweb td,
+table.iksweb th {
     border: 1px solid #595959;
 }
 
-table.iksweb td, table.iksweb th {
+table.iksweb td,
+table.iksweb th {
     padding: 3px;
     height: 35px;
     font-family: 'Medium', Sans-Serif;
@@ -756,6 +771,7 @@ a {
     .noPcVer {
         display: flex;
     }
+
     .aboutPage {
         display: none;
     }
@@ -765,16 +781,18 @@ a {
     .noPcVer {
         display: flex;
     }
+
     .aboutPage {
         display: none;
     }
 }
 
 @media (min-device-width: 600px) and (min-width: 600px) {
-	.aboutPage {
+    .aboutPage {
         display: block;
         max-width: 980px;
-        margin: 0 auto; /* Центрируем с пустым местом по бокам */
+        margin: 0 auto;
+        /* Центрируем с пустым местом по бокам */
     }
 }
 
@@ -826,10 +844,10 @@ a {
     font-size: 30px;
     margin-right: 100px;
     margin-left: 250px;
-    
+
 }
 
-.tracklistTrackTable{
+.tracklistTrackTable {
     border-radius: 6px;
     width: 900px;
     height: 46px;
@@ -839,7 +857,7 @@ a {
 
 }
 
-.tracklistTrackTableTransp{
+.tracklistTrackTableTransp {
     border-radius: 6px;
     width: 900px;
     height: 46px;
@@ -848,7 +866,7 @@ a {
 
 }
 
-.tracklistTableNumber{
+.tracklistTableNumber {
     font-family: 'Medium', Sans-Serif;
     font-size: 15px;
     font-weight: normal;
@@ -858,7 +876,7 @@ a {
     width: 39px;
 }
 
-.tracklistTableName{
+.tracklistTableName {
     font-family: 'Medium', Sans-Serif;
     font-size: 15px;
     font-weight: normal;
@@ -867,14 +885,14 @@ a {
     width: 450px;
 }
 
-.explicit{
+.explicit {
     width: 20px;
     height: 20px;
     padding-left: 10px;
     fill: #696969;
 }
 
-.explicitSmall{
+.explicitSmall {
     width: 10px;
     height: 10px;
     padding-left: 5px;
@@ -902,7 +920,7 @@ a {
     font-family: 'Bold', Sans-Serif;
     font-size: 30px;
     font-weight: normal;
-/*    margin: 0;*/
+    /*    margin: 0;*/
     text-align: center;
     margin-bottom: 0px;
 }
@@ -934,12 +952,12 @@ a {
     font-family: 'Medium', Sans-Serif;
     font-size: 20px;
     font-weight: normal;
-/*    margin: 0;*/
+    /*    margin: 0;*/
     text-align: center;
     margin-bottom: 10px;
 }
 
-.tracklistGenre{
+.tracklistGenre {
     color: #696969;
     font-family: 'Bold', Sans-Serif;
     font-size: 12px;
@@ -948,23 +966,23 @@ a {
     text-align: center;
 }
 
-.NewsDate{
+.NewsDate {
     color: #696969;
     font-family: 'Bold', Sans-Serif;
     font-size: 14px;
     font-weight: normal;
-/*    margin: 0;*/
+    /*    margin: 0;*/
     text-align: left;
 }
 
-.divForLyricsButton{
+.divForLyricsButton {
     width: 450px;
     display: flex;
     justify-content: flex-end;
 }
 
 
-.openLyrics{
+.openLyrics {
     width: 70px;
     height: 30px;
     border-radius: 116px;
@@ -980,7 +998,7 @@ a {
     text-align: center;
     font-size: 13px;
     font-weight: 500;
-     color: #696969;
+    color: #696969;
 }
 
 .img-title {
@@ -1005,18 +1023,20 @@ a {
 .biotextdiv {
     padding: 15px 0;
 }
+
 .biotextdivLyrics {
     padding: 15px 0;
 }
 
 .NewsMainText {
-/*    padding: 15px 0;*/
+    /*    padding: 15px 0;*/
 }
 
 
 .biotext {
-/*    margin: 0px 0;*/
-    line-height: 1.5; /* Улучшает читаемость */
+    /*    margin: 0px 0;*/
+    line-height: 1.5;
+    /* Улучшает читаемость */
 }
 
 
@@ -1026,31 +1046,52 @@ a {
 
 
 /* Оригинальные медиа-запросы для мобильных */
-/*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ /*FOR PHONES*/ 
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
 
 
 
 @media (max-device-width: 500px) {
 
-    .hamburgerDiv2{
+    .hamburgerDiv2 {
         display: none;
     }
-    .hamburgerDiv{
+
+    .hamburgerDiv {
         display: flex;
     }
-    .pcHamburger{
+
+    .pcHamburger {
         display: none;
     }
-    .changeLangButText{
+
+    .changeLangButText {
         font-family: 'Bold', Sans-Serif;
     }
-    .openBioButMain{
+
+    .openBioButMain {
         width: 170px;
         height: 55px;
         border: 4px solid black;
     }
 
-    .openBioButMainHidden{
+    .openBioButMainHidden {
         display: none;
         width: 170px;
         height: 55px;
@@ -1059,24 +1100,24 @@ a {
 
 
 
-    .NewsName{
+    .NewsName {
         margin-top: 100px;
         font-size: 55px;
-    margin-bottom: 10px;
+        margin-bottom: 10px;
     }
 
-    .NewsName2{
+    .NewsName2 {
         margin-bottom: 40px;
         font-size: 35px;
 
     }
 
-    .NewsDate{
+    .NewsDate {
         font-size: 23px;
 
     }
 
-    .NewsPhoto{
+    .NewsPhoto {
         width: 100%;
         height: 100%;
     }
@@ -1102,29 +1143,29 @@ a {
 
 
 
-    .biotextdivLyrics{
+    .biotextdivLyrics {
         width: 850px;
     }
 
-    .tracklistTrackTable{
+    .tracklistTrackTable {
         border-radius: 15px;
         height: 130px;
         width: 850px;
     }
 
-    .tracklistTrackTableTransp{
+    .tracklistTrackTableTransp {
         height: 130px;
         width: 850px;
     }
-    
-    .centerdivbioTracklist{
+
+    .centerdivbioTracklist {
         width: 850px;
-    flex-direction: column;
-     height: 1100px;
+        flex-direction: column;
+        height: 1100px;
     }
 
     .center-align2 {
-/*        position: static;
+        /*        position: static;
 /*        margin: 100px;*/
         margin-left: 0px;
         display: flex;
@@ -1132,70 +1173,70 @@ a {
         align-items: center;
     }
 
-    .tracklistPhoto{
+    .tracklistPhoto {
         margin-top: 130px;
         width: 650px;
         height: 650px;
     }
 
-    .tracklistReleaseName{
+    .tracklistReleaseName {
         margin-top: 45px;
         font-size: 55px;
     }
 
-    .tracklistArtistName{
+    .tracklistArtistName {
         margin-top: 10px;
         font-size: 47px;
     }
 
-    .tracklistGenre{
+    .tracklistGenre {
         margin-top: 10px;
         font-size: 27px;
     }
 
-    .explicit{
+    .explicit {
         margin-top: 40px;
         margin-left: 10px;
         width: 40px;
         height: 40px;
     }
 
-    .tracklistTableNumber{
+    .tracklistTableNumber {
         font-size: 35px;
         width: 120px;
     }
 
-    .tracklistTableName{
+    .tracklistTableName {
         font-size: 35px;
         width: 500px;
     }
 
 
-    .explicitSmall{
+    .explicitSmall {
         margin-left: 10px;
         width: 25px;
         height: 25px;
     }
 
-    .divForLyricsButton{
+    .divForLyricsButton {
         width: 200px;
     }
 
-    .openLyrics{
+    .openLyrics {
         width: 140px;
         height: 80px;
 
     }
 
-    .openLyricsText{
+    .openLyricsText {
         font-size: 25px;
     }
 
-    footer{
+    footer {
         height: 120px;
     }
 
-    .footerText{
+    .footerText {
         font-size: 24px;
     }
 
@@ -1205,68 +1246,80 @@ a {
 
 
 
-    
+
     .openBioBut {
         display: none;
     }
-	.main_text_bio{
-		margin-left: 280px;
-	}
-    .main_text{
+
+    .main_text_bio {
         margin-left: 280px;
     }
-    .mainSvg{
-/*        margin-left: 280px;*/
+
+    .main_text {
+        margin-left: 280px;
     }
-	.viewFullBioButText{
-	font-family: 'Medium', Sans-Serif;
-    text-align: center;
-    font-weight: 500;
-    font-size: 28px; 
-    margin-right: 0px;
-    width: 100%;
-}
-	.biotext.quote {
-    	font-size: 25px;
-	}
-	/*.changeLangSelected {
+
+    .mainSvg {
+        /*        margin-left: 280px;*/
+    }
+
+    .viewFullBioButText {
+        font-family: 'Medium', Sans-Serif;
+        text-align: center;
+        font-weight: 500;
+        font-size: 28px;
+        margin-right: 0px;
+        width: 100%;
+    }
+
+    .biotext.quote {
+        font-size: 25px;
+    }
+
+    /*.changeLangSelected {
     width: 80px;
     height: 60px;
-	}
+    }
 
-	.changeLang {
+    .changeLang {
     width: 80px;
     height: 60px;
-	}
+    }
 
-	.changeLangButTextSelected{
-		font-size: 25px;
-	}
+    .changeLangButTextSelected{
+        font-size: 25px;
+    }
 
-	.changeLangButText{
-		font-size: 25px;
+    .changeLangButText{
+        font-size: 25px;
 
-	}*/
-	.tdEmail{
-		font-size: 25px;
-	}
-	.trMainText{
-		height: 110px;
-	}
-	.trMainTextTh {
-		font-size: 35px;
-	}
-	table.iksweb td, table.iksweb th{
-		height: 100px;
-    	font-size: 28px;
-	}
-	table.iksweb th {
-    	font-size: 30px;
-	}
+    }*/
+    .tdEmail {
+        font-size: 25px;
+    }
+
+    .trMainText {
+        height: 110px;
+    }
+
+    .trMainTextTh {
+        font-size: 35px;
+    }
+
+    table.iksweb td,
+    table.iksweb th {
+        height: 100px;
+        font-size: 28px;
+    }
+
+    table.iksweb th {
+        font-size: 30px;
+    }
 
     .noPcVer {
         display: none;
     }
+
     .aboutPage {
         display: block;
     }
@@ -1284,7 +1337,36 @@ a {
 
 
 /* Адаптация для больших экранов (500px и выше) */
-/*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ /*ДЛЯ ПК*/ 
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
 
 
 
@@ -1293,18 +1375,19 @@ a {
 
 @media (min-device-width: 500px) {
 
-    .bioLangsDiv{
+    .bioLangsDiv {
         margin-bottom: 0px;
     }
-    .hamburgerDiv2{
+
+    .hamburgerDiv2 {
         display: flex;
     }
 
-    .hamburgerDiv{
+    .hamburgerDiv {
         display: none;
     }
 
-    .pcHamburger{
+    .pcHamburger {
         display: flex;
         width: 100%;
         height: 100%;
@@ -1312,136 +1395,159 @@ a {
         align-items: center;
     }
 
-    .burger{
+    .burger {
         display: none;
     }
 
-    .header{
+    .header {
         height: 100px;
     }
-    .main_text{
+
+    .main_text {
         font-size: 30px;
     }
-    .release{
+
+    .release {
         overflow: visible;
         height: 410px;
     }
 
 
-    .releaseName{
+    .releaseName {
         font-size: 25px;
         margin-top: 20px;
         margin-bottom: 0px;
     }
 
-    .releaseDate{
+    .releaseDate {
         margin-top: 10px;
         font-size: 15px;
     }
 
-    .hamburgerDiv{
+    .hamburgerDiv {
         width: 40%;
     }
 
-    .hamburgerDiv2{
+    .hamburgerDiv2 {
         width: 40%;
     }
 
-    .bioHeaderDiv{
+    .bioHeaderDiv {
         width: 40%;
         justify-content: flex-start;
 
     }
 
-    .divMainSvg{
+    .divMainSvg {
         width: 20%;
 
     }
+
     .photo div {
         width: 250px;
         height: 250px;
     }
+
     .photo div img {
         width: 250px;
         height: 250px;
     }
-	.main_text_bio{
-		margin-left: 222px;
-	}
-    .main_text{
+
+    .main_text_bio {
+        margin-left: 222px;
+    }
+
+    .main_text {
         margin-left: 385px;
         width: 15%;
     }
-    .mainSvg{
-/*        margin-left: 385px;*/
-/*        width: 15%;*/
+
+    .mainSvg {
+        /*        margin-left: 385px;*/
+        /*        width: 15%;*/
         height: 25px;
     }
-	.viewFullBioButText {
+
+    .viewFullBioButText {
         font-size: 20px;
     }
-	.socNetButImg {
-    margin-left: 45px;
-    	width: 25px;
-    	height: 25px;
-	}
-	.socNetButText{
-		font-size: 20px;
-		width: 45%;
-	}
-	.socnet{
-		width: 300px;
-		height: 70px;
-	}
-	.viewBioBut{
-    width: 300px;
-    height: 60px;
-}
-	.bio-title {
-		font-size: 20px;
-    margin-left: 0px;
-	}
-	.nextPage {
-    	width: 60px;
-    	height: 60px;
-	}
-	.previousPage {
-    	width: 60px;
-    	height: 60px;
-	}
-	.NPpageButText {
-    margin-top: 13px;
-	}
-	.img-title{
+
+    .socNetButImg {
+        margin-left: 45px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .socNetButText {
+        font-size: 20px;
+        width: 45%;
+    }
+
+    .socnet {
+        width: 300px;
+        height: 70px;
+    }
+
+    .viewBioBut {
+        width: 300px;
+        height: 60px;
+    }
+
+    .bio-title {
+        font-size: 20px;
+        margin-left: 0px;
+    }
+
+    .nextPage {
+        width: 60px;
+        height: 60px;
+    }
+
+    .previousPage {
+        width: 60px;
+        height: 60px;
+    }
+
+    .NPpageButText {
+        margin-top: 13px;
+    }
+
+    .img-title {
         font-size: 20px;
         margin-right: 50px;
-	}
-	.socnettextdiv {
-    height: 70px;
-	}
-    .socnettextdiv2 {
-    height: 50px;
     }
-	.socnettext {
-    font-size: 23px;
-	}
-    .socnettext2 {
-    font-size: 20px;
-    }
-	.biotext.quote {
-    	font-size: 15px;
-	}
-	.changeLangSelected {
-    width: 110px;
-    height: 35px;
-    border: 2px solid black;
-	}
 
-	.changeLang {
-    width: 110px;
-    height: 35px;
-    border: 2px solid black;
-	}
+    .socnettextdiv {
+        height: 70px;
+    }
+
+    .socnettextdiv2 {
+        height: 50px;
+    }
+
+    .socnettext {
+        font-size: 23px;
+    }
+
+    .socnettext2 {
+        font-size: 20px;
+    }
+
+    .biotext.quote {
+        font-size: 15px;
+    }
+
+    .changeLangSelected {
+        width: 110px;
+        height: 35px;
+        border: 2px solid black;
+    }
+
+    .changeLang {
+        width: 110px;
+        height: 35px;
+        border: 2px solid black;
+    }
 
     .openBioBut {
         width: 100px;
@@ -1461,36 +1567,42 @@ a {
         display: flex;
     }
 
-	.changeLangButTextSelected{
-		font-size: 15px;
-	}
+    .changeLangButTextSelected {
+        font-size: 15px;
+    }
 
-	.changeLangButText{
-		font-size: 15px;
+    .changeLangButText {
+        font-size: 15px;
 
-	}
+    }
 
-	.tdEmail{
-		font-size: 22px;
-	}
+    .tdEmail {
+        font-size: 22px;
+    }
 
-	.trMainTextTh{
-		font-size: 35px;
-	}
-	.trMainText{
-		height: 50px;
-	}
-	table.iksweb td, table.iksweb th{
-		height: 60px;
-    	font-size: 20px;
-	}
-	table.iksweb th {
-    font-size: 20px;
-}
+    .trMainTextTh {
+        font-size: 35px;
+    }
+
+    .trMainText {
+        height: 50px;
+    }
+
+    table.iksweb td,
+    table.iksweb th {
+        height: 60px;
+        font-size: 20px;
+    }
+
+    table.iksweb th {
+        font-size: 20px;
+    }
+
     .aboutPage {
         display: block;
         max-width: 1000px;
-        margin: 0 auto; /* Центрируем с пустым местом по бокам */
+        margin: 0 auto;
+        /* Центрируем с пустым местом по бокам */
     }
 
     .noPcVer {
@@ -1498,13 +1610,15 @@ a {
     }
 
     header {
-/*        width: 800px;*/
+        /*        width: 800px;*/
     }
 
     .centerdivbio {
         margin-left: 20px;
-        justify-content: space-between; /* Распределяем фото и текст */
-        padding: 0 20px; /* Отступы по бокам */
+        justify-content: space-between;
+        /* Распределяем фото и текст */
+        padding: 0 20px;
+        /* Отступы по бокам */
     }
 
     .centerdiv {
@@ -1518,23 +1632,24 @@ a {
     }
 
     .center-align2 {
-/*        position: static;*/
-/*        margin: 100px;*/
+        /*        position: static;*/
+        /*        margin: 100px;*/
         margin-left: 50px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
     }
+
     .center-alignNews {
-/*        position: static;*/
-/*        margin: 100px;*/
-/*        margin-left: 50px;*/
+        /*        position: static;*/
+        /*        margin: 100px;*/
+        /*        margin-left: 50px;*/
         display: flex;
         flex-direction: column;
         align-items: stretch;
     }
 
-    .NewsPhotoDiv{
+    .NewsPhotoDiv {
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -1546,11 +1661,12 @@ a {
     .centerdivbio .mainphoto {
         margin-left: 20px;
     }
+
     .centerdivbio .mainphotoReleases {
         margin-left: 20px;
     }
+
     .biotext {
         font-size: 17px;
     }
 }
-
