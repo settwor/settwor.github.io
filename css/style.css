@@ -117,6 +117,16 @@ html, body {
   padding: 0;
 }
 
+
+.bioLangsDiv{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+
 .divMainSvg{
     width: 40%;
 
@@ -286,6 +296,12 @@ footer {
     height: 200px;
 }
 
+.mainphotoReleases {
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+}
+
 .lyrics-photo {
     border-radius: 0%;
     width: 420px;
@@ -313,7 +329,7 @@ footer {
 
 .strip {
     background-color: #969191;
-    width: 100%;
+    width: 800px;
     height: 1px;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
@@ -455,11 +471,11 @@ footer {
 }
 
 .changeLang {
-    width: 80px;
-    height: 60px;
+    width: 180px;
+    height: 55px;
     background-color: #F6F6F6;
     border-radius: 116px;
-    border: 2px solid black;
+    border: 4px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -503,11 +519,11 @@ footer {
 }
 
 .changeLangSelected {
-    width: 80px;
-    height: 60px;
+    width: 180px;
+    height: 55px;
     background-color: #000000;
     border-radius: 116px;
-    border: 2px solid black;
+    border: 4px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1050,7 +1066,7 @@ a {
     }
 
     .NewsName2{
-        margin-bottom: 50px;
+        margin-bottom: 40px;
         font-size: 35px;
 
     }
@@ -1069,9 +1085,8 @@ a {
 
 
     .biotext {
-    margin-top: 30px;
-        margin-bottom: 40px;
-
+        /*margin-top: 30px;
+        margin-bottom: 40px;*/
     }
 
 
@@ -1277,9 +1292,14 @@ a {
 
 
 @media (min-device-width: 500px) {
+
+    .bioLangsDiv{
+        margin-bottom: 0px;
+    }
     .hamburgerDiv2{
         display: flex;
     }
+
     .hamburgerDiv{
         display: none;
     }
@@ -1412,13 +1432,15 @@ a {
     	font-size: 15px;
 	}
 	.changeLangSelected {
-    width: 60px;
-    height: 40px;
+    width: 110px;
+    height: 35px;
+    border: 2px solid black;
 	}
 
 	.changeLang {
-    width: 60px;
-    height: 40px;
+    width: 110px;
+    height: 35px;
+    border: 2px solid black;
 	}
 
     .openBioBut {
@@ -1522,6 +1544,9 @@ a {
 
     /* Специфично для страницы биографии */
     .centerdivbio .mainphoto {
+        margin-left: 20px;
+    }
+    .centerdivbio .mainphotoReleases {
         margin-left: 20px;
     }
     .biotext {
