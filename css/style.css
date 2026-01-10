@@ -63,7 +63,7 @@
 }
 
 .mobile-menu a {
-    margin-top: 60px;
+    margin-top: 80px;
     font-size: 50px;
     text-decoration: none;
     color: #000;
@@ -1113,7 +1113,7 @@ a {
     }
 
     .NewsDate {
-        font-size: 23px;
+        font-size: 25px;
 
     }
 
@@ -1126,6 +1126,7 @@ a {
 
 
     .biotext {
+        font-size: 30px;
         /*margin-top: 30px;
         margin-bottom: 40px;*/
     }
