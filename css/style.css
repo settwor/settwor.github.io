@@ -84,6 +84,15 @@
 
 
 .newsDiv{
+    width: 1000px;
+    height: 370px;
+    border-radius: 20px;
+    display: flex;
+    margin-bottom: 100px;
+    justify-content: center;
+}
+
+.newsColorDiv{
     background-color: #F6F6F6;
     width: 1000px;
     height: 370px;
@@ -92,7 +101,18 @@
     display: flex;
     align-items: center;
     margin-bottom: 100px;
+
 }
+
+
+
+    .NewsPhotoDiv2 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
 
 
 
@@ -284,7 +304,7 @@ footer {
 }
 
 .centerdivbioNews {
-    margin-top: 140px;
+/*    margin-top: 140px;*/
     display: flex;
     width: 800px;
     align-items: center;
@@ -292,6 +312,7 @@ footer {
 
 }
 .centerdivbioNews2 {
+/*    margin-top: 140px;*/
     display: flex;
     width: 800px;
     align-items: center;
@@ -300,7 +321,6 @@ footer {
 }
 
 .centerdiv {
-    margin-top: 140px;
     width: 100%;
     height: 325px;
     display: flex;
@@ -357,6 +377,16 @@ footer {
     width: 800px;
     height: 1px;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.stripNewsMain {
+    background-color: #969191;
+    width: 800px;
+    height: 1px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 70px;
 }
 
 .stripNews {
@@ -1146,6 +1176,37 @@ a {
 
 @media (max-device-width: 500px) {
 
+    .centerdivbioNews2{
+    width: 530px;
+
+    }
+    .aboutPage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .aboutPageNews {
+        display: flex;
+        max-width: 1000px;
+        margin: 0 auto;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newsDiv {
+        width: 100%;
+    }
+
+    .newsColorDiv {
+        border-radius: 40px;
+        width: 850px;
+    }
+
+    .centerdivbioNews {
+        margin-top: 140px;
+    }
+
     .hamburgerDiv2 {
         display: none;
     }
@@ -1194,14 +1255,14 @@ a {
 
     }
     .NewsName3 {
-        margin-top: 100px;
-        font-size: 55px;
+        margin-top: 0px;
+        font-size: 40px;
         margin-bottom: 10px;
+        width: 450px;
     }
 
     .NewsName33 {
-        margin-bottom: 40px;
-        font-size: 35px;
+        display: none;
 
     }
 
@@ -1216,8 +1277,14 @@ a {
     }
 
     .NewsPhoto2 {
-        width: 100%;
-        height: 100%;
+        border-radius: 30px;
+        width: 95%;
+        height: 95%;
+    }
+
+    .stripNews{
+        width: 450px;
+
     }
 
 
@@ -1420,7 +1487,7 @@ a {
     }
 
     .aboutPage {
-        display: block;
+/*        display: block;*/
     }
 }
 
@@ -1705,6 +1772,17 @@ a {
         /* Центрируем с пустым местом по бокам */
     }
 
+
+    .aboutPageNews {
+        display: flex;
+        max-width: 1000px;
+        margin: 0 auto;
+        margin-top: 150px;
+        flex-direction: column;
+        align-items: center;
+        /* Центрируем с пустым местом по бокам */
+    }
+
     .noPcVer {
         display: none;
     }
@@ -1750,14 +1828,6 @@ a {
     }
 
     .NewsPhotoDiv {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-    }
-
-    .NewsPhotoDiv2 {
         width: 100%;
         display: flex;
         flex-direction: column;
