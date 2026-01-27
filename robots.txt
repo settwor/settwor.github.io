@@ -1,4 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /images/SETTWOR vector.svg
+Disallow: /images/SETTWOR%20vector.svg
 
 Sitemap: https://settwor.github.io/sitemap.xml
