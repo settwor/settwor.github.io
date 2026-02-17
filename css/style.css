@@ -17,6 +17,11 @@
   z-index: 1000;
 }*/
 
+.socnettext{
+/*    margin-left: 140px;*/
+
+}
+
 /* BURGER */
 .burger {
     width: 50px;
@@ -1176,6 +1181,34 @@ a {
 
 @media (max-device-width: 500px) {
 
+    .socnettext{
+        width: 500px;
+    }
+
+    .nextPage{
+     margin-right: 0px;
+    width: 70px;
+    height: 70px;
+
+    }
+    .previousPage{
+     margin-left: 0px;
+    margin-right: 70px;
+    width: 70px;
+    height: 70px;
+
+    }
+
+    .bigphoto{
+
+    width: 800px;
+    }
+
+    .centerdiv{
+
+        margin-top: 140px;
+    }
+
     .centerdivbioNews2{
     width: 530px;
 
@@ -1293,7 +1326,7 @@ a {
     .biotext {
         font-size: 30px;
         /*margin-top: 30px;
-        margin-bottom: 40px;*/
+        margin-bottom: 40px;
     }
 
 
@@ -1541,6 +1574,7 @@ a {
 
 @media (min-device-width: 500px) {
 
+
     .bioLangsDiv {
         margin-bottom: 0px;
     }
@@ -1665,17 +1699,18 @@ a {
     }
 
     .nextPage {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
 
     .previousPage {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
 
     .NPpageButText {
-        margin-top: 13px;
+        margin-top: 11px;
+    font-size: 25px;
     }
 
     .img-title {
@@ -1768,7 +1803,7 @@ a {
         display: block;
         max-width: 1000px;
         margin: 0 auto;
-    margin-top: 150px;
+    margin-top: 100px;
         /* Центрируем с пустым местом по бокам */
     }
 
