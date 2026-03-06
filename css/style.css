@@ -21,7 +21,8 @@
     border-bottom: 1px solid #ccc;
     padding: 10px 0;
     width: 800px;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .faq-question {
@@ -31,6 +32,7 @@
     font-size: 17px;
     width: 800px;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .faq-answer {
@@ -41,6 +43,7 @@
     width: 800px;
     text-align: left;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .socnettext {
@@ -1205,6 +1208,12 @@ a {
 /*FOR PHONES*/
 /*FOR PHONES*/
 /*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
 
 
 
@@ -1214,24 +1223,30 @@ a {
     }
 
     .socnettext2 {
-        font-size: 25px;
+        margin-top: 20px;
+        font-size: 23px;
+        margin-bottom: 20px;
     }
 
     .socnettext {
-        font-size: 30px;
+        font-size: 33px;
     }
 
     .faq-item {
-        margin-top: 40px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .faq-question {
         font-size: 30px;
+        margin-top: 0px;
+        margin-bottom: 20px;
     }
 
     .faq-answer {
         font-size: 30px;
         margin-top: 40px;
+        margin-bottom: 20px;
     }
 
     .socnettext {
@@ -1593,6 +1608,28 @@ a {
 
 
 /* Адаптация для больших экранов (500px и выше) */
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
 /*ДЛЯ ПК*/
 /*ДЛЯ ПК*/
 /*ДЛЯ ПК*/
