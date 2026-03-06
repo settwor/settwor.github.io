@@ -379,10 +379,10 @@
                     <div class="biotextdiv">
                         <p class="biotext">
                             В честь второй годовщины релиза альбома GET IT, Vol.1, а также успеха его самого популярного на тот момент трека GOT ME UP 2, 15 марта 2026 года SETTWOR выпустил альбом GOT ME UP (Deluxe).<br><br>
-                            В релиз вошли: оригинальная версия первого трека GOT ME UP, обновлённая и улучшенная по качеству версия GOT ME UP (Remastered), трек GOT ME UP 2, его ремастированная версия GOT ME UP 2 (Remastered), а также по две дополнительные версии каждого трека — замедленная (Slowed) и ускоренная (Sped Up).<br><br>
+                            В релиз вошли: оригинальная версия первого трека GOT ME UP, обновлённая и улучшенная по качеству версия GOT ME UP (Alternate Mix), трек GOT ME UP 2, его ремастированная версия GOT ME UP 2 (Alternate Mix), а также по две дополнительные версии каждого трека — замедленная (Slowed) и ускоренная (Sped Up).<br><br>
                             Всего в альбом вошло 12 композиций.<br><br>
                             Вскоре после релиза оригинальная версия первого трека GOT ME UP была удалена с площадок и осталась доступной только в составе альбома GOT ME UP (Deluxe).<br><br>
-                            Качество звучания версий GOT ME UP (Remastered) и GOT ME UP 2 (Remastered) заметно улучшилось, что продемонстрировало профессиональный рост артиста и развитие его продакшн-навыков за прошедшее время.
+                            Качество звучания версий GOT ME UP (Alternate Mix) и GOT ME UP 2 (Alternate Mix) заметно улучшилось, что продемонстрировало профессиональный рост артиста и развитие его продакшн-навыков за прошедшее время.
                         </p>
                     </div>
                     <div class="strip2"></div>
@@ -416,6 +416,35 @@
                     <div class="biotextdiv" style="padding: 15px 0px 20px 0px">
                         <p class="biotext">11 октября 2025 года канал SETTWOR был взломан, и мошенники получили доступ к аккаунту. На следующий день они продали канал. Через три дня после инцидента, 14 октября 2025 года, благодаря поддержке YouTube, SETTWOR успешно восстановил свой канал и аккаунт.</p>
                     </div>
+                    <div class="strip"></div>
+                    <div class="socnettextdiv">
+                        <h1 class="socnettext">Вопросы</h1>
+                    </div>
+                    <div class="strip"></div>
+                    <div class="faq-item">
+                        <div class="faq-question">Когда родился SETTWOR?</div>
+                        <div class="faq-answer">SETTWOR родился 8 февраля 2007 года.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Откуда родом SETTWOR?</div>
+                        <div class="faq-answer">SETTWOR родом из Кривого Рога, Украина</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Где живет SETTWOR?</div>
+                        <div class="faq-answer">На данный момент SETTWOR живет в Польше.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Какая почта для связи с SETTWOR?</div>
+                        <div class="faq-answer">settwor@gmail.com</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Какое полное имя у SETTWOR?</div>
+                        <div class="faq-answer">Полное имя SETTWOR - Даниил Шульга</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">В каких жанрах SETTWOR пишет треки?</div>
+                        <div class="faq-answer">Основные жанры это Фонк и Бразильский фанк.</div>
+                    </div>
                     <!-- <div class="strip"></div>
                     <div class="socnettextdiv">
                         <h1 class="socnettext">Рекорды</h1>
@@ -437,6 +466,13 @@
                 <!-- Русский контент END -->
             </div>
         </div>
+        <footer>
+            <div class="footer">
+                <!-- <p class="footerText">✪ SETTWOR Official Page | © 2026 All rights reserved</p> -->
+                <p class="footerText">© 2026 All rights reserved</p>
+                <!-- <p class="footerText2"></p> -->
+            </div>
+        </footer>
         <script>
         const burger = document.getElementById('burger');
         const burgerBut = document.getElementById('burgerBut');
@@ -445,6 +481,15 @@
         burgerBut.addEventListener('click', () => {
             burger.classList.toggle('active');
             menu.classList.toggle('active');
+        });
+        </script>
+        <script>
+        document.querySelectorAll(".faq-question").forEach(q => {
+            q.addEventListener("click", () => {
+                const answer = q.nextElementSibling;
+                answer.style.display =
+                    answer.style.display === "block" ? "none" : "block";
+            });
         });
         </script>
 </body>

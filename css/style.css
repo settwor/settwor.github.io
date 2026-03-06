@@ -17,8 +17,34 @@
   z-index: 1000;
 }*/
 
-.socnettext{
-/*    margin-left: 140px;*/
+.faq-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    width: 800px;
+    margin-top: 20px;
+}
+
+.faq-question {
+    font-family: 'Bold', Sans-Serif;
+    cursor: pointer;
+    /*    font-weight: bold;*/
+    font-size: 17px;
+    width: 800px;
+    text-align: center;
+}
+
+.faq-answer {
+    font-family: 'Medium', Sans-Serif;
+    display: none;
+    margin-top: 5px;
+    font-size: 17px;
+    width: 800px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.socnettext {
+    /*    margin-left: 140px;*/
 
 }
 
@@ -90,7 +116,7 @@
 }
 
 
-.newsDiv{
+.newsDiv {
     width: 1000px;
     height: 370px;
     border-radius: 20px;
@@ -99,7 +125,7 @@
     justify-content: center;
 }
 
-.newsColorDiv{
+.newsColorDiv {
     background-color: #F6F6F6;
     width: 1000px;
     height: 370px;
@@ -113,13 +139,13 @@
 
 
 
-    .NewsPhotoDiv2 {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+.NewsPhotoDiv2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    }
+}
 
 
 
@@ -246,6 +272,7 @@ header {
 }
 
 footer {
+    margin-top: 30px;
     /*    margin-top: 20px;*/
     background-color: #F6F6F6;
     height: 70px;
@@ -311,15 +338,16 @@ footer {
 }
 
 .centerdivbioNews {
-/*    margin-top: 140px;*/
+    /*    margin-top: 140px;*/
     display: flex;
     width: 800px;
     align-items: center;
     justify-content: left;
 
 }
+
 .centerdivbioNews2 {
-/*    margin-top: 140px;*/
+    /*    margin-top: 140px;*/
     display: flex;
     width: 800px;
     align-items: center;
@@ -488,20 +516,18 @@ footer {
 
 
 .socnettext {
-    font-family: 'Medium', Sans-Serif;
+    font-family: 'Bold', Sans-Serif;
     width: 100%;
     text-align: center;
-    font-size: 30px;
     font-weight: normal;
     color: black;
     /* Черный цвет для всех страниц */
 }
 
 .socnettext2 {
-    font-family: 'Medium', Sans-Serif;
+    font-family: 'Bold', Sans-Serif;
     width: 100%;
     text-align: center;
-    font-size: 25px;
     font-weight: normal;
     color: black;
     /* Черный цвет для всех страниц */
@@ -1003,6 +1029,7 @@ a {
     text-align: center;
     margin-bottom: 0px;
 }
+
 .NewsName3 {
     font-family: 'Bold', Sans-Serif;
     font-size: 30px;
@@ -1182,39 +1209,65 @@ a {
 
 
 @media (max-device-width: 500px) {
+    .strip2 {
+        width: 50%;
+    }
 
-    .socnettext{
+    .socnettext2 {
+        font-size: 25px;
+    }
+
+    .socnettext {
+        font-size: 30px;
+    }
+
+    .faq-item {
+        margin-top: 40px;
+    }
+
+    .faq-question {
+        font-size: 30px;
+    }
+
+    .faq-answer {
+        font-size: 30px;
+        margin-top: 40px;
+    }
+
+    .socnettext {
         width: 500px;
     }
 
-    .nextPage{
-     margin-right: 0px;
-    width: 70px;
-    height: 70px;
-
-    }
-    .previousPage{
-     margin-left: 0px;
-    margin-right: 70px;
-    width: 70px;
-    height: 70px;
+    .nextPage {
+        margin-right: 0px;
+        width: 70px;
+        height: 70px;
 
     }
 
-    .bigphoto{
+    .previousPage {
+        margin-left: 0px;
+        margin-right: 70px;
+        width: 70px;
+        height: 70px;
 
-    width: 800px;
     }
 
-    .centerdiv{
+    .bigphoto {
+
+        width: 800px;
+    }
+
+    .centerdiv {
 
         margin-top: 140px;
     }
 
-    .centerdivbioNews2{
-    width: 530px;
+    .centerdivbioNews2 {
+        width: 530px;
 
     }
+
     .aboutPage {
         display: flex;
         flex-direction: column;
@@ -1289,6 +1342,7 @@ a {
         font-size: 25px;
 
     }
+
     .NewsName3 {
         margin-top: 0px;
         font-size: 40px;
@@ -1317,7 +1371,7 @@ a {
         height: 95%;
     }
 
-    .stripNews{
+    .stripNews {
         width: 450px;
 
     }
@@ -1327,7 +1381,7 @@ a {
 
     .biotext {
         font-size: 30px;
-/*    width: 100%;*/
+        /*    width: 100%;*/
         /*margin-top: 30px;
         margin-bottom: 40px;
     }
@@ -1523,7 +1577,7 @@ a {
     }
 
     .aboutPage {
-/*        display: block;*/
+        /*        display: block;*/
     }
 }
 
@@ -1713,7 +1767,7 @@ a {
 
     .NPpageButText {
         margin-top: 11px;
-    font-size: 25px;
+        font-size: 25px;
     }
 
     .img-title {
@@ -1730,11 +1784,11 @@ a {
     }
 
     .socnettext {
-        font-size: 23px;
+        font-size: 21px;
     }
 
     .socnettext2 {
-        font-size: 20px;
+        font-size: 17px;
     }
 
     .biotext.quote {
@@ -1806,7 +1860,7 @@ a {
         display: block;
         max-width: 1000px;
         margin: 0 auto;
-    margin-top: 100px;
+        margin-top: 100px;
         /* Центрируем с пустым местом по бокам */
     }
 
@@ -1887,6 +1941,6 @@ a {
     }
 }
 
-.trMainBioTextTh{
+.trMainBioTextTh {
     font-size: 30px;
 }
