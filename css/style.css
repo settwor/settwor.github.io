@@ -756,7 +756,7 @@ footer {
     position: relative;
     overflow: hidden;
     width: 300px;
-    height: 440px;
+    height: 490px;
     display: flex;
     position: relative;
     padding: 1%;
@@ -775,7 +775,7 @@ footer {
 }
 
 .releaseName {
-    font-size: 30px;
+    font-size: 31px;
     margin-top: 25px;
     margin-bottom: 0px;
     font-family: 'Medium', Sans-Serif;
@@ -783,8 +783,15 @@ footer {
 
 .releaseDate {
     font-family: 'Medium', Sans-Serif;
-    margin-top: 12px;
-    font-size: 25px;
+    margin-top: 9px;
+    font-size: 21px;
+}
+
+.releaseArtist {
+    font-family: 'Medium', Sans-Serif;
+    margin-top: 10px;
+    font-size: 23px;
+    margin-bottom: 0;
 }
 
 .photo div {
@@ -1703,7 +1710,7 @@ a {
 
     .release {
         overflow: visible;
-        height: 410px;
+        height: 430px;
     }
 
 
@@ -1714,8 +1721,15 @@ a {
     }
 
     .releaseDate {
-        margin-top: 10px;
-        font-size: 15px;
+        margin-top: 7px;
+        font-size: 13px;
+        margin-bottom: 30px;
+    }
+
+    .releaseArtist {
+        margin-top: 5px;
+        font-size: 17px;
+        margin-bottom: 0;
     }
 
     .hamburgerDiv {
