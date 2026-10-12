@@ -16,6 +16,10 @@
   padding: 0 16px;
   z-index: 1000;
 }*/
+.biotext a,
+.biotext a:visited {
+    color: blue;
+}
 
 .faq-item {
     border-bottom: 1px solid #ccc;
