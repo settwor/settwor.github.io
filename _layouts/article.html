@@ -3,7 +3,7 @@ layout: default
 ---
 {%- assign author_name = page.author | default: "SETTWOR" -%}
 {%- assign cover = "" -%}
-{%- if page.image != blank -%}
+{%- if page.image and page.image != "" -%}
 {%- capture cover -%}{% include image-url.html src=page.image %}{%- endcapture -%}
 {%- assign cover = cover | strip -%}
 {%- endif -%}
@@ -27,7 +27,7 @@ layout: default
 <div class="page">
 
     <main class="page__main" id="main" tabindex="-1">
-{%- if page.legacy_url != blank %}
+{%- if page.legacy_url and page.legacy_url != "" %}
         <section class="article" aria-labelledby="article-title">
             <h1 class="article__title" id="article-title">{{ page.title }}</h1>
             <p class="article__deck">This article is published on a separate page.</p>
@@ -44,22 +44,22 @@ layout: default
 
             <header class="article__head">
                 <h1 class="article__title">{{ page.title }}</h1>
-                {%- if page.description != blank %}
+                {%- if page.description and page.description != "" %}
                 <p class="article__deck">{{ page.description }}</p>
                 {%- endif %}
                 <p class="article__meta">
                     <span>By <a href="/" rel="author">{{ author_name }}</a></span>
                     <span>Published <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time></span>
-                    {%- if page.updated != blank %}
+                    {%- if page.updated and page.updated != "" %}
                     <span>Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%-d %B %Y" }}</time></span>
                     {%- endif %}
                 </p>
             </header>
 
-            {%- if cover != blank %}
+            {%- if cover and cover != "" %}
             <figure class="article__cover">
                 <img src="{{ cover }}" alt="{{ page.image_alt | default: page.title | escape }}" fetchpriority="high">
-                {%- if page.image_caption != blank %}
+                {%- if page.image_caption and page.image_caption != "" %}
                 <figcaption>{{ page.image_caption }}</figcaption>
                 {%- endif %}
             </figure>
@@ -69,7 +69,7 @@ layout: default
                 {{ content }}
             </div>
 
-            {%- if page.listen_url != blank %}
+            {%- if page.listen_url and page.listen_url != "" %}
             <aside class="listen" aria-label="Listen to the release">
                 <p class="listen__text">Listen to the release</p>
                 <a class="btn" href="{{ page.listen_url }}" rel="noopener">{% if page.listen_url contains "spotify" %}Open on Spotify{% else %}Open the release{% endif %}</a>
@@ -126,6 +126,6 @@ layout: default
     </aside>
 
 </div>
-{%- if page.legacy_url == blank %}
+{%- unless page.legacy_url and page.legacy_url != "" %}
 {% include article-jsonld.html %}
-{%- endif %}
+{%- endunless %}

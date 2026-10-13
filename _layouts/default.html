@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 {%- capture full_title -%}
-{%- if page.seo_title != blank -%}
+{%- if page.seo_title and page.seo_title != "" -%}
 {{ page.seo_title }}
 {%- elsif page.layout == "article" -%}
 {{ page.title }} | SETTWOR News
@@ -16,14 +16,14 @@
 {%- assign full_title = full_title | strip -%}
 {%- assign meta_description = page.description | default: site.description | strip_html | normalize_whitespace -%}
 {%- capture canonical -%}
-{%- if page.legacy_url != blank -%}
+{%- if page.legacy_url and page.legacy_url != "" -%}
 {{ page.legacy_url | uri_escape | absolute_url }}
 {%- else -%}
 {{ page.url | absolute_url }}
 {%- endif -%}
 {%- endcapture -%}
 {%- assign canonical = canonical | strip -%}
-{%- if page.image != blank -%}
+{%- if page.image and page.image != "" -%}
 {%- capture og_image_path -%}{% include image-url.html src=page.image %}{%- endcapture -%}
 {%- assign og_image_path = og_image_path | strip -%}
 {%- else -%}
@@ -32,7 +32,7 @@
 
     <title>{{ full_title | escape }}</title>
     <meta name="description" content="{{ meta_description | escape }}">
-{%- if page.legacy_url != blank %}
+{%- if page.legacy_url and page.legacy_url != "" %}
     <meta name="robots" content="noindex, follow">
     <meta http-equiv="refresh" content="0; url={{ canonical }}">
 {%- else %}
@@ -52,11 +52,12 @@
     <meta property="og:url" content="{{ canonical }}">
     <meta property="og:image" content="{{ og_image_path | absolute_url }}">
     <meta property="og:image:alt" content="{{ page.image_alt | default: page.title | escape }}">
-{%- if page.layout == "article" and page.legacy_url == blank %}
+{%- assign is_legacy = false -%}{%- if page.legacy_url and page.legacy_url != "" -%}{%- assign is_legacy = true -%}{%- endif -%}
+{%- if page.layout == "article" and is_legacy == false %}
     <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
     <meta property="article:modified_time" content="{{ page.updated | default: page.date | date_to_xmlschema }}">
 {%- endif %}
-    <meta name="twitter:card" content="{% if page.image != blank %}summary_large_image{% else %}summary{% endif %}">
+    <meta name="twitter:card" content="{% if page.image and page.image != "" %}summary_large_image{% else %}summary{% endif %}">
 
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="/fonts.css">

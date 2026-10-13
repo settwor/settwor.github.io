@@ -10,10 +10,10 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": { "@type": "WebPage", "@id": {{ canonical | jsonify }} },
     "headline": {{ page.title | jsonify }},
-{%- if page.description != blank %}
+{%- if page.description and page.description != "" %}
     "description": {{ page.description | jsonify }},
 {%- endif %}
-{%- if cover != blank %}
+{%- if cover and cover != "" %}
     "image": [ {{ cover | absolute_url | jsonify }} ],
 {%- endif %}
     "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
