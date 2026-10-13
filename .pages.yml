@@ -1,0 +1,96 @@
+# =============================================================
+# Pages CMS settings for settwor.github.io
+# Open https://app.pagescms.org, sign in with GitHub and choose
+# this repository. The "News" section appears automatically.
+# =============================================================
+
+# Where uploaded pictures are saved (the folder "images" of the site).
+media:
+  input: images
+  output: /images
+
+content:
+  - name: news
+    label: News
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    # The name of the file (and so the web address) is made from the title.
+    # It is asked only when a new article is created.
+    filename:
+      template: "{year}-{month}-{day}-{primary}.md"
+      field: create
+    view:
+      fields: [title, date]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: "The headline of the article. It is also the first line Google shows."
+
+      - name: description
+        label: Short summary
+        type: text
+        required: true
+        description: "One or two sentences (up to 160 characters). Shown under the title, in the news list, in Google and in link previews."
+
+      - name: date
+        label: Date and time
+        type: date
+        required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm"
+        description: "When the article was published. Do not change it later."
+
+      - name: image
+        label: Cover picture
+        type: image
+        options:
+          path: images/news
+          rename: true
+          extensions: [jpg, jpeg, png, webp]
+        description: "Use a picture at least 1200 pixels wide. It is used on the page, in Google and in link previews."
+
+      - name: image_alt
+        label: Describe the picture
+        type: string
+        description: "For people who cannot see it and for search engines. Say what is shown, for example: SETTWOR in the studio, October 2026."
+
+      - name: image_caption
+        label: Picture caption
+        type: string
+        description: "Optional. A short line under the picture, for example the name of the photographer."
+
+      - name: body
+        label: Text of the article
+        type: rich-text
+
+      - name: listen_url
+        label: Link to the release
+        type: string
+        description: "Optional. A link to Spotify or another platform. Adds an Open on Spotify button under the article."
+
+      - name: updated
+        label: Date of the last correction
+        type: date
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm"
+        description: "Fill in only if you changed the article after it was published. The page then shows Updated, and Google sees it."
+
+      - name: permalink
+        label: Custom address
+        type: string
+        description: "Leave empty for new articles. Used only by old articles that must keep their old web address. Do not delete it."
+
+      - name: legacy_url
+        label: Old page address
+        type: string
+        description: "Leave empty. Used only by an entry that points to an old separate page."

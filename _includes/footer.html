@@ -1,0 +1,32 @@
+<!-- ===== Footer (one copy for the whole site) ===== -->
+<footer class="site-footer">
+    <div class="site-footer__grid">
+        <nav aria-labelledby="footer-site">
+            <h2 class="footer-title" id="footer-site">Site</h2>
+            <ul class="footer-links">
+                <li><a href="/">Main</a></li>
+                <li><a href="/bio.html">Biography</a></li>
+                <li><a href="/photo.html">Photographs</a></li>
+                <li><a href="/news.html">News</a></li>
+                <li><a href="/releases.html">Releases</a></li>
+            </ul>
+        </nav>
+        <nav aria-labelledby="footer-bio">
+            <h2 class="footer-title" id="footer-bio">Biography</h2>
+            <ul class="footer-links">
+                <li><a href="/bio.html" hreflang="en">English</a></li>
+                <li><a href="/bioRU.html" hreflang="ru" lang="ru">Русский</a></li>
+                <li><a href="/bioPL.html" hreflang="pl" lang="pl">Polski</a></li>
+            </ul>
+        </nav>
+        <nav aria-labelledby="footer-legal">
+            <h2 class="footer-title" id="footer-legal">Legal</h2>
+            <ul class="footer-links">
+                <li><a href="/license.html">Photo license</a></li>
+                <li><a href="/privacy.html">Privacy policy</a></li>
+                <li><button class="link-button" type="button" data-consent-open>Cookie settings</button></li>
+            </ul>
+        </nav>
+    </div>
+    <p class="footer-copy">© <span data-year>{{ site.time | date: "%Y" }}</span> SETTWOR. Official website.</p>
+</footer>

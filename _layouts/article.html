@@ -1,0 +1,131 @@
+---
+layout: default
+---
+{%- assign author_name = page.author | default: "SETTWOR" -%}
+{%- assign cover = "" -%}
+{%- if page.image != blank -%}
+{%- capture cover -%}{% include image-url.html src=page.image %}{%- endcapture -%}
+{%- assign cover = cover | strip -%}
+{%- endif -%}
+
+{%- comment -%} Find the newer and the older article next to this one. {%- endcomment -%}
+{%- assign newer = nil -%}
+{%- assign older = nil -%}
+{%- assign last_post = nil -%}
+{%- assign found = false -%}
+{%- for item in site.posts -%}
+{%- if found and older == nil -%}
+{%- assign older = item -%}
+{%- endif -%}
+{%- if item.url == page.url -%}
+{%- assign found = true -%}
+{%- assign newer = last_post -%}
+{%- endif -%}
+{%- assign last_post = item -%}
+{%- endfor -%}
+
+<div class="page">
+
+    <main class="page__main" id="main" tabindex="-1">
+{%- if page.legacy_url != blank %}
+        <section class="article" aria-labelledby="article-title">
+            <h1 class="article__title" id="article-title">{{ page.title }}</h1>
+            <p class="article__deck">This article is published on a separate page.</p>
+            <p class="center"><a class="btn" href="{{ page.legacy_url }}">Read the article</a></p>
+        </section>
+{%- else %}
+        <article class="article">
+            <nav class="crumbs" aria-label="Breadcrumb">
+                <ol>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/news.html">News</a></li>
+                </ol>
+            </nav>
+
+            <header class="article__head">
+                <h1 class="article__title">{{ page.title }}</h1>
+                {%- if page.description != blank %}
+                <p class="article__deck">{{ page.description }}</p>
+                {%- endif %}
+                <p class="article__meta">
+                    <span>By <a href="/" rel="author">{{ author_name }}</a></span>
+                    <span>Published <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time></span>
+                    {%- if page.updated != blank %}
+                    <span>Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%-d %B %Y" }}</time></span>
+                    {%- endif %}
+                </p>
+            </header>
+
+            {%- if cover != blank %}
+            <figure class="article__cover">
+                <img src="{{ cover }}" alt="{{ page.image_alt | default: page.title | escape }}" fetchpriority="high">
+                {%- if page.image_caption != blank %}
+                <figcaption>{{ page.image_caption }}</figcaption>
+                {%- endif %}
+            </figure>
+            {%- endif %}
+
+            <div class="article__body">
+                {{ content }}
+            </div>
+
+            {%- if page.listen_url != blank %}
+            <aside class="listen" aria-label="Listen to the release">
+                <p class="listen__text">Listen to the release</p>
+                <a class="btn" href="{{ page.listen_url }}" rel="noopener">{% if page.listen_url contains "spotify" %}Open on Spotify{% else %}Open the release{% endif %}</a>
+            </aside>
+            {%- endif %}
+
+            {%- if newer or older %}
+            <nav class="pager" aria-label="More news">
+                {%- if newer %}
+                <a class="pager__link pager__link--newer" href="{{ newer.legacy_url | default: newer.url }}">
+                    <span class="pager__label">Newer</span>
+                    <span class="pager__title">{{ newer.title }}</span>
+                </a>
+                {%- endif %}
+                {%- if older %}
+                <a class="pager__link pager__link--older" href="{{ older.legacy_url | default: older.url }}">
+                    <span class="pager__label">Older</span>
+                    <span class="pager__title">{{ older.title }}</span>
+                </a>
+                {%- endif %}
+            </nav>
+            {%- endif %}
+        </article>
+{%- endif %}
+    </main>
+
+    <!-- Right rail: links (below the article on phones) -->
+    <aside class="rail rail--end" aria-label="Elsewhere on the web">
+        <div class="rail__inner">
+            {% include rail-follow.html %}
+        </div>
+    </aside>
+
+    <!-- Left rail: other news (wide screens only) -->
+    <aside class="rail rail--start" aria-label="More news">
+        <div class="rail__inner">
+            <nav class="rail-block" aria-labelledby="rail-more-news">
+                <h2 class="rail-block__title" id="rail-more-news">Latest news</h2>
+                <ul class="rail-list">
+                    {%- for item in site.posts limit: 5 %}
+                    {%- if item.url != page.url %}
+                    <li>
+                        <a class="rail-link" href="{{ item.legacy_url | default: item.url }}">
+                            <span class="rail-link__name">{{ item.title }}</span>
+                            <span class="rail-link__desc">{{ item.date | date: "%-d %B %Y" }}</span>
+                        </a>
+                    </li>
+                    {%- endif %}
+                    {%- endfor %}
+                    <li><a class="rail-link" href="/news.html"><span class="rail-link__name">All news</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+</div>
+{%- if page.legacy_url == blank %}
+{% include article-jsonld.html %}
+{%- endif %}

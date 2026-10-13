@@ -1,0 +1,37 @@
+{%- comment -%}
+  Structured data for one article (NewsArticle + breadcrumbs).
+  Everything comes from the fields of the article, nothing is typed by hand.
+{%- endcomment -%}
+{%- assign aj_modified = page.updated | default: page.date -%}
+{%- assign aj_site = site.url | append: "/" -%}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": {{ canonical | jsonify }} },
+    "headline": {{ page.title | jsonify }},
+{%- if page.description != blank %}
+    "description": {{ page.description | jsonify }},
+{%- endif %}
+{%- if cover != blank %}
+    "image": [ {{ cover | absolute_url | jsonify }} ],
+{%- endif %}
+    "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+    "dateModified": {{ aj_modified | date_to_xmlschema | jsonify }},
+    "inLanguage": "en",
+    "author": { "@type": "Person", "@id": "{{ aj_site }}#artist", "name": {{ author_name | jsonify }}, "url": {{ aj_site | jsonify }} },
+    "publisher": { "@type": "Person", "@id": "{{ aj_site }}#artist", "name": "SETTWOR", "url": {{ aj_site | jsonify }} },
+    "isPartOf": { "@type": "WebSite", "@id": "{{ aj_site }}#website", "name": "SETTWOR", "url": {{ aj_site | jsonify }} }
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "SETTWOR", "item": {{ aj_site | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "News", "item": {{ "/news.html" | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }} }
+    ]
+}
+</script>

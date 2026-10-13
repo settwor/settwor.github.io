@@ -1,0 +1,16 @@
+{%- comment -%}
+  Turns an image path from a post (for example "/images/news/cover.jpg",
+  "images/news/cover.jpg" or a full https address) into a safe address.
+  Usage: include image-url.html with the parameter src set to the image path.
+{%- endcomment -%}
+{%- assign iu_src = include.src | strip -%}
+{%- if iu_src contains "://" -%}
+{{ iu_src }}
+{%- else -%}
+{%- assign iu_first = iu_src | slice: 0, 1 -%}
+{%- if iu_first == "/" -%}
+{{ iu_src | uri_escape }}
+{%- else -%}
+/{{ iu_src | uri_escape }}
+{%- endif -%}
+{%- endif -%}

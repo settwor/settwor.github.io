@@ -1,44 +1,18 @@
+---
+layout: null
+---
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--  created with www.mysitemapgenerator.com -->
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-  <loc>https://settwor.github.io/</loc>
-  <lastmod>2025-10-10T08:40:55+01:00</lastmod>
-  <priority>1.0</priority>
-</url>
-<url>
-  <loc>https://settwor.github.io/index.html</loc>
-  <lastmod>2025-10-10T08:40:55+01:00</lastmod>
-  <priority>1.0</priority>
-</url>
-<url>
-  <loc>https://settwor.github.io/bio.html</loc>
-  <lastmod>2025-10-10T08:40:55+01:00</lastmod>
-  <priority>1.0</priority>
-</url>
-<url>
-  <loc>https://settwor.github.io/photo.html</loc>
-  <lastmod>2025-10-10T08:40:55+01:00</lastmod>
-  <priority>1.0</priority>
-</url>
-<url>
-  <loc>https://settwor.github.io/photo2024.html</loc>
-  <lastmod>2025-10-10T08:40:55+01:00</lastmod>
-  <priority>1.0</priority>
-</url>
-<url>
-  <loc>https://settwor.github.io/bioRU.html</loc>
-  <lastmod>2025-10-10T08:40:56+01:00</lastmod>
-  <priority>1.0</priority>
-</url>
-<url>
-  <loc>https://settwor.github.io/bioPL.html</loc>
-  <lastmod>2025-10-10T08:40:56+01:00</lastmod>
-  <priority>1.0</priority>
-</url>
-<url>
-  <loc>https://settwor.github.io/photo2023.html</loc>
-  <lastmod>2025-10-10T08:40:57+01:00</lastmod>
-  <priority>1.0</priority>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- comment -%} Fixed pages. Add a new page to this list when you create one. {%- endcomment -%}
+{%- assign fixed_pages = "/,/news.html,/releases.html,/bio.html,/bioRU.html,/bioPL.html,/photo.html,/license.html,/privacy.html" | split: "," -%}
+{%- for fixed in fixed_pages %}
+    <url><loc>{{ fixed | absolute_url }}</loc></url>
+{%- endfor %}
+{%- comment -%} News articles. Entries that point to an old page use that old address. {%- endcomment -%}
+{%- for post in site.posts %}
+    <url>
+        <loc>{{ post.legacy_url | default: post.url | uri_escape | absolute_url | xml_escape }}</loc>
+        <lastmod>{{ post.updated | default: post.date | date_to_xmlschema }}</lastmod>
+    </url>
+{%- endfor %}
 </urlset>

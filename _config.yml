@@ -1,0 +1,40 @@
+# =============================================================
+# SETTWOR — Jekyll settings (GitHub Pages builds this by itself)
+# =============================================================
+
+title: SETTWOR
+description: Official site of SETTWOR, a phonk and Brazilian funk producer from Ukraine based in Poland.
+url: "https://settwor.github.io"
+baseurl: ""
+lang: en
+
+# Dates without a time zone are read as Warsaw time.
+timezone: Europe/Warsaw
+
+# Publish a post even if its date is a few hours "in the future"
+# (GitHub builds in UTC, so a post written at 00:30 Warsaw time
+# would otherwise stay hidden until the next build).
+future: true
+
+# Address of every new article: /news/2026/10/title-of-the-article/
+# Old articles keep their old address with "permalink" in their file.
+permalink: /news/:year/:month/:title/
+
+markdown: kramdown
+
+# Every file in _posts uses the article template automatically,
+# so new articles made in Pages CMS need no extra settings.
+defaults:
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: article
+
+# Files that must NOT be published on the website.
+exclude:
+  - README.md
+  - docs
+  - .pages.yml
+  - Gemfile
+  - Gemfile.lock

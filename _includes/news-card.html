@@ -1,0 +1,26 @@
+{%- comment -%}
+  One news entry in a list.
+  Usage: include news-card.html with the parameter post set to the entry.
+  An entry with "legacy_url" links straight to the old page.
+{%- endcomment -%}
+{%- assign nc_post = include.post -%}
+{%- assign nc_href = nc_post.legacy_url | default: nc_post.url -%}
+{%- assign nc_thumb = "" -%}
+{%- if nc_post.image != blank -%}
+{%- capture nc_thumb -%}{% include image-url.html src=nc_post.image %}{%- endcapture -%}
+{%- assign nc_thumb = nc_thumb | strip -%}
+{%- endif -%}
+<article class="news-card">
+    <a class="news-card__link{% if nc_thumb == blank %} news-card__link--noimg{% endif %}" href="{{ nc_href }}">
+        {%- if nc_thumb != blank %}
+        <img class="news-card__img" src="{{ nc_thumb }}" alt="" width="128" height="128" loading="lazy">
+        {%- endif %}
+        <div class="news-card__text">
+            <time class="news-card__date" datetime="{{ nc_post.date | date_to_xmlschema }}">{{ nc_post.date | date: "%-d %B %Y" }}</time>
+            <h3 class="news-card__title">{{ nc_post.title | escape }}</h3>
+            {%- if nc_post.description != blank %}
+            <p>{{ nc_post.description | escape }}</p>
+            {%- endif %}
+        </div>
+    </a>
+</article>
