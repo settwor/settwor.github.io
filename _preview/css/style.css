@@ -1,0 +1,2001 @@
+/** {
+  box-sizing: border-box;
+  margin: 0;
+}*/
+
+/* HEADER */
+/*.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  z-index: 1000;
+}*/
+.biotext a,
+.biotext a:visited {
+    color: blue;
+}
+
+.faq-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    width: 800px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    font-family: 'Bold', Sans-Serif;
+    cursor: pointer;
+    /*    font-weight: bold;*/
+    font-size: 17px;
+    width: 800px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.faq-answer {
+    font-family: 'Medium', Sans-Serif;
+    display: none;
+    margin-top: 5px;
+    font-size: 17px;
+    width: 800px;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.socnettext {
+    /*    margin-left: 140px;*/
+
+}
+
+
+
+/* BURGER */
+.burger {
+    width: 50px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.burger span {
+    display: block;
+    height: 5px;
+    background: #000;
+    margin: 6px 0;
+    transition: 0.3s;
+}
+
+/* КРЕСТИК */
+.burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7.5px, 7.5px);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* MENU */
+.mobile-menu {
+    position: fixed;
+    top: 139px;
+    width: 100%;
+    height: calc(100vh - 56px);
+    background: #fff;
+    transform: translateX(100%);
+    transition: 0.3s;
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+    /*  gap: 40px;*/
+}
+
+.mobile-menu a {
+    margin-top: 80px;
+    font-size: 50px;
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+    font-family: 'Medium', Sans-Serif;
+}
+
+/* ACTIVE */
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+.biosBurger {
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.newsDiv {
+    width: 1000px;
+    height: 370px;
+    border-radius: 20px;
+    display: flex;
+    margin-bottom: 50px;
+    justify-content: center;
+}
+
+.newsColorDiv {
+    background-color: #F6F6F6;
+    width: 1000px;
+    height: 370px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 100px;
+
+}
+
+
+
+.NewsPhotoDiv2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Базовые стили для всех устройств */
+body {
+    min-height: 100vh;
+
+    flex-direction: column;
+    background-color: white;
+    font-family: Verdana, Tahoma, Arial, Sans-Serif;
+    color: black;
+    font-size: 12px;
+    /*    margin: 0 auto;*/
+
+    margin: 0;
+    padding-bottom: env(safe-area-inset-bottom);
+    height: 100%;
+    overflow-x: hidden;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.bioLangsDiv {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+
+.divMainSvg {
+    width: 40%;
+
+}
+
+.hamburgerDiv {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburgerDiv2 {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.bgPage {}
+
+.release {}
+
+.divPhotos {
+    width: 100%;
+    /*    display: flex;*/
+    /*    justify-content: center;*/
+}
+
+.noPcVerText {
+    font-family: 'Medium', Sans-Serif;
+    width: 50%;
+    text-align: center;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.regular {
+    font-family: 'Regular', Sans-Serif;
+    width: 100%;
+    text-align: center;
+    font-size: 21px;
+    font-weight: normal;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+.noPcVer {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    /*display: flex;
+    align-items: center;
+    justify-content: center;*/
+    background-color: #F6F6F6;
+    height: 140px;
+    width: 100vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    /* Убедитесь, что шапка поверх другого контента */
+}
+
+footer {
+    margin-top: 30px;
+    /*    margin-top: 20px;*/
+    background-color: #F6F6F6;
+    height: 70px;
+    width: 100%;
+    /*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);*/
+    /* position: fixed; */
+    /* top: 0; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_text {
+    font-family: 'Medium', Sans-Serif;
+    width: 80%;
+    text-align: center;
+    font-weight: 500;
+    font-size: 35px;
+}
+
+
+
+.mainSvg {
+    font-family: 'Medium', Sans-Serif;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    height: 35px;
+}
+
+.main_text_bio {
+    font-family: 'Medium', Sans-Serif;
+    width: 80%;
+    text-align: center;
+    font-weight: 500;
+    font-size: 35px;
+}
+
+
+
+
+
+
+
+
+/* Стили для мобильных устройств (до 500px) */
+.centerdivbio {
+    margin-top: 140px;
+    height: 325px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-left: 10%;
+}
+
+.centerdivbioTracklist {
+    /*    margin-top: 140px;*/
+    height: 350px;
+    display: flex;
+    width: 900px;
+    align-items: center;
+    justify-content: left;
+}
+
+.centerdivbioNews {
+    /*    margin-top: 140px;*/
+    display: flex;
+    width: 800px;
+    align-items: center;
+    justify-content: left;
+
+}
+
+.centerdivbioNews2 {
+    /*    margin-top: 140px;*/
+    display: flex;
+    width: 800px;
+    align-items: center;
+    justify-content: left;
+
+}
+
+.centerdiv {
+    width: 100%;
+    height: 325px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainphoto {
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+}
+
+.mainphotoReleases {
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+}
+
+.lyrics-photo {
+    border-radius: 0%;
+    width: 420px;
+    height: 420px;
+}
+
+.tracklistPhoto {
+    border-radius: 6%;
+    width: 270px;
+    height: 270px;
+}
+
+.NewsPhoto {
+    width: 500px;
+    height: 500px;
+    margin-top: 30px;
+}
+
+.NewsPhoto2 {
+    width: 270px;
+    height: 270px;
+    margin-left: 50px;
+    border-radius: 10px;
+}
+
+.bio-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.strip {
+    background-color: #969191;
+    width: 800px;
+    height: 1px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.stripNewsMain {
+    background-color: #969191;
+    width: 800px;
+    height: 1px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+.stripNews {
+    background-color: #969191;
+    height: 1px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+    width: 570px;
+    margin-left: 50px;
+    text-align: left;
+}
+
+.strip2 {
+    background-color: #969191;
+    width: 35%;
+    height: 1px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.socnettextdiv {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.socnettextdiv2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.biotextdiv {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.biotextdivLyrics {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NewsMainText {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.biotext {
+    font-family: 'Medium', Sans-Serif;
+    width: 800px;
+    text-align: left;
+    font-size: 25px;
+    /* Увеличен размер для телефонов */
+    font-weight: normal;
+}
+
+
+
+.footer {
+    width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footerText {
+    font-family: 'Medium', Sans-Serif;
+    /*    width: 50%;*/
+    text-align: left;
+    font-size: 15px;
+    /* Увеличен размер для телефонов */
+    font-weight: normal;
+}
+
+
+.footerText2 {
+    font-family: 'Medium', Sans-Serif;
+    width: 50%;
+    text-align: right;
+    font-size: 15px;
+    /* Увеличен размер для телефонов */
+    font-weight: normal;
+}
+
+
+.socnettext {
+    font-family: 'Bold', Sans-Serif;
+    width: 100%;
+    text-align: center;
+    font-weight: normal;
+    color: black;
+    /* Черный цвет для всех страниц */
+}
+
+.socnettext2 {
+    font-family: 'Bold', Sans-Serif;
+    width: 100%;
+    text-align: center;
+    font-weight: normal;
+    color: black;
+    /* Черный цвет для всех страниц */
+}
+
+.socnet {
+    width: 367px;
+    height: 96px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.viewBioBut {
+    width: 367px;
+    height: 96px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 1px solid #595959;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
+.languagesDiv {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+}
+
+.bioHeaderDiv {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
+.changeLang {
+    width: 180px;
+    height: 55px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 4px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+
+.openBioBut {
+    width: 180px;
+    height: 60px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.openBioButMain {
+    width: 180px;
+    height: 60px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.openBioButMainHidden {
+    width: 180px;
+    height: 60px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.changeLangSelected {
+    width: 180px;
+    height: 55px;
+    background-color: #000000;
+    border-radius: 116px;
+    border: 4px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.changeLangButTextSelected {
+    font-family: 'Medium', Sans-Serif;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    color: white;
+}
+
+.changeLangButText {
+    font-family: 'Bold', Sans-Serif;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.nextPage {
+    width: 75px;
+    height: 75px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.previousPage {
+    width: 75px;
+    height: 75px;
+    background-color: #F6F6F6;
+    border-radius: 116px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.NPpageButImg {
+    margin-left: 50px;
+    width: 25px;
+    height: 25px;
+}
+
+.NPpageButText {
+    font-family: 'Medium', Sans-Serif;
+    width: 59%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: auto;
+}
+
+.socNetButText {
+    font-family: 'Medium', Sans-Serif;
+    width: 50%;
+    text-align: center;
+    font-size: 28px;
+    margin-right: 25px;
+    font-weight: 500;
+}
+
+.viewFullBioButText {
+    font-family: 'Medium', Sans-Serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: 28px;
+    margin-right: 0px;
+    width: 100%;
+}
+
+.socNetButImg {
+    margin-left: 50px;
+    width: 35px;
+    height: 35px;
+}
+
+.socnets {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainbio p {
+    font-size: 30px;
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 5%;
+    font-family: 'Medium', Sans-Serif;
+}
+
+.ytVideos {
+    margin-top: 40px;
+    width: 100%;
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo {
+    justify-content: center;
+    display: flex;
+}
+
+.releases {
+    justify-content: center;
+    display: flex;
+}
+
+.release {
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    height: 490px;
+    display: flex;
+    position: relative;
+    padding: 1%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.release img {
+    /* position: absolute; */
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.releaseName {
+    font-size: 31px;
+    margin-top: 25px;
+    margin-bottom: 0px;
+    font-family: 'Medium', Sans-Serif;
+}
+
+.releaseDate {
+    font-family: 'Medium', Sans-Serif;
+    margin-top: 9px;
+    font-size: 21px;
+}
+
+.releaseArtist {
+    font-family: 'Medium', Sans-Serif;
+    margin-top: 10px;
+    font-size: 23px;
+    margin-bottom: 0;
+}
+
+.photo div {
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+    padding: 1%;
+}
+
+.photo div img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.bigphoto div {
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.bigphoto div img {
+    width: 100%;
+}
+
+table.iksweb {
+    width: 90%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    height: auto;
+    margin: auto;
+}
+
+table.iksweb,
+table.iksweb td,
+table.iksweb th {
+    border: 1px solid #595959;
+}
+
+table.iksweb td,
+table.iksweb th {
+    padding: 3px;
+    height: 35px;
+    font-family: 'Medium', Sans-Serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: 22px;
+    height: 60px;
+    width: 20%;
+    border: 1px solid #969191;
+}
+
+table.iksweb th {
+    font-family: 'Medium', Sans-Serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: 25px;
+    height: 75px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.newA {
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-device-width: 500px) and (min-width: 500px) {
+    .noPcVer {
+        display: flex;
+    }
+
+    .aboutPage {
+        display: none;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .noPcVer {
+        display: flex;
+    }
+
+    .aboutPage {
+        display: none;
+    }
+}
+
+@media (min-device-width: 600px) and (min-width: 600px) {
+    .aboutPage {
+        display: block;
+        max-width: 980px;
+        margin: 0 auto;
+        /* Центрируем с пустым местом по бокам */
+    }
+}
+
+
+
+
+/* Переключатель языков */
+.language-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.lang-btn {
+    padding: 10px 20px;
+    font-family: 'Medium', Sans-Serif;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #F6F6F6;
+    border: 2px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.lang-btn.active {
+    background-color: black;
+    color: white;
+}
+
+.lang-btn:hover:not(.active) {
+    background-color: #e0e0e0;
+}
+
+/* Скрытие контента */
+.hidden {
+    position: absolute;
+    left: -999999px;
+}
+
+/* Заголовок биографии */
+.bio-title {
+    font-family: 'Medium', Sans-Serif;
+    font-size: 35px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    font-size: 30px;
+    margin-right: 100px;
+    margin-left: 250px;
+
+}
+
+.tracklistTrackTable {
+    border-radius: 6px;
+    width: 900px;
+    height: 46px;
+    background-color: #F6F6F6;
+    display: flex;
+    align-items: center;
+
+}
+
+.tracklistTrackTableTransp {
+    border-radius: 6px;
+    width: 900px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+
+}
+
+.tracklistTableNumber {
+    font-family: 'Medium', Sans-Serif;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    color: #969191;
+    width: 39px;
+}
+
+.tracklistTableName {
+    font-family: 'Medium', Sans-Serif;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    color: #000000;
+    width: 450px;
+}
+
+.explicit {
+    width: 20px;
+    height: 20px;
+    padding-left: 10px;
+    fill: #696969;
+}
+
+.explicitSmall {
+    width: 10px;
+    height: 10px;
+    padding-left: 5px;
+    fill: #696969;
+}
+
+.lyricsReleaseName {
+    font-family: 'Medium', Sans-Serif;
+    font-size: 36px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+
+.tracklistReleaseName {
+    font-family: 'Bold', Sans-Serif;
+    font-size: 30px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+.NewsName {
+    font-family: 'Bold', Sans-Serif;
+    font-size: 30px;
+    font-weight: normal;
+    /*    margin: 0;*/
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.NewsName3 {
+    font-family: 'Bold', Sans-Serif;
+    font-size: 30px;
+    font-weight: normal;
+    /*    margin: 0;*/
+    text-align: center;
+    margin-bottom: 0px;
+    width: 570px;
+    margin-left: 50px;
+    text-align: left;
+}
+
+
+.lyricsArtistName {
+    color: #696969;
+    font-family: 'Regular', Sans-Serif;
+    font-size: 2px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+.tracklistArtistName {
+    color: #696969;
+    font-family: 'Medium', Sans-Serif;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+
+
+.NewsName2 {
+    color: #696969;
+    font-family: 'Medium', Sans-Serif;
+    font-size: 20px;
+    font-weight: normal;
+    /*    margin: 0;*/
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.NewsName33 {
+    color: #696969;
+    font-family: 'Medium', Sans-Serif;
+    font-size: 20px;
+    font-weight: normal;
+    /*    margin: 0;*/
+    text-align: center;
+    margin-bottom: 10px;
+    width: 570px;
+    margin-left: 50px;
+    text-align: left;
+}
+
+.tracklistGenre {
+    color: #696969;
+    font-family: 'Bold', Sans-Serif;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+.NewsDate {
+    color: #696969;
+    font-family: 'Bold', Sans-Serif;
+    font-size: 14px;
+    font-weight: normal;
+    /*    margin: 0;*/
+    text-align: left;
+}
+
+.NewsDate2 {
+    color: #696969;
+    font-family: 'Bold', Sans-Serif;
+    font-size: 14px;
+    font-weight: normal;
+    /*    margin: 0;*/
+    width: 570px;
+    margin-left: 50px;
+    text-align: left;
+}
+
+.divForLyricsButton {
+    width: 450px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.openLyrics {
+    width: 70px;
+    height: 30px;
+    border-radius: 116px;
+    border: 1px solid #969191;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.openLyricsText {
+    font-family: 'Regular', Sans-Serif;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: #696969;
+}
+
+.img-title {
+    font-family: 'Medium', Sans-Serif;
+    font-size: 30px;
+    padding: 0px 0px 0px 100px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+/* Цитаты */
+.biotext.quote {
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #969191;
+    padding-left: 15px;
+    margin: 10px 0;
+}
+
+/* Улучшение отступов */
+.biotextdiv {
+    padding: 15px 0;
+}
+
+.biotextdivLyrics {
+    padding: 15px 0;
+}
+
+.NewsMainText {
+    /*    padding: 15px 0;*/
+}
+
+
+.biotext {
+    /*    margin: 0px 0;*/
+    line-height: 1.5;
+    /* Улучшает читаемость */
+}
+
+
+
+
+
+
+
+/* Оригинальные медиа-запросы для мобильных */
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+/*FOR PHONES*/
+
+
+
+@media (max-device-width: 500px) {
+    .strip2 {
+        width: 50%;
+    }
+
+    .socnettext2 {
+        margin-top: 20px;
+        font-size: 23px;
+        margin-bottom: 20px;
+    }
+
+    .socnettext {
+        font-size: 33px;
+    }
+
+    .faq-item {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .faq-question {
+        font-size: 30px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+
+    .faq-answer {
+        font-size: 30px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    .socnettext {
+        width: 500px;
+    }
+
+    .nextPage {
+        margin-right: 0px;
+        width: 70px;
+        height: 70px;
+
+    }
+
+    .previousPage {
+        margin-left: 0px;
+        margin-right: 70px;
+        width: 70px;
+        height: 70px;
+
+    }
+
+    .bigphoto {
+
+        width: 800px;
+    }
+
+    .centerdiv {
+
+        margin-top: 140px;
+    }
+
+    .centerdivbioNews2 {
+        width: 530px;
+
+    }
+
+    .aboutPage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .aboutPageNews {
+        display: flex;
+        max-width: 1000px;
+        margin: 0 auto;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newsDiv {
+        width: 100%;
+    }
+
+    .newsColorDiv {
+        border-radius: 40px;
+        width: 850px;
+    }
+
+    .centerdivbioNews {
+        margin-top: 140px;
+    }
+
+    .hamburgerDiv2 {
+        display: none;
+    }
+
+    .hamburgerDiv {
+        display: flex;
+    }
+
+    .pcHamburger {
+        display: none;
+    }
+
+    .changeLangButText {
+        font-family: 'Bold', Sans-Serif;
+    }
+
+    .openBioButMain {
+        width: 170px;
+        height: 55px;
+        border: 4px solid black;
+    }
+
+    .openBioButMainHidden {
+        display: none;
+        width: 170px;
+        height: 55px;
+        border: 4px solid black;
+    }
+
+
+
+    .NewsName {
+        margin-top: 100px;
+        font-size: 55px;
+        margin-bottom: 10px;
+    }
+
+    .NewsName2 {
+        margin-bottom: 40px;
+        font-size: 35px;
+
+    }
+
+    .NewsDate {
+        font-size: 25px;
+
+    }
+
+    .NewsName3 {
+        margin-top: 0px;
+        font-size: 40px;
+        margin-bottom: 10px;
+        width: 450px;
+    }
+
+    .NewsName33 {
+        display: none;
+
+    }
+
+    .NewsDate2 {
+        font-size: 25px;
+
+    }
+
+    .NewsPhoto {
+        width: 100%;
+        height: 100%;
+    }
+
+    .NewsPhoto2 {
+        border-radius: 30px;
+        width: 95%;
+        height: 95%;
+    }
+
+    .stripNews {
+        width: 450px;
+
+    }
+
+
+
+
+    .biotext {
+        font-size: 30px;
+        /*    width: 100%;*/
+        /*margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .biotextdivLyrics {
+        width: 850px;
+    }
+
+    .tracklistTrackTable {
+        border-radius: 15px;
+        height: 130px;
+        width: 850px;
+    }
+
+    .tracklistTrackTableTransp {
+        height: 130px;
+        width: 850px;
+    }
+
+    .centerdivbioTracklist {
+        width: 850px;
+        flex-direction: column;
+        height: 1100px;
+    }
+
+    .center-align2 {
+        /*        position: static;
+/*        margin: 100px;*/
+        margin-left: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tracklistPhoto {
+        margin-top: 130px;
+        width: 650px;
+        height: 650px;
+    }
+
+    .tracklistReleaseName {
+        margin-top: 45px;
+        font-size: 55px;
+    }
+
+    .tracklistArtistName {
+        margin-top: 10px;
+        font-size: 47px;
+    }
+
+    .tracklistGenre {
+        margin-top: 10px;
+        font-size: 27px;
+    }
+
+    .explicit {
+        margin-top: 40px;
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .tracklistTableNumber {
+        font-size: 35px;
+        width: 120px;
+    }
+
+    .tracklistTableName {
+        font-size: 35px;
+        width: 500px;
+    }
+
+
+    .explicitSmall {
+        margin-left: 10px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .divForLyricsButton {
+        width: 200px;
+    }
+
+    .openLyrics {
+        width: 140px;
+        height: 80px;
+
+    }
+
+    .openLyricsText {
+        font-size: 25px;
+    }
+
+    footer {
+        height: 120px;
+    }
+
+    .footerText {
+        font-size: 24px;
+    }
+
+}
+
+@media (min-device-width: 1px) and (min-width: 1px) {
+
+
+
+
+    .openBioBut {
+        display: none;
+    }
+
+    .main_text_bio {
+        margin-left: 280px;
+    }
+
+    .main_text {
+        margin-left: 280px;
+    }
+
+    .mainSvg {
+        /*        margin-left: 280px;*/
+    }
+
+    .viewFullBioButText {
+        font-family: 'Medium', Sans-Serif;
+        text-align: center;
+        font-weight: 500;
+        font-size: 28px;
+        margin-right: 0px;
+        width: 100%;
+    }
+
+    .biotext.quote {
+        font-size: 25px;
+    }
+
+    /*.changeLangSelected {
+    width: 80px;
+    height: 60px;
+    }
+
+    .changeLang {
+    width: 80px;
+    height: 60px;
+    }
+
+    .changeLangButTextSelected{
+        font-size: 25px;
+    }
+
+    .changeLangButText{
+        font-size: 25px;
+
+    }*/
+    .tdEmail {
+        font-size: 25px;
+    }
+
+    .trMainText {
+        height: 110px;
+    }
+
+    .trMainTextTh {
+        font-size: 35px;
+    }
+
+    table.iksweb td,
+    table.iksweb th {
+        height: 100px;
+        font-size: 28px;
+    }
+
+    table.iksweb th {
+        font-size: 30px;
+    }
+
+    .noPcVer {
+        display: none;
+    }
+
+    .aboutPage {
+        /*        display: block;*/
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Адаптация для больших экранов (500px и выше) */
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+/*ДЛЯ ПК*/
+
+
+
+
+
+
+@media (min-device-width: 500px) {
+
+
+    .bioLangsDiv {
+        margin-bottom: 0px;
+    }
+
+    .hamburgerDiv2 {
+        display: flex;
+    }
+
+    .hamburgerDiv {
+        display: none;
+    }
+
+    .pcHamburger {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .burger {
+        display: none;
+    }
+
+    .header {
+        height: 100px;
+    }
+
+    .main_text {
+        font-size: 30px;
+    }
+
+    .release {
+        overflow: visible;
+        height: 430px;
+    }
+
+
+    .releaseName {
+        font-size: 25px;
+        margin-top: 20px;
+        margin-bottom: 0px;
+    }
+
+    .releaseDate {
+        margin-top: 7px;
+        font-size: 13px;
+        margin-bottom: 30px;
+    }
+
+    .releaseArtist {
+        margin-top: 5px;
+        font-size: 17px;
+        margin-bottom: 0;
+    }
+
+    .hamburgerDiv {
+        width: 40%;
+    }
+
+    .hamburgerDiv2 {
+        width: 40%;
+    }
+
+    .bioHeaderDiv {
+        width: 40%;
+        justify-content: flex-start;
+
+    }
+
+    .divMainSvg {
+        width: 20%;
+
+    }
+
+    .photo div {
+        width: 250px;
+        height: 250px;
+    }
+
+    .photo div img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .main_text_bio {
+        margin-left: 222px;
+    }
+
+    .main_text {
+        margin-left: 385px;
+        width: 15%;
+    }
+
+    .mainSvg {
+        /*        margin-left: 385px;*/
+        /*        width: 15%;*/
+        height: 25px;
+    }
+
+    .viewFullBioButText {
+        font-size: 20px;
+    }
+
+    .socNetButImg {
+        margin-left: 45px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .socNetButText {
+        font-size: 15px;
+        width: 45%;
+    }
+
+    .socnet {
+        width: 200px;
+        height: 50px;
+    }
+
+    .viewBioBut {
+        width: 300px;
+        height: 60px;
+    }
+
+    .bio-title {
+        font-size: 20px;
+        margin-left: 0px;
+    }
+
+    .nextPage {
+        width: 50px;
+        height: 50px;
+    }
+
+    .previousPage {
+        width: 50px;
+        height: 50px;
+    }
+
+    .NPpageButText {
+        margin-top: 11px;
+        font-size: 25px;
+    }
+
+    .img-title {
+        font-size: 20px;
+        margin-right: 50px;
+    }
+
+    .socnettextdiv {
+        height: 70px;
+    }
+
+    .socnettextdiv2 {
+        height: 50px;
+    }
+
+    .socnettext {
+        font-size: 21px;
+    }
+
+    .socnettext2 {
+        font-size: 17px;
+    }
+
+    .biotext.quote {
+        font-size: 15px;
+    }
+
+    .changeLangSelected {
+        width: 110px;
+        height: 35px;
+        border: 2px solid black;
+    }
+
+    .changeLang {
+        width: 110px;
+        height: 35px;
+        border: 2px solid black;
+    }
+
+    .openBioBut {
+        width: 100px;
+        height: 35px;
+        display: flex;
+    }
+
+    .openBioButMain {
+        width: 125px;
+        height: 35px;
+        display: flex;
+    }
+
+    .openBioButMainHidden {
+        width: 125px;
+        height: 35px;
+        display: flex;
+    }
+
+    .changeLangButTextSelected {
+        font-size: 15px;
+    }
+
+    .changeLangButText {
+        font-size: 15px;
+
+    }
+
+    .tdEmail {
+        font-size: 22px;
+    }
+
+    .trMainTextTh {
+        font-size: 35px;
+    }
+
+    .trMainText {
+        height: 50px;
+    }
+
+    table.iksweb td,
+    table.iksweb th {
+        height: 60px;
+        font-size: 20px;
+    }
+
+    table.iksweb th {
+        font-size: 20px;
+    }
+
+    .aboutPage {
+        display: block;
+        max-width: 1000px;
+        margin: 0 auto;
+        margin-top: 100px;
+        /* Центрируем с пустым местом по бокам */
+    }
+
+
+    .aboutPageNews {
+        display: flex;
+        max-width: 1000px;
+        margin: 0 auto;
+        margin-top: 150px;
+        flex-direction: column;
+        align-items: center;
+        /* Центрируем с пустым местом по бокам */
+    }
+
+    .noPcVer {
+        display: none;
+    }
+
+    header {
+        /*        width: 800px;*/
+    }
+
+    .centerdivbio {
+        margin-left: 20px;
+        justify-content: space-between;
+        /* Распределяем фото и текст */
+        padding: 0 20px;
+        /* Отступы по бокам */
+    }
+
+    .centerdiv {
+        margin-left: 0;
+    }
+
+    /* Убираем абсолютное позиционирование */
+    .center-align {
+        position: static;
+        margin: 100px;
+    }
+
+    .center-align2 {
+        /*        position: static;*/
+        /*        margin: 100px;*/
+        margin-left: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .center-alignNews {
+        /*        position: static;*/
+        /*        margin: 100px;*/
+        /*        margin-left: 50px;*/
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .NewsPhotoDiv {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    /* Специфично для страницы биографии */
+    .centerdivbio .mainphoto {
+        margin-left: 20px;
+    }
+
+    .centerdivbio .mainphotoReleases {
+        margin-left: 20px;
+    }
+
+    .biotext {
+        font-size: 17px;
+    }
+}
+
+.trMainBioTextTh {
+    font-size: 30px;
+}

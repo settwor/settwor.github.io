@@ -66,7 +66,11 @@ SITE_URL = "https://settwor.github.io"
 
 def f_date(v, fmt):
     d = as_dt(v)
-    return d.strftime(fmt) if d else ""
+    if not d:
+        return ""
+    # "%-d" (day without zero) is not supported on Windows: handle it by hand
+    fmt = fmt.replace("%-d", str(d.day)).replace("%-m", str(d.month)).replace("%-H", str(d.hour))
+    return d.strftime(fmt)
 
 
 def f_abs(v):

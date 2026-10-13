@@ -1,0 +1,476 @@
+#!/usr/bin/env python3
+"""
+Strict mini-Jekyll used only to test the templates (real Jekyll cannot be installed here).
+It implements the small Liquid subset the site uses and raises on anything else.
+Usage: preview.py SRC OUT (normally started through serve.py)
+"""
+import datetime
+import html
+import json
+import os
+import re
+import shutil
+import sys
+import urllib.parse
+from zoneinfo import ZoneInfo
+
+import markdown
+import yaml
+
+TZ = ZoneInfo("Europe/Warsaw")
+SRC, OUT = os.path.abspath(sys.argv[1]), os.path.abspath(sys.argv[2])
+
+
+class LiquidError(Exception):
+    pass
+
+
+# ---------------------------------------------------------------- helpers
+def is_blank(v):
+    if v is None or v is False:
+        return True
+    if isinstance(v, str):
+        return v.strip() == ""
+    if isinstance(v, (list, dict)):
+        return len(v) == 0
+    return False
+
+
+def truthy(v):
+    return not (v is None or v is False)
+
+
+def to_s(v):
+    if v is None:
+        return ""
+    if isinstance(v, bool):
+        return "true" if v else "false"
+    if isinstance(v, datetime.datetime):
+        return v.strftime("%Y-%m-%d %H:%M:%S %z")
+    return str(v)
+
+
+def as_dt(v):
+    if isinstance(v, datetime.datetime):
+        return v if v.tzinfo else v.replace(tzinfo=TZ)
+    if isinstance(v, datetime.date):
+        return datetime.datetime(v.year, v.month, v.day, tzinfo=TZ)
+    if isinstance(v, str) and v.strip():
+        d = datetime.datetime.fromisoformat(v.strip().replace("Z", "+00:00"))
+        return d if d.tzinfo else d.replace(tzinfo=TZ)
+    return None
+
+
+SITE_URL = "https://settwor.github.io"
+
+
+def f_date(v, fmt):
+    d = as_dt(v)
+    if not d:
+        return ""
+    # "%-d" (day without zero) is not supported on Windows: handle it by hand
+    fmt = fmt.replace("%-d", str(d.day)).replace("%-m", str(d.month)).replace("%-H", str(d.hour))
+    return d.strftime(fmt)
+
+
+def f_abs(v):
+    s = to_s(v)
+    if s.startswith("http"):
+        return s
+    return SITE_URL + (s if s.startswith("/") else "/" + s)
+
+
+FILTERS = {
+    "default": lambda v, d="": d if (v is None or v is False or v == "" or v == [] or v == {}) else v,
+    "date": f_date,
+    "date_to_xmlschema": lambda v: (as_dt(v).isoformat(timespec="seconds") if as_dt(v) else ""),
+    "escape": lambda v: html.escape(to_s(v), quote=True),
+    "xml_escape": lambda v: html.escape(to_s(v), quote=True),
+    "strip_html": lambda v: re.sub(r"<[^>]*>", "", to_s(v)),
+    "normalize_whitespace": lambda v: re.sub(r"\s+", " ", to_s(v)),
+    "strip": lambda v: to_s(v).strip(),
+    "append": lambda v, a: to_s(v) + to_s(a),
+    "split": lambda v, sep: to_s(v).split(sep) if to_s(v) else [],
+    "slice": lambda v, start, length=1: to_s(v)[int(start):int(start) + int(length)],
+    "jsonify": lambda v: json.dumps(v, ensure_ascii=False, default=to_s),
+    "absolute_url": f_abs,
+    "uri_escape": lambda v: urllib.parse.quote(to_s(v), safe="/:?#[]@!$&'()*+,;=%-._~"),
+}
+
+
+# ---------------------------------------------------------------- liquid
+TOKEN_RE = re.compile(r"({%-?.*?-?%}|{{-?.*?-?}})", re.S)
+
+
+def tokenize(text):
+    parts = TOKEN_RE.split(text)
+    out = []
+    for p in parts:
+        if not p:
+            continue
+        if p.startswith("{%") or p.startswith("{{"):
+            ltrim = p[2] == "-"
+            rtrim = p[-3] == "-"
+            inner = p[2 + (1 if ltrim else 0): len(p) - 2 - (1 if rtrim else 0)].strip()
+            out.append(["tag" if p.startswith("{%") else "out", inner, ltrim, rtrim])
+        else:
+            out.append(["text", p, False, False])
+    # whitespace control
+    for i, t in enumerate(out):
+        if t[0] != "text":
+            if t[2] and i > 0 and out[i - 1][0] == "text":
+                out[i - 1][1] = out[i - 1][1].rstrip()
+            if t[3] and i + 1 < len(out) and out[i + 1][0] == "text":
+                out[i + 1][1] = out[i + 1][1].lstrip()
+    return out
+
+
+def parse(tokens, i=0, stop=()):
+    nodes = []
+    while i < len(tokens):
+        kind, val, _, _ = tokens[i]
+        if kind == "text":
+            nodes.append(("text", val))
+            i += 1
+        elif kind == "out":
+            nodes.append(("out", val))
+            i += 1
+        else:
+            name = val.split()[0]
+            args = val[len(name):].strip()
+            if name in stop:
+                return nodes, i
+            if name in ("if", "unless"):
+                branches = []
+                cond = args
+                body, i = parse(tokens, i + 1, ("elsif", "else", "endif", "endunless"))
+                branches.append((cond, body))
+                else_body = None
+                while True:
+                    tname = tokens[i][1].split()[0]
+                    targs = tokens[i][1][len(tname):].strip()
+                    if tname == "elsif":
+                        body, i = parse(tokens, i + 1, ("elsif", "else", "endif", "endunless"))
+                        branches.append((targs, body))
+                    elif tname == "else":
+                        else_body, i = parse(tokens, i + 1, ("endif", "endunless"))
+                    else:
+                        i += 1
+                        break
+                nodes.append((name, branches, else_body))
+            elif name == "for":
+                body, i = parse(tokens, i + 1, ("endfor",))
+                i += 1
+                nodes.append(("for", args, body))
+            elif name == "capture":
+                body, i = parse(tokens, i + 1, ("endcapture",))
+                i += 1
+                nodes.append(("capture", args, body))
+            elif name == "comment":
+                _, i = parse(tokens, i + 1, ("endcomment",))
+                i += 1
+            elif name in ("assign", "include"):
+                nodes.append((name, args))
+                i += 1
+            else:
+                raise LiquidError(f"unsupported tag: {val}")
+    if stop:
+        raise LiquidError(f"missing end tag for {stop}")
+    return nodes, i
+
+
+def split_top(s, sep):
+    """split on sep outside quotes"""
+    out, cur, q = [], "", None
+    for ch in s:
+        if q:
+            cur += ch
+            if ch == q:
+                q = None
+        elif ch in "\"'":
+            q = ch
+            cur += ch
+        elif ch == sep:
+            out.append(cur)
+            cur = ""
+        else:
+            cur += ch
+    out.append(cur)
+    return out
+
+
+class Ctx:
+    def __init__(self, base):
+        self.scopes = [base]
+
+    def get(self, name):
+        for sc in reversed(self.scopes):
+            if name in sc:
+                return sc[name]
+        return None
+
+    def assign(self, name, value):
+        self.scopes[0][name] = value
+
+
+def lookup(path, ctx):
+    toks = re.findall(r"[A-Za-z_][\w\-]*|\[[^\]]+\]", path)
+    if not toks:
+        raise LiquidError(f"bad variable: {path}")
+    cur = ctx.get(toks[0])
+    for t in toks[1:]:
+        if t.startswith("["):
+            key = eval_expr(t[1:-1], ctx)
+            cur = cur[int(key)] if isinstance(cur, list) and key is not None and int(key) < len(cur) else (cur.get(key) if isinstance(cur, dict) else None)
+        else:
+            if isinstance(cur, dict):
+                cur = cur.get(t)
+            elif isinstance(cur, (list, str)) and t == "size":
+                cur = len(cur)
+            elif isinstance(cur, list) and t == "first":
+                cur = cur[0] if cur else None
+            elif isinstance(cur, list) and t == "last":
+                cur = cur[-1] if cur else None
+            else:
+                cur = None
+    return cur
+
+
+def eval_atom(s, ctx):
+    s = s.strip()
+    if (s.startswith('"') and s.endswith('"')) or (s.startswith("'") and s.endswith("'")):
+        return s[1:-1]
+    if re.fullmatch(r"-?\d+", s):
+        return int(s)
+    if s == "true":
+        return True
+    if s == "false":
+        return False
+    if s in ("nil", "null"):
+        return None
+    if s in ("blank", "empty"):
+        return "__BLANK__"
+    return lookup(s, ctx)
+
+
+def eval_expr(s, ctx):
+    parts = split_top(s, "|")
+    val = eval_atom(parts[0], ctx)
+    for f in parts[1:]:
+        f = f.strip()
+        name, _, rest = f.partition(":")
+        name = name.strip()
+        if name not in FILTERS:
+            raise LiquidError(f"unsupported filter: {name}")
+        args = [eval_atom(a, ctx) for a in split_top(rest, ",")] if rest.strip() else []
+        val = FILTERS[name](val, *args)
+    return val
+
+
+CMP_RE = re.compile(r"^(.+?)\s+(==|!=|>=|<=|>|<|contains)\s+(.+)$")
+
+
+def eval_cond(s, ctx):
+    s = s.strip()
+    if re.search(r"\sor\s", s) and re.search(r"\sand\s", s):
+        raise LiquidError(f"do not mix and/or: {s}")
+    if re.search(r"\sor\s", s):
+        return any(eval_cond(p, ctx) for p in re.split(r"\sor\s", s))
+    if re.search(r"\sand\s", s):
+        return all(eval_cond(p, ctx) for p in re.split(r"\sand\s", s))
+    m = CMP_RE.match(s)
+    if not m:
+        return truthy(eval_expr(s, ctx))
+    a, op, b = eval_expr(m.group(1), ctx), m.group(2), eval_expr(m.group(3), ctx)
+    if op in ("==", "!="):
+        if b == "__BLANK__":
+            res = False if a is None else is_blank(a)   # Liquid 4: nil == blank is false
+        elif a == "__BLANK__":
+            res = False if b is None else is_blank(b)
+        else:
+            res = a == b
+        return res if op == "==" else not res
+    if op == "contains":
+        if a is None:
+            return False
+        return to_s(b) in a if isinstance(a, (str, list)) else False
+    return {">": a > b, "<": a < b, ">=": a >= b, "<=": a <= b}[op]
+
+
+def render(nodes, ctx, includes):
+    out = []
+    for n in nodes:
+        k = n[0]
+        if k == "text":
+            out.append(n[1])
+        elif k == "out":
+            v = eval_expr(n[1], ctx)
+            if v == "__BLANK__":
+                v = ""
+            out.append(to_s(v))
+        elif k in ("if", "unless"):
+            done = False
+            for idx, (cond, body) in enumerate(n[1]):
+                c = eval_cond(cond, ctx)
+                if k == "unless" and idx == 0:
+                    c = not c
+                if c:
+                    out.append(render(body, ctx, includes))
+                    done = True
+                    break
+            if not done and n[2] is not None:
+                out.append(render(n[2], ctx, includes))
+        elif k == "for":
+            m = re.match(r"(\w+)\s+in\s+(.+?)(?:\s+limit:\s*(\d+))?$", n[1])
+            if not m:
+                raise LiquidError(f"bad for: {n[1]}")
+            seq = eval_expr(m.group(2), ctx) or []
+            if m.group(3):
+                seq = seq[: int(m.group(3))]
+            ctx.scopes.append({})
+            for i, item in enumerate(seq):
+                ctx.scopes[-1][m.group(1)] = item
+                ctx.scopes[-1]["forloop"] = {"index": i + 1, "index0": i, "first": i == 0,
+                                             "last": i == len(seq) - 1, "length": len(seq)}
+                out.append(render(n[2], ctx, includes))
+            ctx.scopes.pop()
+        elif k == "capture":
+            ctx.assign(n[1].strip(), render(n[2], ctx, includes))
+        elif k == "assign":
+            name, _, expr = n[1].partition("=")
+            v = eval_expr(expr, ctx)
+            ctx.assign(name.strip(), None if v == "__BLANK__" else v)
+        elif k == "include":
+            m = re.match(r"(\S+)\s*(.*)$", n[1])
+            fname, rest = m.group(1), m.group(2)
+            params = {}
+            for pm in re.finditer(r"(\w+)=(\"[^\"]*\"|'[^']*'|[^\s]+)", rest):
+                params[pm.group(1)] = eval_expr(pm.group(2), ctx)
+            path = os.path.join(SRC, "_includes", fname)
+            if not os.path.exists(path):
+                raise LiquidError(f"include not found: {fname}")
+            if fname not in includes:
+                includes[fname] = parse(tokenize(open(path, encoding="utf-8").read()))[0]
+            ctx.scopes.append({"include": params})
+            out.append(render(includes[fname], ctx, includes))
+            ctx.scopes.pop()
+    return "".join(out)
+
+
+# ---------------------------------------------------------------- site build
+FM_RE = re.compile(r"\A---[ \t]*\r?\n(.*?)^---[ \t]*\r?\n?(.*)\Z", re.S | re.M)
+
+
+def read_doc(path):
+    text = open(path, encoding="utf-8").read()
+    m = FM_RE.match(text)
+    if not m:
+        return None, text
+    data = yaml.safe_load(m.group(1)) or {}
+    return data, m.group(2)
+
+
+config = yaml.safe_load(open(os.path.join(SRC, "_config.yml"), encoding="utf-8"))
+SITE_URL = config["url"]
+now = datetime.datetime.now(TZ)
+includes = {}
+
+# posts
+posts = []
+for fn in sorted(os.listdir(os.path.join(SRC, "_posts"))):
+    if not fn.endswith(".md"):
+        continue
+    data, body = read_doc(os.path.join(SRC, "_posts", fn))
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})-(.+)\.md$", fn)
+    y, mo, d, slug = m.groups()
+    post = dict(data)
+    post["layout"] = post.get("layout", "article")
+    dt = as_dt(post["date"]) if post.get("date") else datetime.datetime(int(y), int(mo), int(d), tzinfo=TZ)
+    post["date"] = dt
+    if post.get("updated"):
+        post["updated"] = as_dt(post["updated"])
+    if post.get("permalink"):
+        post["url"] = post["permalink"]
+    else:
+        post["url"] = f"/news/{dt:%Y}/{dt:%m}/{slug}/"
+    post["_body"] = body
+    posts.append(post)
+posts.sort(key=lambda p: p["date"], reverse=True)
+
+site = {"url": SITE_URL, "title": config["title"], "description": config["description"],
+        "lang": config["lang"], "time": now, "posts": posts, "data": {}}
+
+pages = []
+for root, dirs, files in os.walk(SRC):
+    dirs[:] = [d for d in dirs if not d.startswith(("_", ".")) and d not in config.get("exclude", [])]
+    for fn in files:
+        if fn.startswith(".") or fn in config.get("exclude", []):
+            continue
+        full = os.path.join(root, fn)
+        rel = os.path.relpath(full, SRC)
+        if rel.endswith(("_config.yml",)):
+            continue
+        if fn.endswith((".html", ".xml", ".txt", ".md", ".css", ".js")):
+            data, body = read_doc(full)
+            if data is not None:
+                pages.append((rel, data, body))
+                continue
+        pages.append((rel, None, None))
+
+shutil.rmtree(OUT, ignore_errors=True)
+os.makedirs(OUT)
+
+
+def write(url, content):
+    rel = url.lstrip("/")
+    if url.endswith("/"):
+        rel += "index.html"
+    dest = os.path.join(OUT, rel)
+    if os.path.exists(dest):
+        raise SystemExit(f"CONFLICT: two files write to {url}")
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    open(dest, "w", encoding="utf-8").write(content)
+
+
+def layout_chain(content, page, layout_name):
+    while layout_name and layout_name != "null":
+        data, body = read_doc(os.path.join(SRC, "_layouts", layout_name + ".html"))
+        ctx = Ctx({"site": site, "page": page, "content": content})
+        content = render(parse(tokenize(body))[0], ctx, includes)
+        layout_name = (data or {}).get("layout")
+    return content
+
+
+def build(url, data, body, is_md=False):
+    page = dict(data)
+    page["url"] = url
+    ctx = Ctx({"site": site, "page": page})
+    content = render(parse(tokenize(body))[0], ctx, includes)
+    if is_md:
+        content = markdown.markdown(content, extensions=["extra", "sane_lists"])
+    page["content"] = content
+    html_out = layout_chain(content, page, data.get("layout"))
+    write(url, html_out)
+
+
+for post in posts:
+    data = {k: v for k, v in post.items() if k not in ("_body",)}
+    build(post["url"], data, post["_body"], is_md=True)
+
+for rel, data, body in pages:
+    if data is None:
+        dest = os.path.join(OUT, rel)
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        if os.path.exists(dest):
+            raise SystemExit(f"CONFLICT: static file {rel}")
+        shutil.copy(os.path.join(SRC, rel), dest)
+        continue
+    if data.get("permalink"):
+        url = data["permalink"]
+    elif rel == "index.html":
+        url = "/"
+    else:
+        url = "/" + rel.replace(os.sep, "/")
+    build(url, data, body)
+
+print(f"built {len(posts)} posts and {len(pages)} files into {OUT}")
