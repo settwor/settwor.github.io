@@ -8,7 +8,6 @@ image: /images/news/990754ee8c.webp
 image_alt: A new cover for the track that was eventually replaced.
 image_caption: A new cover for the track that was eventually replaced.
 listen_url: https://open.spotify.com/album/4G27W8LQxr3H8mROcotpUQ?si=J5jPkl-6QIS3BTqM5An6hg
-updated: 2026-09-04T14:37
 ---
 On September 4, 2026, SE TU QUER was re-released through Authentic Records, this time as an official collaboration between SETTWOR and Mc Baiano.
 
