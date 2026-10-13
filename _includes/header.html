@@ -9,7 +9,7 @@
         <nav class="site-nav site-nav--start" aria-label="Releases and news">
             <ul>
                 <li><a class="btn btn--sm" href="/releases.html">All Releases</a></li>
-                <li><a class="btn btn--sm" href="/news">News</a></li>
+                <li><a class="btn btn--sm" href="/news.html">News</a></li>
             </ul>
         </nav>
     </div>
@@ -30,6 +30,6 @@
     <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Main</a>
     <a href="/bio.html"{% if page.url == "/bio.html" %} aria-current="page"{% endif %}>Biography</a>
     <a href="/photo.html"{% if page.url == "/photo.html" %} aria-current="page"{% endif %}>Photographs</a>
-    <a href="/news"{% if page.url == "/news" or page.layout == "article" %} aria-current="page"{% endif %}>News</a>
+    <a href="/news.html"{% if page.url == "/news.html" or page.layout == "article" %} aria-current="page"{% endif %}>News</a>
     <a href="/releases.html"{% if page.url == "/releases.html" %} aria-current="page"{% endif %}>Releases</a>
 </nav>
