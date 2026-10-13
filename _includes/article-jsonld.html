@@ -30,7 +30,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "SETTWOR", "item": {{ aj_site | jsonify }} },
-        { "@type": "ListItem", "position": 2, "name": "News", "item": {{ "/news.html" | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "News", "item": {{ "/news/" | absolute_url | jsonify }} },
         { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }} }
     ]
 }
