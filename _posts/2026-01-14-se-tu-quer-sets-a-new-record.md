@@ -8,7 +8,6 @@ image_caption: Cover of "SE TU QUER" by SETTWOR
 updated: 2026-10-13T14:09
 ---
 SETTWOR’s track SE TU QUER, released on January 9, 2026, has set a new absolute record in the artist’s history. By January 14, 2026, the track had already become the fastest-growing release SETTWOR has ever had, reaching 1,000 streams on Spotify within just six days.
-
   
 This achievement represents the strongest early performance of any release in SETTWOR’s career to date and highlights a clear increase in listener engagement and interest in his recent work. While the numbers themselves remain modest, the speed at which SE TU QUER reached this milestone marks an important step forward in the artist’s development and visibility.
 
