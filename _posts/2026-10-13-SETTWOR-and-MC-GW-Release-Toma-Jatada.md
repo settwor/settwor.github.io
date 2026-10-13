@@ -7,7 +7,6 @@ image: /images/releases/TOMA JATADA.jpeg
 image_alt: Cover art for Toma Jatada by SETTWOR and MC GW.
 image_caption: Cover art for Toma Jatada by SETTWOR and MC GW.
 listen_url: https://open.spotify.com/album/00W2qdOjV3whkK3L6W2VxL?si=t7W2wRbYRX2XMGtKskHqbA
-updated: 2026-10-10T14:53
 ---
 On October 10, 2026, SETTWOR released *Toma Jatada*, a collaboration with Brazilian artist MC GW. Released with support from Authentic Records, the track marks another step in SETTWOR’s exploration of Brazilian funk.
 
