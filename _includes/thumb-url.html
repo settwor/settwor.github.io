@@ -1,0 +1,9 @@
+{%- comment -%}
+  The address of the small copy of a photo, if it exists (images/small/NAME).
+  The small copies are made by tools/make-thumbs.py. Without them the big
+  picture is used, so the page never shows a broken picture.
+  Usage: include thumb-url.html with src (path of the big picture).
+{%- endcomment -%}
+{%- assign tu_small = include.src | replace: "/images/", "/images/small/" -%}
+{%- assign tu_hit = site.static_files | where: "path", tu_small -%}
+{%- if tu_hit.size > 0 -%}{{ tu_small | uri_escape }}{%- else -%}{{ include.src | uri_escape }}{%- endif -%}

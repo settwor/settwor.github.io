@@ -1,0 +1,208 @@
+# Photographs. Every photo is one item. The year tabs on the Photos page are made from the dates.
+# Small copies for the grid are found automatically (images/small/, made by tools/make-thumbs.py).
+# The date format is YYYY-MM-DD. Add a new photo with the "Add" button in Pages CMS.
+photos:
+  - image: /images/69.jpeg
+    date: 2026-06-19
+    alt: SETTWOR, photo from 2026
+  - image: /images/68.jpeg
+    date: 2026-06-19
+    alt: SETTWOR, photo from 2026
+  - image: /images/67.jpeg
+    date: 2026-06-19
+    alt: SETTWOR, photo from 2026
+  - image: /images/66.jpeg
+    date: 2026-06-19
+    alt: SETTWOR, photo from 2026
+  - image: /images/65.jpeg
+    date: 2026-06-19
+    alt: SETTWOR, photo from 2026
+  - image: /images/64.jpeg
+    date: 2026-06-15
+    alt: SETTWOR, photo from 2026
+  - image: /images/63.jpeg
+    date: 2026-06-09
+    alt: SETTWOR, photo from 2026
+  - image: /images/62.jpeg
+    date: 2026-06-09
+    alt: SETTWOR, photo from 2026
+  - image: /images/61.jpeg
+    date: 2026-03-17
+    alt: SETTWOR, photo from 2026
+  - image: /images/60.jpeg
+    date: 2026-03-17
+    alt: SETTWOR, photo from 2026
+  - image: /images/59.jpeg
+    date: 2026-03-17
+    alt: SETTWOR, photo from 2026
+  - image: /images/58.jpeg
+    date: 2025-08-08
+    alt: SETTWOR in Warsaw, 8 August 2025
+  - image: /images/57.jpeg
+    date: 2025-08-08
+    alt: SETTWOR in Warsaw, 8 August 2025
+  - image: /images/56.jpeg
+    date: 2025-08-08
+    alt: SETTWOR in Warsaw, 8 August 2025
+  - image: /images/55.jpeg
+    date: 2025-08-08
+    alt: SETTWOR in Warsaw, 8 August 2025
+  - image: /images/54.jpeg
+    date: 2025-08-08
+    alt: SETTWOR in Warsaw, 8 August 2025
+  - image: /images/53.jpeg
+    date: 2025-06-18
+    alt: SETTWOR, photo from 2025
+  - image: /images/52.jpeg
+    date: 2025-06-18
+    alt: SETTWOR, photo from 2025
+  - image: /images/51.jpeg
+    date: 2025-06-18
+    alt: SETTWOR, photo from 2025
+  - image: /images/50.jpeg
+    date: 2025-06-18
+    alt: SETTWOR, photo from 2025
+  - image: /images/49.jpeg
+    date: 2025-06-18
+    alt: SETTWOR, photo from 2025
+  - image: /images/48.jpeg
+    date: 2025-06-18
+    alt: SETTWOR, photo from 2025
+  - image: /images/47.jpeg
+    date: 2025-05-21
+    alt: SETTWOR, photo from 2025
+  - image: /images/46.jpeg
+    date: 2025-05-21
+    alt: SETTWOR, photo from 2025
+  - image: /images/45.jpeg
+    date: 2025-05-21
+    alt: SETTWOR, photo from 2025
+  - image: /images/44.jpeg
+    date: 2025-05-21
+    alt: SETTWOR, photo from 2025
+  - image: /images/43.jpeg
+    date: 2025-05-21
+    alt: SETTWOR, photo from 2025
+  - image: /images/42.jpeg
+    date: 2025-05-21
+    alt: SETTWOR, photo from 2025
+  - image: /images/41.jpeg
+    date: 2025-04-06
+    alt: SETTWOR, photo from 2025
+  - image: /images/40.jpeg
+    date: 2025-03-06
+    alt: SETTWOR, photo from 2025
+  - image: /images/39.jpeg
+    date: 2025-01-27
+    alt: SETTWOR, photo from 2025
+  - image: /images/38.jpeg
+    date: 2025-01-27
+    alt: SETTWOR, photo from 2025
+  - image: /images/37.jpeg
+    date: 2025-01-27
+    alt: SETTWOR, photo from 2025
+  - image: /images/36.jpeg
+    date: 2025-01-27
+    alt: SETTWOR, photo from 2025
+  - image: /images/34.jpeg
+    date: 2024-12-07
+    alt: SETTWOR, photo from 2024
+  - image: /images/33.jpeg
+    date: 2024-12-07
+    alt: SETTWOR, photo from 2024
+  - image: /images/32.jpeg
+    date: 2024-08-26
+    alt: SETTWOR, photo from 2024
+  - image: /images/31.jpeg
+    date: 2024-04-25
+    alt: SETTWOR, photo from 2024
+  - image: /images/30.jpeg
+    date: 2024-07-18
+    alt: SETTWOR, photo from 2024
+  - image: /images/29.jpeg
+    date: 2024-06-13
+    alt: SETTWOR, photo from 2024
+  - image: /images/28.jpeg
+    date: 2024-06-13
+    alt: SETTWOR, photo from 2024
+  - image: /images/27.jpeg
+    date: 2024-06-13
+    alt: SETTWOR, photo from 2024
+  - image: /images/26.jpeg
+    date: 2024-04-12
+    alt: SETTWOR, photo from 2024
+  - image: /images/25.jpeg
+    date: 2024-04-12
+    alt: SETTWOR, photo from 2024
+  - image: /images/24.jpeg
+    date: 2024-03-26
+    alt: SETTWOR, photo from 2024
+  - image: /images/23.jpeg
+    date: 2024-03-26
+    alt: SETTWOR, photo from 2024
+  - image: /images/22.jpeg
+    date: 2024-03-26
+    alt: SETTWOR, photo from 2024
+  - image: /images/21.jpeg
+    date: 2024-03-26
+    alt: SETTWOR, photo from 2024
+  - image: /images/20.jpg
+    date: 2024-02-22
+    alt: SETTWOR, photo from 2024
+  - image: /images/19.jpeg
+    date: 2024-02-22
+    alt: SETTWOR, photo from 2024
+  - image: /images/18.jpeg
+    date: 2024-02-22
+    alt: SETTWOR, photo from 2024
+  - image: /images/17.jpeg
+    date: 2022-07-08
+    alt: SETTWOR, photo from 2022
+  - image: /images/16.jpeg
+    date: 2022-10-25
+    alt: SETTWOR, photo from 2022
+  - image: /images/15.jpeg
+    date: 2023-01-17
+    alt: SETTWOR, photo from 2023
+  - image: /images/14.jpeg
+    date: 2023-01-17
+    alt: SETTWOR, photo from 2023
+  - image: /images/13.jpeg
+    date: 2023-02-02
+    alt: SETTWOR, photo from 2023
+  - image: /images/12.jpeg
+    date: 2023-02-02
+    alt: SETTWOR, photo from 2023
+  - image: /images/11.jpeg
+    date: 2023-04-21
+    alt: SETTWOR, photo from 2023
+  - image: /images/10.jpeg
+    date: 2023-05-15
+    alt: SETTWOR, photo from 2023
+  - image: /images/9.jpeg
+    date: 2023-06-06
+    alt: SETTWOR, photo from 2023
+  - image: /images/8.jpeg
+    date: 2023-06-06
+    alt: SETTWOR, photo from 2023
+  - image: /images/7.jpeg
+    date: 2023-07-28
+    alt: SETTWOR, photo from 2023
+  - image: /images/6.jpeg
+    date: 2023-07-28
+    alt: SETTWOR, photo from 2023
+  - image: /images/5.jpeg
+    date: 2023-02-28
+    alt: SETTWOR, photo from 2023
+  - image: /images/4.jpeg
+    date: 2023-09-19
+    alt: SETTWOR, photo from 2023
+  - image: /images/3.jpeg
+    date: 2023-07-28
+    alt: SETTWOR, photo from 2023
+  - image: /images/2.jpeg
+    date: 2023-10-19
+    alt: SETTWOR, photo from 2023
+  - image: /images/1.jpeg
+    date: 2023-10-19
+    alt: SETTWOR, photo from 2023

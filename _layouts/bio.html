@@ -1,0 +1,67 @@
+---
+layout: page
+rail: bio
+---
+{%- assign photo_src = page.photo | default: "/images/main.jpg" -%}
+<article class="bio">
+    <header class="page-head">
+        <h1 class="page-head__title">{{ page.title }}</h1>
+        {%- if page.lead and page.lead != "" %}
+        <p class="page-head__lead">{{ page.lead }}</p>
+        {%- endif %}
+        {% include bio-langs.html %}
+    </header>
+
+    <figure class="bio__photo">
+        <img src="{{ photo_src | uri_escape }}" alt="{{ page.photo_alt | default: "SETTWOR" | escape }}" fetchpriority="high">
+        {%- if page.photo_caption and page.photo_caption != "" %}
+        <figcaption>{{ page.photo_caption }}</figcaption>
+        {%- endif %}
+    </figure>
+
+    <div class="prose bio__body">
+{{ content }}
+    </div>
+
+    {%- if page.faq and page.faq.size > 0 %}
+    <section class="faq" aria-labelledby="faq-title">
+        <h2 class="faq__title" id="faq-title">{{ page.faq_title | default: "Questions and answers" }}</h2>
+        {%- for item in page.faq %}
+        <details class="faq__item">
+            <summary>{{ item.q }}</summary>
+            <p>{{ item.a }}</p>
+        </details>
+        {%- endfor %}
+    </section>
+    {%- endif %}
+</article>
+
+<!-- Structured data: this biography page, its FAQ and the license of the photo. -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "ProfilePage",
+            "@id": "{{ page.url | absolute_url }}#profile",
+            "url": {{ page.url | absolute_url | jsonify }},
+            "name": {{ page.seo_title | default: page.title | jsonify }},
+            "inLanguage": {{ page.lang | jsonify }},
+            "isPartOf": { "@id": "{{ site.url }}/#website" },
+            "mainEntity": { "@id": "{{ site.url }}/#artist" }
+        }
+        {%- if page.faq and page.faq.size > 0 %},
+        {
+            "@type": "FAQPage",
+            "inLanguage": {{ page.lang | jsonify }},
+            "mainEntity": [
+                {%- for item in page.faq %}
+                { "@type": "Question", "name": {{ item.q | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | jsonify }} } }{% unless forloop.last %},{% endunless %}
+                {%- endfor %}
+            ]
+        }
+        {%- endif %},
+{% include image-object.html src=photo_src alt=page.photo_alt date="2025-08-08" %}
+    ]
+}
+</script>

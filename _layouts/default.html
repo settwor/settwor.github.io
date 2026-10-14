@@ -39,6 +39,15 @@
     <meta name="robots" content="index, follow, max-image-preview:large">
 {%- endif %}
     <link rel="canonical" href="{{ canonical }}">
+{%- if page.collection == "bio" %}
+{%- for item in site.bio %}
+    <link rel="alternate" hreflang="{{ item.lang }}" href="{{ item.url | absolute_url }}">
+{%- endfor %}
+{%- assign default_bio = site.bio | where: "lang", "en" | first %}
+{%- if default_bio %}
+    <link rel="alternate" hreflang="x-default" href="{{ default_bio.url | absolute_url }}">
+{%- endif %}
+{%- endif %}
     <meta name="theme-color" content="#f6f6f6">
 
     <!-- Google Search Console ownership verification: do not remove -->

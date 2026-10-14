@@ -1,0 +1,30 @@
+---
+layout: default
+---
+{%- comment -%}
+  The frame of every ordinary page: the content sheet in the middle,
+  the right column (channels, links) and the left column (navigation).
+  A page chooses its left column with "rail:" and shows the photo
+  license note with "license_note: true".
+{%- endcomment -%}
+<div class="page">
+
+    <main class="page__main" id="main" tabindex="-1">
+{{ content }}
+    </main>
+
+    <!-- Right column (below the content on phones) -->
+    <aside class="rail rail--end" aria-label="Elsewhere on the web">
+        <div class="rail__inner">
+            {% include rail-end.html %}
+        </div>
+    </aside>
+
+    <!-- Left column (wide screens only) -->
+    <aside class="rail rail--start" aria-label="Page navigation">
+        <div class="rail__inner">
+            {% include rail-start.html %}
+        </div>
+    </aside>
+
+</div>

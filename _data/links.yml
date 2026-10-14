@@ -1,0 +1,44 @@
+# Links shown in the side columns of every page. Edit them in Pages CMS ("Links").
+email: settwor@gmail.com
+
+# "Follow SETTWOR": the official channels (also used by the Social media buttons on the home page).
+follow:
+  - name: Spotify
+    url: https://open.spotify.com/artist/5BD8hsAGp1fwJKcnlQWjGf
+    icon: /images/spotify.svg
+  - name: YouTube
+    url: https://youtube.com/c/settwor
+    icon: /images/yt.svg
+  - name: Instagram
+    url: https://instagram.com/settwor
+    icon: /images/insta.svg
+  - name: Telegram
+    url: https://settw0r.t.me
+    icon: /images/tg.svg
+
+# "Also on the web": other places where SETTWOR is listed.
+elsewhere:
+  - name: Last.fm
+    url: https://www.last.fm/music/SETTWOR
+    desc: Artist page and tracks
+
+# "Background reading": reference pages about the genres and places (left column on wide screens).
+reading:
+  - name: Phonk
+    url: https://en.wikipedia.org/wiki/Phonk
+    desc: The genre, on Wikipedia
+  - name: Funk carioca
+    url: https://en.wikipedia.org/wiki/Funk_carioca
+    desc: Brazilian funk, on Wikipedia
+  - name: Electronic dance music
+    url: https://en.wikipedia.org/wiki/Electronic_dance_music
+    desc: EDM, on Wikipedia
+  - name: Record producer
+    url: https://en.wikipedia.org/wiki/Record_producer
+    desc: The profession, on Wikipedia
+  - name: Kryvyi Rih
+    url: https://en.wikipedia.org/wiki/Kryvyi_Rih
+    desc: Hometown, on Wikipedia
+  - name: Creative Commons BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    desc: The license of the photographs

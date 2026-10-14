@@ -30,11 +30,47 @@ defaults:
       type: "posts"
     values:
       layout: article
+  - scope:
+      path: "_bio"
+    values:
+      layout: bio
+      license_note: true
+      order: 99
+
+  # Old addresses that must never change (they are known to Google).
+  # They are kept here, not inside the files, so that the editor in
+  # Pages CMS cannot remove them by accident.
+  - scope:
+      path: "_posts/2025-12-12-first-track-in-the-brazilian-funk-genre.md"
+    values:
+      permalink: "/news/First-Track-in-the-Brazilian-Funk-Genre_(12-12-2025).html"
+  - scope:
+      path: "_bio/en.md"
+    values:
+      permalink: /bio.html
+  - scope:
+      path: "_bio/ru.md"
+    values:
+      permalink: /bioRU.html
+  - scope:
+      path: "_bio/pl.md"
+    values:
+      permalink: /bioPL.html
+
+# Biographies (one file per language) and releases (one file per release).
+# New biography languages get the address /bio/<file name>/ automatically.
+collections:
+  bio:
+    output: true
+    permalink: /bio/:name/
+  releases:
+    output: false
 
 # Files that must NOT be published on the website.
 exclude:
   - README.md
   - docs
+  - tools
   - .pages.yml
   - Gemfile
   - Gemfile.lock

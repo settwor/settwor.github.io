@@ -1,0 +1,17 @@
+{%- comment -%}
+  One photo as structured data (ImageObject) with its license, so that Google
+  can show the "Licensable" label. Usage: include image-object.html with
+  src (path), alt (description) and date (YYYY-MM-DD).
+{%- endcomment -%}
+        {
+            "@type": "ImageObject",
+            "contentUrl": {{ include.src | uri_escape | absolute_url | jsonify }},
+            "name": "SETTWOR",
+            "description": {{ include.alt | jsonify }},
+            "datePublished": {{ include.date | date: "%Y-%m-%d" | jsonify }},
+            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "acquireLicensePage": "{{ site.url }}/license.html",
+            "copyrightNotice": {{ include.date | date: "© %Y SETTWOR" | jsonify }},
+            "creditText": "Photo by SETTWOR",
+            "creator": { "@type": "Person", "name": "SETTWOR" }
+        }

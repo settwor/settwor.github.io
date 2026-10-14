@@ -6,7 +6,7 @@ image: /images/releases/NOITE SELVAGEM.png
 image_alt: Cover art of NOITE SELVAGEM, SETTWOR's first Brazilian funk track
 image_caption: Cover of "NOITE SELVAGEM" by SETTWOR
 listen_url: https://open.spotify.com/album/5csiNJwLmytqkoFfQcWINZ
-permalink: /news/First-Track-in-the-Brazilian-Funk-Genre_(12-12-2025).html
+published: true
 ---
 On December 12, 2025, SETTWOR released NOITE SELVAGEM, his first track in the Brazilian funk genre. The release marks a new creative chapter in his musical journey and demonstrates the artist’s interest in experimenting with different sounds and styles.
 

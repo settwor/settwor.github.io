@@ -80,7 +80,58 @@ def f_abs(v):
     return SITE_URL + (s if s.startswith("/") else "/" + s)
 
 
+def _key(v):
+    d = as_dt(v) if isinstance(v, (datetime.date, datetime.datetime)) else None
+    if d is not None:
+        return (1, d.timestamp(), "")
+    if v is None:
+        return (0, 0, "")
+    if isinstance(v, (int, float)):
+        return (1, v, "")
+    return (2, 0, to_s(v))
+
+
+def f_sort(v, prop=None):
+    v = list(v or [])
+    if prop is None:
+        return sorted(v, key=_key)
+    return sorted(v, key=lambda i: _key(i.get(prop) if isinstance(i, dict) else None))
+
+
+def f_where(v, prop, val):
+    return [i for i in (v or []) if isinstance(i, dict) and i.get(prop) == val]
+
+
+def f_md(v):
+    return markdown.markdown(to_s(v), extensions=["extra", "sane_lists"])
+
+
+def f_truncate(v, n=50, ell="..."):
+    v = to_s(v)
+    return v if len(v) <= int(n) else v[: max(0, int(n) - len(ell))] + ell
+
+
 FILTERS = {
+    "sort": f_sort,
+    "reverse": lambda v: list(reversed(list(v or []))),
+    "where": f_where,
+    "size": lambda v: len(v) if v is not None else 0,
+    "first": lambda v: (v[0] if v else None),
+    "last": lambda v: (v[-1] if v else None),
+    "join": lambda v, sep=" ": to_s(sep).join(to_s(i) for i in (v or [])),
+    "map": lambda v, k: [i.get(k) if isinstance(i, dict) else None for i in (v or [])],
+    "uniq": lambda v: list(dict.fromkeys(v or [])),
+    "replace": lambda v, a, b="": to_s(v).replace(to_s(a), to_s(b)),
+    "remove": lambda v, a: to_s(v).replace(to_s(a), ""),
+    "downcase": lambda v: to_s(v).lower(),
+    "upcase": lambda v: to_s(v).upper(),
+    "prepend": lambda v, a: to_s(a) + to_s(v),
+    "plus": lambda v, n: v + n,
+    "minus": lambda v, n: v - n,
+    "strip_newlines": lambda v: to_s(v).replace("\n", ""),
+    "markdownify": f_md,
+    "truncate": f_truncate,
+    "url_encode": lambda v: urllib.parse.quote_plus(to_s(v)),
     "default": lambda v, d="": d if (v is None or v is False or v == "" or v == [] or v == {}) else v,
     "date": f_date,
     "date_to_xmlschema": lambda v: (as_dt(v).isoformat(timespec="seconds") if as_dt(v) else ""),
@@ -321,12 +372,16 @@ def render(nodes, ctx, includes):
             if not done and n[2] is not None:
                 out.append(render(n[2], ctx, includes))
         elif k == "for":
-            m = re.match(r"(\w+)\s+in\s+(.+?)(?:\s+limit:\s*(\d+))?$", n[1])
+            m = re.match(r"(\w+)\s+in\s+(.+?)((?:\s+(?:limit|offset):\s*\d+)*)$", n[1])
             if not m:
                 raise LiquidError(f"bad for: {n[1]}")
             seq = eval_expr(m.group(2), ctx) or []
-            if m.group(3):
-                seq = seq[: int(m.group(3))]
+            mo = re.search(r"offset:\s*(\d+)", m.group(3))
+            ml = re.search(r"limit:\s*(\d+)", m.group(3))
+            if mo:
+                seq = seq[int(mo.group(1)):]
+            if ml:
+                seq = seq[: int(ml.group(1))]
             ctx.scopes.append({})
             for i, item in enumerate(seq):
                 ctx.scopes[-1][m.group(1)] = item
@@ -375,6 +430,18 @@ SITE_URL = config["url"]
 now = datetime.datetime.now(TZ)
 includes = {}
 
+def apply_defaults(rel, data, kind):
+    for d in config.get("defaults", []):
+        sc = d.get("scope", {})
+        if sc.get("path") and not rel.startswith(sc["path"]):
+            continue
+        if sc.get("type") and sc["type"] != kind:
+            continue
+        for k, v in d.get("values", {}).items():
+            data.setdefault(k, v)
+    return data
+
+
 # posts
 posts = []
 for fn in sorted(os.listdir(os.path.join(SRC, "_posts"))):
@@ -383,7 +450,9 @@ for fn in sorted(os.listdir(os.path.join(SRC, "_posts"))):
     data, body = read_doc(os.path.join(SRC, "_posts", fn))
     m = re.match(r"(\d{4})-(\d{2})-(\d{2})-(.+)\.md$", fn)
     y, mo, d, slug = m.groups()
-    post = dict(data)
+    post = apply_defaults(f"_posts/{fn}", dict(data), "posts")
+    if post.get("published") is False:
+        continue
     post["layout"] = post.get("layout", "article")
     dt = as_dt(post["date"]) if post.get("date") else datetime.datetime(int(y), int(mo), int(d), tzinfo=TZ)
     post["date"] = dt
@@ -397,8 +466,50 @@ for fn in sorted(os.listdir(os.path.join(SRC, "_posts"))):
     posts.append(post)
 posts.sort(key=lambda p: p["date"], reverse=True)
 
+# _data
+data_dir = os.path.join(SRC, "_data")
+site_data = {}
+if os.path.isdir(data_dir):
+    for fn in sorted(os.listdir(data_dir)):
+        if fn.endswith((".yml", ".yaml")):
+            site_data[fn.rsplit(".", 1)[0]] = yaml.safe_load(open(os.path.join(data_dir, fn), encoding="utf-8"))
+
+
+# collections (bio, releases)
+collections = {}
+for label, opts in (config.get("collections") or {}).items():
+    opts = opts or {}
+    docs = []
+    folder = os.path.join(SRC, "_" + label)
+    for fn in sorted(os.listdir(folder)) if os.path.isdir(folder) else []:
+        if not fn.endswith(".md"):
+            continue
+        data, body = read_doc(os.path.join(folder, fn))
+        doc = apply_defaults(f"_{label}/{fn}", dict(data or {}), label)
+        slug = fn[:-3]
+        doc["collection"] = label
+        doc["slug"] = slug
+        if doc.get("date"):
+            doc["date"] = as_dt(doc["date"])
+        if opts.get("output"):
+            if doc.get("permalink"):
+                doc["url"] = doc["permalink"]
+            else:
+                pat = opts.get("permalink", "/:collection/:path/")
+                doc["url"] = pat.replace(":collection", label).replace(":path", slug).replace(":name", slug)
+        doc["_body"] = body
+        docs.append(doc)
+    collections[label] = (opts, docs)
+
 site = {"url": SITE_URL, "title": config["title"], "description": config["description"],
-        "lang": config["lang"], "time": now, "posts": posts, "data": {}}
+        "lang": config["lang"], "time": now, "posts": posts, "data": site_data}
+for label, (opts, docs) in collections.items():
+    site[label] = docs
+site["static_files"] = []
+for _r, _d, _fs in os.walk(SRC):
+    _d[:] = [d for d in _d if not d.startswith(("_", ".")) and d not in config.get("exclude", [])]
+    for _f in _fs:
+        site["static_files"].append({"path": "/" + os.path.relpath(os.path.join(_r, _f), SRC).replace(os.sep, "/")})
 
 pages = []
 for root, dirs, files in os.walk(SRC):
@@ -447,7 +558,7 @@ def build(url, data, body, is_md=False):
     ctx = Ctx({"site": site, "page": page})
     content = render(parse(tokenize(body))[0], ctx, includes)
     if is_md:
-        content = markdown.markdown(content, extensions=["extra", "sane_lists"])
+        content = markdown.markdown(content, extensions=["extra", "sane_lists", "toc"])
     page["content"] = content
     html_out = layout_chain(content, page, data.get("layout"))
     write(url, html_out)
@@ -456,6 +567,13 @@ def build(url, data, body, is_md=False):
 for post in posts:
     data = {k: v for k, v in post.items() if k not in ("_body",)}
     build(post["url"], data, post["_body"], is_md=True)
+
+for label, (opts, docs) in collections.items():
+    if not opts.get("output"):
+        continue
+    for doc in docs:
+        data = {k: v for k, v in doc.items() if k != "_body"}
+        build(doc["url"], data, doc["_body"], is_md=True)
 
 for rel, data, body in pages:
     if data is None:
@@ -467,10 +585,18 @@ for rel, data, body in pages:
         continue
     if data.get("permalink"):
         url = data["permalink"]
-    elif rel == "index.html":
-        url = "/"
     else:
-        url = "/" + rel.replace(os.sep, "/")
+        relu = rel.replace(os.sep, "/")
+        if not relu.endswith((".html", ".htm")):
+            url = "/" + relu                       # xml, txt, js, css keep their names
+        elif relu == "index.html" or relu.endswith("/index.html"):
+            url = "/" + relu[: -len("index.html")]
+        elif config.get("permalink", "").endswith("/"):
+            # Real Jekyll 3: a custom permalink that ends with "/" also applies to pages.
+            url = "/" + relu[: -len(".html")] + "/"
+            print(f"NOTE: page {relu} has no permalink and is published at {url}")
+        else:
+            url = "/" + relu
     build(url, data, body)
 
-print(f"built {len(posts)} posts and {len(pages)} files into {OUT}")
+print(f"built {len(posts)} posts, {sum(len(d) for _, d in collections.values())} collection docs and {len(pages)} files into {OUT}")

@@ -1,0 +1,23 @@
+{%- comment -%}
+  The whole right column. It is the same on every page:
+  channels, contact, other places on the web and (on some pages) the photo license note.
+{%- endcomment -%}
+{% include rail-follow.html %}
+
+{%- if site.data.links.elsewhere.size > 0 %}
+<section class="rail-block" aria-labelledby="rail-elsewhere">
+    <h2 class="rail-block__title" id="rail-elsewhere">Also on the web</h2>
+    <ul class="rail-list">
+        {%- for item in site.data.links.elsewhere %}
+        <li><a class="rail-link" href="{{ item.url }}" rel="noopener"><span class="rail-link__name">{{ item.name }}</span>{% if item.desc and item.desc != "" %}<span class="rail-link__desc">{{ item.desc }}</span>{% endif %}</a></li>
+        {%- endfor %}
+    </ul>
+</section>
+{%- endif %}
+
+{%- if page.license_note %}
+<section class="rail-block" aria-labelledby="rail-photos">
+    <h2 class="rail-block__title" id="rail-photos">Using the photos</h2>
+    <p class="rail-text">Photographs on this site are free to use with credit. <a href="/license.html">Read the license</a>.</p>
+</section>
+{%- endif %}

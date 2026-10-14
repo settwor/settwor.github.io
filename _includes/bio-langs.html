@@ -1,0 +1,7 @@
+{%- comment -%} The language switcher of the biography. One link per file in the folder _bio. {%- endcomment -%}
+<ul class="langs" aria-label="Biography language">
+    {%- assign bio_list = site.bio | sort: "order" %}
+    {%- for item in bio_list %}
+    <li><a class="langs__link" href="{{ item.url }}" hreflang="{{ item.lang }}" lang="{{ item.lang }}"{% if item.url == page.url %} aria-current="page"{% endif %}>{{ item.lang_name }}</a></li>
+    {%- endfor %}
+</ul>

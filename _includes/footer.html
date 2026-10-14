@@ -14,9 +14,10 @@
         <nav aria-labelledby="footer-bio">
             <h2 class="footer-title" id="footer-bio">Biography</h2>
             <ul class="footer-links">
-                <li><a href="/bio.html" hreflang="en">English</a></li>
-                <li><a href="/bioRU.html" hreflang="ru" lang="ru">Русский</a></li>
-                <li><a href="/bioPL.html" hreflang="pl" lang="pl">Polski</a></li>
+                {%- assign bio_list = site.bio | sort: "order" %}
+                {%- for item in bio_list %}
+                <li><a href="{{ item.url }}" hreflang="{{ item.lang }}" lang="{{ item.lang }}">{{ item.lang_name }}</a></li>
+                {%- endfor %}
             </ul>
         </nav>
         <nav aria-labelledby="footer-legal">
@@ -28,5 +29,5 @@
             </ul>
         </nav>
     </div>
-    <p class="footer-copy">© <span data-year>{{ site.time | date: "%Y" }}</span> SETTWOR. Official website.</p>
+    <p class="footer-copy">© <span data-current-year>{{ site.time | date: "%Y" }}</span> SETTWOR. Official website.</p>
 </footer>

@@ -1,0 +1,38 @@
+# Texts and settings of the home page. Edit them in Pages CMS ("Home page").
+hero:
+  photo: /images/main.jpg
+  photo_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
+  title: SETTWOR
+  tagline: Phonk and Brazilian funk producer
+  note: The official website. From Kryvyi Rih, Ukraine, based in Poland, active since 2021.
+
+about_title: About SETTWOR
+# Markdown: a blank line starts a new paragraph, [text](https://address) makes a link.
+about: |
+  SETTWOR is a music producer specializing in [phonk](https://en.wikipedia.org/wiki/Phonk), [Brazilian funk](https://en.wikipedia.org/wiki/Funk_carioca), and dance/electronic music. Originally from [Kryvyi Rih](https://en.wikipedia.org/wiki/Kryvyi_Rih), Ukraine, he relocated to Poland in 2022.
+
+  He is best known for his music, his YouTube channel, and short TikTok videos featuring his tracks. He is also the owner of one of the popular 8D music channels.
+callout: SETTWOR is one of the most popular phonk artists on Pandora.
+
+facts:
+  - label: Occupation
+    value: Music producer
+  - label: Date of birth
+    value: 8 February 2007
+  - label: Place of birth
+    value: Kryvyi Rih, Ukraine
+  - label: Nationality
+    value: Ukrainian
+  - label: Based in
+    value: Poland
+  - label: Genres
+    value: Brazilian funk, phonk
+  - label: Active since
+    value: "2021"
+  - label: Email
+    value: settwor@gmail.com
+
+video:
+  youtube_id: 6TUiT21nJd8
+  title: SETTWOR — popular video on YouTube
+spotify_artist_id: 5BD8hsAGp1fwJKcnlQWjGf

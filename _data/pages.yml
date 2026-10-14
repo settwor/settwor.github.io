@@ -1,0 +1,13 @@
+# Headings and introductions of the list pages. Edit them in Pages CMS ("Page texts").
+news:
+  title: News
+  lead: "Official announcements from SETTWOR: new releases, milestones and what comes next."
+photos:
+  title: Photographs
+  lead: Official photographs of SETTWOR. Choose a year. All photos are free to use with credit.
+releases:
+  title: All SETTWOR releases
+  lead: Releases from every year of his career, newest first.
+  image: /images/SETTWOR with releases.png
+  image_alt: SETTWOR with a part of his releases
+  caption: SETTWOR with a part of his releases

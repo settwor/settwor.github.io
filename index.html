@@ -1,43 +1,41 @@
 ---
-layout: default
+layout: page
+rail: home
+license_note: true
 title: SETTWOR
 seo_title: SETTWOR — Phonk & Brazilian Funk Producer | Official Site
 description: Official site of SETTWOR, a phonk and Brazilian funk producer from Ukraine based in Poland. Biography, releases, news, photos and contact.
 image: /images/main.jpg
 image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
 ---
-<div class="page">
-
-    <main class="page__main" id="main" tabindex="-1">
+{%- comment -%} The texts of this page live in _data/home.yml and the links in _data/links.yml. {%- endcomment -%}
+{%- assign home = site.data.home -%}
+{%- assign first_bio = site.bio | sort: "order" | first -%}
 
         <section class="hero" aria-labelledby="page-title">
-            <img class="hero__photo" src="/images/main.jpg" alt="Portrait of SETTWOR, phonk and Brazilian funk producer" width="144" height="144" fetchpriority="high">
+            <img class="hero__photo" src="{{ home.hero.photo | uri_escape }}" alt="{{ home.hero.photo_alt | escape }}" width="144" height="144" fetchpriority="high">
             <div class="hero__text">
-                <h1 class="hero__title" id="page-title">SETTWOR</h1>
-                <p class="hero__tagline">Phonk and Brazilian funk producer</p>
-                <p class="hero__note">The official website. From Kryvyi Rih, Ukraine, based in Poland, active since 2021.</p>
+                <h1 class="hero__title" id="page-title">{{ home.hero.title }}</h1>
+                <p class="hero__tagline">{{ home.hero.tagline }}</p>
+                <p class="hero__note">{{ home.hero.note }}</p>
             </div>
         </section>
 
         <section class="section" id="about" aria-labelledby="about-title">
-            <h2 class="section-title" id="about-title">About SETTWOR</h2>
+            <h2 class="section-title" id="about-title">{{ home.about_title }}</h2>
             <div class="section__body">
-                <p>SETTWOR is a music producer specializing in <a href="https://en.wikipedia.org/wiki/Phonk">phonk</a>, <a href="https://en.wikipedia.org/wiki/Funk_carioca">Brazilian funk</a>, and dance/electronic music. Originally from <a href="https://en.wikipedia.org/wiki/Kryvyi_Rih">Kryvyi Rih</a>, Ukraine, he relocated to Poland in 2022.</p>
-                <p>He is best known for his music, his YouTube channel, and short TikTok videos featuring his tracks. He is also the owner of one of the popular 8D music channels.</p>
-                <p class="callout">SETTWOR is one of the most popular phonk artists on Pandora.</p>
+                {{ home.about | markdownify }}
+                {%- if home.callout and home.callout != "" %}
+                <p class="callout">{{ home.callout }}</p>
+                {%- endif %}
 
                 <dl class="facts">
-                    <div class="facts__item"><dt>Occupation</dt><dd>Music producer</dd></div>
-                    <div class="facts__item"><dt>Date of birth</dt><dd><time datetime="2007-02-08">8 February 2007</time></dd></div>
-                    <div class="facts__item"><dt>Place of birth</dt><dd>Kryvyi Rih, Ukraine</dd></div>
-                    <div class="facts__item"><dt>Nationality</dt><dd>Ukrainian</dd></div>
-                    <div class="facts__item"><dt>Based in</dt><dd>Poland</dd></div>
-                    <div class="facts__item"><dt>Genres</dt><dd>Brazilian funk, phonk</dd></div>
-                    <div class="facts__item"><dt>Active since</dt><dd>2021</dd></div>
-                    <div class="facts__item"><dt>Email</dt><dd><a href="mailto:settwor@gmail.com">settwor@gmail.com</a></dd></div>
+                    {%- for fact in home.facts %}
+                    <div class="facts__item"><dt>{{ fact.label }}</dt><dd>{% if fact.value contains "@" %}<a href="mailto:{{ fact.value }}">{{ fact.value }}</a>{% else %}{{ fact.value }}{% endif %}</dd></div>
+                    {%- endfor %}
                 </dl>
 
-                <p class="center"><a class="btn btn--thin" href="/bio.html">Read the full biography</a></p>
+                <p class="center"><a class="btn btn--thin" href="{{ first_bio.url }}">Read the full biography</a></p>
             </div>
         </section>
 
@@ -54,104 +52,37 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
         <section class="section" id="social" aria-labelledby="social-title">
             <h2 class="section-title" id="social-title">Social media</h2>
             <ul class="social">
-                <li><a class="btn" href="https://instagram.com/settwor" rel="me"><img src="/images/insta.svg" alt="" width="18" height="18">Instagram</a></li>
-                <li><a class="btn" href="https://youtube.com/c/settwor" rel="me"><img src="/images/yt.svg" alt="" width="18" height="18">YouTube</a></li>
-                <li><a class="btn" href="https://settw0r.t.me" rel="me"><img src="/images/tg.svg" alt="" width="18" height="18">Telegram</a></li>
-                <li><a class="btn" href="https://open.spotify.com/artist/5BD8hsAGp1fwJKcnlQWjGf" rel="me"><img src="/images/spotify.svg" alt="" width="18" height="18">Spotify</a></li>
+                {%- for item in site.data.links.follow %}
+                <li><a class="btn" href="{{ item.url }}" rel="me">{% if item.icon and item.icon != "" %}<img src="{{ item.icon }}" alt="" width="18" height="18">{% endif %}{{ item.name }}</a></li>
+                {%- endfor %}
             </ul>
         </section>
 
         <section class="section" id="video" aria-labelledby="video-title">
             <h2 class="section-title" id="video-title">Popular video</h2>
             <div class="embed embed--video">
-                <iframe src="https://www.youtube-nocookie.com/embed/6TUiT21nJd8?rel=0" title="SETTWOR — popular video on YouTube" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/{{ home.video.youtube_id }}?rel=0" title="{{ home.video.title | escape }}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </section>
 
         <section class="section" id="spotify" aria-labelledby="spotify-title">
             <h2 class="section-title" id="spotify-title">Listen on Spotify</h2>
             <div class="embed">
-                <iframe src="https://open.spotify.com/embed/artist/5BD8hsAGp1fwJKcnlQWjGf" title="SETTWOR on Spotify" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://open.spotify.com/embed/artist/{{ home.spotify_artist_id }}" title="SETTWOR on Spotify" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
             </div>
         </section>
 
         <section class="section" id="photos" aria-labelledby="photos-title">
             <h2 class="section-title" id="photos-title">Photographs</h2>
-            <!-- Newest 9 photos. Replace the alt texts with real descriptions of each photo. -->
+            <!-- The 9 newest photos of the gallery (_data/gallery.yml) -->
+            {%- assign home_photos = site.data.gallery.photos | sort: "date" | reverse %}
             <ul class="photo-grid">
-                <li><a href="/photo.html"><img src="/images/small/69.jpeg" alt="SETTWOR, 2026 photo collection, image 1" width="300" height="300" loading="lazy"></a></li>
-                <li><a href="/photo.html"><img src="/images/small/68.jpeg" alt="SETTWOR, 2026 photo collection, image 2" width="300" height="300" loading="lazy"></a></li>
-                <li><a href="/photo.html"><img src="/images/small/67.jpeg" alt="SETTWOR, 2026 photo collection, image 3" width="300" height="300" loading="lazy"></a></li>
-                <li><a href="/photo.html"><img src="/images/small/66.jpeg" alt="SETTWOR, 2026 photo collection, image 4" width="300" height="300" loading="lazy"></a></li>
-                <li><a href="/photo.html"><img src="/images/small/65.jpeg" alt="SETTWOR, 2026 photo collection, image 5" width="300" height="300" loading="lazy"></a></li>
-                <li><a href="/photo.html"><img src="/images/small/64.jpeg" alt="SETTWOR, 2026 photo collection, image 6" width="300" height="300" loading="lazy"></a></li>
-                <li><a href="/photo.html"><img src="/images/small/63.jpeg" alt="SETTWOR, 2026 photo collection, image 7" width="300" height="300" loading="lazy"></a></li>
-                <li><a href="/photo.html"><img src="/images/small/62.jpeg" alt="SETTWOR, 2026 photo collection, image 8" width="300" height="300" loading="lazy"></a></li>
-                <li><a href="/photo.html"><img src="/images/small/61.jpeg" alt="SETTWOR, 2026 photo collection, image 9" width="300" height="300" loading="lazy"></a></li>
+                {%- for photo in home_photos limit: 9 %}
+                <li><a href="/photo.html#y{{ photo.date | date: "%Y" }}"><img src="{% include thumb-url.html src=photo.image %}" alt="{{ photo.alt | escape }}" width="300" height="300" loading="lazy" decoding="async"></a></li>
+                {%- endfor %}
             </ul>
             <p class="center"><a class="btn btn--thin" href="/photo.html">View all photographs</a></p>
         </section>
-
-    </main>
-
-    <!-- Right rail: references and contact (below the content on phones) -->
-    <aside class="rail rail--end" aria-label="Elsewhere on the web">
-        <div class="rail__inner">
-            <section class="rail-block" aria-labelledby="rail-listed">
-                <h2 class="rail-block__title" id="rail-listed">Also listed on</h2>
-                <ul class="rail-list">
-                    <li><a class="rail-link" href="https://www.last.fm/music/SETTWOR"><span class="rail-link__name">Last.fm</span><span class="rail-link__desc">Artist page and tracks</span></a></li>
-                </ul>
-            </section>
-
-            <section class="rail-block" aria-labelledby="rail-reading">
-                <h2 class="rail-block__title" id="rail-reading">Background reading</h2>
-                <ul class="rail-list">
-                    <li><a class="rail-link" href="https://en.wikipedia.org/wiki/Phonk"><span class="rail-link__name">Phonk</span><span class="rail-link__desc">The genre, on Wikipedia</span></a></li>
-                    <li><a class="rail-link" href="https://en.wikipedia.org/wiki/Funk_carioca"><span class="rail-link__name">Funk carioca</span><span class="rail-link__desc">Brazilian funk, on Wikipedia</span></a></li>
-                    <li><a class="rail-link" href="https://en.wikipedia.org/wiki/Kryvyi_Rih"><span class="rail-link__name">Kryvyi Rih</span><span class="rail-link__desc">Hometown, on Wikipedia</span></a></li>
-                </ul>
-            </section>
-
-            <section class="rail-block" aria-labelledby="rail-contact">
-                <h2 class="rail-block__title" id="rail-contact">Contact</h2>
-                <p class="rail-text"><a href="mailto:settwor@gmail.com">settwor@gmail.com</a></p>
-            </section>
-
-            <section class="rail-block" aria-labelledby="rail-photos">
-                <h2 class="rail-block__title" id="rail-photos">Using the photos</h2>
-                <p class="rail-text">Photographs on this site are free to use with credit. <a href="/license.html">Read the license</a>.</p>
-            </section>
-        </div>
-    </aside>
-
-    <!-- Left rail: contents and languages (wide screens only) -->
-    <aside class="rail rail--start" aria-label="Page navigation">
-        <div class="rail__inner">
-            <nav class="rail-block" aria-labelledby="toc-title" data-toc>
-                <h2 class="rail-block__title" id="toc-title">On this page</h2>
-                <ul class="rail-list">
-                    <li><a class="rail-link" href="#about"><span class="rail-link__name">About</span></a></li>
-                    <li><a class="rail-link" href="#news"><span class="rail-link__name">Latest news</span></a></li>
-                    <li><a class="rail-link" href="#social"><span class="rail-link__name">Social media</span></a></li>
-                    <li><a class="rail-link" href="#video"><span class="rail-link__name">Popular video</span></a></li>
-                    <li><a class="rail-link" href="#spotify"><span class="rail-link__name">Spotify</span></a></li>
-                    <li><a class="rail-link" href="#photos"><span class="rail-link__name">Photographs</span></a></li>
-                </ul>
-            </nav>
-
-            <nav class="rail-block" aria-labelledby="lang-title">
-                <h2 class="rail-block__title" id="lang-title">Biography in</h2>
-                <ul class="rail-list">
-                    <li><a class="rail-link" href="/bio.html" hreflang="en"><span class="rail-link__name">English</span></a></li>
-                    <li><a class="rail-link" href="/bioRU.html" hreflang="ru" lang="ru"><span class="rail-link__name">Русский</span></a></li>
-                    <li><a class="rail-link" href="/bioPL.html" hreflang="pl" lang="pl"><span class="rail-link__name">Polski</span></a></li>
-                </ul>
-            </nav>
-        </div>
-    </aside>
-
-</div>
 
 <!-- Structured data. "dateModified" follows the newest news entry. -->
 <script type="application/ld+json">
@@ -187,26 +118,15 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
             "knowsAbout": ["Phonk", "Brazilian funk", "Electronic dance music"],
             "image": "{{ site.url }}/images/main.jpg",
             "sameAs": [
-                "https://open.spotify.com/artist/5BD8hsAGp1fwJKcnlQWjGf",
-                "https://youtube.com/c/settwor",
-                "https://instagram.com/settwor",
-                "https://settw0r.t.me/",
-                "https://www.last.fm/music/SETTWOR"
+                {%- for item in site.data.links.follow %}
+                {{ item.url | jsonify }}{% unless forloop.last and site.data.links.elsewhere.size == 0 %},{% endunless %}
+                {%- endfor %}
+                {%- for item in site.data.links.elsewhere %}
+                {{ item.url | jsonify }}{% unless forloop.last %},{% endunless %}
+                {%- endfor %}
             ]
         },
-        {
-            "@type": "ImageObject",
-            "@id": "{{ site.url }}/#main-photo",
-            "contentUrl": "{{ site.url }}/images/main.jpg",
-            "name": "SETTWOR",
-            "description": "Portrait of SETTWOR, phonk and Brazilian funk producer",
-            "datePublished": "2025-08-08",
-            "license": "https://creativecommons.org/licenses/by/4.0/",
-            "acquireLicensePage": "{{ site.url }}/license.html",
-            "copyrightNotice": "© 2025 SETTWOR",
-            "creditText": "Photo by SETTWOR",
-            "creator": { "@id": "{{ site.url }}/#artist" }
-        }
+{% include image-object.html src=home.hero.photo alt=home.hero.photo_alt date="2025-08-08" %}
     ]
 }
 </script>

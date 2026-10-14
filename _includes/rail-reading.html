@@ -1,0 +1,11 @@
+{%- comment -%} Left column, bottom: reference links. Data: _data/links.yml {%- endcomment -%}
+{%- if site.data.links.reading.size > 0 %}
+<section class="rail-block" aria-labelledby="rail-reading">
+    <h2 class="rail-block__title" id="rail-reading">Background reading</h2>
+    <ul class="rail-list">
+        {%- for item in site.data.links.reading %}
+        <li><a class="rail-link" href="{{ item.url }}" rel="noopener"><span class="rail-link__name">{{ item.name }}</span>{% if item.desc and item.desc != "" %}<span class="rail-link__desc">{{ item.desc }}</span>{% endif %}</a></li>
+        {%- endfor %}
+    </ul>
+</section>
+{%- endif %}

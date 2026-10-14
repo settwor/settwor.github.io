@@ -1,0 +1,92 @@
+{%- comment -%}
+  The whole left column (wide screens only).
+  Each page chooses its own navigation with "rail:" in its front matter.
+{%- endcomment -%}
+{%- assign first_bio = site.bio | sort: "order" | first -%}
+
+{%- if page.rail == "home" %}
+<nav class="rail-block" aria-labelledby="toc-title" data-toc>
+    <h2 class="rail-block__title" id="toc-title">On this page</h2>
+    <ul class="rail-list">
+        <li><a class="rail-link" href="#about"><span class="rail-link__name">About</span></a></li>
+        <li><a class="rail-link" href="#news"><span class="rail-link__name">Latest news</span></a></li>
+        <li><a class="rail-link" href="#social"><span class="rail-link__name">Social media</span></a></li>
+        <li><a class="rail-link" href="#video"><span class="rail-link__name">Popular video</span></a></li>
+        <li><a class="rail-link" href="#spotify"><span class="rail-link__name">Spotify</span></a></li>
+        <li><a class="rail-link" href="#photos"><span class="rail-link__name">Photographs</span></a></li>
+    </ul>
+</nav>
+{%- elsif page.rail == "bio" %}
+<nav class="rail-block" aria-labelledby="toc-title" data-toc data-toc-auto>
+    <h2 class="rail-block__title" id="toc-title">In this biography</h2>
+    <ul class="rail-list"></ul>
+</nav>
+{%- elsif page.rail == "news" %}
+<nav class="rail-block" aria-labelledby="rail-years">
+    <h2 class="rail-block__title" id="rail-years">By year</h2>
+    <ul class="rail-list">
+        {%- assign seen_years = "" -%}
+        {%- for post in site.posts -%}
+        {%- assign post_year = post.date | date: "%Y" -%}
+        {%- unless seen_years contains post_year %}
+        <li><a class="rail-link" href="#y-{{ post_year }}"><span class="rail-link__name">{{ post_year }}</span></a></li>
+        {%- assign seen_years = seen_years | append: post_year -%}
+        {%- endunless -%}
+        {%- endfor %}
+    </ul>
+</nav>
+{%- elsif page.rail == "photos" %}
+<nav class="rail-block" aria-labelledby="rail-years">
+    <h2 class="rail-block__title" id="rail-years">Year</h2>
+    <ul class="rail-list" data-year-links>
+        {%- assign seen_years = "" -%}
+        {%- assign rail_photos = site.data.gallery.photos | sort: "date" | reverse -%}
+        {%- for photo in rail_photos -%}
+        {%- assign photo_year = photo.date | date: "%Y" -%}
+        {%- unless seen_years contains photo_year %}
+        <li><a class="rail-link" href="#y{{ photo_year }}"><span class="rail-link__name">{{ photo_year }}</span></a></li>
+        {%- assign seen_years = seen_years | append: photo_year -%}
+        {%- endunless -%}
+        {%- endfor %}
+    </ul>
+</nav>
+{%- elsif page.rail == "releases" %}
+<nav class="rail-block" aria-labelledby="rail-years">
+    <h2 class="rail-block__title" id="rail-years">By year</h2>
+    <ul class="rail-list">
+        {%- assign seen_years = "" -%}
+        {%- assign rail_releases = site.releases | sort: "date" | reverse -%}
+        {%- for release in rail_releases -%}
+        {%- assign release_year = release.date | date: "%Y" -%}
+        {%- unless seen_years contains release_year %}
+        <li><a class="rail-link" href="#r{{ release_year }}"><span class="rail-link__name">{{ release_year }}</span></a></li>
+        {%- assign seen_years = seen_years | append: release_year -%}
+        {%- endunless -%}
+        {%- endfor %}
+    </ul>
+</nav>
+{%- endif %}
+
+{%- if page.rail == "home" or page.rail == "bio" %}
+<nav class="rail-block" aria-labelledby="lang-title">
+    <h2 class="rail-block__title" id="lang-title">Biography in</h2>
+    <ul class="rail-list">
+        {%- assign bio_list = site.bio | sort: "order" %}
+        {%- for item in bio_list %}
+        <li><a class="rail-link" href="{{ item.url }}" hreflang="{{ item.lang }}" lang="{{ item.lang }}"{% if item.url == page.url %} aria-current="true"{% endif %}><span class="rail-link__name">{{ item.lang_name }}</span></a></li>
+        {%- endfor %}
+    </ul>
+</nav>
+{%- else %}
+<nav class="rail-block" aria-labelledby="rail-site">
+    <h2 class="rail-block__title" id="rail-site">On this site</h2>
+    <ul class="rail-list">
+        <li><a class="rail-link" href="/releases.html"><span class="rail-link__name">All releases</span></a></li>
+        <li><a class="rail-link" href="{{ first_bio.url }}"><span class="rail-link__name">Biography</span></a></li>
+        <li><a class="rail-link" href="/photo.html"><span class="rail-link__name">Photographs</span></a></li>
+        <li><a class="rail-link" href="/news/"><span class="rail-link__name">News</span></a></li>
+    </ul>
+</nav>
+{%- endif %}
+
+{% include rail-reading.html %}
