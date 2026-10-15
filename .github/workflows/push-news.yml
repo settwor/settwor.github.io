@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       file:
-        description: "Send a push for this article file (for example _posts/2026-10-10-title.md)"
+        description: "Send a push for this article file (file name, for example 2026-10-13-title.md)"
         required: true
 
 permissions:

@@ -117,6 +117,15 @@ def main(argv):
 
     failed = 0
     for path in files:
+        # accept "_posts/2026-10-10-title.md", "2026-10-10-title.md" or just "2026-10-10-title"
+        path = path.strip()
+        candidates = [path, os.path.join("_posts", path), os.path.join("_posts", path + ".md")]
+        found = next((c for c in candidates if os.path.isfile(c)), None)
+        if not found:
+            print("FAILED: article file not found: %s (looked in _posts)" % path)
+            failed += 1
+            continue
+        path = found
         meta = front_matter(path)
         title = str(meta.get("title") or "").strip()
         if not title or meta.get("published") is False:
