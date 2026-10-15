@@ -119,7 +119,7 @@
 
     /* ---------- 3. Contents list of a biography (made from its headings) ---------- */
     var autoToc = document.querySelector('[data-toc-auto] .rail-list');
-    var bioHeadings = document.querySelectorAll('.bio__body h2');
+    var bioHeadings = document.querySelectorAll('.bio__body h2, .bio__refs h2');
     if (autoToc && bioHeadings.length) {
         bioHeadings.forEach(function (heading, index) {
             if (!heading.id) heading.id = 'part-' + (index + 1);

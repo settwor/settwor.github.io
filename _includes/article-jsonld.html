@@ -2,7 +2,6 @@
   Structured data for one article (NewsArticle + breadcrumbs).
   Everything comes from the fields of the article, nothing is typed by hand.
 {%- endcomment -%}
-{%- assign aj_modified = page.updated | default: page.date -%}
 {%- assign aj_site = site.url | append: "/" -%}
 <script type="application/ld+json">
 {
@@ -17,7 +16,9 @@
     "image": [ {{ cover | absolute_url | jsonify }} ],
 {%- endif %}
     "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-    "dateModified": {{ aj_modified | date_to_xmlschema | jsonify }},
+{%- if page.updated and page.updated != "" %}
+    "dateModified": {{ page.updated | date_to_xmlschema | jsonify }},
+{%- endif %}
     "inLanguage": "en",
     "author": { "@type": "Person", "@id": "{{ aj_site }}#artist", "name": {{ author_name | jsonify }}, "url": {{ aj_site | jsonify }} },
     "publisher": { "@type": "Person", "@id": "{{ aj_site }}#artist", "name": "SETTWOR", "url": {{ aj_site | jsonify }} },

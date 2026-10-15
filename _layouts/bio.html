@@ -34,6 +34,10 @@ rail: bio
         {%- endfor %}
     </section>
     {%- endif %}
+
+    <div class="bio__refs">
+        {% include refs.html sources=page.sources sources_title=page.refs_title external=page.external external_title=page.external_title %}
+    </div>
 </article>
 
 <!-- Structured data: this biography page, its FAQ and the license of the photo. -->

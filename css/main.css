@@ -163,7 +163,7 @@ main:focus {
     align-items: center;
     gap: 0.5rem;
     min-height: var(--header-h);
-    padding-inline: 0.5rem 0.75rem;
+    padding-inline: 1.1rem 0.9rem;
     background: var(--color-surface);
     box-shadow: var(--shadow-header);
 }
@@ -178,8 +178,8 @@ main:focus {
 }
 
 .brand img {
-    width: 5rem;
-    height: 0.85rem;
+    width: 6.25rem;
+    height: 1.05rem;
     object-fit: contain;
 }
 
@@ -2188,5 +2188,160 @@ html.modal-open::-webkit-scrollbar {
     .js .gallery__note {
         opacity: 1 !important;
         transform: none !important;
+    }
+}
+
+
+/* ---------- Added: references, external links, latest releases on the home page ---------- */
+
+/* Citation marks inside the text: [1] small and raised, like on Wikipedia */
+.bio__body a[href^="#ref-"],
+.article__body a[href^="#ref-"] {
+    margin-left: 0.1em;
+    font-size: 0.7em;
+    line-height: 0;
+    vertical-align: super;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.bio__body a[href^="#ref-"]:hover,
+.article__body a[href^="#ref-"]:hover {
+    text-decoration: underline;
+}
+
+.refs {
+    margin-top: 2rem;
+}
+
+.bio__refs .refs:first-child,
+.refs+.refs {
+    margin-top: 1.5rem;
+}
+
+.refs__title {
+    margin-bottom: 0.75rem;
+    padding: 0.7rem 0.75rem;
+    border-block: 1px solid var(--color-line);
+    font-family: var(--font-bold);
+    font-size: 0.95rem;
+    font-weight: normal;
+    text-align: center;
+    text-wrap: balance;
+}
+
+.refs__list {
+    padding-left: 1.6rem;
+    color: var(--color-text-soft);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+.refs__list li {
+    padding-block: 0.2rem;
+    overflow-wrap: anywhere;
+}
+
+.refs__list li:target {
+    background: var(--color-hover);
+    outline: 6px solid var(--color-hover);
+}
+
+.refs__list:not(.refs__list--links) {
+    list-style: decimal;
+}
+
+.refs__list--links {
+    list-style: disc;
+}
+
+.refs__list a {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.refs__site {
+    color: var(--color-muted);
+    font-style: normal;
+}
+
+.refs__site::before {
+    content: "— ";
+}
+
+.refs__list--links .refs__site::before {
+    content: none;
+}
+
+.bio__refs {
+    padding-bottom: 1.5rem;
+}
+
+/* "More on this site" under an article */
+.article__more {
+    margin-top: 2rem;
+}
+
+.article__more-title {
+    margin-bottom: 0.5rem;
+    font-family: var(--font-bold);
+    font-size: 0.95rem;
+    font-weight: normal;
+}
+
+.article__more ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+}
+
+.article__more a {
+    font-size: 0.875rem;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+/* Latest releases on the home page */
+.release-grid--home {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.release-mini__cover {
+    display: block;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 6px;
+    background: var(--color-surface);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.release-mini__cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.release-mini__cover:hover img {
+    transform: scale(1.04);
+}
+
+@media (min-width: 40rem) {
+    .release-grid--home {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* Very narrow phones (320 px): keep the bigger logo from squeezing the Biography button */
+@media (max-width: 22.5rem) {
+    .site-header {
+        padding-inline: 0.9rem 0.6rem;
+    }
+
+    .brand img {
+        width: 5.4rem;
+        height: 0.95rem;
     }
 }

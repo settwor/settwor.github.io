@@ -16,7 +16,9 @@ layout: null
 {%- for post in site.posts %}
     <url>
         <loc>{{ post.legacy_url | default: post.url | uri_escape | absolute_url | xml_escape }}</loc>
-        <lastmod>{{ post.updated | default: post.date | date_to_xmlschema }}</lastmod>
+        {%- if post.updated and post.updated != "" %}
+        <lastmod>{{ post.updated | date_to_xmlschema }}</lastmod>
+        {%- endif %}
     </url>
 {%- endfor %}
 </urlset>

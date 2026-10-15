@@ -76,6 +76,19 @@ layout: default
             </aside>
             {%- endif %}
 
+            {% include refs.html sources=page.sources sources_title=page.refs_title external=page.external external_title=page.external_title %}
+
+            {%- assign first_bio = site.bio | sort: "order" | first %}
+            <aside class="article__more" aria-labelledby="more-title">
+                <h2 class="article__more-title" id="more-title">More on this site</h2>
+                <ul>
+                    <li><a href="{{ first_bio.url }}">Biography of SETTWOR</a></li>
+                    <li><a href="/releases.html">All releases</a></li>
+                    <li><a href="/photo.html">Photographs</a></li>
+                    <li><a href="/news/">All news</a></li>
+                </ul>
+            </aside>
+
             {%- if newer or older %}
             <nav class="pager" aria-label="More news">
                 {%- if newer %}

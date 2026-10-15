@@ -83,13 +83,29 @@ content:
         type: string
         description: "Optional. A link to Spotify or another platform. Adds an Open on Spotify button under the article."
 
+      - name: sources
+        label: Sources (numbered list at the bottom)
+        type: object
+        list: true
+        description: "Optional. Item 1 is the first row, item 2 the second. In the text, a small mark [1] is a link to #ref-1, [2] a link to #ref-2 ..., so it jumps to this list."
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: url
+            label: Address
+            type: string
+          - name: site
+            label: Site (shown in grey after the title)
+            type: string
+
       - name: updated
         label: Date of the last correction
         type: date
         options:
           time: true
           format: "yyyy-MM-dd'T'HH:mm"
-        description: "Fill in only if you changed the article after it was published. The page then shows Updated, and Google sees it."
+        description: "Leave empty unless you want it. Nothing is added automatically: only when you fill this in, the page shows Updated and Google sees the date."
 
       - name: published
         label: Show on the website
@@ -192,6 +208,47 @@ content:
           - name: a
             label: Answer
             type: text
+
+      - name: refs_title
+        label: Title of the list of sources
+        type: string
+        description: "For example: References (Referencias, Przypisy ...). Shown at the bottom, like on Wikipedia."
+
+      - name: sources
+        label: Sources (numbered list at the bottom)
+        type: object
+        list: true
+        description: "Item 1 is the first row, item 2 the second and so on. In the text, a small mark [1] is a link to #ref-1, [2] a link to #ref-2 ..., so it jumps to this list."
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: url
+            label: Address
+            type: string
+          - name: site
+            label: Site (shown in grey after the title)
+            type: string
+
+      - name: external_title
+        label: Title of the list of external links
+        type: string
+        description: "For example: External links."
+
+      - name: external
+        label: External links (list at the bottom)
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Name
+            type: string
+          - name: url
+            label: Address
+            type: string
+          - name: desc
+            label: Short note (optional)
+            type: string
 
   # ---------------------------------------------------------
   # PHOTOS: the list in _data/gallery.yml. The year tabs on the

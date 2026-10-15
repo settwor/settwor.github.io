@@ -1,0 +1,32 @@
+{%- comment -%}
+  The "References" and "External links" blocks at the bottom of a biography
+  or an article (like at the bottom of a Wikipedia page).
+  Usage: include refs.html with
+    sources        the list "sources" of the page (title, url, site)
+    sources_title  heading of the numbered list
+    external       the list "external" of the page (name, url, desc)
+    external_title heading of the list of external links
+  In the text a mark like [[1]](#ref-1) jumps to the item number 1 of the list.
+{%- endcomment -%}
+{%- assign rf_sources = include.sources -%}
+{%- assign rf_external = include.external -%}
+{%- if rf_sources and rf_sources.size > 0 %}
+<section class="refs" aria-labelledby="refs-title">
+    <h2 class="refs__title" id="refs-title">{{ include.sources_title | default: "References" }}</h2>
+    <ol class="refs__list">
+        {%- for item in rf_sources %}
+        <li id="ref-{{ forloop.index }}"><a href="{{ item.url }}" rel="noopener">{{ item.title }}</a>{% if item.site and item.site != "" %} <cite class="refs__site">{{ item.site }}</cite>{% endif %}</li>
+        {%- endfor %}
+    </ol>
+</section>
+{%- endif %}
+{%- if rf_external and rf_external.size > 0 %}
+<section class="refs refs--external" aria-labelledby="external-title">
+    <h2 class="refs__title" id="external-title">{{ include.external_title | default: "External links" }}</h2>
+    <ul class="refs__list refs__list--links">
+        {%- for item in rf_external %}
+        <li><a href="{{ item.url }}" rel="noopener">{{ item.name }}</a>{% if item.desc and item.desc != "" %} <span class="refs__site">— {{ item.desc }}</span>{% endif %}</li>
+        {%- endfor %}
+    </ul>
+</section>
+{%- endif %}
