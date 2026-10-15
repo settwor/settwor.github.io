@@ -72,7 +72,7 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 {%- for release in home_releases limit: 4 %}
                 {%- capture cover -%}{% include image-url.html src=release.cover %}{%- endcapture %}
                 <li class="release-mini">
-                    <a class="release-mini__cover" href="/releases.html#release-{{ release.slug }}" aria-label="{{ release.title | escape }}: listen and tracklist"><img src="{{ cover | strip }}" alt="Cover of {{ release.title | escape }}" width="300" height="300" loading="lazy" decoding="async"></a>
+                    <a class="release-mini__cover" href="/releases.html#release-{{ release.slug }}" aria-label="{{ release.title | escape }}: listen and tracklist"><img src="{% include thumb-url.html src=release.cover %}" alt="Cover of {{ release.title | escape }}" width="300" height="300" loading="lazy" decoding="async"></a>
                     <h3 class="release__name">{{ release.title }}</h3>
                     <p class="release__meta">{{ release.artist }}</p>
                     <p class="release__meta"><time datetime="{{ release.date | date: "%Y-%m-%d" }}">{{ release.date | date: "%-d %B %Y" }}</time>{% if release.kind and release.kind != "Single" %} · {{ release.kind }}{% endif %}</p>

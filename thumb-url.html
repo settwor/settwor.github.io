@@ -1,0 +1,23 @@
+{%- comment -%}
+  The address of the small copy of a picture, if it exists. The small copies
+  (images/small/<same path>.webp) are made by tools/compress-images.py, which
+  GitHub runs by itself after every upload. Without a small copy the big
+  picture is used, so the page never shows a broken picture.
+  Usage: include thumb-url.html with src (path of the big picture).
+{%- endcomment -%}
+{%- assign tu_src = include.src | strip -%}
+{%- if tu_src contains "://" -%}
+{{ tu_src }}
+{%- else -%}
+{%- assign tu_first = tu_src | slice: 0, 1 -%}
+{%- if tu_first != "/" -%}{%- assign tu_src = tu_src | prepend: "/" -%}{%- endif -%}
+{%- assign tu_small = tu_src | replace: "/images/", "/images/small/" -%}
+{%- assign tu_webp = tu_small | append: ".webp" -%}
+{%- assign tu_hit = site.static_files | where: "path", tu_webp -%}
+{%- if tu_hit.size > 0 -%}
+{{ tu_webp | uri_escape }}
+{%- else -%}
+{%- assign tu_old = site.static_files | where: "path", tu_small -%}
+{%- if tu_old.size > 0 -%}{{ tu_small | uri_escape }}{%- else -%}{{ tu_src | uri_escape }}{%- endif -%}
+{%- endif -%}
+{%- endif -%}
