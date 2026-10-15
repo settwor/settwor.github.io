@@ -1,0 +1,50 @@
+{%- comment -%}
+  The friendly "get new articles" window that comes BEFORE the browser's own permission
+  question (the browser question can be shown once, and a "Block" is almost never undone,
+  so we ask only when the visitor has been reading for a while). Behaviour: js/push-ask.js.
+  Shown only when OneSignal is set up (onesignal_app_id in _config.yml).
+{%- endcomment -%}
+{%- if site.onesignal_app_id and site.onesignal_app_id != "" %}
+{%- assign latest = site.posts | first %}
+<div class="push-ask" id="push-ask" hidden>
+    <div class="push-ask__backdrop" data-push-no></div>
+    <div class="push-ask__card" role="dialog" aria-modal="true" aria-labelledby="push-ask-title" aria-describedby="push-ask-text">
+        <div class="push-ask__view" data-push-view="ask">
+            <div class="push-ask__bell" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6.5 2 6.5H4S6 14 6 9z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg>
+            </div>
+            <h2 class="push-ask__title" id="push-ask-title">Be the first to hear new music</h2>
+            <p class="push-ask__text" id="push-ask-text">One short notification when a new release or article comes out. No spam, nothing else. You can turn it off any time.</p>
+            {%- if latest %}
+            <div class="push-ask__preview" aria-hidden="true">
+                <img class="push-ask__icon" src="/images/favicon.png" alt="" width="36" height="36">
+                <div class="push-ask__preview-body">
+                    <span class="push-ask__preview-site">SETTWOR · now</span>
+                    <strong class="push-ask__preview-title">{{ latest.title | escape }}</strong>
+                </div>
+            </div>
+            <p class="push-ask__caption">This is how it will look</p>
+            {%- endif %}
+            <div class="push-ask__actions">
+                <button class="btn btn--solid push-ask__yes" type="button" data-push-yes>Yes, notify me</button>
+                <button class="push-ask__no" type="button" data-push-no>Not now</button>
+            </div>
+            <p class="push-ask__fine">Your browser will ask you to confirm. Choose “Allow”.</p>
+        </div>
+        <div class="push-ask__view" data-push-view="done" hidden>
+            <div class="push-ask__bell push-ask__bell--ok" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+            </div>
+            <h2 class="push-ask__title">You are in!</h2>
+            <p class="push-ask__text">We will tell you about the next release.</p>
+        </div>
+        <div class="push-ask__view" data-push-view="blocked" hidden>
+            <h2 class="push-ask__title">No problem</h2>
+            <p class="push-ask__text">Notifications are blocked in your browser. If you change your mind, allow them for this site in the address bar settings, or use the RSS feed.</p>
+            <div class="push-ask__actions">
+                <button class="btn push-ask__yes" type="button" data-push-close>Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{%- endif %}

@@ -503,6 +503,8 @@ for label, opts in (config.get("collections") or {}).items():
 
 site = {"url": SITE_URL, "title": config["title"], "description": config["description"],
         "lang": config["lang"], "time": now, "posts": posts, "data": site_data}
+for _k, _v in config.items():  # like real Jekyll: every key of _config.yml is available as site.<key>
+    site.setdefault(_k, _v)
 for label, (opts, docs) in collections.items():
     site[label] = docs
 site["static_files"] = []
