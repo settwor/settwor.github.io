@@ -1,14 +1,16 @@
 /* =============================================================
    SETTWOR — push-ask.js
-   A friendly window that asks for permission to send notifications about new articles.
+   Asks for permission to send notifications about new articles, in two ways:
+   1) the "Get notifications" buttons (data-push-open): the window opens at once
+   2) on its own, after the visitor has been reading for a while
    The browser's own question (Allow / Block) is shown only after the visitor says "Yes",
    because a browser question can be shown once and a "Block" is hard to undo.
 
-   When it is shown (all must be true):
+   When it opens on its own (all must be true):
      - OneSignal loaded (so it is not blocked by an ad blocker) and the visitor is not subscribed
      - the browser supports notifications and has not been asked or blocked yet
-     - the visitor has been on the page for 20 seconds AND scrolled a third of it (a very long page: 1.2 screens)
-       (a short page: 35 seconds)
+     - the visitor has been on the page for 20 seconds AND scrolled a third of it
+       (a very long page: 1.2 screens; a short page: 35 seconds)
      - the cookie banner is not on the screen
      - not asked before: after "Not now" we wait 7 days, then 30 days, then never again
    ============================================================= */
@@ -16,12 +18,11 @@
     'use strict';
 
     var root = document.getElementById('push-ask');
-    if (!root || !('Notification' in window) || Notification.permission !== 'default') return;
+    if (!root || !('Notification' in window)) return;     // no window, or a browser without notifications (iPhone Safari)
 
     var KEY = 'settwor-push-ask';
     var DAY = 24 * 60 * 60 * 1000;
     var SKIP_PAGES = /\/(privacy|license)(\.html)?\/?$/;
-    if (SKIP_PAGES.test(location.pathname)) return;
 
     function read() {
         try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; }
@@ -29,12 +30,6 @@
     function write(value) {
         try { localStorage.setItem(KEY, JSON.stringify(value)); return true; } catch (e) { return false; }
     }
-    // without storage we could not remember "Not now", so we would ask on every page: do not ask at all
-    if (!write(read())) return;
-
-    var saved = read();
-    if (saved.done || saved.n >= 3) return;
-    if (saved.n && Date.now() - saved.t < (saved.n === 1 ? 7 : 30) * DAY) return;
 
     var views = {};
     Array.prototype.forEach.call(root.querySelectorAll('[data-push-view]'), function (el) {
@@ -42,8 +37,10 @@
     });
     var yes = root.querySelector('[data-push-yes]');
     var card = root.querySelector('.push-ask__card');
+    var openers = document.querySelectorAll('[data-push-open]');
     var lastFocus = null;
     var open = false;
+    var manual = false;      // opened with a button: "Not now" is not counted
     var push = null;
 
     function show(name) {
@@ -60,15 +57,17 @@
     }
 
     function notNow() {
-        var s = read();
-        write({ n: (s.n || 0) + 1, t: Date.now() });
+        if (!manual) {
+            var s = read();
+            write({ n: (s.n || 0) + 1, t: Date.now() });
+        }
         close();
     }
 
     function onKey(event) {
         if (event.key === 'Escape') { event.preventDefault(); notNow(); return; }
         if (event.key !== 'Tab') return;
-        var items = card.querySelectorAll('button:not([hidden])');
+        var items = card.querySelectorAll('button');
         var visible = Array.prototype.filter.call(items, function (b) { return b.offsetParent !== null; });
         if (!visible.length) return;
         var first = visible[0];
@@ -77,33 +76,42 @@
         else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     }
 
-    function openWindow() {
+    function openWindow(view, byButton) {
         if (open) return;
         open = true;
+        manual = !!byButton;
         lastFocus = document.activeElement;
-        show('ask');
+        show(view || 'ask');
+        if (yes) yes.disabled = false;
         root.hidden = false;
         document.addEventListener('keydown', onKey, true);
         requestAnimationFrame(function () {
             requestAnimationFrame(function () { root.classList.add('is-open'); });
         });
-        setTimeout(function () { if (yes) yes.focus({ preventScroll: true }); }, 60);
+        setTimeout(function () {
+            var target = root.querySelector('[data-push-view]:not([hidden]) button');
+            if (target) target.focus({ preventScroll: true });
+        }, 60);
+    }
+
+    function subscribed() {
+        try { if (push && push.User.PushSubscription.optedIn) return true; } catch (e) { /* unknown */ }
+        return Notification.permission === 'granted';
     }
 
     function accept() {
         yes.disabled = true;
         push.Notifications.requestPermission().then(function () {
-            var granted = window.Notification && Notification.permission === 'granted';
-            if (granted) {
+            if (Notification.permission === 'granted') {
                 write({ done: true });
                 show('done');
                 setTimeout(close, 2400);
             } else if (Notification.permission === 'denied') {
                 show('blocked');
-                var closeButton = root.querySelector('[data-push-close]');
+                var closeButton = root.querySelector('[data-push-view="blocked"] [data-push-close]');
                 if (closeButton) closeButton.focus();
             } else {
-                // the browser question was dismissed without an answer
+                // the browser question was closed without an answer
                 yes.disabled = false;
                 notNow();
             }
@@ -119,22 +127,41 @@
         if (event.target.closest('[data-push-close]')) { close(); }
     });
 
-    /* ---- when to ask: reading for a while, scrolled, no cookie banner ---- */
+    /* ---- the "Get notifications" buttons ---- */
+    document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('[data-push-open]');
+        if (!button || !push) return;
+        event.preventDefault();
+        if (subscribed()) openWindow('already', true);
+        else if (Notification.permission === 'denied') openWindow('blocked', true);
+        else openWindow('ask', true);
+    });
+
+    /* ---- when to ask on its own: reading for a while, scrolled, no cookie banner ---- */
+    function autoAllowed() {
+        if (Notification.permission !== 'default' || SKIP_PAGES.test(location.pathname)) return false;
+        // without storage we could not remember "Not now", so we would ask on every page: do not ask
+        if (!write(read())) return false;
+        var saved = read();
+        if (saved.done || saved.n >= 3) return false;
+        if (saved.n && Date.now() - saved.t < (saved.n === 1 ? 7 : 30) * DAY) return false;
+        return !subscribed();
+    }
+
     function arm() {
         var seconds = 0;
         var scrolled = false;
-        function progress() {
-            var doc = document.documentElement;
-            var room = doc.scrollHeight - window.innerHeight;
-            if (room < window.innerHeight * 0.3) return false;      // a short page: only time counts
-            // a third of the page, but on a very long page about one and a half screens is enough
-            return window.pageYOffset >= Math.min(room * 0.33, window.innerHeight * 1.2);
-        }
         function shortPage() {
             var doc = document.documentElement;
             return doc.scrollHeight - window.innerHeight < window.innerHeight * 0.3;
         }
-        window.addEventListener('scroll', function () { if (!scrolled && progress()) scrolled = true; }, { passive: true });
+        function progress() {
+            var doc = document.documentElement;
+            var room = doc.scrollHeight - window.innerHeight;
+            // a third of the page, but on a very long page about one and a half screens is enough
+            return window.pageYOffset >= Math.min(room * 0.33, window.innerHeight * 1.2);
+        }
+        window.addEventListener('scroll', function () { if (!scrolled && !shortPage() && progress()) scrolled = true; }, { passive: true });
         var timer = setInterval(function () {
             if (document.visibilityState !== 'visible') return;
             seconds += 1;
@@ -143,7 +170,7 @@
             var ready = shortPage() ? seconds >= 35 : (seconds >= 20 && scrolled);
             if (ready) {
                 clearInterval(timer);
-                openWindow();
+                if (!open && autoAllowed()) openWindow('ask', false);
             }
         }, 1000);
     }
@@ -151,9 +178,8 @@
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     window.OneSignalDeferred.push(function (OneSignal) {
         push = OneSignal;
-        try {
-            if (OneSignal.User.PushSubscription.optedIn) return;
-        } catch (e) { /* unknown state: go on */ }
-        arm();
+        // OneSignal is alive: now the buttons may be shown
+        Array.prototype.forEach.call(openers, function (button) { button.hidden = false; });
+        if (autoAllowed()) arm();
     });
 })();

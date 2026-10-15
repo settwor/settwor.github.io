@@ -2837,3 +2837,8 @@ html.modal-open::-webkit-scrollbar {
         animation: none !important;
     }
 }
+
+/* the "Get notifications" buttons appear only when the browser can show notifications (js/push-ask.js) */
+[data-push-open][hidden] {
+    display: none;
+}

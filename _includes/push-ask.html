@@ -38,6 +38,16 @@
             <h2 class="push-ask__title">You are in!</h2>
             <p class="push-ask__text">We will tell you about the next release.</p>
         </div>
+        <div class="push-ask__view" data-push-view="already" hidden>
+            <div class="push-ask__bell push-ask__bell--ok" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+            </div>
+            <h2 class="push-ask__title">You are already subscribed</h2>
+            <p class="push-ask__text">You will get a notification about every new release or article. To turn it off, use the bell in the corner of the page.</p>
+            <div class="push-ask__actions">
+                <button class="btn push-ask__yes" type="button" data-push-close>Close</button>
+            </div>
+        </div>
         <div class="push-ask__view" data-push-view="blocked" hidden>
             <h2 class="push-ask__title">No problem</h2>
             <p class="push-ask__text">Notifications are blocked in your browser. If you change your mind, allow them for this site in the address bar settings, or use the RSS feed.</p>

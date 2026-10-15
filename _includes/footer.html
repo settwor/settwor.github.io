@@ -10,6 +10,9 @@
                 <li><a href="/news/">News</a></li>
                 <li><a href="/releases.html">Releases</a></li>
                 <li><a href="/feed.xml">RSS feed</a></li>
+                {%- if site.onesignal_app_id and site.onesignal_app_id != "" %}
+                <li><button class="link-button" type="button" data-push-open hidden>Get notifications</button></li>
+                {%- endif %}
             </ul>
         </nav>
         <nav aria-labelledby="footer-bio">
