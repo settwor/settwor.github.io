@@ -9,6 +9,7 @@
     <h2 class="rail-block__title" id="toc-title">On this page</h2>
     <ul class="rail-list">
         <li><a class="rail-link" href="#about"><span class="rail-link__name">About</span></a></li>
+        <li><a class="rail-link" href="#numbers"><span class="rail-link__name">In numbers</span></a></li>
         <li><a class="rail-link" href="#news"><span class="rail-link__name">Latest news</span></a></li>
         <li><a class="rail-link" href="#releases"><span class="rail-link__name">Latest releases</span></a></li>
         <li><a class="rail-link" href="#social"><span class="rail-link__name">Social media</span></a></li>
@@ -52,6 +53,15 @@
         {%- endfor %}
     </ul>
 </nav>
+{%- elsif page.rail == "streams" %}
+<nav class="rail-block" aria-labelledby="rail-streams">
+    <h2 class="rail-block__title" id="rail-streams">On this page</h2>
+    <ul class="rail-list">
+        <li><a class="rail-link" href="#numbers"><span class="rail-link__name">Total</span></a></li>
+        <li><a class="rail-link" href="#platforms"><span class="rail-link__name">Music platforms</span></a></li>
+        <li><a class="rail-link" href="#youtube"><span class="rail-link__name">YouTube</span></a></li>
+    </ul>
+</nav>
 {%- elsif page.rail == "releases" %}
 <nav class="rail-block" aria-labelledby="rail-years">
     <h2 class="rail-block__title" id="rail-years">By year</h2>
@@ -84,6 +94,7 @@
     <h2 class="rail-block__title" id="rail-site">On this site</h2>
     <ul class="rail-list">
         <li><a class="rail-link" href="/releases.html"><span class="rail-link__name">All releases</span></a></li>
+        <li><a class="rail-link" href="/streams.html"><span class="rail-link__name">Streams</span></a></li>
         <li><a class="rail-link" href="{{ first_bio.url }}" data-bio-link><span class="rail-link__name">Biography</span></a></li>
         <li><a class="rail-link" href="/photo.html"><span class="rail-link__name">Photographs</span></a></li>
         <li><a class="rail-link" href="/news/"><span class="rail-link__name">News</span></a></li>

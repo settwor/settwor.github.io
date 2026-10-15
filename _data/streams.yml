@@ -1,12 +1,12 @@
-spotify:
-  y2026: 12456
-  y2025: 6364
-apple_music:
-  y2026: 346346
-other:
-  earlier: 2000000
+# YouTube setup. The numbers themselves come by themselves every 3 hours (tools/fetch-stats.py -> _data/auto_stats.json).
+# Plays on music platforms are typed in Pages CMS, section Streams (files in _data/platforms/).
 youtube:
   handle: settwor
+  channel_id: ""
+  # Playlist with all your releases on YouTube (code after list=)
   track_playlist: PLGU0u-tcF4cQJdv-5W_haz7I1_Xxd_41V
+  # Extra clips of your tracks that are not in the playlist (codes after v=)
+  track_videos: []
+  # Used only while the automatic numbers are missing.
   clips_views_fallback: 10000000
   other_views_fallback: 0

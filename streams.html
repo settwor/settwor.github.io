@@ -1,0 +1,25 @@
+---
+layout: page
+rail: streams
+permalink: /streams.html
+title: Streams
+seo_title: SETTWOR Streams | Plays and Views on Every Platform
+description: "How many times the music of SETTWOR has been played: Spotify, Apple Music, Pandora, Deezer and other platforms, plus YouTube views of the releases and the whole channel."
+image: /images/main.jpg
+image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
+---
+{%- comment -%}
+  Numbers of plays. Music platforms: Pages CMS > Streams (one file per platform, one line per year).
+  YouTube: automatic (tools/fetch-stats.py). The heading texts: Pages CMS > Site > Page texts.
+{%- endcomment -%}
+{%- assign sp = site.data.pages.streams -%}
+        <header class="page-head">
+            <h1 class="page-head__title">{{ sp.title | default: "Streams" }}</h1>
+            <p class="page-head__lead">{{ sp.lead }}</p>
+        </header>
+
+        <div class="numbers" id="numbers">
+            {%- include stats-panel.html %}
+            {%- include stats-details.html %}
+        </div>
+        <script src="/js/stats.js" defer></script>

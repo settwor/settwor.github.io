@@ -2954,6 +2954,12 @@ html.modal-open::-webkit-scrollbar {
     border-radius: 50%;
 }
 
+/* the link under the panel on the home page */
+.numbers__more {
+    margin-top: 1.25rem;
+    text-align: center;
+}
+
 /* headings of the two groups */
 .numbers__head {
     display: flex;

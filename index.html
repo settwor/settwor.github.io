@@ -14,10 +14,6 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
 {%- assign hero_latest = site.releases | sort: "date" | reverse | first -%}
 {%- assign home_url = "/" | absolute_url -%}
 
-{%- include stats-calc.html -%}
-{%- capture hero_total %}{% include num-full.html n=st_total %}{% endcapture -%}
-{%- capture hero_platforms %}{% include num-full.html n=st_plat_total %}{% endcapture -%}
-
         <section class="hero" aria-labelledby="page-title">
             <span class="hero__ring"><img class="hero__photo" src="{{ home.hero.photo | uri_escape }}" alt="{{ home.hero.photo_alt | escape }}" width="144" height="144" fetchpriority="high"></span>
             <div class="hero__text">
@@ -31,16 +27,7 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 <a class="btn" href="/releases.html#release-{{ hero_latest.slug }}">{{ home.hero.latest_label | default: "Newest release" }}: {{ hero_latest.title }}</a>
                 {%- endif %}
             </div>
-            {%- if home.hero.stats and home.hero.stats.size > 0 %}
-            <dl class="hero__stats">
-                {%- for stat in home.hero.stats %}
-                <div class="hero__stat"><dt>{{ stat.label }}</dt><dd>{{ stat.value | replace: "[total]", hero_total | strip | replace: "[platforms]", hero_platforms | strip }}</dd></div>
-                {%- endfor %}
-            </dl>
-            {%- endif %}
         </section>
-
-{%- include stats-block.html -%}
 
         <section class="section" id="about" aria-labelledby="about-title">
             <h2 class="section-title" id="about-title">{{ home.about_title }}</h2>
@@ -59,6 +46,8 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 <p class="center"><a class="btn btn--thin" href="{{ first_bio.url }}" data-bio-link>Read the full biography</a></p>
             </div>
         </section>
+
+{%- include stats-block.html %}
 
         <section class="section" id="news" aria-labelledby="news-title">
             <h2 class="section-title" id="news-title">Latest news</h2>

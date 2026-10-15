@@ -500,15 +500,22 @@ for fn in sorted(os.listdir(os.path.join(SRC, "_posts"))):
     posts.append(post)
 posts.sort(key=lambda p: p["date"], reverse=True)
 
-# _data
-data_dir = os.path.join(SRC, "_data")
-site_data = {}
-if os.path.isdir(data_dir):
-    for fn in sorted(os.listdir(data_dir)):
-        if fn.endswith((".yml", ".yaml")):
-            site_data[fn.rsplit(".", 1)[0]] = yaml.safe_load(open(os.path.join(data_dir, fn), encoding="utf-8"))
+# _data (files and sub-folders, like Jekyll: _data/platforms/spotify.yml -> site.data.platforms.spotify)
+def load_data(folder):
+    out = {}
+    for fn in sorted(os.listdir(folder)):
+        full = os.path.join(folder, fn)
+        if os.path.isdir(full):
+            out[fn] = load_data(full)
+        elif fn.endswith((".yml", ".yaml")):
+            out[fn.rsplit(".", 1)[0]] = yaml.safe_load(open(full, encoding="utf-8"))
         elif fn.endswith(".json"):
-            site_data[fn.rsplit(".", 1)[0]] = json.load(open(os.path.join(data_dir, fn), encoding="utf-8"))
+            out[fn.rsplit(".", 1)[0]] = json.load(open(full, encoding="utf-8"))
+    return out
+
+
+data_dir = os.path.join(SRC, "_data")
+site_data = load_data(data_dir) if os.path.isdir(data_dir) else {}
 
 
 # collections (bio, releases)

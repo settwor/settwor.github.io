@@ -1,0 +1,68 @@
+{%- include stats-calc.html -%}
+    {%- if st_plat_total > 0 %}
+    <!-- One card per music platform. A platform or a year that is empty in Pages CMS is not shown. -->
+    <div class="numbers__head" id="platforms">
+        <h3 class="numbers__h">Music platforms</h3>
+        <span class="numbers__sum" data-count="{{ st_plat_total }}">{% include num-full.html n=st_plat_total %}</span>
+    </div>
+    <ul class="numbers__plats">
+        {%- for key in st_plat_keys %}
+        {%- assign pi = forloop.index0 -%}
+        {%- assign row = st_data[key] -%}
+        {%- assign p_total = 0 -%}
+        {%- for y in st_years -%}
+            {%- if y == "earlier" -%}{%- assign field = "earlier" -%}{%- else -%}{%- assign field = "y" | append: y -%}{%- endif -%}
+            {%- assign p_total = p_total | plus: row[field] -%}
+        {%- endfor -%}
+        {%- if p_total > 0 -%}
+        {%- assign p_earlier = row.earlier | plus: 0 -%}
+        {%- assign p_years = p_total | minus: p_earlier -%}
+        {%- assign p_rest = st_plat_total | minus: p_total %}
+        <li class="plat">
+            <div class="plat__head">
+                <span class="plat__name">{{ st_plat_names[pi] }}</span>
+                <b class="plat__n" data-count="{{ p_total }}">{% include num-full.html n=p_total %}</b>
+            </div>
+            <span class="bar" aria-hidden="true"><i style="flex-grow: {{ p_total }}"></i><i style="flex-grow: {{ p_rest }}"></i></span>
+            {%- if p_years > 0 %}
+            <ul class="plat__years">
+                {%- for y in st_years -%}
+                    {%- if y == "earlier" -%}{%- assign field = "earlier" -%}{%- else -%}{%- assign field = "y" | append: y -%}{%- endif -%}
+                    {%- assign v = row[field] | plus: 0 -%}
+                    {%- if v > 0 %}
+                <li><span>{% if y == "earlier" %}Earlier{% else %}{{ y }}{% endif %}</span><b>{% include num-full.html n=v %}</b></li>
+                    {%- endif -%}
+                {%- endfor %}
+            </ul>
+            {%- endif %}
+        </li>
+        {%- endif -%}
+        {%- endfor %}
+    </ul>
+    {%- endif %}
+
+    {%- if st_channel > 0 %}
+    <!-- YouTube: the whole channel, split into the release playlist and everything else. Filled in automatically. -->
+    <div class="numbers__head" id="youtube">
+        <h3 class="numbers__h">YouTube</h3>
+        <span class="numbers__sum" data-count="{{ st_channel }}">{% include num-full.html n=st_channel %}</span>
+    </div>
+    <ul class="numbers__yt">
+        <li class="yt yt--main">
+            <span class="yt__t">Whole channel</span>
+            <b class="yt__n" data-count="{{ st_channel }}">{% include num-full.html n=st_channel %}</b>
+            <span class="bar bar--split" aria-hidden="true"><i style="flex-grow: {{ st_clips }}"></i><i style="flex-grow: {{ st_other }}"></i></span>
+            <span class="yt__s">All views of all videos on the channel</span>
+        </li>
+        <li class="yt">
+            <span class="yt__t">Release videos</span>
+            <b class="yt__n" data-count="{{ st_clips }}">{% include num-full.html n=st_clips %}</b>
+            <span class="yt__s">Videos from the releases playlist</span>
+        </li>
+        <li class="yt">
+            <span class="yt__t">Other videos</span>
+            <b class="yt__n" data-count="{{ st_other }}">{% include num-full.html n=st_other %}</b>
+            <span class="yt__s">The rest of the channel, without the releases</span>
+        </li>
+    </ul>
+    {%- endif %}

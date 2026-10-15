@@ -2,8 +2,8 @@
 # Pages CMS settings for settwor.github.io
 # Open https://app.pagescms.org, sign in with GitHub and choose
 # this repository. Everything editable on the site is listed here.
-# Sections of the menu: News, Biography, Photos, Releases and
-# the group "Site" (home page, links, page texts).
+# Sections of the menu: News, Biography, Photos, Releases, the group
+# "Streams" (plays per platform) and the group "Site" (home page, links, page texts).
 # =============================================================
 
 # Where uploaded pictures are saved (the folder "images" of the site).
@@ -395,6 +395,204 @@ content:
         description: "One track per line, in order. A single without a list shows its own name."
 
   # ---------------------------------------------------------
+  # STREAMS: one file per platform, one line per year.
+  # A year or a platform left empty is not shown on the Streams page.
+  # YouTube numbers are automatic: only its setup is here.
+  # ---------------------------------------------------------
+  - name: streams
+    label: Streams
+    type: group
+    items:
+
+      - name: spotify
+        label: "Spotify"
+        type: file
+        path: _data/platforms/spotify.yml
+        format: yaml
+        fields:
+          - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
+          - { name: y2026, label: "2026", type: number }
+          - { name: y2025, label: "2025", type: number }
+          - { name: y2024, label: "2024", type: number }
+          - { name: y2023, label: "2023", type: number }
+          - { name: y2022, label: "2022", type: number }
+          - { name: y2021, label: "2021", type: number }
+          - { name: earlier, label: "Earlier (or year unknown)", type: number, description: "Plays you cannot split by year. Shown as Earlier." }
+      - name: apple_music
+        label: "Apple Music"
+        type: file
+        path: _data/platforms/apple_music.yml
+        format: yaml
+        fields:
+          - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
+          - { name: y2026, label: "2026", type: number }
+          - { name: y2025, label: "2025", type: number }
+          - { name: y2024, label: "2024", type: number }
+          - { name: y2023, label: "2023", type: number }
+          - { name: y2022, label: "2022", type: number }
+          - { name: y2021, label: "2021", type: number }
+          - { name: earlier, label: "Earlier (or year unknown)", type: number, description: "Plays you cannot split by year. Shown as Earlier." }
+      - name: pandora
+        label: "Pandora"
+        type: file
+        path: _data/platforms/pandora.yml
+        format: yaml
+        fields:
+          - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
+          - { name: y2026, label: "2026", type: number }
+          - { name: y2025, label: "2025", type: number }
+          - { name: y2024, label: "2024", type: number }
+          - { name: y2023, label: "2023", type: number }
+          - { name: y2022, label: "2022", type: number }
+          - { name: y2021, label: "2021", type: number }
+          - { name: earlier, label: "Earlier (or year unknown)", type: number, description: "Plays you cannot split by year. Shown as Earlier." }
+      - name: youtube_music
+        label: "YouTube Music"
+        type: file
+        path: _data/platforms/youtube_music.yml
+        format: yaml
+        fields:
+          - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
+          - { name: y2026, label: "2026", type: number }
+          - { name: y2025, label: "2025", type: number }
+          - { name: y2024, label: "2024", type: number }
+          - { name: y2023, label: "2023", type: number }
+          - { name: y2022, label: "2022", type: number }
+          - { name: y2021, label: "2021", type: number }
+          - { name: earlier, label: "Earlier (or year unknown)", type: number, description: "Plays you cannot split by year. Shown as Earlier." }
+      - name: deezer
+        label: "Deezer"
+        type: file
+        path: _data/platforms/deezer.yml
+        format: yaml
+        fields:
+          - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
+          - { name: y2026, label: "2026", type: number }
+          - { name: y2025, label: "2025", type: number }
+          - { name: y2024, label: "2024", type: number }
+          - { name: y2023, label: "2023", type: number }
+          - { name: y2022, label: "2022", type: number }
+          - { name: y2021, label: "2021", type: number }
+          - { name: earlier, label: "Earlier (or year unknown)", type: number, description: "Plays you cannot split by year. Shown as Earlier." }
+      - name: amazon_music
+        label: "Amazon Music"
+        type: file
+        path: _data/platforms/amazon_music.yml
+        format: yaml
+        fields:
+          - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
+          - { name: y2026, label: "2026", type: number }
+          - { name: y2025, label: "2025", type: number }
+          - { name: y2024, label: "2024", type: number }
+          - { name: y2023, label: "2023", type: number }
+          - { name: y2022, label: "2022", type: number }
+          - { name: y2021, label: "2021", type: number }
+          - { name: earlier, label: "Earlier (or year unknown)", type: number, description: "Plays you cannot split by year. Shown as Earlier." }
+      - name: tidal
+        label: "TIDAL"
+        type: file
+        path: _data/platforms/tidal.yml
+        format: yaml
+        fields:
+          - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
+          - { name: y2026, label: "2026", type: number }
+          - { name: y2025, label: "2025", type: number }
+          - { name: y2024, label: "2024", type: number }
+          - { name: y2023, label: "2023", type: number }
+          - { name: y2022, label: "2022", type: number }
+          - { name: y2021, label: "2021", type: number }
+          - { name: earlier, label: "Earlier (or year unknown)", type: number, description: "Plays you cannot split by year. Shown as Earlier." }
+      - name: soundcloud
+        label: "SoundCloud"
+        type: file
+        path: _data/platforms/soundcloud.yml
+        format: yaml
+        fields:
+          - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
+          - { name: y2026, label: "2026", type: number }
+          - { name: y2025, label: "2025", type: number }
+          - { name: y2024, label: "2024", type: number }
+          - { name: y2023, label: "2023", type: number }
+          - { name: y2022, label: "2022", type: number }
+          - { name: y2021, label: "2021", type: number }
+          - { name: earlier, label: "Earlier (or year unknown)", type: number, description: "Plays you cannot split by year. Shown as Earlier." }
+      - name: yandex_music
+        label: "Yandex Music"
+        type: file
+        path: _data/platforms/yandex_music.yml
+        format: yaml
+        fields:
+          - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
+          - { name: y2026, label: "2026", type: number }
+          - { name: y2025, label: "2025", type: number }
+          - { name: y2024, label: "2024", type: number }
+          - { name: y2023, label: "2023", type: number }
+          - { name: y2022, label: "2022", type: number }
+          - { name: y2021, label: "2021", type: number }
+          - { name: earlier, label: "Earlier (or year unknown)", type: number, description: "Plays you cannot split by year. Shown as Earlier." }
+      - name: vk_music
+        label: "VK Music"
+        type: file
+        path: _data/platforms/vk_music.yml
+        format: yaml
+        fields:
+          - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
+          - { name: y2026, label: "2026", type: number }
+          - { name: y2025, label: "2025", type: number }
+          - { name: y2024, label: "2024", type: number }
+          - { name: y2023, label: "2023", type: number }
+          - { name: y2022, label: "2022", type: number }
+          - { name: y2021, label: "2021", type: number }
+          - { name: earlier, label: "Earlier (or year unknown)", type: number, description: "Plays you cannot split by year. Shown as Earlier." }
+      - name: other
+        label: "Other platforms"
+        type: file
+        path: _data/platforms/other.yml
+        format: yaml
+        fields:
+          - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
+          - { name: y2026, label: "2026", type: number }
+          - { name: y2025, label: "2025", type: number }
+          - { name: y2024, label: "2024", type: number }
+          - { name: y2023, label: "2023", type: number }
+          - { name: y2022, label: "2022", type: number }
+          - { name: y2021, label: "2021", type: number }
+          - { name: earlier, label: "Earlier (or year unknown)", type: number, description: "Plays you cannot split by year. Shown as Earlier." }
+
+      - name: youtube
+        label: "YouTube (automatic)"
+        type: file
+        path: _data/streams.yml
+        format: yaml
+        fields:
+          - name: youtube
+            label: YouTube setup
+            type: object
+            description: "You do not type YouTube numbers: the site takes them from YouTube every 3 hours. Here you only say which channel and which playlist to count."
+            fields:
+              - name: handle
+                label: Channel name (after the @)
+                type: string
+              - name: channel_id
+                label: Channel ID (optional, starts with UC)
+                type: string
+              - name: track_playlist
+                label: "Releases playlist (code after list=)"
+                type: string
+                description: "Views of videos in this playlist are shown as Release videos. All other views of the channel are shown as Other videos."
+              - name: track_videos
+                label: Extra release videos that are not in the playlist (codes after v=)
+                type: string
+                list: true
+              - name: clips_views_fallback
+                label: "Backup: release videos views (typed by hand)"
+                type: number
+                description: "Shown only while the automatic numbers are missing."
+              - name: other_views_fallback
+                label: "Backup: other videos views (typed by hand)"
+                type: number
+
+  # ---------------------------------------------------------
   # SITE: home page, links, texts of the list pages
   # ---------------------------------------------------------
   - name: site
@@ -440,18 +638,6 @@ content:
                 label: Text of the second button
                 type: string
                 description: "For example: Newest release. The name of the newest release is added after it."
-              - name: stats
-                label: Three numbers under the buttons
-                type: object
-                list: true
-                description: "Write [total] or [platforms] to get the real number, for example [total] / Plays and views. Three rows look best."
-                fields:
-                  - name: value
-                    label: Number
-                    type: string
-                  - name: label
-                    label: What it counts
-                    type: string
           - name: about_title
             label: Heading of the About part
             type: string
@@ -504,186 +690,6 @@ content:
               - name: a
                 label: Answer
                 type: text
-
-      - name: streams
-        label: Plays and views
-        type: file
-        path: _data/streams.yml
-        format: yaml
-        fields:
-
-          # ---- MUSIC PLATFORMS: one block per platform, one line per year ----
-          - name: spotify
-            label: "Spotify"
-            type: object
-            description: "Open the block, type the number of plays for each year. A year left empty is NOT shown on the site. \"Earlier\" is for plays you cannot split by year. The site adds all lines together."
-            fields:
-              - { name: y2027, label: "2027", type: number }
-              - { name: y2026, label: "2026", type: number }
-              - { name: y2025, label: "2025", type: number }
-              - { name: y2024, label: "2024", type: number }
-              - { name: y2023, label: "2023", type: number }
-              - { name: y2022, label: "2022", type: number }
-              - { name: y2021, label: "2021", type: number }
-              - { name: earlier, label: "Earlier (or year unknown)", type: number }
-          - name: apple_music
-            label: "Apple Music"
-            type: object
-            description: "Plays per year. Leave a year empty to hide it. If the whole platform is empty, it is hidden too."
-            fields:
-              - { name: y2027, label: "2027", type: number }
-              - { name: y2026, label: "2026", type: number }
-              - { name: y2025, label: "2025", type: number }
-              - { name: y2024, label: "2024", type: number }
-              - { name: y2023, label: "2023", type: number }
-              - { name: y2022, label: "2022", type: number }
-              - { name: y2021, label: "2021", type: number }
-              - { name: earlier, label: "Earlier (or year unknown)", type: number }
-          - name: pandora
-            label: "Pandora"
-            type: object
-            description: "Plays per year. Leave a year empty to hide it. If the whole platform is empty, it is hidden too."
-            fields:
-              - { name: y2027, label: "2027", type: number }
-              - { name: y2026, label: "2026", type: number }
-              - { name: y2025, label: "2025", type: number }
-              - { name: y2024, label: "2024", type: number }
-              - { name: y2023, label: "2023", type: number }
-              - { name: y2022, label: "2022", type: number }
-              - { name: y2021, label: "2021", type: number }
-              - { name: earlier, label: "Earlier (or year unknown)", type: number }
-          - name: youtube_music
-            label: "YouTube Music"
-            type: object
-            description: "Plays per year. Leave a year empty to hide it. If the whole platform is empty, it is hidden too."
-            fields:
-              - { name: y2027, label: "2027", type: number }
-              - { name: y2026, label: "2026", type: number }
-              - { name: y2025, label: "2025", type: number }
-              - { name: y2024, label: "2024", type: number }
-              - { name: y2023, label: "2023", type: number }
-              - { name: y2022, label: "2022", type: number }
-              - { name: y2021, label: "2021", type: number }
-              - { name: earlier, label: "Earlier (or year unknown)", type: number }
-          - name: deezer
-            label: "Deezer"
-            type: object
-            description: "Plays per year. Leave a year empty to hide it. If the whole platform is empty, it is hidden too."
-            fields:
-              - { name: y2027, label: "2027", type: number }
-              - { name: y2026, label: "2026", type: number }
-              - { name: y2025, label: "2025", type: number }
-              - { name: y2024, label: "2024", type: number }
-              - { name: y2023, label: "2023", type: number }
-              - { name: y2022, label: "2022", type: number }
-              - { name: y2021, label: "2021", type: number }
-              - { name: earlier, label: "Earlier (or year unknown)", type: number }
-          - name: amazon_music
-            label: "Amazon Music"
-            type: object
-            description: "Plays per year. Leave a year empty to hide it. If the whole platform is empty, it is hidden too."
-            fields:
-              - { name: y2027, label: "2027", type: number }
-              - { name: y2026, label: "2026", type: number }
-              - { name: y2025, label: "2025", type: number }
-              - { name: y2024, label: "2024", type: number }
-              - { name: y2023, label: "2023", type: number }
-              - { name: y2022, label: "2022", type: number }
-              - { name: y2021, label: "2021", type: number }
-              - { name: earlier, label: "Earlier (or year unknown)", type: number }
-          - name: tidal
-            label: "TIDAL"
-            type: object
-            description: "Plays per year. Leave a year empty to hide it. If the whole platform is empty, it is hidden too."
-            fields:
-              - { name: y2027, label: "2027", type: number }
-              - { name: y2026, label: "2026", type: number }
-              - { name: y2025, label: "2025", type: number }
-              - { name: y2024, label: "2024", type: number }
-              - { name: y2023, label: "2023", type: number }
-              - { name: y2022, label: "2022", type: number }
-              - { name: y2021, label: "2021", type: number }
-              - { name: earlier, label: "Earlier (or year unknown)", type: number }
-          - name: soundcloud
-            label: "SoundCloud"
-            type: object
-            description: "Plays per year. Leave a year empty to hide it. If the whole platform is empty, it is hidden too."
-            fields:
-              - { name: y2027, label: "2027", type: number }
-              - { name: y2026, label: "2026", type: number }
-              - { name: y2025, label: "2025", type: number }
-              - { name: y2024, label: "2024", type: number }
-              - { name: y2023, label: "2023", type: number }
-              - { name: y2022, label: "2022", type: number }
-              - { name: y2021, label: "2021", type: number }
-              - { name: earlier, label: "Earlier (or year unknown)", type: number }
-          - name: yandex_music
-            label: "Yandex Music"
-            type: object
-            description: "Plays per year. Leave a year empty to hide it. If the whole platform is empty, it is hidden too."
-            fields:
-              - { name: y2027, label: "2027", type: number }
-              - { name: y2026, label: "2026", type: number }
-              - { name: y2025, label: "2025", type: number }
-              - { name: y2024, label: "2024", type: number }
-              - { name: y2023, label: "2023", type: number }
-              - { name: y2022, label: "2022", type: number }
-              - { name: y2021, label: "2021", type: number }
-              - { name: earlier, label: "Earlier (or year unknown)", type: number }
-          - name: vk_music
-            label: "VK Music"
-            type: object
-            description: "Plays per year. Leave a year empty to hide it. If the whole platform is empty, it is hidden too."
-            fields:
-              - { name: y2027, label: "2027", type: number }
-              - { name: y2026, label: "2026", type: number }
-              - { name: y2025, label: "2025", type: number }
-              - { name: y2024, label: "2024", type: number }
-              - { name: y2023, label: "2023", type: number }
-              - { name: y2022, label: "2022", type: number }
-              - { name: y2021, label: "2021", type: number }
-              - { name: earlier, label: "Earlier (or year unknown)", type: number }
-          - name: other
-            label: "Other platforms (everything not listed above)"
-            type: object
-            description: "Plays that are not on a platform above. Move them into the platform blocks when you know the split."
-            fields:
-              - { name: y2027, label: "2027", type: number }
-              - { name: y2026, label: "2026", type: number }
-              - { name: y2025, label: "2025", type: number }
-              - { name: y2024, label: "2024", type: number }
-              - { name: y2023, label: "2023", type: number }
-              - { name: y2022, label: "2022", type: number }
-              - { name: y2021, label: "2021", type: number }
-              - { name: earlier, label: "Earlier (or year unknown)", type: number }
-
-          # ---- YOUTUBE: numbers come by themselves every 3 hours ----
-          - name: youtube
-            label: "YouTube (numbers are automatic, this is only the setup)"
-            type: object
-            description: "You do not type the YouTube numbers: the site takes them from YouTube every 3 hours. Here you only say which channel and which playlist to count."
-            fields:
-              - name: handle
-                label: Channel name (after the @)
-                type: string
-              - name: channel_id
-                label: Channel ID (optional, starts with UC)
-                type: string
-              - name: track_playlist
-                label: "Releases playlist (code after list=)"
-                type: string
-                description: "Views of the videos in this playlist are shown as Release videos. All other views of the channel are shown as Other videos."
-              - name: track_videos
-                label: Extra release videos that are not in the playlist (codes after v=)
-                type: string
-                list: true
-              - name: clips_views_fallback
-                label: "Backup: release videos views (typed by hand)"
-                type: number
-                description: "Shown only while the automatic numbers are missing."
-              - name: other_views_fallback
-                label: "Backup: other videos views (typed by hand)"
-                type: number
 
       - name: links
         label: Links
@@ -756,6 +762,16 @@ content:
                 type: string
           - name: photos
             label: Photos page
+            type: object
+            fields:
+              - name: title
+                label: Heading
+                type: string
+              - name: lead
+                label: Line under the heading
+                type: string
+          - name: streams
+            label: Streams page
             type: object
             fields:
               - name: title

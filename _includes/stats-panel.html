@@ -1,0 +1,25 @@
+{%- include stats-calc.html -%}
+{%- if st_total > 0 %}
+    <!-- Big total: all music platforms + the whole YouTube channel -->
+    <div class="numbers__hero">
+        <span class="numbers__eyebrow">Total plays and views</span>
+        <span class="numbers__value" data-count="{{ st_total }}">{% include num-full.html n=st_total %}</span>
+        <span class="numbers__label">across all music platforms and YouTube</span>
+        <div class="numbers__split" role="img" aria-label="How the total is made up">
+            {%- if st_plat_total > 0 %}<i class="seg seg--1" style="flex-grow: {{ st_plat_total }}"></i>{% endif %}
+            {%- if st_clips > 0 %}<i class="seg seg--2" style="flex-grow: {{ st_clips }}"></i>{% endif %}
+            {%- if st_other > 0 %}<i class="seg seg--3" style="flex-grow: {{ st_other }}"></i>{% endif %}
+        </div>
+        <ul class="numbers__legend">
+            {%- if st_plat_total > 0 %}
+            <li><i class="dot dot--1"></i><span>Music platforms</span><b data-count="{{ st_plat_total }}">{% include num-full.html n=st_plat_total %}</b></li>
+            {%- endif %}
+            {%- if st_clips > 0 %}
+            <li><i class="dot dot--2"></i><span>YouTube: release videos</span><b data-count="{{ st_clips }}">{% include num-full.html n=st_clips %}</b></li>
+            {%- endif %}
+            {%- if st_other > 0 %}
+            <li><i class="dot dot--3"></i><span>YouTube: other videos</span><b data-count="{{ st_other }}">{% include num-full.html n=st_other %}</b></li>
+            {%- endif %}
+        </ul>
+    </div>
+{%- endif %}

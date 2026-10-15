@@ -21,6 +21,7 @@
     <nav class="site-nav site-nav--end" aria-label="About the artist">
         <ul>
             <li><a class="btn btn--sm" href="/bio.html" data-bio-link>Biography</a></li>
+            <li class="is-desktop"><a class="btn btn--sm" href="/streams.html">Streams</a></li>
             <li class="is-desktop"><a class="btn btn--sm" href="/photo.html">Photos</a></li>
         </ul>
     </nav>
@@ -32,4 +33,5 @@
     <a href="/photo.html"{% if page.url == "/photo.html" %} aria-current="page"{% endif %}>Photographs</a>
     <a href="/news/"{% if page.url == "/news/" or page.layout == "article" %} aria-current="page"{% endif %}>News</a>
     <a href="/releases.html"{% if page.url == "/releases.html" %} aria-current="page"{% endif %}>Releases</a>
+    <a href="/streams.html"{% if page.url == "/streams.html" %} aria-current="page"{% endif %}>Streams</a>
 </nav>
