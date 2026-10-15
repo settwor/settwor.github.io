@@ -1,17 +1,17 @@
 {%- comment -%}
   Browser push notifications through OneSignal (free plan). Loaded only when
-  onesignal_app_id is filled in _config.yml. The service worker lives in /push/onesignal/
-  so that it does not clash with the site's own /sw.js.
+  onesignal_app_id is filled in _config.yml. The site has ONE service worker at the root:
+  /OneSignalSDKWorker.js, which loads OneSignal and the site's own cache (/sw.js). So main.js
+  must not register /sw.js separately (window.__oneSignalOwnsWorker tells it so).
 {%- endcomment -%}
 {%- if site.onesignal_app_id and site.onesignal_app_id != "" %}
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
+        window.__oneSignalOwnsWorker = true;
         window.OneSignalDeferred = window.OneSignalDeferred || [];
         OneSignalDeferred.push(function (OneSignal) {
             return OneSignal.init({
                 appId: {{ site.onesignal_app_id | jsonify }},
-                serviceWorkerPath: "push/onesignal/OneSignalSDKWorker.js",
-                serviceWorkerParam: { scope: "/push/onesignal/" },
                 notifyButton: {
                     enable: true,
                     size: "medium",

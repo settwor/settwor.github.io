@@ -91,7 +91,7 @@ Search Console → Sitemaps → `sitemap.xml`. URL Inspection → адрес н�
       Пока секрета нет, скрипт ничего не делает.
    Повторно отправить push вручную: вкладка Actions → Push news → Run workflow → укажите имя файла, например `2026-10-13-title.md` (папку `_posts/` писать не обязательно).
    Можно и без автоматики: OneSignal → Messages → New Push.
-   Файл `push/onesignal/OneSignalSDKWorker.js` не удаляйте и не меняйте.
+   Файл `OneSignalSDKWorker.js` в корне сайта не удаляйте и не меняйте: это единственный воркер сайта (OneSignal плюс кеш из `sw.js`).
 
 ## Окно «Хотите получать новости?»
 Перед системным вопросом браузера («Разрешить / Блокировать») сайт показывает своё окно (`_includes/push-ask.html`, `js/push-ask.js`, стили в конце `css/main.css`).

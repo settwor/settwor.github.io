@@ -627,7 +627,7 @@
     /* sw.js keeps pictures, fonts, styles and visited pages on the device.
        It is off on localhost so that local checks always show the newest files. */
     var local = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
-    if ('serviceWorker' in navigator && location.protocol === 'https:' && !local) {
+    if ('serviceWorker' in navigator && location.protocol === 'https:' && !local && !window.__oneSignalOwnsWorker) {
         window.addEventListener('load', function () {
             navigator.serviceWorker.register('/sw.js').catch(function () { /* not available: the site works without it */ });
         });
