@@ -46,7 +46,7 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 <ul class="photo-grid photo-grid--gallery">
             {%- assign current_year = photo_year -%}
             {%- endif %}
-                    <li><a href="{{ photo.image | uri_escape }}" data-lightbox><img src="{% include thumb-url.html src=photo.image %}" alt="{{ photo.alt | escape }}" width="400" height="400" loading="lazy" decoding="async"></a></li>
+                    <li data-reveal><a href="{{ photo.image | uri_escape }}" data-lightbox><img src="{% include thumb-url.html src=photo.image %}" alt="{{ photo.alt | escape }}" width="400" height="400" loading="lazy" decoding="async"></a></li>
             {%- endfor %}
             {%- if photos.size > 0 %}
                 </ul>

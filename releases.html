@@ -38,23 +38,17 @@ image_alt: SETTWOR with a part of his releases
             </section>
             {%- endunless %}
             <section class="release-year" id="r{{ release_year }}" aria-labelledby="rt{{ release_year }}">
-                <h2 class="news-year__title" id="rt{{ release_year }}">{{ release_year }}</h2>
+                <h2 class="news-year__title" data-reveal id="rt{{ release_year }}">{{ release_year }}</h2>
                 <ul class="release-grid">
             {%- assign current_year = release_year -%}
             {%- endif %}
             {%- capture cover -%}{% include image-url.html src=release.cover %}{%- endcapture %}
-                    <li class="release">
-                        {%- if release.spotify and release.spotify != "" %}
-                        <a class="release__cover" href="{{ release.spotify }}" rel="noopener" aria-label="{{ release.title | escape }}: open on Spotify"><img src="{{ cover | strip }}" alt="Cover of {{ release.title | escape }}" width="300" height="300" loading="lazy" decoding="async"></a>
-                        {%- else %}
-                        <span class="release__cover"><img src="{{ cover | strip }}" alt="Cover of {{ release.title | escape }}" width="300" height="300" loading="lazy" decoding="async"></span>
-                        {%- endif %}
+                    <li class="release" id="release-{{ release.slug }}" data-reveal data-slug="{{ release.slug }}" data-title="{{ release.title | escape }}" data-artist="{{ release.artist | escape }}" data-date="{{ release.date | date: "%-d %B %Y" }}" data-kind="{{ release.kind | default: "Single" }}" data-cover="{{ cover | strip }}" data-spotify="{{ release.spotify }}" data-details="{{ release.details }}" data-links="{{ release.links | jsonify | escape }}" data-tracks="{{ release.tracklist | jsonify | escape }}">
+                        <a class="release__cover" href="{% if release.spotify and release.spotify != "" %}{{ release.spotify }}{% else %}#release-{{ release.slug }}{% endif %}" data-release aria-label="{{ release.title | escape }}: links and tracklist"><img src="{{ cover | strip }}" alt="Cover of {{ release.title | escape }}" width="300" height="300" loading="lazy" decoding="async"></a>
                         <h3 class="release__name">{{ release.title }}</h3>
                         <p class="release__meta">{{ release.artist }}</p>
                         <p class="release__meta"><time datetime="{{ release.date | date: "%Y-%m-%d" }}">{{ release.date | date: "%-d %B %Y" }}</time>{% if release.kind and release.kind != "Single" %} · {{ release.kind }}{% endif %}</p>
-                        {%- if release.details and release.details != "" %}
-                        <p class="release__links"><a href="{{ release.details }}">Tracklist</a></p>
-                        {%- endif %}
+                        <p class="release__links"><a href="#release-{{ release.slug }}" data-release>Listen &amp; tracklist</a></p>
                     </li>
             {%- endfor %}
             {%- if releases.size > 0 %}

@@ -4,4 +4,6 @@ artist: SETTWOR
 date: 2025-02-07
 kind: Single
 cover: images/releases/BLOODRUSH.png
+links:
+  apple: https://music.apple.com/us/album/bloodrush/1792474270
 ---

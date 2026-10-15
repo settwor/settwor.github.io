@@ -289,6 +289,28 @@ content:
         type: string
         description: "Address of a page with the list of tracks, if there is one."
 
+      - name: links
+        label: Other platforms
+        type: object
+        description: "Direct links to this release. Leave a field empty if there is no link: the preview window then offers a search on that platform."
+        fields:
+          - { name: apple, label: Apple Music, type: string }
+          - { name: youtube_music, label: YouTube Music, type: string }
+          - { name: youtube, label: YouTube, type: string }
+          - { name: deezer, label: Deezer, type: string }
+          - { name: soundcloud, label: SoundCloud, type: string }
+          - { name: tidal, label: TIDAL, type: string }
+          - { name: amazon, label: Amazon Music, type: string }
+          - { name: yandex, label: Yandex Music, type: string }
+          - { name: vk, label: VK Music, type: string }
+          - { name: bandcamp, label: Bandcamp, type: string }
+
+      - name: tracklist
+        label: Tracklist
+        type: string
+        list: true
+        description: "One track per line, in order. A single without a list shows its own name."
+
   # ---------------------------------------------------------
   # SITE: home page, links, texts of the list pages
   # ---------------------------------------------------------

@@ -13,7 +13,7 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
 {%- assign first_bio = site.bio | sort: "order" | first -%}
 
         <section class="hero" aria-labelledby="page-title">
-            <img class="hero__photo" src="{{ home.hero.photo | uri_escape }}" alt="{{ home.hero.photo_alt | escape }}" width="144" height="144" fetchpriority="high">
+            <span class="hero__ring"><img class="hero__photo" src="{{ home.hero.photo | uri_escape }}" alt="{{ home.hero.photo_alt | escape }}" width="144" height="144" fetchpriority="high"></span>
             <div class="hero__text">
                 <h1 class="hero__title" id="page-title">{{ home.hero.title }}</h1>
                 <p class="hero__tagline">{{ home.hero.tagline }}</p>
