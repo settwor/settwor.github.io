@@ -1,11 +1,31 @@
-{%- comment -%} Calculates the numbers. Result variables: st_platforms, st_clips, st_other, st_total, st_date. {%- endcomment -%}
+{%- comment -%}
+  Calculates all numbers of the "in numbers" block. Result variables:
+  st_plat_total   all music platforms together (typed by hand, years added up)
+  st_clips        YouTube: views of the release videos (the playlist)
+  st_other        YouTube: views of the rest of the channel (whole channel minus the playlist)
+  st_channel      YouTube: whole channel (st_clips + st_other)
+  st_total        everything: st_plat_total + st_channel
+  st_platforms    same as st_plat_total (the old name, used by the home page)
+  st_plat_keys / st_plat_names / st_years   the order and the names of the rows
+{%- endcomment -%}
 {%- assign st = site.data.streams -%}
 {%- assign auto = site.data.auto_stats -%}
-{%- assign st_platforms = 0 -%}
-{%- for p in st.platforms -%}{%- assign st_platforms = st_platforms | plus: p.streams -%}{%- endfor -%}
+{%- assign st_plat_keys = "spotify,apple_music,pandora,youtube_music,deezer,amazon_music,tidal,soundcloud,yandex_music,vk_music,other" | split: "," -%}
+{%- assign st_plat_names = "Spotify,Apple Music,Pandora,YouTube Music,Deezer,Amazon Music,TIDAL,SoundCloud,Yandex Music,VK Music,Other platforms" | split: "," -%}
+{%- assign st_years = "2027,2026,2025,2024,2023,2022,2021,earlier" | split: "," -%}
+{%- assign st_plat_total = 0 -%}
+{%- for key in st_plat_keys -%}
+  {%- assign row = st[key] -%}
+  {%- for y in st_years -%}
+    {%- if y == "earlier" -%}{%- assign field = "earlier" -%}{%- else -%}{%- assign field = "y" | append: y -%}{%- endif -%}
+    {%- assign st_plat_total = st_plat_total | plus: row[field] -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- assign st_platforms = st_plat_total -%}
 {%- if auto.youtube.clips_views != nil -%}
-  {%- assign st_clips = auto.youtube.clips_views -%}{%- assign st_other = auto.youtube.other_views -%}{%- assign st_date = auto.updated -%}
+  {%- assign st_clips = auto.youtube.clips_views | plus: 0 -%}{%- assign st_other = auto.youtube.other_views | plus: 0 -%}
 {%- else -%}
-  {%- assign st_clips = st.youtube.clips_views_fallback | default: 0 -%}{%- assign st_other = st.youtube.other_views_fallback | default: 0 -%}{%- assign st_date = st.updated -%}
+  {%- assign st_clips = st.youtube.clips_views_fallback | plus: 0 -%}{%- assign st_other = st.youtube.other_views_fallback | plus: 0 -%}
 {%- endif -%}
-{%- assign st_total = st_platforms | plus: st_clips | plus: st_other -%}
+{%- assign st_channel = st_clips | plus: st_other -%}
+{%- assign st_total = st_plat_total | plus: st_channel -%}

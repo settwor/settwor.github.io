@@ -1,0 +1,18 @@
+{%- comment -%} Full number with commas, never rounded: 12400000 -> 12,400,000. Use: include num-full.html n=... {%- endcomment -%}
+{%- assign nf_n = include.n | plus: 0 -%}
+{%- if nf_n < 1000 -%}{{ nf_n }}
+{%- else -%}
+  {%- assign nf_g0 = nf_n | modulo: 1000 -%}{%- assign nf_r1 = nf_n | divided_by: 1000 -%}
+  {%- assign nf_z0 = "" -%}{%- if nf_g0 < 100 -%}{%- assign nf_z0 = "0" -%}{%- endif -%}{%- if nf_g0 < 10 -%}{%- assign nf_z0 = "00" -%}{%- endif -%}
+  {%- if nf_r1 < 1000 -%}{{ nf_r1 }},{{ nf_z0 }}{{ nf_g0 }}
+  {%- else -%}
+    {%- assign nf_g1 = nf_r1 | modulo: 1000 -%}{%- assign nf_r2 = nf_r1 | divided_by: 1000 -%}
+    {%- assign nf_z1 = "" -%}{%- if nf_g1 < 100 -%}{%- assign nf_z1 = "0" -%}{%- endif -%}{%- if nf_g1 < 10 -%}{%- assign nf_z1 = "00" -%}{%- endif -%}
+    {%- if nf_r2 < 1000 -%}{{ nf_r2 }},{{ nf_z1 }}{{ nf_g1 }},{{ nf_z0 }}{{ nf_g0 }}
+    {%- else -%}
+      {%- assign nf_g2 = nf_r2 | modulo: 1000 -%}{%- assign nf_r3 = nf_r2 | divided_by: 1000 -%}
+      {%- assign nf_z2 = "" -%}{%- if nf_g2 < 100 -%}{%- assign nf_z2 = "0" -%}{%- endif -%}{%- if nf_g2 < 10 -%}{%- assign nf_z2 = "00" -%}{%- endif -%}
+      {{ nf_r3 }},{{ nf_z2 }}{{ nf_g2 }},{{ nf_z1 }}{{ nf_g1 }},{{ nf_z0 }}{{ nf_g0 }}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}

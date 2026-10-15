@@ -15,8 +15,8 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
 {%- assign home_url = "/" | absolute_url -%}
 
 {%- include stats-calc.html -%}
-{%- capture hero_total %}{% include num-compact.html n=st_total %}{% endcapture -%}
-{%- capture hero_platforms %}{% include num-compact.html n=st_platforms %}{% endcapture -%}
+{%- capture hero_total %}{% include num-full.html n=st_total %}{% endcapture -%}
+{%- capture hero_platforms %}{% include num-full.html n=st_plat_total %}{% endcapture -%}
 
         <section class="hero" aria-labelledby="page-title">
             <span class="hero__ring"><img class="hero__photo" src="{{ home.hero.photo | uri_escape }}" alt="{{ home.hero.photo_alt | escape }}" width="144" height="144" fetchpriority="high"></span>

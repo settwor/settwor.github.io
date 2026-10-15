@@ -111,6 +111,30 @@ def f_truncate(v, n=50, ell="..."):
     return v if len(v) <= int(n) else v[: max(0, int(n) - len(ell))] + ell
 
 
+def _num(v):
+    """Like Liquid: nil and "" are 0, "12" is 12, "1.5" is 1.5."""
+    if v is None or v is False or v == "" or v == "__BLANK__":
+        return 0
+    if isinstance(v, bool):
+        return int(v)
+    if isinstance(v, (int, float)):
+        return v
+    try:
+        t = to_s(v).strip().replace(",", "")
+        return int(t) if re.fullmatch(r"-?\d+", t) else float(t)
+    except ValueError:
+        return 0
+
+
+def f_divided_by(v, n):
+    a, b = _num(v), _num(n)
+    if b == 0:
+        raise LiquidError("divided by 0")
+    if isinstance(a, int) and isinstance(b, int):
+        return a // b          # Liquid: integer divided by integer is a whole number
+    return a / b
+
+
 FILTERS = {
     "sort": f_sort,
     "reverse": lambda v: list(reversed(list(v or []))),
@@ -126,8 +150,17 @@ FILTERS = {
     "downcase": lambda v: to_s(v).lower(),
     "upcase": lambda v: to_s(v).upper(),
     "prepend": lambda v, a: to_s(a) + to_s(v),
-    "plus": lambda v, n: v + n,
-    "minus": lambda v, n: v - n,
+    "plus": lambda v, n: _num(v) + _num(n),
+    "minus": lambda v, n: _num(v) - _num(n),
+    "times": lambda v, n: _num(v) * _num(n),
+    "divided_by": lambda v, n: f_divided_by(v, n),
+    "modulo": lambda v, n: _num(v) % _num(n),
+    "floor": lambda v: int(_num(v) // 1),
+    "ceil": lambda v: -int(-_num(v) // 1),
+    "round": lambda v, d=0: int(round(_num(v))) if not d else round(_num(v), int(d)),
+    "abs": lambda v: abs(_num(v)),
+    "at_least": lambda v, n: max(_num(v), _num(n)),
+    "at_most": lambda v, n: min(_num(v), _num(n)),
     "strip_newlines": lambda v: to_s(v).replace("\n", ""),
     "markdownify": f_md,
     "truncate": f_truncate,
@@ -345,6 +378,7 @@ def eval_cond(s, ctx):
         if a is None:
             return False
         return to_s(b) in a if isinstance(a, (str, list)) else False
+    a, b = _num(a), _num(b)   # Liquid: nil counts as 0 in comparisons
     return {">": a > b, "<": a < b, ">=": a >= b, "<=": a <= b}[op]
 
 
@@ -473,6 +507,8 @@ if os.path.isdir(data_dir):
     for fn in sorted(os.listdir(data_dir)):
         if fn.endswith((".yml", ".yaml")):
             site_data[fn.rsplit(".", 1)[0]] = yaml.safe_load(open(os.path.join(data_dir, fn), encoding="utf-8"))
+        elif fn.endswith(".json"):
+            site_data[fn.rsplit(".", 1)[0]] = json.load(open(os.path.join(data_dir, fn), encoding="utf-8"))
 
 
 # collections (bio, releases)

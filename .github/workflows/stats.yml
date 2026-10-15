@@ -1,6 +1,7 @@
 # Updates the YouTube numbers on the site (_data/auto_stats.json) every 3 hours.
 # Needs the secret YOUTUBE_API_KEY (Settings -> Secrets and variables -> Actions).
-# Without it the workflow does nothing and the numbers from "Streams and views" are used.
+# Without it the workflow does nothing and the backup numbers from "Plays and views" are used.
+# If YouTube refuses (wrong key, API not enabled, wrong playlist) the run turns RED and the log says why.
 name: Update stats
 
 on:
