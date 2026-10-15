@@ -13,7 +13,9 @@ platforms:
 youtube:
   handle: settwor
   channel_id: ""
-  # Videos that are clips of your tracks. Paste the code after v= (or a Shorts code). All other videos of the channel count as "other videos".
+  # Playlist with all your releases on YouTube: every video in it counts as a music video.
+  track_playlist: PLGU0u-tcF4cQJdv-5W_haz7I1_Xxd_41V
+  # Extra videos that are clips of your tracks. Paste the code after v= (or a Shorts code). All other videos of the channel count as "other videos".
   track_videos: []
   # Used only until the automatic numbers appear (or if YouTube does not answer).
   clips_views_fallback: 10000000

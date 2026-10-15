@@ -548,8 +548,12 @@ content:
               - name: channel_id
                 label: Channel ID (optional, starts with UC)
                 type: string
+              - name: track_playlist
+                label: Playlist with all your releases (code after list=)
+                type: string
+                description: "Every video in this playlist is counted as a music video."
               - name: track_videos
-                label: Clips of your tracks (video codes)
+                label: Extra clips not in the playlist (video codes)
                 type: string
                 list: true
                 description: "The code after v= in the video address. Views of these videos are shown as music videos. All other videos of the channel are shown as other videos."

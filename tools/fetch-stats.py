@@ -3,7 +3,7 @@
 Fetches YouTube numbers and writes _data/auto_stats.json (the site reads it).
 Used by .github/workflows/stats.yml every 3 hours. Needs one secret: YOUTUBE_API_KEY
 (Google Cloud -> APIs -> YouTube Data API v3 -> create an API key).
-Settings (handle / channel_id / track_videos) are read from _data/streams.yml.
+Settings (handle / channel_id / track_playlist / track_videos) are read from _data/streams.yml.
 If anything fails the old file stays as it was.
   --dry-run   only print the result
 """
@@ -49,16 +49,23 @@ def main():
     ch = ch["items"][0]
     uploads = ch["contentDetails"]["relatedPlaylists"]["uploads"]
 
-    ids, token = [], None
-    while True:
-        p = {"part": "contentDetails", "playlistId": uploads, "maxResults": 50}
-        if token:
-            p["pageToken"] = token
-        page = call("playlistItems", key, **p)
-        ids += [i["contentDetails"]["videoId"] for i in page.get("items", [])]
-        token = page.get("nextPageToken")
-        if not token:
-            break
+    def playlist_ids(pl):
+        out, token = [], None
+        while True:
+            p = {"part": "contentDetails", "playlistId": pl, "maxResults": 50}
+            if token:
+                p["pageToken"] = token
+            page = call("playlistItems", key, **p)
+            out += [i["contentDetails"]["videoId"] for i in page.get("items", [])]
+            token = page.get("nextPageToken")
+            if not token:
+                return out
+
+    upload_ids = playlist_ids(uploads)
+    clip_ids = set(track_ids)
+    if cfg.get("track_playlist"):
+        clip_ids |= set(playlist_ids(str(cfg["track_playlist"]).strip()))
+    ids = list(dict.fromkeys(upload_ids + sorted(clip_ids)))
 
     views = {}
     for i in range(0, len(ids), 50):
@@ -66,7 +73,7 @@ def main():
         for v in call("videos", key, part="statistics", id=",".join(chunk)).get("items", []):
             views[v["id"]] = int(v["statistics"].get("viewCount", 0))
 
-    clips = sum(n for vid, n in views.items() if vid in track_ids)
+    clips = sum(n for vid, n in views.items() if vid in clip_ids)
     total_videos = sum(views.values())
     other = total_videos - clips
     result = {
