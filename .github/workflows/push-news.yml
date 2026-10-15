@@ -1,0 +1,55 @@
+# Sends a browser push notification (OneSignal) about every NEW article.
+# Runs when a new file appears in _posts. Editing an old article sends nothing.
+# Needs the secret ONESIGNAL_API_KEY (see docs/news-guide-ru.md). Without it the script does nothing.
+name: Push news
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "_posts/**"
+  workflow_dispatch:
+    inputs:
+      file:
+        description: "Send a push for this article file (for example _posts/2026-10-10-title.md)"
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: push-news
+  cancel-in-progress: false
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find new articles
+        id: new
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            files="${{ github.event.inputs.file }}"
+          else
+            before="${{ github.event.before }}"
+            if [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ]; then
+              files=""
+            else
+              files=$(git diff --diff-filter=A --name-only "$before" "${{ github.sha }}" -- '_posts/*.md' '_posts/*.markdown' | tr '\n' ' ')
+            fi
+          fi
+          echo "files=$files" >> "$GITHUB_OUTPUT"
+          echo "New articles: ${files:-none}"
+
+      - name: Send push
+        if: steps.new.outputs.files != ''
+        env:
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+        run: |
+          pip install pyyaml
+          python3 tools/notify-push.py ${{ steps.new.outputs.files }}

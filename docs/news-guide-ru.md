@@ -81,6 +81,14 @@ Search Console → Sitemaps → `sitemap.xml`. URL Inspection → адрес н�
    2. Site Name: `SETTWOR`, Site URL: `https://settwor.github.io` (точно так, без слэша в конце), включите Auto Resubscribe.
    3. Скопируйте **App ID** (длинный код вида `xxxxxxxx-xxxx-...`) и вставьте в `_config.yml` в строку `onesignal_app_id: ""`.
    4. После публикации в углу сайта появится колокольчик. Подпишитесь сами с телефона или компьютера.
-   Отправка: в OneSignal → Messages → New Push → заголовок, текст и ссылка на статью → Send.
-   Это ручной шаг для каждой статьи; автоматической отправки при публикации сейчас нет.
+   Колокольчик уже включён (App ID вписан в `_config.yml`).
+5. **Автоотправка push о новой статье** (файл `.github/workflows/push-news.yml`). Настройка один раз:
+   1. В OneSignal: Settings → Keys & IDs → скопируйте **REST API Key**.
+   2. В GitHub: репозиторий → Settings → Secrets and variables → Actions → New repository secret.
+      Имя `ONESIGNAL_API_KEY`, значение: ключ из шага 1.
+   3. Готово. Когда в `_posts` появляется НОВАЯ статья, скрипт ждёт, пока она откроется на сайте (до 15 минут),
+      и отправляет всем подписчикам заголовок, описание и ссылку. Правка старой статьи ничего не отправляет.
+      Пока секрета нет, скрипт ничего не делает.
+   Повторно отправить push вручную: вкладка Actions → Push news → Run workflow → укажите файл, например `_posts/2026-10-10-title.md`.
+   Можно и без автоматики: OneSignal → Messages → New Push.
    Файл `push/onesignal/OneSignalSDKWorker.js` не удаляйте и не меняйте.

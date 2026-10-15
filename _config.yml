@@ -79,4 +79,4 @@ exclude:
 
 # Browser push notifications (bell in the corner). Paste the App ID from onesignal.com here
 # (see docs/news-guide-ru.md). While it is empty, nothing is loaded and no bell is shown.
-onesignal_app_id: ""
+onesignal_app_id: "6f326eec-8562-4a6d-bf90-05d10f42a93a"
