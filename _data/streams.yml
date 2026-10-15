@@ -1,47 +1,12 @@
-# =====================================================================
-# Plays of the tracks. Edit everything in Pages CMS: "Streams and views".
-#
-# MUSIC PLATFORMS (typed by hand): one block per platform, one line per year.
-#   A year you leave empty is simply not shown on the site.
-#   "Earlier" = everything you cannot split by year.
-#   The site adds the lines together: platform total, then all platforms.
-#
-# YOUTUBE (automatic): refreshed every 3 hours by tools/fetch-stats.py,
-#   needs the secret YOUTUBE_API_KEY. Without it the "typed by hand" numbers
-#   at the bottom are used.
-# =====================================================================
-
 spotify:
-  y2026:
-  y2025:
-  y2024:
-  y2023:
-  y2022:
-  y2021:
-  earlier:
-
-apple_music: {}
-pandora: {}
-youtube_music: {}
-deezer: {}
-amazon_music: {}
-tidal: {}
-soundcloud: {}
-yandex_music: {}
-vk_music: {}
-
-# The old single number "all platforms combined". Move it into the platforms above
-# when you know the split, and delete it here, so nothing is counted twice.
+  y2026: 12456
+  y2025: 6364
+apple_music:
+  y2026: 346346
 other:
   earlier: 2000000
-
 youtube:
   handle: settwor
-  channel_id: ""
-  # Playlist with all your releases on YouTube (code after list=)
   track_playlist: PLGU0u-tcF4cQJdv-5W_haz7I1_Xxd_41V
-  # Extra clips of your tracks that are not in the playlist (codes after v=)
-  track_videos: []
-  # Used only while the automatic numbers are missing.
   clips_views_fallback: 10000000
   other_views_fallback: 0
