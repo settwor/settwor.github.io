@@ -1,0 +1,78 @@
+# Shrinks pictures and makes small copies for the page grids, automatically.
+# Runs when pictures are added or changed in the folder images (Pages CMS or git):
+#   1. the big picture is shrunk in place (quality 90, at most 3000 px, same name);
+#   2. a small copy is made in images/small/ (used by Photos, Releases, home page).
+# The result is committed by the bot. That commit does not start this job again.
+# Button "Run workflow" (Actions tab) goes through ALL pictures, old ones too.
+name: Compress images
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "images/**"
+      - "!images/small/**"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only show what would be done (nothing is changed)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: compress-images
+  cancel-in-progress: false
+
+jobs:
+  compress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Find new pictures
+        run: |
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+            BEFORE="${{ github.event.before }}"
+            if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$BEFORE" 2>/dev/null; then BEFORE=HEAD~1; fi
+            git diff --name-only --diff-filter=AM -z "$BEFORE" HEAD -- 'images/' ':!images/small/' > changed.list || true
+          fi
+
+      - name: Shrink and make small copies
+        run: |
+          pip install pillow
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            FLAG=""
+            if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then FLAG="--dry-run"; fi
+            python3 tools/compress-images.py $FLAG
+          elif [ -s changed.list ]; then
+            xargs -0 python3 tools/compress-images.py < changed.list
+          fi
+          rm -f changed.list
+
+      - name: Commit the result
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain images)" ]; then
+            echo "Nothing to change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images
+          git commit -m "Compress images and make small copies"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push
+          # a push made with the built-in token does not start the site build, so ask for it
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
