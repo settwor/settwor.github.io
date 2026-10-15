@@ -156,7 +156,13 @@ def main(argv):
             continue
         try:
             res = send(app_id, key, title, text, url)
-            print("Sent: %s -> %s (id %s)" % (title, url, res.get("id", "none: no subscribers yet?")))
+            print("OneSignal answered: %s" % json.dumps(res, ensure_ascii=False))
+            if not res.get("id") or res.get("errors"):
+                print("NOT SENT: OneSignal created no message. Most likely nobody is subscribed yet "
+                      "(check OneSignal -> Audience -> Subscriptions) or the API key / App ID do not match.")
+                failed += 1
+            else:
+                print("Sent: %s -> %s (message id %s)" % (title, url, res["id"]))
         except Exception as e:
             detail = e.read().decode("utf-8", "replace") if hasattr(e, "read") else ""
             print("FAILED to send %s: %s %s" % (path, e, detail))
