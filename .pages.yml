@@ -209,6 +209,32 @@ content:
             label: Answer
             type: text
 
+      - name: snapshot
+        label: Key facts (the box at the top)
+        type: object
+        list: true
+        description: "Short facts shown right under the photo: born, from, genres ... Six rows look best."
+        fields:
+          - name: label
+            label: Name of the fact
+            type: string
+          - name: value
+            label: Value
+            type: string
+
+      - name: highlights
+        label: Key moments (timeline at the top)
+        type: object
+        list: true
+        description: "The main dates of the career, oldest first. One short sentence each."
+        fields:
+          - name: year
+            label: Year
+            type: string
+          - name: text
+            label: What happened
+            type: text
+
       - name: refs_title
         label: Title of the list of sources
         type: string
@@ -406,6 +432,26 @@ content:
               - name: note
                 label: Small grey line
                 type: string
+              - name: listen_label
+                label: Text of the black button
+                type: string
+                description: "For example: Listen on Spotify. The button opens the Spotify artist page."
+              - name: latest_label
+                label: Text of the second button
+                type: string
+                description: "For example: Newest release. The name of the newest release is added after it."
+              - name: stats
+                label: Three numbers under the buttons
+                type: object
+                list: true
+                description: "For example 2M+ / Streams across platforms. Three rows look best."
+                fields:
+                  - name: value
+                    label: Number
+                    type: string
+                  - name: label
+                    label: What it counts
+                    type: string
           - name: about_title
             label: Heading of the About part
             type: string
@@ -443,6 +489,21 @@ content:
             label: Spotify artist code
             type: string
             description: "The part after /artist/ in the Spotify address."
+          - name: faq_title
+            label: Heading of the questions block
+            type: string
+          - name: faq
+            label: Questions and answers (home page)
+            type: object
+            list: true
+            description: "Short facts as questions. Google reads them and can use them in the search results."
+            fields:
+              - name: q
+                label: Question
+                type: string
+              - name: a
+                label: Answer
+                type: text
 
       - name: links
         label: Links

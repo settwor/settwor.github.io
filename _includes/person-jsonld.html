@@ -1,0 +1,28 @@
+{%- comment -%}
+  The artist as structured data (schema.org Person). It is printed in full wherever
+  a page says "this page is about SETTWOR", so Google never has to look for it on another page.
+  Facts shown here are the same as on the website. Edit them here, in one place.
+{%- endcomment -%}
+        {
+            "@type": "Person",
+            "@id": "{{ site.url }}/#artist",
+            "name": "SETTWOR",
+            "alternateName": ["Setwor", "Сеттвор", "Сетвор"],
+            "url": "{{ site.url }}/",
+            "image": "{{ site.url }}/images/main.jpg",
+            "jobTitle": "Music producer",
+            "description": "Music producer specializing in phonk, Brazilian funk and dance/electronic music, originally from Ukraine and based in Poland.",
+            "birthDate": "2007-02-08",
+            "birthPlace": { "@type": "Place", "name": "Kryvyi Rih, Ukraine" },
+            "nationality": { "@type": "Country", "name": "Ukraine" },
+            "homeLocation": { "@type": "Place", "name": "Poland" },
+            "knowsAbout": ["Phonk", "Brazilian funk", "Electronic dance music", "Music production"],
+            "sameAs": [
+                {%- for item in site.data.links.follow %}
+                {{ item.url | jsonify }}{% unless forloop.last %},{% endunless %}
+                {%- endfor %}
+                {%- for item in site.data.links.elsewhere %},
+                {{ item.url | jsonify }}
+                {%- endfor %}
+            ]
+        }

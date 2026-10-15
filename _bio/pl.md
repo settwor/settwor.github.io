@@ -10,19 +10,73 @@ photo: /images/main.jpg
 photo_alt: SETTWOR
 photo_caption: SETTWOR w Warszawie, Polska, 2026
 faq_title: Pytania
+snapshot:
+- label: Urodzony
+  value: 8 lutego 2007
+- label: Pochodzi z
+  value: Krzywy Róg, Ukraina
+- label: Mieszka
+  value: w Polsce (od 2022)
+- label: Gatunki
+  value: Phonk, brazylijski funk, EDM
+- label: Aktywny od
+  value: '2021'
+- label: Kontakt
+  value: settwor@gmail.com
+highlights:
+- year: '2020'
+  text: Przyjmuje pseudonim SETTWOR i zakłada kanał na YouTube.
+- year: '2021'
+  text: Wydaje swój pierwszy utwór, Light Wave.
+- year: '2022'
+  text: Pierwszy utwór w stylu phonk — LUNATIC (8 maja). Przeprowadza się do Polski.
+- year: '2024'
+  text: Pierwszy album GET IT, Vol.1 z utworem GOT ME UP 2. Kanał na YouTube przekracza 10 mln wyświetleń.
+- year: '2025'
+  text: BREAKPOINT Mixtape (28 marca). OG KILLIN' (26 września) rozpoczyna serię wydawniczą. Pierwszy utwór w brazylijskim funku — NOITE SELVAGEM (12 grudnia).
+- year: '2026'
+  text: GOT ME UP 2 osiąga 1 000 000 odtworzeń (22 lutego), a łączna liczba odtworzeń sięga 2 milionów (17 maja).
+- year: '2026'
+  text: 'Pierwsze współprace: Mc Baiano w SE TU QUER (4 września) i MC GW w Toma Jatada (10 października).'
 faq:
+- q: Kim jest SETTWOR?
+  a: SETTWOR to producent muzyczny z Krzywego Rogu na Ukrainie, mieszkający w Polsce. Tworzy phonk, brazylijski funk i muzykę taneczną/elektroniczną, a muzykę wydaje od 2021 roku.
 - q: Kiedy urodził się SETTWOR?
   a: SETTWOR urodził się 8 lutego 2007 roku.
 - q: Skąd pochodzi SETTWOR?
   a: SETTWOR pochodzi z Krzywego Rogu w Ukrainie.
 - q: Gdzie mieszka SETTWOR?
-  a: SETTWOR mieszka w Polsce.
+  a: SETTWOR mieszka w Polsce, dokąd przeprowadził się w 2022 roku.
+- q: W jakich gatunkach muzycznych działa SETTWOR?
+  a: Głównie phonk i brazylijski funk, także EDM.
+- q: Jaki jest najpopularniejszy utwór SETTWOR?
+  a: GOT ME UP 2 z albumu GET IT, Vol.1. 22 lutego 2026 roku przekroczył 1 000 000 odtworzeń na wszystkich platformach i jest najbardziej udanym wydawnictwem w karierze artysty.
+- q: Kiedy SETTWOR wydał swój pierwszy utwór?
+  a: W 2021 roku — „Light Wave”. Pseudonim SETTWOR i kanał na YouTube pojawiły się w 2020 roku.
+- q: Kiedy ukazał się pierwszy utwór SETTWOR w stylu phonk?
+  a: 8 maja 2022 roku — „LUNATIC”.
+- q: Jaki był pierwszy album SETTWOR?
+  a: GET IT, Vol.1 (2024) był jego pierwszym pełnowymiarowym albumem. 28 marca 2025 roku ukazał się mixtape BREAKPOINT Mixtape.
+- q: Czy SETTWOR tworzy brazylijski funk?
+  a: Tak. Pierwszy utwór w tym stylu, „NOITE SELVAGEM”, ukazał się 12 grudnia 2025 roku. Artysta traktuje to jako eksperyment i nie planuje całkowicie przechodzić na brazylijski funk.
+- q: Z kim współpracował SETTWOR?
+  a: Z Mc Baiano przy wznowieniu „SE TU QUER” (4 września 2026) oraz z MC GW przy utworze „Toma Jatada” (10 października 2026). Oba wydawnictwa wsparło Authentic Records.
+- q: Ile odtworzeń ma SETTWOR?
+  a: Łączna liczba odtworzeń przekroczyła 1 milion 21 października 2025 roku, a 2 miliony 17 maja 2026 roku (licząc od pierwszego wydania w 2021 roku).
+- q: Czy SETTWOR ma kanał na YouTube?
+  a: 'Tak: youtube.com/c/settwor. Kanał powstał w 2020 roku, od 2 listopada 2022 roku ma status oficjalnego kanału muzyka, zawiera ponad 600 filmów, a 9 lipca 2024 roku przekroczył 10 milionów wyświetleń.'
+- q: Czy SETTWOR wydaje muzykę regularnie?
+  a: We wrześniu 2025 roku uruchomił serię wydawniczą — nowy utwór co drugi piątek. Po „XEREQUINHA NERVOSA” seria jest wstrzymana.
+- q: Gdzie posłuchać SETTWOR?
+  a: Na Spotify, Apple Music, YouTube i innych platformach. Linki do każdego wydania są na stronie Releases tego serwisu.
+- q: Jakie są oficjalne media społecznościowe SETTWOR?
+  a: Spotify, YouTube (youtube.com/c/settwor), Instagram (instagram.com/settwor) i Telegram (settw0r.t.me). Wszystkie linki są zebrane na tej stronie.
+- q: Czy mogę używać zdjęć SETTWOR?
+  a: Tak. Zdjęcia na tej stronie można swobodnie wykorzystywać z podaniem autora na licencji Creative Commons BY 4.0. Jak podać autora, wyjaśnia strona licencji zdjęć.
 - q: Jaki jest adres e-mail do kontaktu z SETTWOR?
   a: settwor@gmail.com
 - q: Jaki wzrost ma SETTWOR?
   a: 173 cm
-- q: W jakich gatunkach muzycznych działa SETTWOR?
-  a: Głównie phonk i brazylijski funk, także EDM.
 refs_title: "Przypisy"
 sources:
 - title: "SETTWOR — strona wykonawcy"
@@ -136,6 +190,12 @@ SETTWOR to producent muzyczny specjalizujący się w [phonku](https://en.wikiped
 
 SETTWOR jest jednym z aktywnie słuchanych artystów phonk na platformie [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio), gdzie jego utwory regularnie zdobywają odsłuchy i przyciągają nowych słuchaczy.[\[2\]](#ref-2)
 
+### Informacje osobiste
+
+Wzrost SETTWOR wynosi 173 cm.
+
+Od 2022 roku mieszka w [Polsce](https://en.wikipedia.org/wiki/Poland).
+
 ## Biografia
 
 ### Wczesne lata
@@ -209,12 +269,6 @@ Wraz z premierą utworu [OG KILLIN’](/releases.html#release-og-killin), SETTWO
 - [BREAKPOINT Mixtape](/releases.html#release-breakpoint-mixtape) (2025) — wydawnictwo, które zapoczątkowało zmianę głównego stylu muzycznego oraz częściowe odejście od gatunku phonk.
 - [NOITE SELVAGEM](/releases.html#release-noite-selvagem) (2025) — pierwszy utwór SETTWOR w stylu [brazylijskiego funku](https://en.wikipedia.org/wiki/Funk_carioca).
 - [SE TU QUER](/releases.html#release-se-tu-quer) (2026) — pierwsza współpraca SETTWOR z innym artystą.
-
-## Informacje osobiste
-
-Wzrost SETTWOR wynosi 173 cm.
-
-Od 2022 roku mieszka w [Polsce](https://en.wikipedia.org/wiki/Poland).
 
 ## Historia utworów
 

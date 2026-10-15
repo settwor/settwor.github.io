@@ -1,7 +1,7 @@
 /* =============================================================
    SETTWOR — main.js
    1. Mobile menu   2. Cookie consent + Google Analytics
-   3. Contents list of a biography   4. Current section in the left rail
+   3. Biography sections and folding parts   4. Current section in the left rail
    5. Photographs: year tabs, picture viewer, fallback to the big picture
    6. Footer year   7. Offline cache (sw.js)
    8. Motion (header, reveal, buttons, tilt)   9. Releases: preview window
@@ -117,11 +117,15 @@
         }
     });
 
-    /* ---------- 3. Contents list of a biography (made from its headings) ---------- */
+    /* ---------- 3. Biography: one long page, the contents list in the left column ---------- */
+    /* The biography stays one continuous text. Only the contents list is built here,
+       from the big parts (h2), so the left column can jump to them. */
+    var bioFlow = document.querySelector('[data-bio-flow]');
     var autoToc = document.querySelector('[data-toc-auto] .rail-list');
-    var bioHeadings = document.querySelectorAll('.bio__body h2, .bio__refs h2');
-    if (autoToc && bioHeadings.length) {
-        bioHeadings.forEach(function (heading, index) {
+
+    if (bioFlow && autoToc) {
+        var bioHeads = Array.prototype.slice.call(bioFlow.querySelectorAll('.bio__body h2, .faq__title, #refs-title'));
+        bioHeads.forEach(function (heading, index) {
             if (!heading.id) heading.id = 'part-' + (index + 1);
             var item = document.createElement('li');
             var link = document.createElement('a');

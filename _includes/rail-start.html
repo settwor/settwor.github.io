@@ -15,6 +15,7 @@
         <li><a class="rail-link" href="#video"><span class="rail-link__name">Popular video</span></a></li>
         <li><a class="rail-link" href="#spotify"><span class="rail-link__name">Spotify</span></a></li>
         <li><a class="rail-link" href="#photos"><span class="rail-link__name">Photographs</span></a></li>
+        <li><a class="rail-link" href="#faq"><span class="rail-link__name">Questions</span></a></li>
     </ul>
 </nav>
 {%- elsif page.rail == "bio" %}
@@ -83,7 +84,7 @@
     <h2 class="rail-block__title" id="rail-site">On this site</h2>
     <ul class="rail-list">
         <li><a class="rail-link" href="/releases.html"><span class="rail-link__name">All releases</span></a></li>
-        <li><a class="rail-link" href="{{ first_bio.url }}"><span class="rail-link__name">Biography</span></a></li>
+        <li><a class="rail-link" href="{{ first_bio.url }}" data-bio-link><span class="rail-link__name">Biography</span></a></li>
         <li><a class="rail-link" href="/photo.html"><span class="rail-link__name">Photographs</span></a></li>
         <li><a class="rail-link" href="/news/"><span class="rail-link__name">News</span></a></li>
     </ul>

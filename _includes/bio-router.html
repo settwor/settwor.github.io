@@ -1,0 +1,45 @@
+{%- comment -%}
+  Opens the biography in the language of the visitor.
+  - Links marked data-bio-link (Biography in the menus) lead to the visitor's language.
+  - The language the visitor picks in the language list is remembered.
+  - The address of the English biography sends visitors with another browser language
+    to their own biography. Other biography pages are never redirected, so people who
+    come from Google in a given language always get that language.
+  Ukrainian browsers get English (there is no Ukrainian version yet), never Russian.
+  The list of languages comes from the folder _bio, so a new language works at once.
+{%- endcomment -%}
+    <script>
+    (function () {
+        var BIO = { {% for item in site.bio %}{{ item.lang | jsonify }}: {{ item.url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %} };
+        var DEF = 'en', KEY = 'settwor-bio-lang';
+        if (!BIO[DEF]) return;
+        function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+        function remember(code) { try { localStorage.setItem(KEY, code); } catch (e) { /* storage unavailable */ } }
+        function wanted() {
+            var saved = stored();
+            if (saved && BIO[saved]) return saved;
+            var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || DEF];
+            for (var i = 0; i < list.length; i++) {
+                var code = String(list[i]).toLowerCase().split('-')[0];
+                if (BIO[code]) return code;
+                if (code === 'uk') break;
+            }
+            return DEF;
+        }
+        function plain(path) { return path.replace(/\.html$/, '').replace(/\/$/, ''); }
+        if (plain(location.pathname) === plain(BIO[DEF]) && wanted() !== DEF) {
+            location.replace(BIO[wanted()] + location.hash);
+            return;
+        }
+        function pointLinks() {
+            var target = BIO[wanted()];
+            Array.prototype.forEach.call(document.querySelectorAll('a[data-bio-link]'), function (a) { a.setAttribute('href', target); });
+        }
+        document.addEventListener('DOMContentLoaded', pointLinks);
+        document.addEventListener('click', function (event) {
+            var a = event.target.closest && event.target.closest('a[hreflang]');
+            var code = a && a.getAttribute('hreflang');
+            if (code && BIO[code]) { remember(code); pointLinks(); }
+        });
+    })();
+    </script>

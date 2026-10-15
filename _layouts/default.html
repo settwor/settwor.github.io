@@ -49,6 +49,7 @@
 {%- endif %}
 {%- endif %}
     <meta name="theme-color" content="#f6f6f6">
+    <link rel="alternate" type="application/atom+xml" title="SETTWOR News" href="/feed.xml">
 
     <!-- Google Search Console ownership verification: do not remove -->
     <meta name="google-site-verification" content="85QeaPD1bZhDauEhX-KQNN8-4ZBrGAfRE7DqocyOwxE">
@@ -70,11 +71,13 @@
 {%- endif %}
     <meta name="twitter:card" content="{% if page.image and page.image != "" %}summary_large_image{% else %}summary{% endif %}">
 
+{% include bio-router.html %}
     <script>document.documentElement.className+=" js";setTimeout(function(){if(!window.__ready)document.documentElement.className+=" no-reveal"},3000)</script>
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="/fonts.css">
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/main.js" defer></script>
+    {% include onesignal.html %}
 </head>
 
 <body>

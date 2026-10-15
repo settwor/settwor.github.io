@@ -1,0 +1,12 @@
+{%- comment -%}
+  "Get new articles" box. A website cannot push messages by itself, so people follow
+  the news with the feed (/feed.xml) in any RSS reader or, when OneSignal is set up
+  (onesignal_app_id in _config.yml), with the bell in the corner of the page.
+{%- endcomment -%}
+<section class="subscribe" aria-labelledby="subscribe-title">
+    <h2 class="subscribe__title" id="subscribe-title">Get new articles</h2>
+    <p class="subscribe__text">New releases and news appear here first.{% if site.onesignal_app_id and site.onesignal_app_id != "" %} Press the bell in the corner of the page to get a notification about every new article, or add the feed to an RSS reader such as Feedly or Inoreader.{% else %} Add the feed to an RSS reader such as Feedly or Inoreader.{% endif %}</p>
+    <div class="subscribe__actions">
+        <a class="btn btn--thin" href="/feed.xml" type="application/atom+xml">RSS feed</a>
+    </div>
+</section>

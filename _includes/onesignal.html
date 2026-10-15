@@ -1,0 +1,35 @@
+{%- comment -%}
+  Browser push notifications through OneSignal (free plan). Loaded only when
+  onesignal_app_id is filled in _config.yml. The service worker lives in /push/onesignal/
+  so that it does not clash with the site's own /sw.js.
+{%- endcomment -%}
+{%- if site.onesignal_app_id and site.onesignal_app_id != "" %}
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function (OneSignal) {
+            return OneSignal.init({
+                appId: {{ site.onesignal_app_id | jsonify }},
+                serviceWorkerPath: "push/onesignal/OneSignalSDKWorker.js",
+                serviceWorkerParam: { scope: "/push/onesignal/" },
+                notifyButton: {
+                    enable: true,
+                    size: "medium",
+                    prenotify: false,
+                    showCredit: false,
+                    text: {
+                        "tip.state.unsubscribed": "Get notified about new articles",
+                        "tip.state.subscribed": "You are subscribed to new articles",
+                        "tip.state.blocked": "Notifications are blocked in your browser",
+                        "message.action.subscribed": "Done! You will get new articles.",
+                        "message.action.resubscribed": "You are subscribed again.",
+                        "message.action.unsubscribed": "You will not get notifications any more.",
+                        "dialog.main.title": "Notifications",
+                        "dialog.main.button.subscribe": "SUBSCRIBE",
+                        "dialog.main.button.unsubscribe": "UNSUBSCRIBE"
+                    }
+                }
+            });
+        });
+    </script>
+{%- endif %}

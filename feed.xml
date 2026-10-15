@@ -1,0 +1,35 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+{%- comment -%}
+  The news feed (Atom). Readers such as Feedly or Inoreader, e-mail services and
+  automatic posting tools use it to learn about new articles. It is made from the
+  folder _posts, so a new article appears here by itself.
+{%- endcomment -%}
+{%- assign newest = site.posts | first -%}
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>SETTWOR News</title>
+    <subtitle>{{ site.description | xml_escape }}</subtitle>
+    <link rel="self" type="application/atom+xml" href="{{ "/feed.xml" | absolute_url }}"/>
+    <link rel="alternate" type="text/html" href="{{ "/news/" | absolute_url }}"/>
+    <id>{{ "/news/" | absolute_url }}</id>
+    <updated>{{ newest.updated | default: newest.date | date_to_xmlschema }}</updated>
+    <author>
+        <name>SETTWOR</name>
+        <uri>{{ "/" | absolute_url }}</uri>
+    </author>
+{%- for post in site.posts limit: 20 %}
+{%- assign entry_url = post.legacy_url | default: post.url | uri_escape | absolute_url %}
+    <entry>
+        <title>{{ post.title | xml_escape }}</title>
+        <link rel="alternate" type="text/html" href="{{ entry_url | xml_escape }}"/>
+        <id>{{ entry_url | xml_escape }}</id>
+        <published>{{ post.date | date_to_xmlschema }}</published>
+        <updated>{{ post.updated | default: post.date | date_to_xmlschema }}</updated>
+        {%- if post.description and post.description != "" %}
+        <summary>{{ post.description | xml_escape }}</summary>
+        {%- endif %}
+    </entry>
+{%- endfor %}
+</feed>

@@ -5,6 +5,17 @@ hero:
   title: SETTWOR
   tagline: Phonk and Brazilian funk producer
   note: The official website. From Kryvyi Rih, Ukraine, based in Poland, active since 2021.
+  # The big buttons under the name. The second one always opens the newest release.
+  listen_label: Listen on Spotify
+  latest_label: Newest release
+  # Three numbers under the buttons (they were reached on the dates in the biography; update them when they grow).
+  stats:
+    - value: 2M+
+      label: Streams across platforms
+    - value: 10M+
+      label: YouTube views
+    - value: "2021"
+      label: Active since
 
 about_title: About SETTWOR
 # Markdown: a blank line starts a new paragraph, [text](https://address) makes a link.
@@ -36,3 +47,23 @@ video:
   youtube_id: 6TUiT21nJd8
   title: SETTWOR — popular video on YouTube
 spotify_artist_id: 5BD8hsAGp1fwJKcnlQWjGf
+
+# Questions and answers on the home page (Google reads them too).
+faq_title: Questions about SETTWOR
+faq:
+  - q: Who is SETTWOR?
+    a: SETTWOR is a music producer from Kryvyi Rih, Ukraine, based in Poland. He makes phonk, Brazilian funk and dance/electronic music and has released music since 2021.
+  - q: Which genres does SETTWOR work in?
+    a: Mainly phonk and Brazilian funk, also EDM.
+  - q: What is SETTWOR's most popular track?
+    a: GOT ME UP 2, from the album GET IT, Vol.1. It passed 1,000,000 streams across all platforms on 22 February 2026 and is the most successful release of his career.
+  - q: When did SETTWOR release his first track?
+    a: In 2021, with "Light Wave". He took the name SETTWOR and opened his YouTube channel in 2020.
+  - q: Who has SETTWOR collaborated with?
+    a: With Mc Baiano on the re-release of "SE TU QUER" (4 September 2026) and with MC GW on "Toma Jatada" (10 October 2026). Both releases were supported by Authentic Records.
+  - q: Where can I listen to SETTWOR?
+    a: On Spotify, Apple Music, YouTube and other platforms. Links for every release are on the Releases page of this website.
+  - q: What are SETTWOR's official social media?
+    a: Spotify, YouTube (youtube.com/c/settwor), Instagram (instagram.com/settwor) and Telegram (settw0r.t.me). All of them are linked on this website.
+  - q: How can I contact SETTWOR?
+    a: By email at settwor@gmail.com.

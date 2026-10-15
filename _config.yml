@@ -34,6 +34,8 @@ defaults:
       path: "_bio"
     values:
       layout: bio
+      # left column of a biography: the list of its sections
+      rail: bio
       license_note: true
       order: 99
 
@@ -74,3 +76,7 @@ exclude:
   - .pages.yml
   - Gemfile
   - Gemfile.lock
+
+# Browser push notifications (bell in the corner). Paste the App ID from onesignal.com here
+# (see docs/news-guide-ru.md). While it is empty, nothing is loaded and no bell is shown.
+onesignal_app_id: ""

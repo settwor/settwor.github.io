@@ -1,0 +1,17 @@
+# Small texts around the biography (one block per language code).
+# A new biography language needs a block here too; without it English texts are used.
+en:
+  facts_title: Key facts
+  moments_title: Key moments
+ru:
+  facts_title: Главное
+  moments_title: Ключевые моменты
+pl:
+  facts_title: Najważniejsze fakty
+  moments_title: Kluczowe momenty
+es:
+  facts_title: Datos clave
+  moments_title: Momentos clave
+pt:
+  facts_title: Dados principais
+  moments_title: Momentos-chave

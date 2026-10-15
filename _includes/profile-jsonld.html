@@ -1,0 +1,16 @@
+{%- comment -%}
+  A ProfilePage (the "Profile page" report in Google Search Console).
+  Google wants the person INSIDE the page's own data, so the full Person is nested here.
+  Usage: include profile-jsonld.html with url, name and lang.
+{%- endcomment -%}
+        {
+            "@type": "ProfilePage",
+            "@id": "{{ include.url }}#profile",
+            "url": {{ include.url | jsonify }},
+            "name": {{ include.name | jsonify }},
+            "inLanguage": {{ include.lang | jsonify }},
+            "dateModified": {{ site.time | date_to_xmlschema | jsonify }},
+            "isPartOf": { "@type": "WebSite", "@id": "{{ site.url }}/#website", "name": "SETTWOR", "url": "{{ site.url }}/" },
+            "mainEntity":
+{% include person-jsonld.html %}
+        }

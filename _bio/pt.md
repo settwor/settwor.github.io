@@ -10,19 +10,73 @@ photo: /images/main.jpg
 photo_alt: SETTWOR
 photo_caption: SETTWOR em Varsóvia, Polônia, 2026
 faq_title: Perguntas e respostas
+snapshot:
+- label: Nascimento
+  value: 8 de fevereiro de 2007
+- label: Origem
+  value: Kryvyi Rih, Ucrânia
+- label: Mora em
+  value: Polônia (desde 2022)
+- label: Gêneros
+  value: Phonk, funk brasileiro, EDM
+- label: Ativo desde
+  value: '2021'
+- label: Contato
+  value: settwor@gmail.com
+highlights:
+- year: '2020'
+  text: Adota o nome artístico SETTWOR e cria seu canal no YouTube.
+- year: '2021'
+  text: Lança sua primeira faixa, Light Wave.
+- year: '2022'
+  text: Primeira faixa de phonk, LUNATIC (8 de maio). Muda-se para a Polônia.
+- year: '2024'
+  text: Primeiro álbum, GET IT, Vol.1, com GOT ME UP 2. O canal no YouTube ultrapassa 10 milhões de visualizações.
+- year: '2025'
+  text: BREAKPOINT Mixtape (28 de março). OG KILLIN' (26 de setembro) inicia uma série de lançamentos. Primeira faixa de funk brasileiro, NOITE SELVAGEM (12 de dezembro).
+- year: '2026'
+  text: GOT ME UP 2 ultrapassa 1.000.000 de reproduções (22 de fevereiro) e o total chega a 2 milhões (17 de maio).
+- year: '2026'
+  text: 'Primeiras colaborações: Mc Baiano em SE TU QUER (4 de setembro) e MC GW em Toma Jatada (10 de outubro).'
 faq:
+- q: Quem é SETTWOR?
+  a: SETTWOR é um produtor musical de Kryvyi Rih (Ucrânia) que mora na Polônia. Faz phonk, funk brasileiro e música eletrônica/dançante e lança músicas desde 2021.
 - q: Quando SETTWOR nasceu?
   a: SETTWOR nasceu em 8 de fevereiro de 2007.
 - q: De onde é SETTWOR?
   a: SETTWOR é de Kryvyi Rih, na Ucrânia.
 - q: Onde SETTWOR mora?
-  a: SETTWOR mora na Polônia.
+  a: SETTWOR mora na Polônia, para onde se mudou em 2022.
+- q: Em quais gêneros SETTWOR trabalha?
+  a: Principalmente phonk e funk brasileiro, também EDM.
+- q: Qual é a faixa mais popular de SETTWOR?
+  a: GOT ME UP 2, do álbum GET IT, Vol.1. Em 22 de fevereiro de 2026 ultrapassou 1.000.000 de reproduções em todas as plataformas e é o lançamento de maior sucesso da carreira dele.
+- q: Quando SETTWOR lançou a primeira faixa?
+  a: Em 2021, com “Light Wave”. O nome SETTWOR e o canal no YouTube surgiram em 2020.
+- q: Quando SETTWOR lançou a primeira faixa de phonk?
+  a: Em 8 de maio de 2022, com “LUNATIC”.
+- q: Qual foi o primeiro álbum de SETTWOR?
+  a: GET IT, Vol.1 (2024) foi o primeiro álbum completo. A mixtape BREAKPOINT Mixtape saiu em 28 de março de 2025.
+- q: SETTWOR faz funk brasileiro?
+  a: Sim. A primeira faixa do gênero, “NOITE SELVAGEM”, saiu em 12 de dezembro de 2025. Ele trata o funk brasileiro como um experimento e não planeja migrar totalmente para ele.
+- q: Com quem SETTWOR colaborou?
+  a: Com Mc Baiano no relançamento de “SE TU QUER” (4 de setembro de 2026) e com MC GW em “Toma Jatada” (10 de outubro de 2026). Os dois lançamentos tiveram o apoio da Authentic Records.
+- q: Quantas reproduções SETTWOR tem?
+  a: O total de reproduções passou de 1 milhão em 21 de outubro de 2025 e de 2 milhões em 17 de maio de 2026, contando desde o primeiro lançamento em 2021.
+- q: SETTWOR tem canal no YouTube?
+  a: 'Sim: youtube.com/c/settwor. Foi aberto em 2020; desde 2 de novembro de 2022 é canal oficial de músico, tem mais de 600 vídeos e passou de 10 milhões de visualizações em 9 de julho de 2024.'
+- q: SETTWOR lança música com regularidade?
+  a: Em setembro de 2025 ele iniciou uma série de lançamentos com uma faixa nova a cada duas sextas-feiras. Depois de “XEREQUINHA NERVOSA”, a série está em pausa.
+- q: Onde posso ouvir SETTWOR?
+  a: No Spotify, Apple Music, YouTube e em outras plataformas. Os links de cada lançamento estão na página Releases deste site.
+- q: Quais são as redes oficiais de SETTWOR?
+  a: Spotify, YouTube (youtube.com/c/settwor), Instagram (instagram.com/settwor) e Telegram (settw0r.t.me). Todos os links estão reunidos neste site.
+- q: Posso usar as fotos de SETTWOR?
+  a: Sim. As fotografias deste site podem ser usadas livremente com crédito, sob a licença Creative Commons BY 4.0. A página da licença das fotos explica como dar o crédito.
 - q: Qual é o e-mail de SETTWOR?
   a: settwor@gmail.com
 - q: Qual é a altura de SETTWOR?
   a: 173 cm
-- q: Em quais gêneros SETTWOR trabalha?
-  a: Principalmente phonk e funk brasileiro, também EDM.
 refs_title: "Referências"
 sources:
 - title: "SETTWOR — página do artista"
@@ -136,6 +190,12 @@ SETTWOR é um produtor musical especializado em [phonk](https://en.wikipedia.org
 
 SETTWOR é um dos artistas de phonk mais ouvidos ativamente no [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio), onde suas faixas somam reproduções de forma constante e continuam atraindo novos ouvintes.[\[2\]](#ref-2)
 
+### Informações pessoais
+
+A altura de SETTWOR é 173 cm.
+
+Desde 2022, ele mora na [Polônia](https://en.wikipedia.org/wiki/Poland).
+
 ## Biografia
 
 ### Primeiros anos
@@ -209,12 +269,6 @@ Com o lançamento de [OG KILLIN'](/releases.html#release-og-killin), SETTWOR ini
 - [BREAKPOINT Mixtape](/releases.html#release-breakpoint-mixtape) (2025): um lançamento que marcou uma mudança em seu estilo musical principal e um afastamento parcial do phonk.
 - [NOITE SELVAGEM](/releases.html#release-noite-selvagem) (2025): a primeira faixa de SETTWOR no gênero [funk brasileiro](https://en.wikipedia.org/wiki/Funk_carioca).
 - [SE TU QUER](/releases.html#release-se-tu-quer) (2026): o primeiro trabalho de SETTWOR com outro artista.
-
-## Informações pessoais
-
-A altura de SETTWOR é 173 cm.
-
-Desde 2022, ele mora na [Polônia](https://en.wikipedia.org/wiki/Poland).
 
 ## Histórico das faixas
 
