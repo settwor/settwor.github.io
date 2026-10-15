@@ -34,7 +34,7 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
             {%- if home.hero.stats and home.hero.stats.size > 0 %}
             <dl class="hero__stats">
                 {%- for stat in home.hero.stats %}
-                <div class="hero__stat"><dt>{{ stat.label }}</dt><dd>{{ stat.value | replace: "{total}", hero_total | strip | replace: "{platforms}", hero_platforms | strip }}</dd></div>
+                <div class="hero__stat"><dt>{{ stat.label }}</dt><dd>{{ stat.value | replace: "[total]", hero_total | strip | replace: "[platforms]", hero_platforms | strip }}</dd></div>
                 {%- endfor %}
             </dl>
             {%- endif %}

@@ -10,10 +10,10 @@ hero:
   latest_label: Newest release
   # Three numbers under the buttons (they were reached on the dates in the biography; update them when they grow).
   stats:
-    # {total} and {platforms} are filled in by themselves from "Streams and views"
-    - value: "{total}"
+    # [total] and [platforms] are filled in by themselves from "Streams and views"
+    - value: "[total]"
       label: Plays and views, all platforms
-    - value: "{platforms}"
+    - value: "[platforms]"
       label: Streams on music platforms
     - value: "2021"
       label: Active since
