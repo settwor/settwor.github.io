@@ -505,6 +505,62 @@ content:
                 label: Answer
                 type: text
 
+      - name: streams
+        label: Streams and views
+        type: file
+        path: _data/streams.yml
+        format: yaml
+        fields:
+          - name: updated
+            label: Date of the numbers
+            type: date
+            options:
+              format: "yyyy-MM-dd"
+            description: "Shown as Updated under the numbers. Change it when you change the numbers below."
+          - name: show_breakdown
+            label: Show the split (platforms, clips, other videos)
+            type: boolean
+            default: true
+          - name: platforms
+            label: Streams on music platforms (typed by hand)
+            type: object
+            list: true
+            description: "One row per platform (Spotify, Apple Music, Pandora, Deezer ...) or one row for everything. The site adds them up. Take the numbers from the artist dashboards."
+            fields:
+              - name: name
+                label: Platform
+                type: string
+              - name: streams
+                label: Number of streams (digits only)
+                type: number
+              - name: as_of
+                label: Date of this number
+                type: date
+                options:
+                  format: "yyyy-MM-dd"
+          - name: youtube
+            label: YouTube
+            type: object
+            fields:
+              - name: handle
+                label: Channel name (after the @)
+                type: string
+              - name: channel_id
+                label: Channel ID (optional, starts with UC)
+                type: string
+              - name: track_videos
+                label: Clips of your tracks (video codes)
+                type: string
+                list: true
+                description: "The code after v= in the video address. Views of these videos are shown as music videos. All other videos of the channel are shown as other videos."
+              - name: clips_views_fallback
+                label: Music video views, typed by hand
+                type: number
+                description: "Used only until the automatic numbers appear."
+              - name: other_views_fallback
+                label: Other videos views, typed by hand
+                type: number
+
       - name: links
         label: Links
         type: file

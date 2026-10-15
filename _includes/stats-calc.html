@@ -1,0 +1,11 @@
+{%- comment -%} Calculates the numbers. Result variables: st_platforms, st_clips, st_other, st_total, st_date. {%- endcomment -%}
+{%- assign st = site.data.streams -%}
+{%- assign auto = site.data.auto_stats -%}
+{%- assign st_platforms = 0 -%}
+{%- for p in st.platforms -%}{%- assign st_platforms = st_platforms | plus: p.streams -%}{%- endfor -%}
+{%- if auto.youtube.clips_views != nil -%}
+  {%- assign st_clips = auto.youtube.clips_views -%}{%- assign st_other = auto.youtube.other_views -%}{%- assign st_date = auto.updated -%}
+{%- else -%}
+  {%- assign st_clips = st.youtube.clips_views_fallback | default: 0 -%}{%- assign st_other = st.youtube.other_views_fallback | default: 0 -%}{%- assign st_date = st.updated -%}
+{%- endif -%}
+{%- assign st_total = st_platforms | plus: st_clips | plus: st_other -%}

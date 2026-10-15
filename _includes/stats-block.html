@@ -1,0 +1,36 @@
+{%- include stats-calc.html -%}
+{%- assign st = site.data.streams -%}
+{%- if st_total > 0 %}
+        <section class="section numbers" id="numbers" aria-labelledby="numbers-title">
+            <h2 class="section-title" id="numbers-title">SETTWOR in numbers</h2>
+            <div class="numbers__total">
+                <span class="numbers__value" data-count="{{ st_total }}">{{ st_total }}</span>
+                <span class="numbers__label">plays and views across all platforms</span>
+            </div>
+            {%- if st.show_breakdown %}
+            <ul class="numbers__list">
+                {%- if st_platforms > 0 %}
+                <li><span class="numbers__n" data-count="{{ st_platforms }}">{{ st_platforms }}</span><span class="numbers__t">Streams on music platforms</span></li>
+                {%- endif %}
+                {%- if st_clips > 0 %}
+                <li><span class="numbers__n" data-count="{{ st_clips }}">{{ st_clips }}</span><span class="numbers__t">Views of music videos on YouTube</span></li>
+                {%- endif %}
+                {%- if st_other > 0 %}
+                <li><span class="numbers__n" data-count="{{ st_other }}">{{ st_other }}</span><span class="numbers__t">Views of other videos on the YouTube channel</span></li>
+                {%- endif %}
+            </ul>
+            {%- if st.platforms.size > 1 %}
+            <details class="numbers__more">
+                <summary>Streams by platform</summary>
+                <ul class="numbers__plat">
+                    {%- for p in st.platforms %}
+                    <li><span>{{ p.name }}</span><b data-count="{{ p.streams }}">{{ p.streams }}</b></li>
+                    {%- endfor %}
+                </ul>
+            </details>
+            {%- endif %}
+            {%- endif %}
+            {%- if st_date %}<p class="numbers__note">Updated {{ st_date | date: "%-d %B %Y" }}. YouTube is refreshed automatically, other platforms are added by hand.</p>{% endif %}
+        </section>
+        <script src="/js/stats.js" defer></script>
+{%- endif %}

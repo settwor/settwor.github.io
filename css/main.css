@@ -2842,3 +2842,95 @@ html.modal-open::-webkit-scrollbar {
 [data-push-open][hidden] {
     display: none;
 }
+
+/* ---------- Home: SETTWOR in numbers ---------- */
+.numbers__total {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.25rem 0 1.1rem;
+    border-block: 1px solid var(--color-line);
+}
+
+.numbers__value {
+    font-family: var(--font-bold);
+    font-size: clamp(2.4rem, 9vw, 3.6rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.numbers__label {
+    color: var(--color-muted);
+    font-size: 0.85rem;
+}
+
+.numbers__list,
+.numbers__plat {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.numbers__list li {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.15rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--color-line-soft);
+}
+
+.numbers__n {
+    font-family: var(--font-bold);
+    font-size: 1.35rem;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+}
+
+.numbers__t {
+    color: var(--color-muted);
+    font-size: 0.8rem;
+}
+
+.numbers__more {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.numbers__more summary {
+    cursor: pointer;
+}
+
+.numbers__plat li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-line-soft);
+}
+
+.numbers__plat b {
+    font-variant-numeric: tabular-nums;
+}
+
+.numbers__note {
+    margin-top: 0.75rem;
+    color: var(--color-muted);
+    font-size: 0.72rem;
+}
+
+@media (min-width: 40rem) {
+    .numbers__list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .numbers__list li {
+        padding: 1rem 1rem 1rem 0;
+    }
+
+    .numbers__list li+li {
+        padding-left: 1rem;
+        border-left: 1px solid var(--color-line-soft);
+    }
+}

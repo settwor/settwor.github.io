@@ -1,0 +1,20 @@
+# Numbers of plays. Edit them in Pages CMS ("Streams and views").
+# YouTube numbers are updated by themselves every 3 hours (see tools/fetch-stats.py).
+# Everything else you type in by hand: take it from Spotify for Artists, Apple Music for Artists,
+# Pandora AMP, Deezer for Creators, your distributor report and so on.
+updated: 2026-10-15
+show_breakdown: true
+
+platforms:
+  - name: All streaming platforms (combined)
+    streams: 2000000
+    as_of: 2026-10-15
+
+youtube:
+  handle: settwor
+  channel_id: ""
+  # Videos that are clips of your tracks. Paste the code after v= (or a Shorts code). All other videos of the channel count as "other videos".
+  track_videos: []
+  # Used only until the automatic numbers appear (or if YouTube does not answer).
+  clips_views_fallback: 10000000
+  other_views_fallback: 0

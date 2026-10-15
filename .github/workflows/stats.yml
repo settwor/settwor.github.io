@@ -1,0 +1,38 @@
+# Updates the YouTube numbers on the site (_data/auto_stats.json) every 3 hours.
+# Needs the secret YOUTUBE_API_KEY (Settings -> Secrets and variables -> Actions).
+# Without it the workflow does nothing and the numbers from "Streams and views" are used.
+name: Update stats
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-stats
+  cancel-in-progress: false
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: |
+          pip install pyyaml
+          python3 tools/fetch-stats.py
+      - name: Save if changed
+        run: |
+          if [ -n "$(git status --porcelain _data/auto_stats.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add _data/auto_stats.json
+            git commit -m "Update stats"
+            git push
+          fi

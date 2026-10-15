@@ -1,0 +1,5 @@
+{%- comment -%} Short number: 12400000 -> 12.4M+, 2350 -> 2.3K+. Use: include num-compact.html n=... {%- endcomment -%}
+{%- assign n = include.n | plus: 0 -%}
+{%- if n >= 1000000 -%}{%- assign v = n | divided_by: 100000 -%}{%- assign whole = v | divided_by: 10 -%}{%- assign dec = v | modulo: 10 -%}{{ whole }}{% if dec > 0 %}.{{ dec }}{% endif %}M+
+{%- elsif n >= 1000 -%}{%- assign v = n | divided_by: 100 -%}{%- assign whole = v | divided_by: 10 -%}{%- assign dec = v | modulo: 10 -%}{{ whole }}{% if dec > 0 %}.{{ dec }}{% endif %}K+
+{%- else -%}{{ n }}{%- endif -%}
