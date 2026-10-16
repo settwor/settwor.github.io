@@ -2,6 +2,10 @@
 
 Every change of the site raises the version. The archive is named `settwor-site-vX.Y.zip`.
 
+## 1.7
+- Archives no longer contain data files (everything the owner edits in Pages CMS: `_data/*.yml`, `_data/platforms/`, `_posts`, `_releases`, `_bio`). Earlier archives (1.1 to 1.6) did, and they overwrote the plays and texts the owner had entered. The owner restores them from the GitHub history.
+- The Apple Music artist link and the Streams page heading text now have defaults in the templates, so no data file has to be shipped.
+
 ## 1.6
 - Black panel: the big number is now the streams on music platforms only. Under it, a smaller number "with YouTube video views" (music platforms plus the whole YouTube channel).
 

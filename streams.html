@@ -17,7 +17,7 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
 {%- assign sp = site.data.pages.streams -%}
         <header class="page-head">
             <h1 class="page-head__title">{{ sp.title | default: "Streams" }}</h1>
-            <p class="page-head__lead">{{ sp.lead }}</p>
+            <p class="page-head__lead">{{ sp.lead | default: "How many times the music of SETTWOR has been played, platform by platform, and how many people watched the videos on YouTube." }}</p>
         </header>
 
         <div class="numbers numbers--page" id="numbers">
@@ -45,6 +45,7 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 {%- for key in st_plat_keys %}
                 {%- assign row = st_data[key] %}
                 {%- assign purl = row.url | default: "" %}
+                {%- if purl == "" and key == "apple_music" %}{%- assign purl = st_apple_url %}{%- endif %}
                 {%- if purl != "" %}{%- unless seen contains purl %}
                 {%- assign seen = seen | append: purl | append: " " %}
                 <li><a class="profile" href="{{ purl }}" rel="me noopener" target="_blank"><span class="profile__name">{{ st_plat_names[forloop.index0] }}</span><span class="profile__host">{{ purl | remove: "https://" | remove: "http://" | remove: "www." }}</span><i aria-hidden="true">&nearr;</i></a></li>
