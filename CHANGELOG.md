@@ -2,6 +2,12 @@
 
 Every change of the site raises the version. The archive is named `settwor-site-vX.Y.zip`.
 
+## 2.1
+- Artist links added all over the site: new block "Listen to SETTWOR" in the right column, a new "Listen" column in the footer (every page), the Streams page "Official profiles" and the structured data (`sameAs`). Links: Spotify, Apple Music, Pandora, YouTube Music (the last two were given by the owner).
+- New file `_includes/artist-urls.html` keeps the checked links as defaults, so no data file is shipped. A link filled in Pages CMS > Streams > platform still wins.
+- Footer has 4 columns on wide screens (was 3). `sw.js` cache version v9.
+- Files: new `_includes/artist-urls.html`; changed `_includes/rail-follow.html`, `_includes/footer.html`, `_includes/person-jsonld.html`, `_includes/stats-calc.html`, `_includes/stats-details.html`, `streams.html`, `css/main.css`, `sw.js`, `VERSION`, `CHANGELOG.md`, `AI-NOTES.md`.
+
 ## 2.0
 - Black panel (home and Streams): numbers changed by the owner's decision. The BIG number is now music platforms + YouTube release videos. The smaller number under it is music platforms + the whole YouTube channel (release videos and all other videos). The bar and the list under the numbers are unchanged: only music platforms and release videos.
 - Files: `_includes/stats-panel.html`, `_includes/stats-calc.html` (comment only), `VERSION`, `CHANGELOG.md`, `AI-NOTES.md`.

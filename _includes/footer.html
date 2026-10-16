@@ -25,6 +25,16 @@
                 {%- endfor %}
             </ul>
         </nav>
+        {%- include artist-urls.html %}
+        <nav aria-labelledby="footer-listen">
+            <h2 class="footer-title" id="footer-listen">Listen</h2>
+            <ul class="footer-links">
+                <li><a href="{{ au_spotify }}" rel="me noopener">Spotify</a></li>
+                <li><a href="{{ au_apple }}" rel="me noopener">Apple Music</a></li>
+                <li><a href="{{ au_pandora }}" rel="me noopener">Pandora</a></li>
+                <li><a href="{{ au_ytm }}" rel="me noopener">YouTube Music</a></li>
+            </ul>
+        </nav>
         <nav aria-labelledby="footer-legal">
             <h2 class="footer-title" id="footer-legal">Legal</h2>
             <ul class="footer-links">

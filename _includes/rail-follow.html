@@ -8,6 +8,17 @@
     </ul>
 </section>
 
+{%- include artist-urls.html -%}
+<section class="rail-block" aria-labelledby="rail-listen">
+    <h2 class="rail-block__title" id="rail-listen">Listen to SETTWOR</h2>
+    <ul class="rail-list">
+        <li><a class="rail-link" href="{{ au_spotify }}" rel="me noopener"><span class="rail-link__name">Spotify</span></a></li>
+        <li><a class="rail-link" href="{{ au_apple }}" rel="me noopener"><span class="rail-link__name">Apple Music</span></a></li>
+        <li><a class="rail-link" href="{{ au_pandora }}" rel="me noopener"><span class="rail-link__name">Pandora</span></a></li>
+        <li><a class="rail-link" href="{{ au_ytm }}" rel="me noopener"><span class="rail-link__name">YouTube Music</span></a></li>
+    </ul>
+</section>
+
 <section class="rail-block" aria-labelledby="rail-contact">
     <h2 class="rail-block__title" id="rail-contact">Contact</h2>
     <p class="rail-text"><a href="mailto:{{ site.data.links.email }}">{{ site.data.links.email }}</a></p>

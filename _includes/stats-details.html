@@ -23,7 +23,9 @@
         {%- assign pct = rn | times: 100 | divided_by: st_plat_total -%}
         {%- assign purl = row.url | default: "" -%}
         {%- if purl == "" and key == "spotify" -%}{%- capture purl -%}https://open.spotify.com/artist/{{ site.data.home.spotify_artist_id }}{%- endcapture -%}{%- endif -%}
-        {%- if purl == "" and key == "apple_music" -%}{%- assign purl = st_apple_url -%}{%- endif %}
+        {%- if purl == "" and key == "apple_music" -%}{%- assign purl = au_apple -%}{%- endif -%}
+        {%- if purl == "" and key == "pandora" -%}{%- assign purl = au_pandora -%}{%- endif -%}
+        {%- if purl == "" and key == "youtube_music" -%}{%- assign purl = au_ytm -%}{%- endif %}
         <li class="plat c-{{ key }}">
             <div class="plat__top">
                 <i class="plat__badge" aria-hidden="true"></i>

@@ -45,7 +45,9 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 {%- for key in st_plat_keys %}
                 {%- assign row = st_data[key] %}
                 {%- assign purl = row.url | default: "" %}
-                {%- if purl == "" and key == "apple_music" %}{%- assign purl = st_apple_url %}{%- endif %}
+                {%- if purl == "" and key == "apple_music" %}{%- assign purl = au_apple %}{%- endif %}
+                {%- if purl == "" and key == "pandora" %}{%- assign purl = au_pandora %}{%- endif %}
+                {%- if purl == "" and key == "youtube_music" %}{%- assign purl = au_ytm %}{%- endif %}
                 {%- if purl != "" %}{%- unless seen contains purl %}
                 {%- assign seen = seen | append: purl | append: " " %}
                 <li><a class="profile" href="{{ purl }}" rel="me noopener" target="_blank"><span class="profile__name">{{ st_plat_names[forloop.index0] }}</span><span class="profile__host">{{ purl | remove: "https://" | remove: "http://" | remove: "www." }}</span><i aria-hidden="true">&nearr;</i></a></li>

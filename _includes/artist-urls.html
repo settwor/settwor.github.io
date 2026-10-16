@@ -1,0 +1,13 @@
+{%- comment -%}
+  The checked artist pages (defaults, so no data file has to be shipped). If a link is filled in
+  Pages CMS > Streams > platform > "Your artist page link", that link wins.
+  Variables: au_spotify, au_apple, au_pandora, au_ytm
+{%- endcomment -%}
+{%- assign au_spotify = site.data.platforms.spotify.url | default: "" -%}
+{%- if au_spotify == "" -%}{%- capture au_spotify -%}https://open.spotify.com/artist/{{ site.data.home.spotify_artist_id | default: "5BD8hsAGp1fwJKcnlQWjGf" }}{%- endcapture -%}{%- endif -%}
+{%- assign au_apple = site.data.platforms.apple_music.url | default: "" -%}
+{%- if au_apple == "" -%}{%- assign au_apple = "https://music.apple.com/us/artist/settwor/1526983418" -%}{%- endif -%}
+{%- assign au_pandora = site.data.platforms.pandora.url | default: "" -%}
+{%- if au_pandora == "" -%}{%- assign au_pandora = "https://www.pandora.com/artist/settwor/ARZ4r4pddcgPq3c" -%}{%- endif -%}
+{%- assign au_ytm = site.data.platforms.youtube_music.url | default: "" -%}
+{%- if au_ytm == "" -%}{%- assign au_ytm = "https://music.youtube.com/channel/UCr8rodS7kLD36B_8B4028kg" -%}{%- endif -%}

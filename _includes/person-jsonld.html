@@ -21,6 +21,10 @@
                 {%- for item in site.data.links.follow %}
                 {{ item.url | jsonify }}{% unless forloop.last %},{% endunless %}
                 {%- endfor %}
+                {%- include artist-urls.html %},
+                {{ au_apple | jsonify }},
+                {{ au_pandora | jsonify }},
+                {{ au_ytm | jsonify }}
                 {%- for item in site.data.links.elsewhere %},
                 {{ item.url | jsonify }}
                 {%- endfor %}
