@@ -2,6 +2,10 @@
 
 Every change of the site raises the version. The archive is named `settwor-site-vX.Y.zip`.
 
+## 1.5
+- Streams page: the block "How the numbers are counted" removed.
+- New file AI-NOTES.md: project memory and rules for any AI that gets the site, with a line to paste into a new chat.
+
 ## 1.4
 - Streams page: the status line has only the Live / Verified badge, no text and no date.
 - Streams page: the second part of the YouTube bar (Other videos) is visible.

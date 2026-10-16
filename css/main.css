@@ -3310,27 +3310,6 @@ a.numbers__hero--link:hover .numbers__cta {
     font-style: normal;
 }
 
-.method {
-    display: grid;
-    gap: 0.7rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    color: var(--color-text-soft);
-    font-size: 0.88rem;
-    line-height: 1.55;
-}
-
-.method li {
-    padding-left: 1rem;
-    border-left: 3px solid var(--color-line);
-}
-
-.method a {
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-}
-
 /* bars grow and the cards appear when the block comes into view (js/stats.js) */
 .numbers.is-armed .seg,
 .numbers.is-armed .bar>i {
