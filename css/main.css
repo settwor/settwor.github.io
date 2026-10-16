@@ -3055,12 +3055,23 @@ a.numbers__hero--link:hover .numbers__cta {
 
 .status--live .status__dot,
 .tag--live i {
-    animation: pulse 2s ease-out infinite;
+    position: relative;
 }
 
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.6); }
-    100% { box-shadow: 0 0 0 0.5rem rgba(29, 185, 84, 0); }
+/* the green ring grows and fades (only transform and opacity, so the page is not repainted all the time) */
+.status--live .status__dot::after,
+.tag--live i::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #1db954;
+    animation: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(3); opacity: 0; }
 }
 
 /* headings of the groups */
@@ -3334,30 +3345,31 @@ a.numbers__hero--link:hover .numbers__cta {
     font-style: normal;
 }
 
-/* bars grow and the cards appear when the block comes into view (js/stats.js) */
-.numbers.is-armed .seg,
-.numbers.is-armed .bar>i {
+/* bars grow and the cards appear when each card comes into view (js/stats.js) */
+.numbers.is-armed .numbers__hero:not(.is-seen) .seg,
+.numbers.is-armed .plat:not(.is-seen) .bar>i,
+.numbers.is-armed .yt:not(.is-seen) .bar>i {
     transform: scaleX(0);
 }
 
-.numbers.is-armed .plat,
-.numbers.is-armed .yt {
+.numbers.is-armed .plat:not(.is-seen),
+.numbers.is-armed .yt:not(.is-seen) {
     opacity: 0;
     transform: translateY(14px);
 }
 
-.numbers.is-in .seg,
-.numbers.is-in .bar>i {
+.numbers .is-seen .seg,
+.numbers .is-seen .bar>i {
     transform: scaleX(1);
-    transition: transform 1.3s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s;
+    transition: transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s;
 }
 
-.numbers.is-in .plat,
-.numbers.is-in .yt {
+.numbers .plat.is-seen,
+.numbers .yt.is-seen {
     opacity: 1;
     transform: none;
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    transition-delay: calc(var(--i, 0) * 70ms);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: calc(var(--i, 0) * 60ms);
 }
 
 @container numbers (min-width: 34rem) {
@@ -3496,4 +3508,22 @@ a.numbers__hero--link:hover .numbers__cta {
     .hero__title {
         animation-name: title-in-small;
     }
+}
+
+/* 2.4: lighter header on phones (a blur behind a moving page makes scrolling heavy) */
+@media (max-width: 39.99rem) {
+    .site-header.is-scrolled {
+        background: rgba(246, 246, 246, 0.97);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+}
+
+/* 2.4: the home "Key facts" (8 facts) in two even columns on every screen */
+.bio-facts--home .bio-facts__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.bio-facts--home {
+    margin-bottom: 1.75rem;
 }

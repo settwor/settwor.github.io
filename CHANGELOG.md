@@ -2,6 +2,22 @@
 
 Every change of the site raises the version. The archive is named `settwor-site-vX.Y.zip`.
 
+## 2.6
+- Three article files renamed so the date in the file name is the date of the article (it was the date the file was created): `2026-10-13-...Celebrates-Five-Years...` -> `2026-10-04-`, `2026-10-13-...Re-releases-SE-TU-QUER...` -> `2026-09-04-`, `2026-10-13-...Toma-Jatada` -> `2026-10-10-`. The addresses of the articles do not change (they were already built from the `date:` field).
+- Article "SE TU QUER Sets a New Record" published (text added, draft mark removed).
+- Files: `_posts` (content, given separately), `VERSION`, `CHANGELOG.md`. Delete the three old file names by hand.
+
+## 2.5
+- Home page: the heading "Key facts" above the facts is removed (kept only as a hidden label for screen readers).
+- Header: the "Streams" button is removed from the top bar. The Streams page still exists; it stays in the mobile menu and the black panel on the home page links to it.
+- Files: `index.html`, `_includes/header.html`, `VERSION`, `CHANGELOG.md`.
+
+## 2.4
+- Streams page on phones (lag, page jumping to the end): the cause was in `js/stats.js`. The whole Streams block was watched as one piece, and on the Streams page it is thousands of pixels tall, so on a phone it never counted as "in view": cards and bars stayed hidden, then everything started at once. Now every card is watched on its own and starts when it comes into view. A number keeps its height while it counts, the green "Live" dot animates only with transform/opacity, and on phones the header has no blur behind it. Checked with a phone-sized browser and a full-size set of platform data (page 7000 px tall): all 14 cards appear, no jumps.
+- Ukrainian biography added: new file `_bio/uk.md` (address `/bio/uk/`, button "Українська" in the language list and the footer, hreflang and sitemap are automatic). Ukrainian browsers now open the Ukrainian biography. The two block titles ("Головне", "Ключові моменти") are built into `_layouts/bio.html`, so `_data/bioui.yml` is untouched.
+- Home page: the facts table is replaced by the "Key facts" look from the biography (two even columns).
+- Files: `js/stats.js`, `css/main.css`, `sw.js` (cache version v12), `index.html`, `_layouts/bio.html`, `_includes/bio-router.html`, `VERSION`, `CHANGELOG.md`, `AI-NOTES.md`. New content file, given separately and "create only if missing": `_bio/uk.md`.
+
 ## 2.3
 - Home page on phones: the name SETTWOR is much smaller, the photo is smaller, spacing is tighter, the buttons are easier to tap, the first screen shows the text sooner.
 - Home page: the button "Newest release" is removed (on all screens). Under "Listen on Spotify" there is a row of quick links: Apple Music, YouTube Music, Pandora (links from `_includes/artist-urls.html`).

@@ -4,6 +4,10 @@ rail: bio
 ---
 {%- assign photo_src = page.photo | default: "/images/main.jpg" -%}
 {%- assign ui = site.data.bioui[page.lang] | default: site.data.bioui.en -%}
+{%- assign bio_facts_title = ui.facts_title -%}
+{%- assign bio_moments_title = ui.moments_title -%}
+{%- comment -%} Ukrainian texts are built in, so no data file has to be shipped. A block "uk" in _data/bioui.yml still wins. {%- endcomment -%}
+{%- unless site.data.bioui.uk -%}{%- if page.lang == "uk" -%}{%- assign bio_facts_title = "Головне" -%}{%- assign bio_moments_title = "Ключові моменти" -%}{%- endif -%}{%- endunless -%}
 {%- assign bio_url = page.url | absolute_url -%}
 {%- assign bio_name = page.seo_title | default: page.title -%}
 <article class="bio">
@@ -25,7 +29,7 @@ rail: bio
     {%- comment -%} At a glance: the most important facts and the main dates, always visible above the sections. {%- endcomment -%}
     {%- if page.snapshot and page.snapshot.size > 0 %}
     <section class="bio-facts" aria-labelledby="bio-facts-title">
-        <h2 class="bio-block-title" id="bio-facts-title">{{ ui.facts_title }}</h2>
+        <h2 class="bio-block-title" id="bio-facts-title">{{ bio_facts_title }}</h2>
         <dl class="bio-facts__list">
             {%- for fact in page.snapshot %}
             <div class="bio-facts__item"><dt>{{ fact.label }}</dt><dd>{% if fact.value contains "@" %}<a href="mailto:{{ fact.value }}">{{ fact.value }}</a>{% else %}{{ fact.value }}{% endif %}</dd></div>
@@ -36,7 +40,7 @@ rail: bio
 
     {%- if page.highlights and page.highlights.size > 0 %}
     <section class="bio-moments" aria-labelledby="bio-moments-title">
-        <h2 class="bio-block-title" id="bio-moments-title">{{ ui.moments_title }}</h2>
+        <h2 class="bio-block-title" id="bio-moments-title">{{ bio_moments_title }}</h2>
         <ol class="bio-moments__list">
             {%- for item in page.highlights %}
             <li class="bio-moments__item"><span class="bio-moments__year">{{ item.year }}</span><span class="bio-moments__text">{{ item.text }}</span></li>

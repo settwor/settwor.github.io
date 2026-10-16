@@ -39,11 +39,13 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 <p class="callout">{{ home.callout }}</p>
                 {%- endif %}
 
-                <dl class="facts">
-                    {%- for fact in home.facts %}
-                    <div class="facts__item"><dt>{{ fact.label }}</dt><dd>{% if fact.value contains "@" %}<a href="mailto:{{ fact.value }}">{{ fact.value }}</a>{% else %}{{ fact.value }}{% endif %}</dd></div>
-                    {%- endfor %}
-                </dl>
+                <section class="bio-facts bio-facts--home" data-reveal aria-label="Key facts">
+                    <dl class="bio-facts__list">
+                        {%- for fact in home.facts %}
+                        <div class="bio-facts__item"><dt>{{ fact.label }}</dt><dd>{% if fact.value contains "@" %}<a href="mailto:{{ fact.value }}">{{ fact.value }}</a>{% else %}{{ fact.value }}{% endif %}</dd></div>
+                        {%- endfor %}
+                    </dl>
+                </section>
 
                 <p class="center"><a class="btn btn--thin" href="{{ first_bio.url }}" data-bio-link>Read the full biography</a></p>
             </div>
