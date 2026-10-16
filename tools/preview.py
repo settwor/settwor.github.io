@@ -135,6 +135,20 @@ def f_divided_by(v, n):
     return a / b
 
 
+def f_split(v, sep):
+    parts = to_s(v).split(sep) if to_s(v) else []
+    while parts and parts[-1] == "":      # Ruby (and so Liquid) drops empty pieces at the end
+        parts.pop()
+    return parts
+
+
+def f_slice(v, start, length=1):
+    t, a, n = to_s(v), int(start), int(length)
+    if a < 0:
+        a = max(len(t) + a, 0)
+    return t[a:a + n]
+
+
 FILTERS = {
     "sort": f_sort,
     "reverse": lambda v: list(reversed(list(v or []))),
@@ -174,8 +188,8 @@ FILTERS = {
     "normalize_whitespace": lambda v: re.sub(r"\s+", " ", to_s(v)),
     "strip": lambda v: to_s(v).strip(),
     "append": lambda v, a: to_s(v) + to_s(a),
-    "split": lambda v, sep: to_s(v).split(sep) if to_s(v) else [],
-    "slice": lambda v, start, length=1: to_s(v)[int(start):int(start) + int(length)],
+    "split": lambda v, sep: f_split(v, sep),
+    "slice": lambda v, start, length=1: f_slice(v, start, length),
     "jsonify": lambda v: json.dumps(v, ensure_ascii=False, default=to_s),
     "absolute_url": f_abs,
     "uri_escape": lambda v: urllib.parse.quote(to_s(v), safe="/:?#[]@!$&'()*+,;=%-._~"),

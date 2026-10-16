@@ -1,5 +1,7 @@
 # VK Music: plays per year. Edit in Pages CMS: Streams > VK Music.
 # A year left empty is not shown on the site. "earlier" = plays you cannot split by year.
+# url: link to your artist page on this platform (optional, adds an Open button)
+url:
 y2027:
 y2026:
 y2025:

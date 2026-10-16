@@ -1,12 +1,14 @@
 {%- comment -%}
   Calculates all numbers of the "in numbers" block. Result variables:
-  st_plat_total   all music platforms together (typed by hand, years added up)
+  st_plat_total   all music platforms together (typed by hand in Pages CMS > Streams, years added up)
   st_clips        YouTube: views of the release videos (the playlist)
   st_other        YouTube: views of the rest of the channel (whole channel minus the playlist)
   st_channel      YouTube: whole channel (st_clips + st_other)
   st_total        everything: st_plat_total + st_channel
-  st_platforms    same as st_plat_total (the old name, used by the home page)
-  st_plat_keys / st_plat_names / st_years / st_data   the order and the names of the rows, and the data (folder _data/platforms)
+  st_rows         the platforms that have numbers, biggest first. Each row is "000000123456|key|Name"
+  st_rows_all     the same, together with the two YouTube parts (keys yt_clips, yt_other)
+  st_live         true when the YouTube numbers came from YouTube itself; st_date is their date
+  st_plat_keys / st_plat_names / st_years / st_data   the order, the names and the data (folder _data/platforms)
 {%- endcomment -%}
 {%- assign st = site.data.streams -%}
 {%- assign st_data = site.data.platforms -%}
@@ -14,19 +16,44 @@
 {%- assign st_plat_keys = "spotify,apple_music,pandora,youtube_music,deezer,amazon_music,tidal,soundcloud,yandex_music,vk_music,other" | split: "," -%}
 {%- assign st_plat_names = "Spotify,Apple Music,Pandora,YouTube Music,Deezer,Amazon Music,TIDAL,SoundCloud,Yandex Music,VK Music,Other platforms" | split: "," -%}
 {%- assign st_years = "2027,2026,2025,2024,2023,2022,2021,earlier" | split: "," -%}
-{%- assign st_plat_total = 0 -%}
-{%- for key in st_plat_keys -%}
-  {%- assign row = st_data[key] -%}
-  {%- for y in st_years -%}
-    {%- if y == "earlier" -%}{%- assign field = "earlier" -%}{%- else -%}{%- assign field = "y" | append: y -%}{%- endif -%}
-    {%- assign st_plat_total = st_plat_total | plus: row[field] -%}
-  {%- endfor -%}
-{%- endfor -%}
-{%- assign st_platforms = st_plat_total -%}
+
 {%- if auto.youtube.clips_views != nil -%}
   {%- assign st_clips = auto.youtube.clips_views | plus: 0 -%}{%- assign st_other = auto.youtube.other_views | plus: 0 -%}
+  {%- assign st_live = true -%}{%- assign st_date = auto.updated -%}
 {%- else -%}
   {%- assign st_clips = st.youtube.clips_views_fallback | plus: 0 -%}{%- assign st_other = st.youtube.other_views_fallback | plus: 0 -%}
+  {%- assign st_live = false -%}{%- assign st_date = nil -%}
 {%- endif -%}
 {%- assign st_channel = st_clips | plus: st_other -%}
+
+{%- assign st_plat_total = 0 -%}
+{%- assign st_list = "" -%}
+{%- for key in st_plat_keys -%}
+  {%- assign pi = forloop.index0 -%}
+  {%- assign row = st_data[key] -%}
+  {%- assign pt = 0 -%}
+  {%- for y in st_years -%}
+    {%- if y == "earlier" -%}{%- assign field = "earlier" -%}{%- else -%}{%- assign field = "y" | append: y -%}{%- endif -%}
+    {%- assign pt = pt | plus: row[field] -%}
+  {%- endfor -%}
+  {%- assign st_plat_total = st_plat_total | plus: pt -%}
+  {%- if pt > 0 -%}
+    {%- assign padded = "000000000000" | append: pt | slice: -12, 12 -%}
+    {%- assign st_list = st_list | append: padded | append: "|" | append: key | append: "|" | append: st_plat_names[pi] | append: "~" -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign st_rows = st_list | split: "~" | sort | reverse -%}
+
+{%- assign st_list_all = st_list -%}
+{%- if st_clips > 0 -%}
+  {%- assign padded = "000000000000" | append: st_clips | slice: -12, 12 -%}
+  {%- assign st_list_all = st_list_all | append: padded | append: "|yt_clips|YouTube: release videos~" -%}
+{%- endif -%}
+{%- if st_other > 0 -%}
+  {%- assign padded = "000000000000" | append: st_other | slice: -12, 12 -%}
+  {%- assign st_list_all = st_list_all | append: padded | append: "|yt_other|YouTube: other videos~" -%}
+{%- endif -%}
+{%- assign st_rows_all = st_list_all | split: "~" | sort | reverse -%}
+
+{%- assign st_platforms = st_plat_total -%}
 {%- assign st_total = st_plat_total | plus: st_channel -%}

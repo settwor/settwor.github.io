@@ -1763,6 +1763,8 @@ body {
 .mobile-menu.is-open a:nth-child(3) { animation-delay: 0.1s; }
 .mobile-menu.is-open a:nth-child(4) { animation-delay: 0.15s; }
 .mobile-menu.is-open a:nth-child(5) { animation-delay: 0.2s; }
+.mobile-menu.is-open a:nth-child(6) { animation-delay: 0.25s; }
+.mobile-menu.is-open a:nth-child(7) { animation-delay: 0.3s; }
 
 .gallery__year:not([hidden]) {
     animation: rise 0.6s var(--ease) both;
@@ -2844,11 +2846,27 @@ html.modal-open::-webkit-scrollbar {
     display: none;
 }
 
-/* ---------- Home: SETTWOR in numbers ---------- */
+/* ---------- Home and Streams page: SETTWOR in numbers ---------- */
+/* the block adapts to the width of its own column, not of the screen */
 .numbers {
-    --n-ink: #000;
-    --n-paper: #fff;
+    container: numbers / inline-size;
 }
+
+/* the colours of the platforms (their logos) */
+.c-spotify { --c: #1db954; }
+.c-apple_music { --c: #ff2d55; }
+.c-pandora { --c: #3668ff; }
+.c-youtube_music { --c: #ff5f57; }
+.c-deezer { --c: #a238ff; }
+.c-amazon_music { --c: #25d1da; }
+.c-tidal { --c: #ffffff; }
+.plat.c-tidal { --c: #111111; }
+.c-soundcloud { --c: #ff5500; }
+.c-yandex_music { --c: #ffcc00; }
+.c-vk_music { --c: #0077ff; }
+.c-other { --c: #8a8a8a; }
+.c-yt_clips { --c: #ff0000; }
+.c-yt_other { --c: #a80000; }
 
 /* big black panel with the total */
 .numbers__hero {
@@ -2866,6 +2884,23 @@ html.modal-open::-webkit-scrollbar {
         #000;
     color: #fff;
     box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.65);
+    text-decoration: none;
+}
+
+a.numbers__hero--link {
+    cursor: pointer;
+    transition: transform 0.3s var(--ease), box-shadow 0.3s;
+}
+
+a.numbers__hero--link:hover,
+a.numbers__hero--link:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 26px 46px -22px rgba(0, 0, 0, 0.75);
+}
+
+a.numbers__hero--link:focus-visible {
+    outline: 3px solid var(--color-text);
+    outline-offset: 3px;
 }
 
 .numbers__eyebrow {
@@ -2889,40 +2924,26 @@ html.modal-open::-webkit-scrollbar {
     font-size: 0.85rem;
 }
 
+/* one coloured piece for every platform */
 .numbers__split {
     display: flex;
     gap: 3px;
-    height: 0.55rem;
+    height: 0.6rem;
     margin-top: 1.1rem;
 }
 
 .seg {
     display: block;
     flex-basis: 0;
-    min-width: 6px;
+    min-width: 5px;
     border-radius: 99px;
+    background: var(--c);
     transform-origin: left center;
-}
-
-.seg--1,
-.dot--1 {
-    background: #fff;
-}
-
-.seg--2,
-.dot--2 {
-    background: rgba(255, 255, 255, 0.58);
-}
-
-.seg--3,
-.dot--3 {
-    background: rgba(255, 255, 255, 0.26);
 }
 
 .numbers__legend {
     display: grid;
-    gap: 0.1rem;
-    margin: 0.85rem 0 0;
+    margin: 0.9rem 0 0;
     padding: 0;
     list-style: none;
 }
@@ -2930,15 +2951,15 @@ html.modal-open::-webkit-scrollbar {
 .numbers__legend li {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    align-items: baseline;
+    align-items: center;
     gap: 0.6rem;
-    padding: 0.4rem 0;
+    padding: 0.45rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.14);
     font-size: 0.85rem;
 }
 
 .numbers__legend li span {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.78);
 }
 
 .numbers__legend b {
@@ -2949,45 +2970,121 @@ html.modal-open::-webkit-scrollbar {
 
 .dot {
     display: inline-block;
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.65rem;
+    height: 0.65rem;
     border-radius: 50%;
+    background: var(--c);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
 }
 
-/* the link under the panel on the home page */
-.numbers__more {
-    margin-top: 1.25rem;
-    text-align: center;
+.numbers__cta {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 0.5rem;
+    margin-top: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    background: #fff;
+    color: #000;
+    font-family: var(--font-bold);
+    font-size: 0.8rem;
+    transition: gap 0.3s var(--ease);
 }
 
-/* headings of the two groups */
+a.numbers__hero--link:hover .numbers__cta {
+    gap: 0.9rem;
+}
+
+.numbers__arrow {
+    font-style: normal;
+}
+
+/* Streams page: status line */
+.status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.8rem;
+    margin: 0 0 1rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--color-line-soft);
+    border-radius: 0.9rem;
+    background: var(--color-surface);
+    font-size: 0.8rem;
+}
+
+.status__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 99px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    font-family: var(--font-bold);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.status__dot,
+.tag--live i {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #1db954;
+}
+
+.status--live .status__dot,
+.tag--live i {
+    animation: pulse 2s ease-out infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.6); }
+    100% { box-shadow: 0 0 0 0.5rem rgba(29, 185, 84, 0); }
+}
+
+.status__text {
+    color: var(--color-text-soft);
+}
+
+.status__date {
+    margin-left: auto;
+    color: var(--color-muted);
+}
+
+/* headings of the groups */
 .numbers__head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
-    margin: 2rem 0 0.75rem;
-    padding-bottom: 0.5rem;
+    margin: 2.25rem 0 0.9rem;
+    padding-bottom: 0.55rem;
     border-bottom: 1px solid var(--color-line);
+    scroll-margin-top: 5rem;
 }
 
 .numbers__h {
     margin: 0;
     font-family: var(--font-bold);
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-weight: normal;
 }
 
 .numbers__sum {
     color: var(--color-muted);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-variant-numeric: tabular-nums;
 }
 
-/* a thin bar: first part is filled, the second is the rest */
+/* thin bar: the coloured part and the rest */
 .bar {
     display: flex;
-    height: 0.4rem;
+    height: 0.45rem;
     overflow: hidden;
     border-radius: 99px;
     background: var(--color-line-soft);
@@ -3002,70 +3099,103 @@ html.modal-open::-webkit-scrollbar {
 .bar>i:first-child {
     min-width: 5px;
     border-radius: 99px;
-    background: var(--color-text);
+    background: var(--c, var(--color-text));
 }
 
 .bar>i:last-child {
     background: transparent;
 }
 
-.bar--split>i:last-child {
-    background: var(--color-line);
+.bar--split {
+    gap: 3px;
+    background: none;
 }
 
-/* music platforms */
+.bar--split>i {
+    background: var(--c);
+    border-radius: 99px;
+}
+
+/* cards: all the same size, in a straight grid */
 .numbers__plats,
-.numbers__yt {
+.numbers__yt,
+.profiles {
     display: grid;
-    gap: 0.75rem;
+    gap: 0.85rem;
     margin: 0;
     padding: 0;
     list-style: none;
+    grid-template-columns: minmax(0, 1fr);
 }
 
 .plat,
 .yt {
     display: flex;
     flex-direction: column;
-    gap: 0.55rem;
-    padding: 1rem 1.05rem;
+    gap: 0.5rem;
+    padding: 1.1rem 1.15rem 1rem;
     border: 1px solid var(--color-line-soft);
+    border-top: 4px solid var(--c, var(--color-text));
     border-radius: 1rem;
     background: var(--color-surface);
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .plat:hover,
 .yt:hover {
     transform: translateY(-2px);
-    border-color: var(--color-line);
-    box-shadow: 0 10px 22px -16px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 12px 24px -16px rgba(0, 0, 0, 0.5);
 }
 
-.plat__head {
+.plat__top,
+.yt__top {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.75rem;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.plat__badge {
+    flex: none;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: var(--c);
 }
 
 .plat__name {
+    flex: 1;
+    margin: 0;
     font-family: var(--font-bold);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: normal;
+}
+
+.plat__pct {
+    padding: 0.1rem 0.55rem;
+    border-radius: 99px;
+    background: var(--color-line-soft);
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
 }
 
 .plat__n {
+    margin-top: 0.2rem;
     font-family: var(--font-bold);
-    font-size: 1.3rem;
+    font-size: 1.9rem;
     font-weight: normal;
-    line-height: 1.1;
+    line-height: 1.05;
     font-variant-numeric: tabular-nums;
+}
+
+.plat__cap {
+    margin-top: -0.35rem;
+    color: var(--color-muted);
+    font-size: 0.75rem;
 }
 
 .plat__years {
     display: grid;
-    gap: 0;
-    margin: 0.2rem 0 0;
+    margin: 0.3rem 0 0;
     padding: 0;
     list-style: none;
 }
@@ -3074,7 +3204,7 @@ html.modal-open::-webkit-scrollbar {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    padding: 0.28rem 0;
+    padding: 0.32rem 0;
     border-top: 1px solid var(--color-line-soft);
     color: var(--color-muted);
     font-size: 0.8rem;
@@ -3086,6 +3216,46 @@ html.modal-open::-webkit-scrollbar {
     font-variant-numeric: tabular-nums;
 }
 
+/* the bottom line of a card always sits at the bottom */
+.plat__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 0.7rem;
+}
+
+.plat__link {
+    font-family: var(--font-bold);
+    font-size: 0.78rem;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+}
+
+.plat__link i {
+    font-style: normal;
+}
+
+.tag {
+    display: inline-flex;
+    white-space: nowrap;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.15rem 0.6rem;
+    border: 1px solid var(--color-line);
+    border-radius: 99px;
+    color: var(--color-muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.tag--live {
+    color: var(--color-text);
+}
+
 /* YouTube tiles */
 .yt__t {
     color: var(--color-muted);
@@ -3094,9 +3264,13 @@ html.modal-open::-webkit-scrollbar {
     text-transform: uppercase;
 }
 
+.yt__top {
+    justify-content: space-between;
+}
+
 .yt__n {
     font-family: var(--font-bold);
-    font-size: 1.6rem;
+    font-size: 1.9rem;
     font-weight: normal;
     line-height: 1.05;
     font-variant-numeric: tabular-nums;
@@ -3107,9 +3281,69 @@ html.modal-open::-webkit-scrollbar {
     font-size: 0.78rem;
 }
 
-.yt--main {
+.yt--main .yt__n {
+    font-size: 2.4rem;
+}
+
+/* official profiles */
+.profile {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 0.1rem 0.75rem;
+    height: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-line-soft);
+    border-radius: 0.9rem;
+    background: var(--color-surface);
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.25s ease;
+}
+
+.profile:hover {
     border-color: var(--color-text);
-    background: var(--color-bg);
+    transform: translateY(-2px);
+}
+
+.profile__name {
+    font-family: var(--font-bold);
+    font-size: 0.9rem;
+}
+
+.profile__host {
+    grid-column: 1;
+    overflow: hidden;
+    color: var(--color-muted);
+    font-size: 0.74rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile i {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    font-style: normal;
+}
+
+.method {
+    display: grid;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--color-text-soft);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.method li {
+    padding-left: 1rem;
+    border-left: 3px solid var(--color-line);
+}
+
+.method a {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
 }
 
 /* bars grow and the cards appear when the block comes into view (js/stats.js) */
@@ -3138,17 +3372,19 @@ html.modal-open::-webkit-scrollbar {
     transition-delay: calc(var(--i, 0) * 70ms);
 }
 
-@media (min-width: 40rem) {
+@container numbers (min-width: 34rem) {
     .numbers__hero {
         padding: 2rem 2rem 1.5rem;
     }
 
-    .numbers__plats {
+    .numbers__legend {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        align-items: start;
+        column-gap: 2.5rem;
     }
 
-    .numbers__yt {
+    .numbers__plats,
+    .numbers__yt,
+    .profiles {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -3157,6 +3393,13 @@ html.modal-open::-webkit-scrollbar {
     }
 
     .yt--main .yt__n {
-        font-size: 2.2rem;
+        font-size: 3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .status--live .status__dot,
+    .tag--live i {
+        animation: none;
     }
 }

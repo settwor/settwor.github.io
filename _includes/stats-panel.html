@@ -1,25 +1,35 @@
+{%- comment -%}
+  The black panel. Every platform has its own colour and its own line, the biggest first.
+  Usage: include stats-panel.html            (plain panel, on the Streams page)
+         include stats-panel.html link="/streams.html"   (the whole panel is a link, on the home page)
+{%- endcomment -%}
 {%- include stats-calc.html -%}
 {%- if st_total > 0 %}
-    <!-- Big total: all music platforms + the whole YouTube channel -->
+{%- if include.link %}
+    <a class="numbers__hero numbers__hero--link" href="{{ include.link }}" aria-label="SETTWOR in numbers: {% include num-full.html n=st_total %} plays and views. Open all streams by platform">
+{%- else %}
     <div class="numbers__hero">
+{%- endif %}
         <span class="numbers__eyebrow">Total plays and views</span>
         <span class="numbers__value" data-count="{{ st_total }}">{% include num-full.html n=st_total %}</span>
         <span class="numbers__label">across all music platforms and YouTube</span>
-        <div class="numbers__split" role="img" aria-label="How the total is made up">
-            {%- if st_plat_total > 0 %}<i class="seg seg--1" style="flex-grow: {{ st_plat_total }}"></i>{% endif %}
-            {%- if st_clips > 0 %}<i class="seg seg--2" style="flex-grow: {{ st_clips }}"></i>{% endif %}
-            {%- if st_other > 0 %}<i class="seg seg--3" style="flex-grow: {{ st_other }}"></i>{% endif %}
-        </div>
+        <span class="numbers__split" aria-hidden="true">
+            {%- for r in st_rows_all %}
+            {%- assign rp = r | split: "|" -%}
+            <i class="seg c-{{ rp[1] }}" style="flex-grow: {{ rp[0] | plus: 0 }}"></i>
+            {%- endfor %}
+        </span>
         <ul class="numbers__legend">
-            {%- if st_plat_total > 0 %}
-            <li><i class="dot dot--1"></i><span>Music platforms</span><b data-count="{{ st_plat_total }}">{% include num-full.html n=st_plat_total %}</b></li>
-            {%- endif %}
-            {%- if st_clips > 0 %}
-            <li><i class="dot dot--2"></i><span>YouTube: release videos</span><b data-count="{{ st_clips }}">{% include num-full.html n=st_clips %}</b></li>
-            {%- endif %}
-            {%- if st_other > 0 %}
-            <li><i class="dot dot--3"></i><span>YouTube: other videos</span><b data-count="{{ st_other }}">{% include num-full.html n=st_other %}</b></li>
-            {%- endif %}
+            {%- for r in st_rows_all %}
+            {%- assign rp = r | split: "|" -%}
+            {%- assign rn = rp[0] | plus: 0 %}
+            <li class="c-{{ rp[1] }}"><i class="dot"></i><span>{{ rp[2] }}</span><b data-count="{{ rn }}">{% include num-full.html n=rn %}</b></li>
+            {%- endfor %}
         </ul>
+{%- if include.link %}
+        <span class="numbers__cta">All streams by platform<i class="numbers__arrow" aria-hidden="true">&rarr;</i></span>
+    </a>
+{%- else %}
     </div>
+{%- endif %}
 {%- endif %}

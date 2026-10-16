@@ -410,6 +410,7 @@ content:
         path: _data/platforms/spotify.yml
         format: yaml
         fields:
+          - { name: url, label: "Your artist page link (optional)", type: string, description: "Adds an Open button on the Streams page and an entry in Official profiles." }
           - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
           - { name: y2026, label: "2026", type: number }
           - { name: y2025, label: "2025", type: number }
@@ -424,6 +425,7 @@ content:
         path: _data/platforms/apple_music.yml
         format: yaml
         fields:
+          - { name: url, label: "Your artist page link (optional)", type: string, description: "Adds an Open button on the Streams page and an entry in Official profiles." }
           - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
           - { name: y2026, label: "2026", type: number }
           - { name: y2025, label: "2025", type: number }
@@ -438,6 +440,7 @@ content:
         path: _data/platforms/pandora.yml
         format: yaml
         fields:
+          - { name: url, label: "Your artist page link (optional)", type: string, description: "Adds an Open button on the Streams page and an entry in Official profiles." }
           - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
           - { name: y2026, label: "2026", type: number }
           - { name: y2025, label: "2025", type: number }
@@ -452,6 +455,7 @@ content:
         path: _data/platforms/youtube_music.yml
         format: yaml
         fields:
+          - { name: url, label: "Your artist page link (optional)", type: string, description: "Adds an Open button on the Streams page and an entry in Official profiles." }
           - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
           - { name: y2026, label: "2026", type: number }
           - { name: y2025, label: "2025", type: number }
@@ -466,6 +470,7 @@ content:
         path: _data/platforms/deezer.yml
         format: yaml
         fields:
+          - { name: url, label: "Your artist page link (optional)", type: string, description: "Adds an Open button on the Streams page and an entry in Official profiles." }
           - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
           - { name: y2026, label: "2026", type: number }
           - { name: y2025, label: "2025", type: number }
@@ -480,6 +485,7 @@ content:
         path: _data/platforms/amazon_music.yml
         format: yaml
         fields:
+          - { name: url, label: "Your artist page link (optional)", type: string, description: "Adds an Open button on the Streams page and an entry in Official profiles." }
           - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
           - { name: y2026, label: "2026", type: number }
           - { name: y2025, label: "2025", type: number }
@@ -494,6 +500,7 @@ content:
         path: _data/platforms/tidal.yml
         format: yaml
         fields:
+          - { name: url, label: "Your artist page link (optional)", type: string, description: "Adds an Open button on the Streams page and an entry in Official profiles." }
           - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
           - { name: y2026, label: "2026", type: number }
           - { name: y2025, label: "2025", type: number }
@@ -508,6 +515,7 @@ content:
         path: _data/platforms/soundcloud.yml
         format: yaml
         fields:
+          - { name: url, label: "Your artist page link (optional)", type: string, description: "Adds an Open button on the Streams page and an entry in Official profiles." }
           - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
           - { name: y2026, label: "2026", type: number }
           - { name: y2025, label: "2025", type: number }
@@ -522,6 +530,7 @@ content:
         path: _data/platforms/yandex_music.yml
         format: yaml
         fields:
+          - { name: url, label: "Your artist page link (optional)", type: string, description: "Adds an Open button on the Streams page and an entry in Official profiles." }
           - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
           - { name: y2026, label: "2026", type: number }
           - { name: y2025, label: "2025", type: number }
@@ -536,6 +545,7 @@ content:
         path: _data/platforms/vk_music.yml
         format: yaml
         fields:
+          - { name: url, label: "Your artist page link (optional)", type: string, description: "Adds an Open button on the Streams page and an entry in Official profiles." }
           - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
           - { name: y2026, label: "2026", type: number }
           - { name: y2025, label: "2025", type: number }
@@ -550,6 +560,7 @@ content:
         path: _data/platforms/other.yml
         format: yaml
         fields:
+          - { name: url, label: "Your artist page link (optional)", type: string, description: "Adds an Open button on the Streams page and an entry in Official profiles." }
           - { name: y2027, label: "2027", type: number, description: "Number of plays in that year, digits only. A year left empty is not shown on the site." }
           - { name: y2026, label: "2026", type: number }
           - { name: y2025, label: "2025", type: number }
