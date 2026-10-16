@@ -2,6 +2,10 @@
 
 Every change of the site raises the version. The archive is named `settwor-site-vX.Y.zip`.
 
+## 2.0
+- Black panel (home and Streams): numbers changed by the owner's decision. The BIG number is now music platforms + YouTube release videos. The smaller number under it is music platforms + the whole YouTube channel (release videos and all other videos). The bar and the list under the numbers are unchanged: only music platforms and release videos.
+- Files: `_includes/stats-panel.html`, `_includes/stats-calc.html` (comment only), `VERSION`, `CHANGELOG.md`, `AI-NOTES.md`.
+
 ## 1.9
 - Black panel (home and Streams): finished the 1.8 change. The other YouTube videos are not counted in any number, bar or list of the panel. Only the big number (music platforms) and the smaller number under it (music platforms + YouTube release videos) remain. The panel is now shown whenever that smaller number is above zero (before, the whole channel was checked, so a channel with only other videos could show an empty panel).
 - Files: `_includes/stats-panel.html`, `_includes/stats-block.html`, `sw.js` (cache version v8, so visitors get the new styles), `VERSION`, `CHANGELOG.md`, `AI-NOTES.md`.

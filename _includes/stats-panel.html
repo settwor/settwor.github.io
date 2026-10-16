@@ -5,22 +5,18 @@
 {%- endcomment -%}
 {%- include stats-calc.html -%}
 {%- if st_panel_total > 0 %}
-{%- comment -%} The big number is the music platforms only. The smaller number under it adds the YouTube release videos. Other YouTube videos are not in this panel. {%- endcomment -%}
-{%- if st_plat_total > 0 -%}{%- assign big = st_plat_total -%}{%- else -%}{%- assign big = st_panel_total -%}{%- endif %}
+{%- comment -%} The big number = music platforms + YouTube release videos. The smaller number under it = music platforms + the whole YouTube channel (release videos and all other videos). The bar and the list show only music platforms and the release videos. {%- endcomment -%}
+{%- assign big = st_panel_total -%}
 {%- if include.link %}
     <a class="numbers__hero numbers__hero--link" href="{{ include.link }}" aria-label="SETTWOR in numbers: {% include num-full.html n=big %} streams. Open all streams by platform">
 {%- else %}
     <div class="numbers__hero">
 {%- endif %}
-        <span class="numbers__eyebrow">{% if st_plat_total > 0 %}Total streams{% else %}Total plays and views{% endif %}</span>
+        <span class="numbers__eyebrow">Total streams</span>
         <span class="numbers__value" data-count="{{ big }}">{% include num-full.html n=big %}</span>
-        {%- if st_plat_total > 0 %}
-        <span class="numbers__label">across all music platforms</span>
-        {%- if st_clips > 0 %}
-        <span class="numbers__plus"><b data-count="{{ st_panel_total }}">{% include num-full.html n=st_panel_total %}</b><span>with YouTube release videos</span></span>
-        {%- endif %}
-        {%- else %}
-        <span class="numbers__label">YouTube release videos</span>
+        <span class="numbers__label">{% if st_plat_total > 0 and st_clips > 0 %}across music platforms and YouTube release videos{% elsif st_plat_total > 0 %}across all music platforms{% else %}YouTube release videos{% endif %}</span>
+        {%- if st_other > 0 %}
+        <span class="numbers__plus"><b data-count="{{ st_total }}">{% include num-full.html n=st_total %}</b><span>with all videos on the YouTube channel</span></span>
         {%- endif %}
         <span class="numbers__split" aria-hidden="true">
             {%- for r in st_rows_all %}

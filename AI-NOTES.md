@@ -11,10 +11,10 @@ English: "This is my site (archive). Read AI-NOTES.md and CHANGELOG.md first and
 ## Rules from the owner (always follow)
 
 1. Talk to the owner in Russian. The website itself is in English.
-2. Name every archive with the SITE version: `settwor-site-v1.9.zip`. Never "archive 3". Every change raises the version by 0.1 (`VERSION` file, entry in `CHANGELOG.md`).
+2. Name every archive with the SITE version: `settwor-site-v2.0.zip`. Never "archive 3". Every change raises the version by 0.1 (`VERSION` file, entry in `CHANGELOG.md`).
 3. The public website must never say or hint that numbers are typed or entered by hand. Not on the page, not in tooltips. (It does not build trust.) Comments in code and CMS field names are fine, visitors do not see them.
 4. Numbers are shown in full with commas (16,234,264). Never round, never "2M+".
-5. Black panel: the biggest number is music platforms only. Under it a smaller number = music platforms + YouTube RELEASE videos. The other YouTube videos are never counted or listed in the black panel (the bar and the list too). They appear only in the YouTube section of the Streams page. Owner's decision, v1.8 (finished in v1.9).
+5. Black panel: the BIG number = music platforms + YouTube RELEASE videos. Under it a smaller number = music platforms + the WHOLE YouTube channel (release videos + all other videos). The bar and the list under the numbers show only music platforms and release videos, never the other videos. The YouTube section of the Streams page shows the whole channel, release videos and other videos. Owner's decision, v2.0 (it replaced v1.6 and v1.8).
 6. Look: monochrome black and white site. Only the platform colours (logos) are coloured. Everything must be neat, even, same-size cards, no crooked layouts.
 7. Do not guess links. Only put a platform URL if it was checked (the artist name, Kryvyi Rih, born 8 Feb 2007). A wrong link is worse than none.
 8. Deliver: a zip with ONLY the code, templates, styles, scripts and config that changed (full paths), so the owner can unzip over the folder. Say which file must be deleted by hand.
@@ -26,7 +26,7 @@ English: "This is my site (archive). Read AI-NOTES.md and CHANGELOG.md first and
 - Official site of SETTWOR (phonk and Brazilian funk producer, Kryvyi Rih, Ukraine, based in Poland). Address: https://settwor.github.io (GitHub Pages, repository `settwor.github.io`).
 - Jekyll (the `github-pages` gem, Jekyll 3, Liquid 4). No plugins beyond GitHub Pages. Pictures are not in the archive (the owner removes them).
 - Content is edited by the owner in **Pages CMS** (`.pages.yml`). Texts live in `_data/*.yml`, news in `_posts`, releases in `_releases`, biographies in `_bio`.
-- The service worker `sw.js` caches CSS/JS. **When CSS or JS changes, raise `VERSION` in `sw.js`** (const VERSION = 'v8' at the time of 1.9), or visitors see old styles.
+- The service worker `sw.js` caches CSS/JS. **When CSS or JS changes, raise `VERSION` in `sw.js`** (const VERSION = 'v8' since 1.9), or visitors see old styles.
 
 ## Local preview (the owner works on Windows)
 
@@ -43,7 +43,7 @@ Pages: the home page shows only the black panel (a link) before the news; `/stre
 Data and flow:
 - Music platforms: one file per platform in `_data/platforms/<key>.yml` (the owner's live data, never ship them) with `y2027 ... y2021`, `earlier`, optional `url`. Keys: spotify, apple_music, pandora, youtube_music, deezer, amazon_music, tidal, soundcloud, yandex_music, vk_music, other. A year or platform left empty is not shown. The owner edits them in Pages CMS > group "Streams".
 - YouTube: `tools/fetch-stats.py` (GitHub Action `.github/workflows/stats.yml`, every 3 hours, secret `YOUTUBE_API_KEY`) writes `_data/auto_stats.json`: `clips_views` (releases playlist, only videos of the own channel), `other_views` (= channel total minus clips_views), `channel_total_views`. Setup (handle, playlist id) is in `_data/streams.yml`; `clips_views_fallback` / `other_views_fallback` are used only while `auto_stats.json` is missing.
-- Maths (`_includes/stats-calc.html`): music total = sum of all platform years; YouTube whole channel = clips + other; grand total = music + whole channel (no double counting). In the black panel the BIG number is the music total only (`st_plat_total`); the smaller number under it is `st_panel_total` (music + YouTube release videos, NOT the other videos). `st_total` (whole channel included) is no longer used for the black panel: the panel and the home block are shown when `st_panel_total > 0`. Owner's decision, v1.6 and v1.8. Platforms are sorted biggest first by building strings `"000000123456|key|Name~"` and sorting them.
+- Maths (`_includes/stats-calc.html`): music total = sum of all platform years; YouTube whole channel = clips + other; grand total = music + whole channel (no double counting). In the black panel the BIG number is `st_panel_total` (music + YouTube release videos); the smaller number under it is `st_total` (music + whole channel, no double counting). The bar and the list use `st_rows_all` (music platforms + release videos only). Owner's decision, v2.0. Platforms are sorted biggest first by building strings `"000000123456|key|Name~"` and sorting them.
 - Includes: `stats-calc.html` (all numbers), `stats-panel.html` (black panel, `link=` makes it clickable), `stats-block.html` (home section), `stats-details.html` (cards and YouTube tiles), `num-full.html` (full number with commas, no rounding).
 - Colours: CSS classes `c-<key>` in `css/main.css` (Spotify green, Apple Music pink, Pandora blue, Deezer purple, Amazon cyan, TIDAL white/black, SoundCloud orange, Yandex yellow, VK blue, YouTube reds). Pandora's brand colour is blue, not purple.
 - `js/stats.js`: count-up, bars grow, cards appear. Layout adapts with a CSS container query (`.numbers { container: numbers / inline-size }`).
@@ -63,7 +63,7 @@ Data and flow:
 - The live site was never seen by an AI; the owner once reported that the black panel was missing online while it showed locally (likely not pushed, or a Pages build error, or the cached CSS).
 - The "status" on the Streams page is only a small Live / Verified badge. The owner asked for "a status", the exact meaning was not confirmed.
 
-- v1.9 was checked only with `tools/preview.py` (Python emulator), not with real Jekyll and not on the live site. After pushing, hard refresh (Ctrl+F5) once.
+- v2.0 was checked only with `tools/preview.py` (Python emulator), not with real Jekyll and not on the live site. After pushing, hard refresh (Ctrl+F5) once.
 
 ## Hints for the next chat (update this section at the end of every session)
 
