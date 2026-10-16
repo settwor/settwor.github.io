@@ -4,9 +4,9 @@
          include stats-panel.html link="/streams.html"   (the whole panel is a link, on the home page)
 {%- endcomment -%}
 {%- include stats-calc.html -%}
-{%- if st_total > 0 %}
-{%- comment -%} The big number is the music platforms only. YouTube video views are added in the smaller number under it. {%- endcomment -%}
-{%- if st_plat_total > 0 -%}{%- assign big = st_plat_total -%}{%- else -%}{%- assign big = st_total -%}{%- endif %}
+{%- if st_panel_total > 0 %}
+{%- comment -%} The big number is the music platforms only. The smaller number under it adds the YouTube release videos. Other YouTube videos are not in this panel. {%- endcomment -%}
+{%- if st_plat_total > 0 -%}{%- assign big = st_plat_total -%}{%- else -%}{%- assign big = st_panel_total -%}{%- endif %}
 {%- if include.link %}
     <a class="numbers__hero numbers__hero--link" href="{{ include.link }}" aria-label="SETTWOR in numbers: {% include num-full.html n=big %} streams. Open all streams by platform">
 {%- else %}
@@ -16,11 +16,11 @@
         <span class="numbers__value" data-count="{{ big }}">{% include num-full.html n=big %}</span>
         {%- if st_plat_total > 0 %}
         <span class="numbers__label">across all music platforms</span>
-        {%- if st_channel > 0 %}
-        <span class="numbers__plus"><b data-count="{{ st_total }}">{% include num-full.html n=st_total %}</b><span>with YouTube video views</span></span>
+        {%- if st_clips > 0 %}
+        <span class="numbers__plus"><b data-count="{{ st_panel_total }}">{% include num-full.html n=st_panel_total %}</b><span>with YouTube release videos</span></span>
         {%- endif %}
         {%- else %}
-        <span class="numbers__label">on YouTube</span>
+        <span class="numbers__label">YouTube release videos</span>
         {%- endif %}
         <span class="numbers__split" aria-hidden="true">
             {%- for r in st_rows_all %}

@@ -1,6 +1,6 @@
 {%- comment -%} Home page: only the black panel with the total. The whole panel opens the Streams page. {%- endcomment -%}
 {%- include stats-calc.html -%}
-{%- if st_total > 0 %}
+{%- if st_panel_total > 0 %}
         <section class="section numbers" id="numbers" aria-labelledby="numbers-title">
             <h2 class="section-title" id="numbers-title">SETTWOR in numbers</h2>
             {% include stats-panel.html link="/streams.html" %}
