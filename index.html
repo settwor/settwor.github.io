@@ -11,7 +11,7 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
 {%- comment -%} The texts of this page live in _data/home.yml and the links in _data/links.yml. {%- endcomment -%}
 {%- assign home = site.data.home -%}
 {%- assign first_bio = site.bio | sort: "order" | first -%}
-{%- assign hero_latest = site.releases | sort: "date" | reverse | first -%}
+{%- include artist-urls.html -%}
 {%- assign home_url = "/" | absolute_url -%}
 
         <section class="hero" aria-labelledby="page-title">
@@ -22,10 +22,12 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 <p class="hero__note">{{ home.hero.note }}</p>
             </div>
             <div class="hero__actions">
-                <a class="btn btn--solid" href="https://open.spotify.com/artist/{{ home.spotify_artist_id }}" rel="me">{{ home.hero.listen_label | default: "Listen on Spotify" }}</a>
-                {%- if hero_latest %}
-                <a class="btn" href="/releases.html#release-{{ hero_latest.slug }}">{{ home.hero.latest_label | default: "Newest release" }}: {{ hero_latest.title }}</a>
-                {%- endif %}
+                <a class="btn btn--solid" href="{{ au_spotify }}" rel="me">{{ home.hero.listen_label | default: "Listen on Spotify" }}</a>
+                <div class="hero__more">
+                    <a class="btn btn--small" href="{{ au_apple }}" rel="me noopener">Apple Music</a>
+                    <a class="btn btn--small" href="{{ au_ytm }}" rel="me noopener">YouTube Music</a>
+                    <a class="btn btn--small" href="{{ au_pandora }}" rel="me noopener">Pandora</a>
+                </div>
             </div>
         </section>
 

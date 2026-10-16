@@ -8,7 +8,7 @@
    Other websites (Spotify, YouTube, Google Analytics) are never touched.
    To force everybody to download everything again, change VERSION.
    ============================================================= */
-const VERSION = 'v9';
+const VERSION = 'v11';
 const STATIC_CACHE = 'settwor-static-' + VERSION;
 const PAGE_CACHE = 'settwor-pages-' + VERSION;
 const IMAGE_CACHE = 'settwor-images-' + VERSION;

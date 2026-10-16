@@ -2,6 +2,16 @@
 
 Every change of the site raises the version. The archive is named `settwor-site-vX.Y.zip`.
 
+## 2.3
+- Home page on phones: the name SETTWOR is much smaller, the photo is smaller, spacing is tighter, the buttons are easier to tap, the first screen shows the text sooner.
+- Home page: the button "Newest release" is removed (on all screens). Under "Listen on Spotify" there is a row of quick links: Apple Music, YouTube Music, Pandora (links from `_includes/artist-urls.html`).
+- Checked at 320, 390 and 1100 px: no sideways scrolling, buttons stay on one line. Pictures were not in the archive, so the photo itself was not seen.
+- Files: `index.html`, `css/main.css`, `sw.js` (cache version v11), `VERSION`, `CHANGELOG.md`, `AI-NOTES.md`. The field "latest_label" in `_data/home.yml` is not used any more (harmless, nothing to delete).
+
+## 2.2
+- Footer: on phones and narrow screens the footer texts are in one column (were in two). Wide screens keep four columns.
+- Files: `css/main.css`, `sw.js` (cache version v10), `VERSION`, `CHANGELOG.md`, `AI-NOTES.md`.
+
 ## 2.1
 - Artist links added all over the site: new block "Listen to SETTWOR" in the right column, a new "Listen" column in the footer (every page), the Streams page "Official profiles" and the structured data (`sameAs`). Links: Spotify, Apple Music, Pandora, YouTube Music (the last two were given by the owner).
 - New file `_includes/artist-urls.html` keeps the checked links as defaults, so no data file is shipped. A link filled in Pages CMS > Streams > platform still wins.

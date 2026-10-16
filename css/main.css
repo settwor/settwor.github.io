@@ -1221,7 +1221,7 @@ a.release__cover:hover img {
 
 .site-footer__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     width: min(100%, var(--wide-w));
     margin-inline: auto;
@@ -3389,5 +3389,111 @@ a.numbers__hero--link:hover .numbers__cta {
     .status--live .status__dot,
     .tag--live i {
         animation: none;
+    }
+}
+
+
+/* =============================================================
+   2.3: home page on phones. Smaller name, one main button and a row of
+   quick links, tighter spacing, easier taps.
+   ============================================================= */
+.hero__more {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr 1fr;
+    gap: 0.5rem;
+}
+
+.hero__more .btn {
+    white-space: nowrap;
+}
+
+.btn--small {
+    min-height: 2.6rem;
+    padding: 0.3rem 0.4rem;
+    border-width: 1px;
+    border-color: #595959;
+    font-size: 0.78rem;
+}
+
+@media (min-width: 40rem) {
+    .hero__more {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    .btn--small {
+        min-height: 2.4rem;
+        padding: 0.3rem 1.1rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 39.99rem) {
+    .hero {
+        gap: 0.4rem;
+        padding: 1.25rem 0 1rem;
+    }
+
+    .hero__photo {
+        width: 9.5rem;
+        height: 9.5rem;
+    }
+
+    .hero__title {
+        font-size: clamp(1.7rem, 8.5vw, 2.2rem);
+        letter-spacing: 0.1em;
+    }
+
+    .hero__tagline {
+        margin-top: 0.3rem;
+        font-size: 0.98rem;
+    }
+
+    .hero__note {
+        max-width: 19rem;
+        font-size: 0.8rem;
+    }
+
+    .hero__actions {
+        gap: 0.5rem;
+        margin-top: 0.6rem;
+    }
+
+    .hero__actions .btn--solid {
+        min-height: 3.1rem;
+        font-size: 1rem;
+    }
+
+    .hero__actions .btn--small {
+        min-height: 2.7rem;
+        font-size: 0.74rem;
+    }
+
+    .section {
+        padding-bottom: 1.5rem;
+    }
+
+    .section-title {
+        margin-bottom: 1rem;
+    }
+
+    .social .btn {
+        min-height: 2.9rem;
+    }
+
+    .center .btn--thin {
+        min-height: 2.8rem;
+        padding-inline: 1.6rem;
+    }
+}
+
+@keyframes title-in-small {
+    from { opacity: 0; letter-spacing: 0.35em; filter: blur(6px); }
+    to { opacity: 1; letter-spacing: 0.1em; filter: blur(0); }
+}
+
+@media (max-width: 39.99rem) {
+    .hero__title {
+        animation-name: title-in-small;
     }
 }
