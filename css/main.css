@@ -3003,15 +3003,7 @@ a.numbers__hero--link:hover .numbers__cta {
 /* Streams page: status line */
 .status {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.4rem 0.8rem;
     margin: 0 0 1rem;
-    padding: 0.6rem 0.9rem;
-    border: 1px solid var(--color-line-soft);
-    border-radius: 0.9rem;
-    background: var(--color-surface);
-    font-size: 0.8rem;
 }
 
 .status__badge {
@@ -3045,15 +3037,6 @@ a.numbers__hero--link:hover .numbers__cta {
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.6); }
     100% { box-shadow: 0 0 0 0.5rem rgba(29, 185, 84, 0); }
-}
-
-.status__text {
-    color: var(--color-text-soft);
-}
-
-.status__date {
-    margin-left: auto;
-    color: var(--color-muted);
 }
 
 /* headings of the groups */
@@ -3111,7 +3094,9 @@ a.numbers__hero--link:hover .numbers__cta {
     background: none;
 }
 
-.bar--split>i {
+.bar--split>i,
+.bar--split>i:first-child,
+.bar--split>i:last-child {
     background: var(--c);
     border-radius: 99px;
 }

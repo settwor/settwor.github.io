@@ -76,6 +76,8 @@ exclude:
   - .pages.yml
   - Gemfile
   - Gemfile.lock
+  - VERSION
+  - CHANGELOG.md
 
 # Browser push notifications (bell in the corner). Paste the App ID from onesignal.com here
 # (see docs/news-guide-ru.md). While it is empty, nothing is loaded and no bell is shown.

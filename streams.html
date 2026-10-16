@@ -23,10 +23,6 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
         <div class="numbers numbers--page" id="numbers">
             <p class="status{% if st_live %} status--live{% endif %}" role="status">
                 <span class="status__badge"><i class="status__dot"></i>{% if st_live %}Live{% else %}Verified{% endif %}</span>
-                <span class="status__text">{% if st_live %}YouTube numbers refresh every 3 hours{% else %}Totals from official artist dashboards{% endif %}</span>
-                {%- if st_live and st_date %}
-                <time class="status__date" datetime="{{ st_date | date: "%Y-%m-%d" }}">Updated {{ st_date | date: "%-d %B %Y" }}</time>
-                {%- endif %}
             </p>
 
             {%- include stats-panel.html %}
