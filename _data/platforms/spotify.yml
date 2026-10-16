@@ -1,12 +1,4 @@
-# Spotify: plays per year. Edit in Pages CMS: Streams > Spotify.
-# A year left empty is not shown on the site. "earlier" = plays you cannot split by year.
-# url: link to your artist page on this platform (optional, adds an Open button)
-url:
-y2027:
-y2026:
-y2025:
-y2024:
-y2023:
-y2022:
-y2021:
-earlier:
+y2026: 491425
+y2025: 65883
+y2024: 3200
+y2023: 2002
