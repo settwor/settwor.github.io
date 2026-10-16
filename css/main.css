@@ -2924,6 +2924,30 @@ a.numbers__hero--link:focus-visible {
     font-size: 0.85rem;
 }
 
+/* the smaller number under the big one: music platforms and YouTube videos together */
+.numbers__plus {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.2rem 0.7rem;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.numbers__plus b {
+    font-family: var(--font-bold);
+    font-size: clamp(1.25rem, 5.5vw, 1.9rem);
+    font-weight: normal;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+}
+
+.numbers__plus span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
 /* one coloured piece for every platform */
 .numbers__split {
     display: flex;

@@ -2,6 +2,9 @@
 
 Every change of the site raises the version. The archive is named `settwor-site-vX.Y.zip`.
 
+## 1.6
+- Black panel: the big number is now the streams on music platforms only. Under it, a smaller number "with YouTube video views" (music platforms plus the whole YouTube channel).
+
 ## 1.5
 - Streams page: the block "How the numbers are counted" removed.
 - New file AI-NOTES.md: project memory and rules for any AI that gets the site, with a line to paste into a new chat.
