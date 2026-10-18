@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Fetches YouTube numbers and writes _data/auto_stats.json (the site reads it).
-Used by .github/workflows/stats.yml every 3 hours. Needs one secret: YOUTUBE_API_KEY
+Used by .github/workflows/stats.yml about every two weeks. Needs one secret: YOUTUBE_API_KEY
 (Google Cloud -> APIs -> YouTube Data API v3 -> create an API key).
 Settings (handle / channel_id / track_playlist / track_videos) are read from _data/streams.yml.
 

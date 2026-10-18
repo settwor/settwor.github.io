@@ -1,4 +1,4 @@
-# Updates the YouTube numbers on the site (_data/auto_stats.json) every 3 hours.
+# Updates the YouTube numbers on the site (_data/auto_stats.json) twice a month (1st and 15th, about every two weeks).
 # Needs the secret YOUTUBE_API_KEY (Settings -> Secrets and variables -> Actions).
 # Without it the workflow does nothing and the backup numbers from "Plays and views" are used.
 # If YouTube refuses (wrong key, API not enabled, wrong playlist) the run turns RED and the log says why.
@@ -6,7 +6,7 @@ name: Update stats
 
 on:
   schedule:
-    - cron: "17 */3 * * *"
+    - cron: "17 3 1,15 * *"
   workflow_dispatch:
 
 permissions:

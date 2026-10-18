@@ -579,7 +579,7 @@ content:
           - name: youtube
             label: YouTube setup
             type: object
-            description: "You do not type YouTube numbers: the site takes them from YouTube every 3 hours. Here you only say which channel and which playlist to count."
+            description: "You do not type YouTube numbers: the site takes them from YouTube about every two weeks. Here you only say which channel and which playlist to count."
             fields:
               - name: handle
                 label: Channel name (after the @)
