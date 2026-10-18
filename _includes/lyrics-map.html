@@ -1,0 +1,9 @@
+{%- comment -%}
+  The list of song pages for the "Lyrics" buttons in the release window: lower-case track name -> address.
+  Song pages are the files of the folder "lyrics" that use the layout "lyrics". Nothing is printed
+  while there are no such pages.
+{%- endcomment -%}
+{%- assign lm_pages = site.pages | where: "layout", "lyrics" -%}
+{%- if lm_pages.size > 0 %}
+<script type="application/json" id="lyrics-map">{ {%- for lm in lm_pages %}{{ lm.title | downcase | jsonify }}: {{ lm.url | jsonify }}{% unless forloop.last %}, {% endunless %}{%- endfor %} }</script>
+{%- endif %}

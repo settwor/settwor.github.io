@@ -1,0 +1,21 @@
+---
+layout: page
+rail: releases
+---
+{%- comment -%}
+  A page with the words of one song. Files live in the folder "lyrics" (Pages CMS: "Lyrics").
+  The release window on /releases.html finds the page by the track name and shows a "Lyrics"
+  button next to it (versions like "(sped up)" or "(slowed)" open the same page).
+{%- endcomment -%}
+<article class="lyrics">
+    <header class="page-head">
+        <h1 class="page-head__title">{{ page.title }}</h1>
+        <p class="page-head__lead">{{ page.artist | default: "SETTWOR" }}{% if page.release and page.release != "" %} &middot; {{ page.release }}{% endif %}</p>
+    </header>
+
+    <div class="lyrics__text prose">
+{{ content }}
+    </div>
+
+    <p class="lyrics__back"><a href="/releases.html">&larr; All releases</a></p>
+</article>

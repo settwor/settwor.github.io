@@ -2,6 +2,16 @@
 
 Every change of the site raises the version. The archive is named `settwor-site-vX.Y.zip`.
 
+## 2.7
+- Tracklists imported from the owner's catalogue file (`SETTWOR_Genius_Catalogue.json`) into the `tracklist` field of 23 releases: the albums GOT ME UP (Deluxe), KRUSHER! Vol.1, BLOODRUSH, BREAKPOINT Mixtape and the EPs from DON'T STOP to MENTE LOUCA are verified in the catalogue; the seven 2026 EPs (SE TU QUER, GUARDA CHUVA, BATE NA PICA, ENTAO CHUPA, MEU BONECO, BRUMA AURA, XEREQUINHA NERVOSA, Vinte E Quatro) have a "provisional" order in the catalogue and should be checked by the owner. GET IT, Vol.1 already had its list.
+- Song pages: new layout `_layouts/lyrics.html` and a new Pages CMS section "Lyrics" (folder `lyrics`). First page: GOT ME UP 2 (moved from the old file `lyrics/GOT-ME-UP-2.html`, which stays online).
+- Release window: a track that has a lyrics page gets a "Lyrics" button. Versions "(sped up)", "(slowed)", "(Alternate Mix)", "[Bonus Track]" open the page of the original song. Nothing else has to be done when a new lyrics page is added.
+- Lyrics pages are in `sitemap.xml`; the page title is "<song> Lyrics | SETTWOR".
+- SoundCloud removed everywhere: Pages CMS (platform and the release link field), the platform list in `_includes/stats-calc.html`, the colour class, the release window buttons and search link, the notes. Delete the file `_data/platforms/soundcloud.yml` by hand.
+- `tools/preview.py` now supports `site.pages` and `.md` pages.
+- Files: `_layouts/lyrics.html` (new), `_includes/lyrics-map.html` (new), `_layouts/default.html`, `_includes/stats-calc.html`, `releases.html`, `sitemap.xml`, `js/main.js`, `css/main.css`, `sw.js` (cache version v13), `.pages.yml`, `tools/preview.py`, `docs/lyrics-guide-ru.md` (new), `VERSION`, `CHANGELOG.md`, `AI-NOTES.md`. Content, given separately: 23 files in `_releases` (only the `tracklist` lines were added) and `lyrics/got-me-up-2.md`.
+- Checked with `tools/preview.py` and Playwright (430 px and 1200 px): the buttons appear (2 in GET IT Vol.1, 6 in GOT ME UP Deluxe), the lyrics page opens, no console errors. Not checked with real Jekyll or on the live site.
+
 ## 2.6
 - Three article files renamed so the date in the file name is the date of the article (it was the date the file was created): `2026-10-13-...Celebrates-Five-Years...` -> `2026-10-04-`, `2026-10-13-...Re-releases-SE-TU-QUER...` -> `2026-09-04-`, `2026-10-13-...Toma-Jatada` -> `2026-10-10-`. The addresses of the articles do not change (they were already built from the `date:` field).
 - Article "SE TU QUER Sets a New Record" published (text added, draft mark removed).

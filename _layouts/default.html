@@ -9,12 +9,17 @@
 {{ page.seo_title }}
 {%- elsif page.layout == "article" -%}
 {{ page.title }} | SETTWOR News
+{%- elsif page.layout == "lyrics" -%}
+{{ page.title }} Lyrics | SETTWOR
 {%- else -%}
 {{ page.title }} | SETTWOR
 {%- endif -%}
 {%- endcapture -%}
 {%- assign full_title = full_title | strip -%}
 {%- assign meta_description = page.description | default: site.description | strip_html | normalize_whitespace -%}
+{%- if page.layout == "lyrics" and page.description == nil -%}
+{%- capture meta_description %}Lyrics of {{ page.title }} by {{ page.artist | default: "SETTWOR" }}.{% endcapture -%}
+{%- endif -%}
 {%- capture canonical -%}
 {%- if page.legacy_url and page.legacy_url != "" -%}
 {{ page.legacy_url | uri_escape | absolute_url }}

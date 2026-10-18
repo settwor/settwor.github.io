@@ -2082,6 +2082,63 @@ html.modal-open::-webkit-scrollbar {
     background: rgba(255, 255, 255, 0.05);
 }
 
+/* track name and the "Lyrics" button in the release window */
+.rmodal__trackname {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.rmodal__lyrics {
+    flex: none;
+    align-self: center;
+    padding: 0.15rem 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: var(--radius-pill);
+    color: #fff;
+    font-family: var(--font-bold);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+    transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.rmodal__lyrics:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+@media (hover: hover) {
+    .rmodal__lyrics:hover {
+        border-color: #fff;
+        background: #fff;
+        color: #000;
+    }
+}
+
+/* page with the words of a song */
+.lyrics__text {
+    max-width: 36rem;
+    margin: 1.5rem auto 0;
+    overflow-wrap: anywhere;
+    line-height: 1.7;
+}
+
+/* line breaks inside a verse are kept; the empty line between verses is the paragraph gap */
+.lyrics__text p {
+    white-space: pre-line;
+}
+
+.lyrics__text p+p {
+    margin-top: 1.4rem;
+}
+
+.lyrics__back {
+    margin-top: 2.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
 /* the content slides in one piece after another */
 .rmodal__info>* {
     animation: rise 0.6s var(--ease) both;
@@ -2861,7 +2918,6 @@ html.modal-open::-webkit-scrollbar {
 .c-amazon_music { --c: #25d1da; }
 .c-tidal { --c: #ffffff; }
 .plat.c-tidal { --c: #111111; }
-.c-soundcloud { --c: #ff5500; }
 .c-yandex_music { --c: #ffcc00; }
 .c-vk_music { --c: #0077ff; }
 .c-other { --c: #8a8a8a; }

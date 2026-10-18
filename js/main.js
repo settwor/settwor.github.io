@@ -395,7 +395,6 @@
             ['youtube_music', 'YouTube Music'],
             ['youtube', 'YouTube'],
             ['deezer', 'Deezer'],
-            ['soundcloud', 'SoundCloud'],
             ['tidal', 'TIDAL'],
             ['amazon', 'Amazon Music'],
             ['yandex', 'Yandex Music'],
@@ -407,12 +406,29 @@
             spotify: function (q) { return 'https://open.spotify.com/search/' + q; },
             apple: function (q) { return 'https://music.apple.com/search?term=' + q; },
             youtube_music: function (q) { return 'https://music.youtube.com/search?q=' + q; },
-            deezer: function (q) { return 'https://www.deezer.com/search/' + q; },
-            soundcloud: function (q) { return 'https://soundcloud.com/search?q=' + q; }
+            deezer: function (q) { return 'https://www.deezer.com/search/' + q; }
         };
 
         function parseJson(text, fallback) {
             try { var value = JSON.parse(text); return value || fallback; } catch (e) { return fallback; }
+        }
+
+        // "Lyrics" buttons: pages of the folder "lyrics" are listed in #lyrics-map (lower-case track name -> address)
+        var lyricsMap = {};
+        var lyricsNode = document.getElementById('lyrics-map');
+        if (lyricsNode) lyricsMap = parseJson(lyricsNode.textContent, {});
+
+        // "(sped up)", "(slowed)", "[Bonus Track]" ... at the end of a name are versions of the same song
+        var VERSION_TAIL = /\s*[\(\[][^\)\]]*(sped|speed|slow|reverb|nightcore|alternate mix|bonus track)[^\)\]]*[\)\]]\s*$/i;
+
+        function findLyrics(name) {
+            var key = String(name).toLowerCase().replace(/\s+/g, ' ').trim();
+            if (lyricsMap[key]) return lyricsMap[key];
+            while (VERSION_TAIL.test(key)) {
+                key = key.replace(VERSION_TAIL, '').trim();
+                if (lyricsMap[key]) return lyricsMap[key];
+            }
+            return '';
         }
 
         function readRelease(card) {
@@ -532,7 +548,19 @@
             if (data.tracks.length) {
                 info.appendChild(el('h3', 'rmodal__h', 'Tracklist'));
                 var ol = el('ol', 'rmodal__tracks');
-                data.tracks.forEach(function (name) { ol.appendChild(el('li', '', name)); });
+                data.tracks.forEach(function (name) {
+                    var li = el('li');
+                    li.appendChild(el('span', 'rmodal__trackname', name));
+                    var lyricsUrl = findLyrics(name);
+                    if (lyricsUrl) {
+                        var lyr = el('a', 'rmodal__lyrics', 'Lyrics');
+                        lyr.href = lyricsUrl;
+                        lyr.title = 'Open the lyrics of ' + name;
+                        lyr.setAttribute('aria-label', 'Open the lyrics of ' + name);
+                        li.appendChild(lyr);
+                    }
+                    ol.appendChild(li);
+                });
                 info.appendChild(ol);
             } else if (data.details) {
                 info.appendChild(el('h3', 'rmodal__h', 'Tracklist'));

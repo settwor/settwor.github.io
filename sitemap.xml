@@ -30,4 +30,9 @@ layout: null
         {%- endif %}
     </url>
 {%- endfor %}
+{%- comment -%} Song lyrics pages (folder "lyrics", layout "lyrics"). {%- endcomment -%}
+{%- assign sm_lyrics = site.pages | where: "layout", "lyrics" -%}
+{%- for item in sm_lyrics %}
+    <url><loc>{{ item.url | absolute_url | xml_escape }}</loc></url>
+{%- endfor %}
 </urlset>

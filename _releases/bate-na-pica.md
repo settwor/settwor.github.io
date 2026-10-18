@@ -7,4 +7,9 @@ cover: images/releases/BATE NA PICA.png
 spotify: https://open.spotify.com/album/5CnDF3gCFWvg3PAgP5GfgB
 links:
   apple: https://music.apple.com/us/album/bate-na-pica-ep/1869165013
+tracklist:
+  - "BATE NA PICA"
+  - "BATE NA PICA (Slowed)"
+  - "BATE NA PICA (Super Slowed)"
+  - "BATE NA PICA (Sped Up)"
 ---

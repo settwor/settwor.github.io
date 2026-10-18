@@ -20,6 +20,7 @@ English: "This is my site (archive). Read AI-NOTES.md and CHANGELOG.md first and
 8. Deliver: a zip with ONLY the code, templates, styles, scripts and config that changed (full paths), so the owner can unzip over the folder. Say which file must be deleted by hand.
    **NEVER put content or data files in the zip**: `_data/*.yml`, `_data/platforms/*`, `_data/auto_stats.json`, `_posts`, `_releases`, `_bio`, `_config.yml` values the owner may have changed. The owner edits them in Pages CMS and the live copy is on GitHub, so a zip overwrites their work (this happened in versions 1.1 to 1.6 and wiped the plays the owner had entered). Make templates work with defaults instead. If a new data file is truly needed, do not zip it: tell the owner to create it in Pages CMS, or give it as a separate file marked "create only if missing".
 9. If you could not test something (the live site, the YouTube API, real Jekyll), say so plainly.
+10. The owner has NO SoundCloud. Never add SoundCloud anywhere (links, platform lists, colours, search buttons). Removed in v2.7.
 
 ## What the site is
 
@@ -41,7 +42,7 @@ English: "This is my site (archive). Read AI-NOTES.md and CHANGELOG.md first and
 Pages: the home page shows only the black panel (a link) before the news; `/streams.html` shows everything.
 
 Data and flow:
-- Music platforms: one file per platform in `_data/platforms/<key>.yml` (the owner's live data, never ship them) with `y2027 ... y2021`, `earlier`, optional `url`. Keys: spotify, apple_music, pandora, youtube_music, deezer, amazon_music, tidal, soundcloud, yandex_music, vk_music, other. A year or platform left empty is not shown. The owner edits them in Pages CMS > group "Streams".
+- Music platforms: one file per platform in `_data/platforms/<key>.yml` (the owner's live data, never ship them) with `y2027 ... y2021`, `earlier`, optional `url`. Keys: spotify, apple_music, pandora, youtube_music, deezer, amazon_music, tidal, yandex_music, vk_music, other. A year or platform left empty is not shown. The owner edits them in Pages CMS > group "Streams".
 - YouTube: `tools/fetch-stats.py` (GitHub Action `.github/workflows/stats.yml`, about every two weeks (1st and 15th), secret `YOUTUBE_API_KEY`) writes `_data/auto_stats.json`: `clips_views` (releases playlist, only videos of the own channel), `other_views` (= channel total minus clips_views), `channel_total_views`. Setup (handle, playlist id) is in `_data/streams.yml`; `clips_views_fallback` / `other_views_fallback` are used only while `auto_stats.json` is missing.
 - Maths (`_includes/stats-calc.html`): music total = sum of all platform years; YouTube whole channel = clips + other; grand total = music + whole channel (no double counting). In the black panel the BIG number is `st_panel_total` (music + YouTube release videos); the smaller number under it is `st_total` (music + whole channel, no double counting). The bar and the list use `st_rows_all` (music platforms + release videos only). Owner's decision, v2.0. Platforms are sorted biggest first by building strings `"000000123456|key|Name~"` and sorting them.
 - Artist links (defaults, CMS link wins): `_includes/artist-urls.html` gives `au_spotify`, `au_apple`, `au_pandora`, `au_ytm`. Used in the right column ("Listen to SETTWOR"), the footer, JSON-LD `sameAs` and the Streams page.
@@ -49,7 +50,7 @@ Data and flow:
 - Biographies: one file per language in `_bio` (en, ru, pl, es, pt, uk). A new language = a new file with `lang`, `lang_name`, `order`; the list, footer, hreflang and sitemap follow by themselves. Block titles per language are in `_data/bioui.yml` (Ukrainian ones are built into `_layouts/bio.html`). `_bio/uk.md` is a translation of `ru.md`; when `ru.md` changes, `uk.md` must change too.
 - `js/stats.js` watches every card separately (not the whole block). Do not go back to one observer for the whole `#numbers`: on the Streams page it is taller than 5 screens and would never start.
 - Includes: `stats-calc.html` (all numbers), `stats-panel.html` (black panel, `link=` makes it clickable), `stats-block.html` (home section), `stats-details.html` (cards and YouTube tiles), `num-full.html` (full number with commas, no rounding).
-- Colours: CSS classes `c-<key>` in `css/main.css` (Spotify green, Apple Music pink, Pandora blue, Deezer purple, Amazon cyan, TIDAL white/black, SoundCloud orange, Yandex yellow, VK blue, YouTube reds). Pandora's brand colour is blue, not purple.
+- Colours: CSS classes `c-<key>` in `css/main.css` (Spotify green, Apple Music pink, Pandora blue, Deezer purple, Amazon cyan, TIDAL white/black, Yandex yellow, VK blue, YouTube reds). Pandora's brand colour is blue, not purple.
 - `js/stats.js`: count-up, bars grow, cards appear. Layout adapts with a CSS container query (`.numbers { container: numbers / inline-size }`).
 - The Streams page also has "Official profiles" (links from `_data/links.yml` plus platform `url`s, `rel="me"`) and schema.org JSON-LD. Do not add text explaining how numbers are counted (the owner removed it).
 
@@ -60,11 +61,20 @@ Data and flow:
 - `css/main.css` (one big file), `js/main.js`, `js/stats.js`, `sw.js`.
 - `tools/` preview and stats scripts. `docs/` the owner's guides (Russian). `VERSION`, `CHANGELOG.md`, `AI-NOTES.md`.
 
+## Tracklists and lyrics (v2.7)
+
+- Tracklists: field `tracklist` (list of strings) in `_releases/<release>.md`. The release window on `/releases.html` (`js/main.js`, section 9) shows it. Imported in v2.7 from `SETTWOR_Genius_Catalogue.json` (the owner's file, made from Amazon/Apple listings). Verified lists: albums and the EPs up to MENTE LOUCA. The seven 2026 EPs (SE TU QUER ... Vinte E Quatro) are marked "provisional order" in the catalogue: the owner should look at them once. Not imported (no data): Lost Vibe Vol.1 (15 tracks, titles unknown), Want to Be, anguish, Fuck The World, Toma Jatada, the Mc Baiano re-release. BONUSMIX 2024 (21 tracks) is not on the site yet: it needs a cover, so it was not created.
+- Lyrics: one file per song in the folder `lyrics/` (`*.md`, front matter `layout: lyrics`, `title`, `artist`, `release`, `permalink: /lyrics/<name>/`; the body is the words, line breaks are kept with CSS `white-space: pre-line`). No change of `_config.yml` is needed: the pages are found with `site.pages | where: "layout", "lyrics"` (`_includes/lyrics-map.html`, `sitemap.xml`). Edited in Pages CMS > Lyrics.
+- The "Lyrics" button: `lyrics-map.html` prints `#lyrics-map` (lower-case title -> address) on `/releases.html`; `main.js` matches each track name against it. Trailing version marks like `(sped up)`, `(slowed)`, `[Bonus Track]`, `(Alternate Mix)` are removed, so every version opens the page of the original song. A new lyrics page needs no other step.
+- Only one lyrics page exists: `GOT ME UP 2` (moved from the old file `lyrics/GOT-ME-UP-2.html`, which is left in place). Do NOT fetch or write lyrics from the internet: the catalogue has links only, and lyrics must come from the owner.
+- `tools/preview.py` now knows `site.pages` and `.md` pages.
+
 ## Open items (update this list at the end of every session)
 
-- Checked artist links exist for Spotify, Apple Music, Pandora and YouTube Music (the owner gave Pandora and YouTube Music in v2.1). Missing: Deezer, TIDAL, Amazon Music, SoundCloud, Yandex Music, VK Music. The owner can paste them in Pages CMS > Streams > platform > "Your artist page link". To show a new one on the whole site, add it to `_includes/artist-urls.html` and to the blocks that use it (`rail-follow.html`, `footer.html`, `person-jsonld.html`).
+- Checked artist links exist for Spotify, Apple Music, Pandora and YouTube Music (the owner gave Pandora and YouTube Music in v2.1). Missing: Deezer, TIDAL, Amazon Music, Yandex Music, VK Music. The owner can paste them in Pages CMS > Streams > platform > "Your artist page link". To show a new one on the whole site, add it to `_includes/artist-urls.html` and to the blocks that use it (`rail-follow.html`, `footer.html`, `person-jsonld.html`).
 - The YouTube API part was never run by an AI (no network). If numbers look wrong, ask for the log of the Action "Update stats" (a failure turns the run red with the reason).
 - The live site was never seen by an AI; the owner once reported that the black panel was missing online while it showed locally (likely not pushed, or a Pages build error, or the cached CSS).
+- v2.7: the owner should check the seven provisional 2026 EP tracklists, add BONUSMIX 2024 (with a cover) and paste the words of the other songs in Pages CMS > Lyrics. The old files `lyrics/GOT-ME-UP-2.html` and `tracklist/GET-IT,-Vol.1.html` are still online (old design); the owner may delete them or ask for redirects.
 - Ukrainian biography `_bio/uk.md` was written by an AI (translation of the Russian one); a native speaker should read it once.
 - The "status" on the Streams page is only a small Live / Verified badge. The owner asked for "a status", the exact meaning was not confirmed.
 

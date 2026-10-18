@@ -5,4 +5,9 @@ date: 2026-01-09
 kind: Single
 cover: images/releases/SE TU QUER.jpg
 spotify: https://open.spotify.com/album/4G27W8LQxr3H8mROcotpUQ
+tracklist:
+  - "SE TU QUER"
+  - "SE TU QUER (Slowed)"
+  - "SE TU QUER (Super Slowed)"
+  - "SE TU QUER (Sped Up)"
 ---

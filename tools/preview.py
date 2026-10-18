@@ -587,6 +587,33 @@ for root, dirs, files in os.walk(SRC):
                 continue
         pages.append((rel, None, None))
 
+def page_url(rel, data, quiet=False):
+    """Address of a page file (permalink, or made from the file name like Jekyll does)."""
+    if data.get("permalink"):
+        return data["permalink"]
+    relu = rel.replace(os.sep, "/")
+    if not relu.endswith((".html", ".htm", ".md")):
+        return "/" + relu                          # xml, txt, js, css keep their names
+    base = relu.rsplit(".", 1)[0]
+    if base == "index" or base.endswith("/index"):
+        return "/" + base[: -len("index")]
+    if config.get("permalink", "").endswith("/"):
+        # Real Jekyll 3: a custom permalink that ends with "/" also applies to pages.
+        if not quiet:
+            print(f"NOTE: page {relu} has no permalink and is published at /{base}/")
+        return "/" + base + "/"
+    return "/" + base + (".html" if relu.endswith(".md") else relu[len(base):])
+
+
+# site.pages (only files with front matter), like Jekyll: used for example by the lyrics pages
+site["pages"] = []
+for _rel, _data, _body in pages:
+    if _data is not None:
+        _d = dict(_data)
+        _d["url"] = page_url(_rel, _data, quiet=True)
+        _d["path"] = _rel.replace(os.sep, "/")
+        site["pages"].append(_d)
+
 shutil.rmtree(OUT, ignore_errors=True)
 os.makedirs(OUT)
 
@@ -642,20 +669,7 @@ for rel, data, body in pages:
             raise SystemExit(f"CONFLICT: static file {rel}")
         shutil.copy(os.path.join(SRC, rel), dest)
         continue
-    if data.get("permalink"):
-        url = data["permalink"]
-    else:
-        relu = rel.replace(os.sep, "/")
-        if not relu.endswith((".html", ".htm")):
-            url = "/" + relu                       # xml, txt, js, css keep their names
-        elif relu == "index.html" or relu.endswith("/index.html"):
-            url = "/" + relu[: -len("index.html")]
-        elif config.get("permalink", "").endswith("/"):
-            # Real Jekyll 3: a custom permalink that ends with "/" also applies to pages.
-            url = "/" + relu[: -len(".html")] + "/"
-            print(f"NOTE: page {relu} has no permalink and is published at {url}")
-        else:
-            url = "/" + relu
-    build(url, data, body)
+    url = page_url(rel, data)
+    build(url, data, body, is_md=rel.endswith(".md"))
 
 print(f"built {len(posts)} posts, {sum(len(d) for _, d in collections.values())} collection docs and {len(pages)} files into {OUT}")
