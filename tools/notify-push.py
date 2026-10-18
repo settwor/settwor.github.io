@@ -79,7 +79,7 @@ def send(app_id, key, title, text, url):
     body = json.dumps({
         "app_id": app_id,
         "target_channel": "push",
-        "included_segments": ["Subscribed Users"],
+        "included_segments": ["Total Subscriptions"],
         "headings": {"en": title},
         "contents": {"en": text},
         "url": url,
