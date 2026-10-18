@@ -75,11 +75,11 @@ def page_is_live(url):
         return False
 
 
-def send(app_id, key, title, text, url):
+def send(app_id, key, title, text, url, segment="Total Subscriptions"):
     body = json.dumps({
         "app_id": app_id,
         "target_channel": "push",
-        "included_segments": ["Total Subscriptions"],
+        "included_segments": [segment],
         "headings": {"en": title},
         "contents": {"en": text},
         "url": url,
@@ -90,6 +90,36 @@ def send(app_id, key, title, text, url):
     })
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.loads(r.read().decode("utf-8") or "{}")
+
+
+SEGMENTS = ["Total Subscriptions", "Active Subscriptions", "Subscribed Users"]
+
+
+def diagnose(app_id, key):
+    """Print what OneSignal sees for this App ID + key (helps to find a mismatch)."""
+    print("DIAG: app_id=%s  key=%s...%s (len %d)" % (app_id, key[:4], key[-4:], len(key)))
+    url = "https://api.onesignal.com/players?app_id=%s&limit=1" % app_id
+    for scheme in ("Key", "Basic"):
+        try:
+            req = urllib.request.Request(url, headers={"Authorization": "%s %s" % (scheme, key)})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = json.loads(r.read().decode("utf-8") or "{}")
+            print("DIAG: players total_count=%s (auth scheme %s)" % (data.get("total_count"), scheme))
+            return
+        except Exception as e:
+            detail = e.read().decode("utf-8", "replace")[:200] if hasattr(e, "read") else ""
+            print("DIAG: players request with %s failed: %s %s" % (scheme, e, detail))
+
+
+def send_any_segment(app_id, key, title, text, url):
+    res = {}
+    for seg in SEGMENTS:
+        res = send(app_id, key, title, text, url, seg)
+        print("OneSignal answered for segment '%s': %s" % (seg, json.dumps(res, ensure_ascii=False)))
+        if res.get("id") and not res.get("errors"):
+            return res
+    diagnose(app_id, key)
+    return res
 
 
 def main(argv):
@@ -155,8 +185,7 @@ def main(argv):
             print("DRY RUN\n  title: %s\n  text:  %s\n  url:   %s" % (title, text, url))
             continue
         try:
-            res = send(app_id, key, title, text, url)
-            print("OneSignal answered: %s" % json.dumps(res, ensure_ascii=False))
+            res = send_any_segment(app_id, key, title, text, url)
             if not res.get("id") or res.get("errors"):
                 print("NOT SENT: OneSignal created no message. Most likely nobody is subscribed yet "
                       "(check OneSignal -> Audience -> Subscriptions) or the API key / App ID do not match.")
