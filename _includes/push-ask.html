@@ -7,8 +7,8 @@
 {%- if site.onesignal_app_id and site.onesignal_app_id != "" %}
 {%- assign latest = site.posts | first %}
 <div class="push-ask" id="push-ask" hidden>
-    <div class="push-ask__backdrop" data-push-no></div>
-    <div class="push-ask__card" role="dialog" aria-modal="true" aria-labelledby="push-ask-title" aria-describedby="push-ask-text">
+    {%- comment -%} 5.6: a parallel notice, not a modal task (4.3): no aria-modal, no focus trap, the page behind stays usable. {%- endcomment -%}
+    <div class="push-ask__card" role="dialog" aria-labelledby="push-ask-title" aria-describedby="push-ask-text">
         <div class="push-ask__view" data-push-view="ask">
             <div class="push-ask__bell" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6.5 2 6.5H4S6 14 6 9z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg>
@@ -25,9 +25,10 @@
             </div>
             <p class="push-ask__caption">This is how it will look</p>
             {%- endif %}
+            {%- comment -%} 5.6: two buttons of the same weight (SKILL 16 agency): "No" is as easy to press as "Yes". {%- endcomment -%}
             <div class="push-ask__actions">
-                <button class="btn btn--solid push-ask__yes" type="button" data-push-yes>Yes, notify me</button>
-                <button class="push-ask__no" type="button" data-push-no>Not now</button>
+                <button class="btn push-ask__choice" type="button" data-push-no>Not now</button>
+                <button class="btn push-ask__choice" type="button" data-push-yes>Yes, notify me</button>
             </div>
             <p class="push-ask__fine">Your browser will ask you to confirm. Choose “Allow”.</p>
         </div>
@@ -45,14 +46,14 @@
             <h2 class="push-ask__title">You are already subscribed</h2>
             <p class="push-ask__text">You will get a notification about every new release or article. To turn it off, use the bell in the corner of the page.</p>
             <div class="push-ask__actions">
-                <button class="btn push-ask__yes" type="button" data-push-close>Close</button>
+                <button class="btn push-ask__choice" type="button" data-push-close>Close</button>
             </div>
         </div>
         <div class="push-ask__view" data-push-view="blocked" hidden>
             <h2 class="push-ask__title">No problem</h2>
             <p class="push-ask__text">Notifications are blocked in your browser. If you change your mind, allow them for this site in the address bar settings, or use the RSS feed.</p>
             <div class="push-ask__actions">
-                <button class="btn push-ask__yes" type="button" data-push-close>Close</button>
+                <button class="btn push-ask__choice" type="button" data-push-close>Close</button>
             </div>
         </div>
     </div>

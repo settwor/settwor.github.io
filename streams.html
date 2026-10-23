@@ -15,18 +15,24 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
 {%- endcomment -%}
 {%- include stats-calc.html -%}
 {%- assign sp = site.data.pages.streams -%}
+{%- comment -%} todo design 5.5: if there are no numbers at all, say so calmly instead of showing a bare page. {%- endcomment -%}
+{%- assign sh_any = st_panel_total | plus: st_plat_total | plus: st_channel -%}
         <header class="page-head">
             <h1 class="page-head__title">{{ sp.title | default: "Streams" }}</h1>
             <p class="page-head__lead">{{ sp.lead | default: "How many times the music of SETTWOR has been played, platform by platform, and how many people watched the videos on YouTube." }}</p>
         </header>
 
         <div class="numbers numbers--page" id="numbers">
+            {%- if sh_any > 0 %}
             <p class="status{% if st_live %} status--live{% endif %}" role="status">
                 <span class="status__badge"><i class="status__dot"></i>{% if st_live %}Live{% else %}Verified{% endif %}</span>
             </p>
 
             {%- include stats-panel.html %}
             {%- include stats-details.html %}
+            {%- else %}
+            {%- include empty-state.html title="The numbers are not ready yet" text="Stream counts will appear here. In the meantime, the music is on every platform." href=au_spotify label="Listen on Spotify" %}
+            {%- endif %}
 
             <div class="numbers__head" id="profiles">
                 <h2 class="numbers__h">Official profiles</h2>

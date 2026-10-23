@@ -11,8 +11,12 @@
      - the browser supports notifications and has not been asked or blocked yet
      - the visitor has been on the page for 20 seconds AND scrolled a third of it
        (a very long page: 1.2 screens; a short page: 35 seconds)
-     - the cookie banner is not on the screen
+     - the cookie banner is not on the screen, and no window, photo viewer or menu is open (todo design 5.6: never on
+       top of something the visitor is doing)
      - not asked before: after "Not now" we wait 7 days, then 30 days, then never again
+
+   It is a parallel notice, not a modal task (todo design 4.3, 5.6): no focus trap and no aria-modal, the page behind
+   stays usable. When it opens ON ITS OWN it does not take the focus; when the visitor opens it with a button it does.
    ============================================================= */
 (function () {
     'use strict';
@@ -52,8 +56,11 @@
         open = false;
         root.classList.remove('is-open');
         document.removeEventListener('keydown', onKey, true);
-        setTimeout(function () { root.hidden = true; }, 250);
-        if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) { /* ignore */ } }
+        setTimeout(function () { root.hidden = true; }, 280);   // = --t-exit in css/main.css
+        // the focus goes back only if it was inside the card (otherwise the visitor is somewhere else and stays there)
+        if (card.contains(document.activeElement) && lastFocus && lastFocus.focus) {
+            try { lastFocus.focus(); } catch (e) { /* ignore */ }
+        }
     }
 
     function notNow() {
@@ -64,16 +71,18 @@
         close();
     }
 
+    // something else the visitor is busy with: the release window or the photo viewer (the page is pushed back,
+    // class `sheet-back` on <html>) or the open mobile menu
+    function busy() {
+        return document.documentElement.classList.contains('sheet-back') || !!document.querySelector('.mobile-menu.is-open');
+    }
+
+    // Esc says "Not now". No Tab trap: a parallel notice must not lock the page (the Esc of a window or a menu
+    // that is open stays theirs).
     function onKey(event) {
-        if (event.key === 'Escape') { event.preventDefault(); notNow(); return; }
-        if (event.key !== 'Tab') return;
-        var items = card.querySelectorAll('button');
-        var visible = Array.prototype.filter.call(items, function (b) { return b.offsetParent !== null; });
-        if (!visible.length) return;
-        var first = visible[0];
-        var last = visible[visible.length - 1];
-        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        if (event.key !== 'Escape' || (busy() && !card.contains(document.activeElement))) return;
+        event.preventDefault();
+        notNow();
     }
 
     function openWindow(view, byButton) {
@@ -88,10 +97,13 @@
         requestAnimationFrame(function () {
             requestAnimationFrame(function () { root.classList.add('is-open'); });
         });
-        setTimeout(function () {
-            var target = root.querySelector('[data-push-view]:not([hidden]) button');
-            if (target) target.focus({ preventScroll: true });
-        }, 60);
+        // the visitor asked for it with a button: the focus goes into the card. On its own it does not take the focus.
+        if (byButton) {
+            setTimeout(function () {
+                var target = root.querySelector('[data-push-view]:not([hidden]) button');
+                if (target) target.focus({ preventScroll: true });
+            }, 60);
+        }
     }
 
     function subscribed() {
@@ -167,6 +179,7 @@
             seconds += 1;
             var banner = document.getElementById('consent');
             if (banner && !banner.hidden) return;
+            if (busy()) return;     // wait: the visitor is in a window or a menu
             var ready = shortPage() ? seconds >= 35 : (seconds >= 20 && scrolled);
             if (ready) {
                 clearInterval(timer);

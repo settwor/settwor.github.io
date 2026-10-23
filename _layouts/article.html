@@ -35,12 +35,7 @@ layout: default
         </section>
 {%- else %}
         <article class="article">
-            <nav class="crumbs" aria-label="Breadcrumb">
-                <ol>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/news/">News</a></li>
-                </ol>
-            </nav>
+            <p class="back">{% include back-link.html href="/news/" label="News" %}</p>
 
             <header class="article__head">
                 <h1 class="article__title">{{ page.title }}</h1>
@@ -84,7 +79,7 @@ layout: default
                 <ul>
                     <li><a href="{{ first_bio.url }}">Biography of SETTWOR</a></li>
                     <li><a href="/releases.html">All releases</a></li>
-                    <li><a href="/photo.html">Photographs</a></li>
+                    <li><a href="/photo.html">Photos</a></li>
                     <li><a href="/news/">All news</a></li>
                 </ul>
             </aside>

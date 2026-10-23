@@ -8,14 +8,21 @@ rail: releases
   button next to it (versions like "(sped up)" or "(slowed)" open the same page).
 {%- endcomment -%}
 <article class="lyrics">
+    <p class="back">{% include back-link.html href="/releases.html" label="Releases" %}</p>
+
     <header class="page-head">
         <h1 class="page-head__title">{{ page.title }}</h1>
         <p class="page-head__lead">{{ page.artist | default: "SETTWOR" }}{% if page.release and page.release != "" %} &middot; {{ page.release }}{% endif %}</p>
     </header>
 
+    {%- assign ly_words = content | strip -%}
+    {%- if ly_words == "" %}
+    {%- include empty-state.html title="The words are not here yet" text="The lyrics of this song will appear on this page." %}
+    {%- else %}
     <div class="lyrics__text prose">
 {{ content }}
     </div>
+    {%- endif %}
 
-    <p class="lyrics__back"><a href="/releases.html">&larr; All releases</a></p>
+    <p class="lyrics__back">{% include back-link.html href="/releases.html" label="Releases" %}</p>
 </article>

@@ -4,12 +4,11 @@
         <nav aria-labelledby="footer-site">
             <h2 class="footer-title" id="footer-site">Site</h2>
             <ul class="footer-links">
-                <li><a href="/">Main</a></li>
-                <li><a href="/bio.html" data-bio-link>Biography</a></li>
-                <li><a href="/photo.html">Photographs</a></li>
-                <li><a href="/news/">News</a></li>
                 <li><a href="/releases.html">Releases</a></li>
+                <li><a href="/news/">News</a></li>
                 <li><a href="/streams.html">Streams</a></li>
+                <li><a href="/bio.html" data-bio-link>Biography</a></li>
+                <li><a href="/photo.html">Photos</a></li>
                 <li><a href="/feed.xml">RSS feed</a></li>
                 {%- if site.onesignal_app_id and site.onesignal_app_id != "" %}
                 <li><button class="link-button" type="button" data-push-open hidden>Get notifications</button></li>
@@ -42,6 +41,12 @@
                 <li><a href="/privacy.html">Privacy policy</a></li>
                 <li><button class="link-button" type="button" data-consent-open>Cookie settings</button></li>
             </ul>
+            <div class="theme-switch" role="group" aria-labelledby="theme-label" hidden>
+                <span class="theme-switch__label" id="theme-label">Colour theme</span>
+                <button class="btn btn--sm" type="button" data-theme-set="auto" aria-pressed="true">Auto</button>
+                <button class="btn btn--sm" type="button" data-theme-set="light" aria-pressed="false">Light</button>
+                <button class="btn btn--sm" type="button" data-theme-set="dark" aria-pressed="false">Dark</button>
+            </div>
         </nav>
     </div>
     <p class="footer-copy">© <span data-current-year>{{ site.time | date: "%Y" }}</span> SETTWOR. Official website.</p>

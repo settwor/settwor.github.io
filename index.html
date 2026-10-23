@@ -32,7 +32,10 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
         </section>
 
         <section class="section" id="about" aria-labelledby="about-title">
-            <h2 class="section-title" id="about-title">{{ home.about_title }}</h2>
+            <div class="section-head">
+                <h2 class="section-title" id="about-title">{{ home.about_title }}</h2>
+                <a class="section-head__more" href="{{ first_bio.url }}" data-bio-link>Full biography<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
             <div class="section__body">
                 {{ home.about | markdownify }}
                 {%- if home.callout and home.callout != "" %}
@@ -46,27 +49,24 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                         {%- endfor %}
                     </dl>
                 </section>
-
-                <p class="center"><a class="btn btn--thin" href="{{ first_bio.url }}" data-bio-link>Read the full biography</a></p>
             </div>
         </section>
 
-{%- include stats-block.html %}
+        {%- comment -%}
+          Order of the home page (todo design 5.1): the visitor comes to listen and to see what is new.
+          7.8 (owner): Hero -> ABOUT (always first) -> latest releases -> listen and watch -> news -> numbers -> photos -> social media -> questions.
+          Every section heading is a row: the title on the left, one secondary link on the right (5.2).
+        {%- endcomment -%}
 
-        <section class="section" id="news" aria-labelledby="news-title">
-            <h2 class="section-title" id="news-title">Latest news</h2>
-            <div class="news-list">
-                {%- for post in site.posts limit: 3 %}
-                {% include news-card.html post=post %}
-                {%- endfor %}
-            </div>
-            <p class="center"><a class="btn btn--thin" href="/news/">All news</a></p>
-        </section>
-
+        {%- comment -%} 5.5: a section with nothing in it is not shown at all (no bare heading over an empty space). {%- endcomment -%}
+        {%- assign home_releases = site.releases | sort: "date" | reverse %}
+        {%- if home_releases.size > 0 %}
         <section class="section" id="releases" aria-labelledby="releases-title">
-            <h2 class="section-title" id="releases-title">Latest releases</h2>
+            <div class="section-head">
+                <h2 class="section-title" id="releases-title">Latest releases</h2>
+                <a class="section-head__more" href="/releases.html">All releases<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
             <!-- The 4 newest releases (folder _releases). Change "limit: 4" to show more or fewer. -->
-            {%- assign home_releases = site.releases | sort: "date" | reverse %}
             <ul class="release-grid release-grid--home">
                 {%- for release in home_releases limit: 4 %}
                 {%- capture cover -%}{% include image-url.html src=release.cover %}{%- endcapture %}
@@ -78,47 +78,89 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 </li>
                 {%- endfor %}
             </ul>
-            <p class="center"><a class="btn btn--thin" href="/releases.html">All releases</a></p>
         </section>
+        {%- endif %}
 
+        <!-- The video and the Spotify player are one block (5.1). The old addresses #video and #spotify still land here. -->
+        {%- assign ls_video = home.video.youtube_id | default: "" -%}
+        {%- assign ls_spotify = home.spotify_artist_id | default: "" -%}
+        {%- if ls_video != "" or ls_spotify != "" %}
+        <section class="section" id="listen" aria-labelledby="listen-title">
+            <div class="section-head">
+                <h2 class="section-title" id="listen-title">Listen and watch</h2>
+            </div>
+            <div class="listen-watch">
+                {%- if ls_video != "" %}
+                <div class="embed-block">
+                    <div class="embed embed--video" id="video">
+                        <iframe src="https://www.youtube-nocookie.com/embed/{{ ls_video }}?rel=0" title="{{ home.video.title | escape }}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <p class="embed__alt">Video not loading? <a href="https://www.youtube.com/watch?v={{ ls_video }}" rel="noopener">Open it on YouTube</a></p>
+                </div>
+                {%- endif %}
+                {%- if ls_spotify != "" %}
+                <div class="embed-block">
+                    <div class="embed" id="spotify">
+                        <iframe src="https://open.spotify.com/embed/artist/{{ ls_spotify }}" title="SETTWOR on Spotify" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    </div>
+                    <p class="embed__alt">Player not loading? <a href="{{ au_spotify }}" rel="me noopener">Open it on Spotify</a></p>
+                </div>
+                {%- endif %}
+            </div>
+        </section>
+        {%- endif %}
+
+        {%- if site.posts.size > 0 %}
+        <section class="section" id="news" aria-labelledby="news-title">
+            <div class="section-head">
+                <h2 class="section-title" id="news-title">Latest news</h2>
+                <a class="section-head__more" href="/news/">All news<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <div class="news-list">
+                {%- for post in site.posts limit: 3 %}
+                {% include news-card.html post=post %}
+                {%- endfor %}
+            </div>
+        </section>
+        {%- endif %}
+
+{%- include stats-block.html %}
+
+        {%- assign home_photos = site.data.gallery.photos | sort: "date" | reverse %}
+        {%- if home_photos.size > 0 %}
+        <section class="section" id="photos" aria-labelledby="photos-title">
+            <div class="section-head">
+                <h2 class="section-title" id="photos-title">Photos</h2>
+                <a class="section-head__more" href="/photo.html">All photos<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <!-- The 9 newest photos of the gallery (_data/gallery.yml) -->
+            <ul class="photo-grid">
+                {%- for photo in home_photos limit: 9 %}
+                <li><a href="/photo.html#y{{ photo.date | date: "%Y" }}"><img src="{% include thumb-url.html src=photo.image %}" alt="{{ photo.alt | escape }}" width="300" height="300" loading="lazy" decoding="async"></a></li>
+                {%- endfor %}
+            </ul>
+        </section>
+        {%- endif %}
+
+        {%- if site.data.links.follow.size > 0 %}
         <section class="section" id="social" aria-labelledby="social-title">
-            <h2 class="section-title" id="social-title">Social media</h2>
+            <div class="section-head">
+                <h2 class="section-title" id="social-title">Social media</h2>
+            </div>
             <ul class="social">
                 {%- for item in site.data.links.follow %}
                 <li><a class="btn" href="{{ item.url }}" rel="me">{% if item.icon and item.icon != "" %}<img src="{{ item.icon }}" alt="" width="18" height="18">{% endif %}{{ item.name }}</a></li>
                 {%- endfor %}
             </ul>
         </section>
-
-        <section class="section" id="video" aria-labelledby="video-title">
-            <h2 class="section-title" id="video-title">Popular video</h2>
-            <div class="embed embed--video">
-                <iframe src="https://www.youtube-nocookie.com/embed/{{ home.video.youtube_id }}?rel=0" title="{{ home.video.title | escape }}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </section>
-
-        <section class="section" id="spotify" aria-labelledby="spotify-title">
-            <h2 class="section-title" id="spotify-title">Listen on Spotify</h2>
-            <div class="embed">
-                <iframe src="https://open.spotify.com/embed/artist/{{ home.spotify_artist_id }}" title="SETTWOR on Spotify" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-            </div>
-        </section>
-
-        <section class="section" id="photos" aria-labelledby="photos-title">
-            <h2 class="section-title" id="photos-title">Photographs</h2>
-            <!-- The 9 newest photos of the gallery (_data/gallery.yml) -->
-            {%- assign home_photos = site.data.gallery.photos | sort: "date" | reverse %}
-            <ul class="photo-grid">
-                {%- for photo in home_photos limit: 9 %}
-                <li><a href="/photo.html#y{{ photo.date | date: "%Y" }}"><img src="{% include thumb-url.html src=photo.image %}" alt="{{ photo.alt | escape }}" width="300" height="300" loading="lazy" decoding="async"></a></li>
-                {%- endfor %}
-            </ul>
-            <p class="center"><a class="btn btn--thin" href="/photo.html">View all photographs</a></p>
-        </section>
+        {%- endif %}
 
         {%- if home.faq and home.faq.size > 0 %}
         <section class="section" id="faq" aria-labelledby="faq-title">
-            <h2 class="section-title" id="faq-title">{{ home.faq_title | default: "Questions about SETTWOR" }}</h2>
+            <div class="section-head">
+                <h2 class="section-title" id="faq-title">{{ home.faq_title | default: "Questions about SETTWOR" }}</h2>
+                <a class="section-head__more" href="{{ first_bio.url }}" data-bio-link>More in the biography<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
             <div class="faq faq--home">
                 {%- for item in home.faq %}
                 <details class="faq__item">
@@ -127,7 +169,6 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 </details>
                 {%- endfor %}
             </div>
-            <p class="center"><a class="btn btn--thin" href="{{ first_bio.url }}" data-bio-link>More answers in the biography</a></p>
         </section>
         {%- endif %}
 

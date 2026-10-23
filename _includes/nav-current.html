@@ -1,0 +1,25 @@
+{%- comment -%}
+  Which item of the main navigation is the current page (todo design 5.3).
+  Sets one variable, nav_cur: releases, news, streams, bio, photos or empty (home and other pages).
+  Used by header.html, the mobile menu and the left rail, so all of them agree.
+  Pages inside a section (a news article, a lyrics page) count as that section.
+{%- endcomment -%}
+{%- assign nav_cur = "" -%}
+{%- assign nav_exact = true -%}
+{%- if page.url == "/releases.html" -%}
+{%- assign nav_cur = "releases" -%}
+{%- elsif page.layout == "lyrics" -%}
+{%- assign nav_cur = "releases" -%}
+{%- assign nav_exact = false -%}
+{%- elsif page.url == "/news/" -%}
+{%- assign nav_cur = "news" -%}
+{%- elsif page.layout == "article" -%}
+{%- assign nav_cur = "news" -%}
+{%- assign nav_exact = false -%}
+{%- elsif page.url == "/streams.html" -%}
+{%- assign nav_cur = "streams" -%}
+{%- elsif page.collection == "bio" or page.layout == "bio" -%}
+{%- assign nav_cur = "bio" -%}
+{%- elsif page.url == "/photo.html" -%}
+{%- assign nav_cur = "photos" -%}
+{%- endif -%}

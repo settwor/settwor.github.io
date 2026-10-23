@@ -1,0 +1,12 @@
+{%- comment -%}
+  One calm message for "there is nothing here yet" (todo design 5.5). Plain words, no technical terms.
+  Usage: include empty-state.html title="..." text="..." href="..." label="..."
+  href and label are optional: a way forward (SKILL 16 wayfinding: "Where can I go?").
+{%- endcomment -%}
+<div class="empty">
+    <p class="empty__title">{{ include.title }}</p>
+    <p class="empty__text">{{ include.text }}</p>
+    {%- if include.href and include.href != "" %}
+    <a class="btn empty__action" href="{{ include.href }}">{{ include.label | default: "Continue" }}</a>
+    {%- endif %}
+</div>

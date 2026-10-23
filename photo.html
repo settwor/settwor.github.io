@@ -21,6 +21,9 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
             <p class="page-head__lead">{{ site.data.pages.photos.lead }}</p>
         </header>
 
+        {%- if photos.size == 0 %}
+        {%- include empty-state.html title="No photos here yet" text="Official photos will appear here, sorted by year." href="/" label="Go to the home page" %}
+        {%- else %}
         <nav class="year-tabs" aria-label="Choose a year" data-year-tabs>
             {%- assign seen_years = "" -%}
             {%- for photo in photos -%}
@@ -54,7 +57,10 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
             {%- endif %}
         </div>
 
+        {%- endif %}
+        {%- if photos.size > 0 %}
         <p class="gallery__note">All photographs © SETTWOR, licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">CC BY 4.0</a>: free to share and adapt with credit. <a href="/license.html">How to give credit</a>.</p>
+        {%- endif %}
 
 <!-- Structured data: every photo with its license (lets Google mark them as licensable). -->
 <script type="application/ld+json">

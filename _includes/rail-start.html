@@ -3,20 +3,42 @@
   Each page chooses its own navigation with "rail:" in its front matter.
 {%- endcomment -%}
 {%- assign first_bio = site.bio | sort: "order" | first -%}
+{%- include nav-current.html -%}
+{%- assign nav_val = "page" -%}{%- unless nav_exact -%}{%- assign nav_val = "true" -%}{%- endunless -%}
 
 {%- if page.rail == "home" %}
+{%- comment -%} todo design 5.5: a section with nothing in it is not on the page, so it is not in this list either. {%- endcomment -%}
+{%- include stats-calc.html -%}
+{%- assign rh_home = site.data.home -%}
+{%- assign rh_video = rh_home.video.youtube_id | default: "" -%}
+{%- assign rh_spotify = rh_home.spotify_artist_id | default: "" -%}
+{%- assign rh_photos = site.data.gallery.photos | size -%}
+{%- assign rh_social = site.data.links.follow | size -%}
 <nav class="rail-block" aria-labelledby="toc-title" data-toc>
     <h2 class="rail-block__title" id="toc-title">On this page</h2>
     <ul class="rail-list">
         <li><a class="rail-link" href="#about"><span class="rail-link__name">About</span></a></li>
-        <li><a class="rail-link" href="#numbers"><span class="rail-link__name">In numbers</span></a></li>
-        <li><a class="rail-link" href="#news"><span class="rail-link__name">Latest news</span></a></li>
+        {%- if site.releases.size > 0 %}
         <li><a class="rail-link" href="#releases"><span class="rail-link__name">Latest releases</span></a></li>
+        {%- endif %}
+        {%- if rh_video != "" or rh_spotify != "" %}
+        <li><a class="rail-link" href="#listen"><span class="rail-link__name">Listen and watch</span></a></li>
+        {%- endif %}
+        {%- if site.posts.size > 0 %}
+        <li><a class="rail-link" href="#news"><span class="rail-link__name">Latest news</span></a></li>
+        {%- endif %}
+        {%- if st_panel_total > 0 %}
+        <li><a class="rail-link" href="#numbers"><span class="rail-link__name">In numbers</span></a></li>
+        {%- endif %}
+        {%- if rh_photos > 0 %}
+        <li><a class="rail-link" href="#photos"><span class="rail-link__name">Photos</span></a></li>
+        {%- endif %}
+        {%- if rh_social > 0 %}
         <li><a class="rail-link" href="#social"><span class="rail-link__name">Social media</span></a></li>
-        <li><a class="rail-link" href="#video"><span class="rail-link__name">Popular video</span></a></li>
-        <li><a class="rail-link" href="#spotify"><span class="rail-link__name">Spotify</span></a></li>
-        <li><a class="rail-link" href="#photos"><span class="rail-link__name">Photographs</span></a></li>
+        {%- endif %}
+        {%- if rh_home.faq and rh_home.faq.size > 0 %}
         <li><a class="rail-link" href="#faq"><span class="rail-link__name">Questions</span></a></li>
+        {%- endif %}
     </ul>
 </nav>
 {%- elsif page.rail == "bio" %}
@@ -24,7 +46,7 @@
     <h2 class="rail-block__title" id="toc-title">In this biography</h2>
     <ul class="rail-list"></ul>
 </nav>
-{%- elsif page.rail == "news" %}
+{%- elsif page.rail == "news" and site.posts.size > 0 %}
 <nav class="rail-block" aria-labelledby="rail-years">
     <h2 class="rail-block__title" id="rail-years">By year</h2>
     <ul class="rail-list">
@@ -38,7 +60,7 @@
         {%- endfor %}
     </ul>
 </nav>
-{%- elsif page.rail == "photos" %}
+{%- elsif page.rail == "photos" and site.data.gallery.photos.size > 0 %}
 <nav class="rail-block" aria-labelledby="rail-years">
     <h2 class="rail-block__title" id="rail-years">Year</h2>
     <ul class="rail-list" data-year-links>
@@ -56,13 +78,21 @@
 {%- elsif page.rail == "streams" %}
 <nav class="rail-block" aria-labelledby="rail-streams">
     <h2 class="rail-block__title" id="rail-streams">On this page</h2>
+    {%- include stats-calc.html -%}
     <ul class="rail-list">
+        {%- if st_panel_total > 0 %}
         <li><a class="rail-link" href="#numbers"><span class="rail-link__name">Total</span></a></li>
+        {%- endif %}
+        {%- if st_plat_total > 0 %}
         <li><a class="rail-link" href="#platforms"><span class="rail-link__name">Music platforms</span></a></li>
+        {%- endif %}
+        {%- if st_channel > 0 %}
         <li><a class="rail-link" href="#youtube"><span class="rail-link__name">YouTube</span></a></li>
+        {%- endif %}
+        <li><a class="rail-link" href="#profiles"><span class="rail-link__name">Official profiles</span></a></li>
     </ul>
 </nav>
-{%- elsif page.rail == "releases" %}
+{%- elsif page.rail == "releases" and site.releases.size > 0 %}
 <nav class="rail-block" aria-labelledby="rail-years">
     <h2 class="rail-block__title" id="rail-years">By year</h2>
     <ul class="rail-list">
@@ -93,11 +123,11 @@
 <nav class="rail-block" aria-labelledby="rail-site">
     <h2 class="rail-block__title" id="rail-site">On this site</h2>
     <ul class="rail-list">
-        <li><a class="rail-link" href="/releases.html"><span class="rail-link__name">All releases</span></a></li>
-        <li><a class="rail-link" href="/streams.html"><span class="rail-link__name">Streams</span></a></li>
-        <li><a class="rail-link" href="{{ first_bio.url }}" data-bio-link><span class="rail-link__name">Biography</span></a></li>
-        <li><a class="rail-link" href="/photo.html"><span class="rail-link__name">Photographs</span></a></li>
-        <li><a class="rail-link" href="/news/"><span class="rail-link__name">News</span></a></li>
+        <li><a class="rail-link" href="/releases.html"{% if nav_cur == "releases" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">Releases</span></a></li>
+        <li><a class="rail-link" href="/news/"{% if nav_cur == "news" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">News</span></a></li>
+        <li><a class="rail-link" href="/streams.html"{% if nav_cur == "streams" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">Streams</span></a></li>
+        <li><a class="rail-link" href="{{ first_bio.url }}" data-bio-link{% if nav_cur == "bio" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">Biography</span></a></li>
+        <li><a class="rail-link" href="/photo.html"{% if nav_cur == "photos" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">Photos</span></a></li>
     </ul>
 </nav>
 {%- endif %}

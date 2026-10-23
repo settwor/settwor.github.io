@@ -28,7 +28,7 @@ description: "Official news from SETTWOR: new releases, milestones and what come
             {%- if site.posts.size > 0 %}
             </section>
             {%- else %}
-            <p class="page-head__lead">No news yet.</p>
+            {%- include empty-state.html title="No news yet" text="Announcements and release news will be posted here." href="/releases.html" label="See the releases" %}
             {%- endif %}
         </div>
 

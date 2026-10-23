@@ -1,0 +1,5 @@
+{%- comment -%}
+  The way back (todo design 5.4): "Where do I go from here?". A pill with an arrow, the same everywhere.
+  Use: {% include back-link.html href="/news/" label="News" %}
+{%- endcomment -%}
+<a class="btn btn--thin btn--back" href="{{ include.href }}" aria-label="Back to {{ include.label }}"><span class="btn__arrow" aria-hidden="true">&larr;</span>{{ include.label }}</a>

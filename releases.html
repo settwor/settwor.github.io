@@ -14,6 +14,7 @@ image_alt: SETTWOR with a part of his releases
 {%- endcomment -%}
 {%- assign releases = site.releases | sort: "date" | reverse -%}
 {%- assign rp = site.data.pages.releases -%}
+{%- include artist-urls.html -%}
         <header class="page-head">
             <h1 class="page-head__title">{{ rp.title }}</h1>
             <p class="page-head__lead">{{ rp.lead }}</p>
@@ -26,6 +27,10 @@ image_alt: SETTWOR with a part of his releases
             <figcaption>{{ rp.caption }}</figcaption>
             {%- endif %}
         </figure>
+        {%- endif %}
+
+        {%- if releases.size == 0 %}
+        {%- include empty-state.html title="No releases here yet" text="New music will be listed here as soon as it comes out. You can already listen on Spotify." href=au_spotify label="Listen on Spotify" %}
         {%- endif %}
 
         <div class="release-list">

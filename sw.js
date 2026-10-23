@@ -8,7 +8,7 @@
    Other websites (Spotify, YouTube, Google Analytics) are never touched.
    To force everybody to download everything again, change VERSION.
    ============================================================= */
-const VERSION = 'v13';
+const VERSION = 'v67';
 const STATIC_CACHE = 'settwor-static-' + VERSION;
 const PAGE_CACHE = 'settwor-pages-' + VERSION;
 const IMAGE_CACHE = 'settwor-images-' + VERSION;
@@ -59,6 +59,19 @@ self.addEventListener('fetch', function (event) {
     }
 });
 
+/* What a visitor sees when the internet is gone and the page was never saved (todo design 5.5): plain words and a way
+   forward, in the site's black and white. No styles file is used, because that file may be missing too. */
+const OFFLINE_PAGE = '<!doctype html><html lang="en"><head><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">' +
+    '<title>You are offline | SETTWOR</title>' +
+    '<style>body{margin:0;min-height:100vh;display:grid;place-items:center;padding:1.5rem;background:#f6f6f6;color:#000;' +
+    'font:1rem/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;text-align:center}main{max-width:26rem}' +
+    'h1{margin:0 0 .5rem;font-size:1.5rem;line-height:1.15;letter-spacing:-.01em}p{margin:0 0 1.25rem;color:#3a3a3a}' +
+    'button{min-height:2.75rem;padding:0 1.5rem;border:1px solid #000;border-radius:999px;background:#000;color:#fff;font:inherit;font-weight:700;cursor:pointer}' +
+    'button:active{transform:scale(.97)}</style></head><body><main><h1>You are offline</h1>' +
+    '<p>This page is not saved on this device yet. Check your connection and try again.</p>' +
+    '<button type="button" onclick="location.reload()">Try again</button></main></body></html>';
+
 /* Pages: the internet first, the saved copy when offline. */
 function pageStrategy(request) {
     return fetch(request).then(function (response) {
@@ -68,7 +81,7 @@ function pageStrategy(request) {
         return caches.match(request, { ignoreSearch: true })
             .then(function (saved) { return saved || caches.match('/'); })
             .then(function (saved) {
-                return saved || new Response('You are offline.', { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+                return saved || new Response(OFFLINE_PAGE, { status: 503, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
             });
     });
 }

@@ -1,4 +1,9 @@
-<!-- ===== Header (one copy for the whole site) ===== -->
+{%- include nav-current.html -%}
+{%- assign nav_val = "page" -%}
+{%- unless nav_exact -%}{%- assign nav_val = "true" -%}{%- endunless -%}
+<!-- ===== Header (one copy for the whole site) =====
+     Names and order are the same in the header, the mobile menu and the footer: Releases, News, Streams, Biography, Photos.
+     Streams is not in the top bar (owner's decision of v2.5); the logo is the way home (todo design 5.3). -->
 <header class="site-header">
     <div class="site-header__start">
         <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -8,29 +13,28 @@
         </button>
         <nav class="site-nav site-nav--start" aria-label="Releases and news">
             <ul>
-                <li><a class="btn btn--sm" href="/releases.html">All Releases</a></li>
-                <li><a class="btn btn--sm" href="/news/">News</a></li>
+                <li><a class="btn btn--sm" href="/releases.html"{% if nav_cur == "releases" %} aria-current="{{ nav_val }}"{% endif %}>Releases</a></li>
+                <li><a class="btn btn--sm" href="/news/"{% if nav_cur == "news" %} aria-current="{{ nav_val }}"{% endif %}>News</a></li>
             </ul>
         </nav>
     </div>
 
-    <a class="brand" href="/" aria-label="SETTWOR — home">
-        <img src="/images/SETTWOR%20vector.svg" alt="SETTWOR" height="24">
+    <a class="brand" href="/" aria-label="SETTWOR — home"{% if page.url == "/" %} aria-current="page"{% endif %}>
+        <img src="/images/SETTWOR%20vector.svg" alt="SETTWOR" width="148" height="24">
     </a>
 
     <nav class="site-nav site-nav--end" aria-label="About the artist">
         <ul>
-            <li><a class="btn btn--sm" href="/bio.html" data-bio-link>Biography</a></li>
-            <li class="is-desktop"><a class="btn btn--sm" href="/photo.html">Photos</a></li>
+            <li><a class="btn btn--sm" href="/bio.html" data-bio-link{% if nav_cur == "bio" %} aria-current="{{ nav_val }}"{% endif %}>Biography</a></li>
+            <li class="is-desktop"><a class="btn btn--sm" href="/photo.html"{% if nav_cur == "photos" %} aria-current="{{ nav_val }}"{% endif %}>Photos</a></li>
         </ul>
     </nav>
 </header>
 
 <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
-    <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Main</a>
-    <a href="/bio.html" data-bio-link{% if page.collection == "bio" %} aria-current="page"{% endif %}>Biography</a>
-    <a href="/photo.html"{% if page.url == "/photo.html" %} aria-current="page"{% endif %}>Photographs</a>
-    <a href="/news/"{% if page.url == "/news/" or page.layout == "article" %} aria-current="page"{% endif %}>News</a>
-    <a href="/releases.html"{% if page.url == "/releases.html" %} aria-current="page"{% endif %}>Releases</a>
-    <a href="/streams.html"{% if page.url == "/streams.html" %} aria-current="page"{% endif %}>Streams</a>
+    <a href="/releases.html"{% if nav_cur == "releases" %} aria-current="{{ nav_val }}"{% endif %}>Releases</a>
+    <a href="/news/"{% if nav_cur == "news" %} aria-current="{{ nav_val }}"{% endif %}>News</a>
+    <a href="/streams.html"{% if nav_cur == "streams" %} aria-current="{{ nav_val }}"{% endif %}>Streams</a>
+    <a href="/bio.html" data-bio-link{% if nav_cur == "bio" %} aria-current="{{ nav_val }}"{% endif %}>Biography</a>
+    <a href="/photo.html"{% if nav_cur == "photos" %} aria-current="{{ nav_val }}"{% endif %}>Photos</a>
 </nav>
