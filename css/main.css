@@ -18,7 +18,7 @@
     --color-text: #000;
     --color-text-soft: #333;
     --color-muted: #696969;
-    --color-line: #969191;
+    --color-line: #868181;
     --color-line-soft: #dcdcdc;
     --color-border: #000;
     --color-hover: #e6e6e6;
@@ -38,7 +38,7 @@
     --fs-caption: 0.75rem;
     --fs-footnote: 0.8125rem;
     --fs-subhead: 0.875rem;
-    --fs-body: 0.9375rem;
+    --fs-body: 1.0625rem;
     --fs-headline: 1.125rem;
     --fs-title-3: 1.375rem;
     --fs-title-2: 1.75rem;
@@ -1788,24 +1788,13 @@ body {
     color: var(--color-on-text);
 }
 
-/* ---------- Hero: entrance and a slowly turning ring ---------- */
+/* ---------- Hero: entrance (10.2: the turning ring was removed, it was decoration) ---------- */
 .hero__ring {
     position: relative;
     display: block;
     padding: 4px;
     border-radius: 50%;
     animation: rise var(--t-rise) var(--ease) both;
-}
-
-.hero__ring::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, #000, #bbb 25%, #000 50%, #bbb 75%, #000);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1.5px));
-    mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1.5px));
-    animation: spin 9s linear infinite;
 }
 
 .hero__ring .hero__photo {
@@ -1826,10 +1815,6 @@ body {
 
 .hero__note {
     animation: rise var(--t-rise) var(--ease) 0.15s both;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
 }
 
 @keyframes rise {
@@ -2468,10 +2453,6 @@ html.sheet-back .site-footer {
 @media (prefers-reduced-motion: reduce) {
 
     /* 6.1: nothing travels, but things still arrive: a short cross-fade (see section 6.1 at the end of the file) */
-    .hero__ring::before {
-        animation: none !important;
-    }
-
     .js .is-in,
     .js [data-reveal],
     .js .news-card,
@@ -3152,11 +3133,7 @@ html.sheet-back .site-footer {
     overflow: hidden;
     padding: var(--space-5) 1.25rem 1.25rem;
     border-radius: var(--radius-l);
-    background:
-        radial-gradient(120% 90% at 100% 0%, rgba(255, 255, 255, 0.20), transparent 55%),
-        radial-gradient(90% 80% at 0% 110%, rgba(255, 255, 255, 0.10), transparent 60%),
-        repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 14px),
-        #000;
+    background: #000;
     color: #fff;
     box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.65);
     text-decoration: none;
@@ -4102,7 +4079,6 @@ img.is-failed {
     }
 
     /* endless and decorative motion: off (the Live dot keeps its colour, the bell keeps its place) */
-    .hero__ring::before,
     .status--live .status__dot::after,
     .tag--live i::after,
     .push-ask__bell {
@@ -4154,7 +4130,11 @@ img.is-failed {
    All materials come from the tokens of section 4.2, so the tokens are replaced in one place.
    ============================================================= */
 /* =============================================================
-   6.4 (v6.0): dark theme, strictly monochrome (#000 / #0d0d0d / #1c1c1e greys, nothing blue). It follows the system
+   6.4 (v6.0): dark theme, strictly monochrome (greys only, nothing blue). Since v9.4 the page is a soft dark grey,
+   not pure black: page #1a1a1a, cards #2a2a2a, hover #363636, soft line #3a3a3a (the black number panel and the
+   modal sheet #0d0d0d stay darker on purpose). To make the page lighter or darker, change --color-bg and the
+   matching rgba(26, 26, 26, ...) chrome tokens in BOTH token lists below (system block and [data-theme="dark"])
+   and the two theme-color values (_layouts/default.html, COLORS in js/main.js). It follows the system
    setting by default; since v8.1 the footer has a switch (Auto / Light / Dark) that sets `data-theme` on <html>. Everything is a token override: the
    tokens of sections 1 and 4 are replaced here, so components do not know about the theme.
    ============================================================= */
@@ -4165,22 +4145,22 @@ img.is-failed {
 @media (prefers-color-scheme: dark) {
     :root {
         color-scheme: dark;
-        --color-bg: #000;
-        --color-surface: #1c1c1e;
+        --color-bg: #1a1a1a;
+        --color-surface: #2a2a2a;
         --color-text: #fff;
         --color-text-soft: #d9d9d9;
         --color-muted: #a6a6a6;
-        --color-line: #6b6b6b;
-        --color-line-soft: #2c2c2e;
+        --color-line: #7a7a7a;
+        --color-line-soft: #3a3a3a;
         --color-border: #fff;
-        --color-hover: #2c2c2e;
+        --color-hover: #363636;
         --color-on-text: #000;
 
-        --mat-chrome-bg: rgba(18, 18, 18, 0.78);
-        --mat-chrome-bg-dense: rgba(18, 18, 18, 0.97);
-        --mat-chrome-bg-thick: rgba(18, 18, 18, 0.9);
-        --mat-clear: rgba(18, 18, 18, 0);
-        --mat-banner-bg: rgba(28, 28, 30, 0.88);
+        --mat-chrome-bg: rgba(26, 26, 26, 0.78);
+        --mat-chrome-bg-dense: rgba(26, 26, 26, 0.97);
+        --mat-chrome-bg-thick: rgba(26, 26, 26, 0.9);
+        --mat-clear: rgba(26, 26, 26, 0);
+        --mat-banner-bg: rgba(42, 42, 42, 0.88);
         --mat-banner-line: rgba(255, 255, 255, 0.14);
         --edge-solid: rgba(255, 255, 255, 0.3);
         --scrim-modal: rgba(0, 0, 0, 0.8);
@@ -4218,21 +4198,21 @@ img.is-failed {
    ============================================================= */
 [data-theme="dark"] {
     color-scheme: dark;
-    --color-bg: #000;
-    --color-surface: #1c1c1e;
+    --color-bg: #1a1a1a;
+    --color-surface: #2a2a2a;
     --color-text: #fff;
     --color-text-soft: #d9d9d9;
     --color-muted: #a6a6a6;
-    --color-line: #6b6b6b;
-    --color-line-soft: #2c2c2e;
+    --color-line: #7a7a7a;
+    --color-line-soft: #3a3a3a;
     --color-border: #fff;
-    --color-hover: #2c2c2e;
+    --color-hover: #363636;
     --color-on-text: #000;
-    --mat-chrome-bg: rgba(18, 18, 18, 0.78);
-    --mat-chrome-bg-dense: rgba(18, 18, 18, 0.97);
-    --mat-chrome-bg-thick: rgba(18, 18, 18, 0.9);
-    --mat-clear: rgba(18, 18, 18, 0);
-    --mat-banner-bg: rgba(28, 28, 30, 0.88);
+    --mat-chrome-bg: rgba(26, 26, 26, 0.78);
+    --mat-chrome-bg-dense: rgba(26, 26, 26, 0.97);
+    --mat-chrome-bg-thick: rgba(26, 26, 26, 0.9);
+    --mat-clear: rgba(26, 26, 26, 0);
+    --mat-banner-bg: rgba(42, 42, 42, 0.88);
     --mat-banner-line: rgba(255, 255, 255, 0.14);
     --edge-solid: rgba(255, 255, 255, 0.3);
     --scrim-modal: rgba(0, 0, 0, 0.8);
@@ -4264,7 +4244,7 @@ img.is-failed {
     --color-text: #000;
     --color-text-soft: #333;
     --color-muted: #696969;
-    --color-line: #969191;
+    --color-line: #868181;
     --color-line-soft: #dcdcdc;
     --color-border: #000;
     --color-hover: #e6e6e6;
@@ -4491,3 +4471,18 @@ img.is-failed {
    0.2 Hz limit, `transform` only) and the Live dot pulse (`transform` and `opacity` only); both are off with reduced
    motion (6.1). Nothing changed here on purpose; this note records the check.
    ============================================================= */
+
+
+/* =============================================================
+   11 (v9.5): press layer, the CSS part. The reaction itself is drawn by js/main.js section 11 (scale and opacity
+   animations). Here only the browser's own grey tap flash is switched off on touch screens, because it would
+   double our feedback. Buttons, tabs and language links keep their own :active rules (section "Press feedback").
+   ============================================================= */
+a,
+button,
+summary,
+[role="button"],
+[role="tab"],
+.link-button {
+    -webkit-tap-highlight-color: transparent;
+}

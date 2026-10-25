@@ -172,7 +172,7 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
         </section>
         {%- endif %}
 
-<!-- Structured data: the website, the profile page with the artist inside, the questions and the license of the photo. -->
+<!-- Structured data: the website, the profile page with the artist inside, the questions, the license of the photo and the Ledgertone organization. -->
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
@@ -200,7 +200,8 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
             ]
         }
         {%- endif %},
-{% include image-object.html src=home.hero.photo alt=home.hero.photo_alt date="2025-08-08" %}
+{% include image-object.html src=home.hero.photo alt=home.hero.photo_alt date="2025-08-08" %},
+{% include ledgertone-jsonld.html %}
     ]
 }
 </script>

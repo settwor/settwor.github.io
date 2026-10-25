@@ -2,6 +2,7 @@
   The artist as structured data (schema.org Person). It is printed in full wherever
   a page says "this page is about SETTWOR", so Google never has to look for it on another page.
   Facts shown here are the same as on the website. Edit them here, in one place.
+  "subjectOf" lists the Ledgertone pages about the artist (added in v9.3; the Organization node is in ledgertone-jsonld.html).
 {%- endcomment -%}
         {
             "@type": "Person",
@@ -28,5 +29,21 @@
                 {%- for item in site.data.links.elsewhere %},
                 {{ item.url | jsonify }}
                 {%- endfor %}
+            ],
+            "subjectOf": [
+                {
+                    "@type": "WebPage",
+                    "@id": "https://ledgertone.github.io/settwor.html#page",
+                    "url": "https://ledgertone.github.io/settwor.html",
+                    "name": "SETTWOR on Pandora: 28-day listeners",
+                    "inLanguage": "en"
+                },
+                {
+                    "@type": "WebPage",
+                    "@id": "https://ledgertone.github.io/settwor-ru.html#page",
+                    "url": "https://ledgertone.github.io/settwor-ru.html",
+                    "name": "SETTWOR на Pandora: слушатели за 28 дней",
+                    "inLanguage": "ru"
+                }
             ]
         }

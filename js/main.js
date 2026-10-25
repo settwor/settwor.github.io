@@ -6,6 +6,7 @@
    6. Footer year   7. Offline cache (sw.js)
    8. Motion (header, reveal, buttons, tilt)   9. Releases: preview window
    10. Motion engine (springs for gestures; window.STW.motion; used from todo design 3.2)
+   11. Press layer (v9.5): every element answers a press with a finger, a pen or a mouse; settings at the top of section 11
    Google Analytics is loaded ONLY after the visitor clicks "Accept".
    ============================================================= */
 (function () {
@@ -1505,7 +1506,7 @@ document.addEventListener('click', function (event) {
     var root = document.documentElement;
     var group = document.querySelector('.theme-switch');
     var metas = document.querySelectorAll('meta[name="theme-color"]');
-    var COLORS = { light: '#f6f6f6', dark: '#000000' };
+    var COLORS = { light: '#f6f6f6', dark: '#1a1a1a' };   /* keep in step with --color-bg of the dark theme (css/main.css, section 6.4) */
 
     function read() {
         try { var v = localStorage.getItem(KEY); return v === 'light' || v === 'dark' ? v : 'auto'; } catch (e) { return 'auto'; }
@@ -1539,4 +1540,187 @@ document.addEventListener('click', function (event) {
     }
     // another tab changed the choice
     window.addEventListener('storage', function (event) { if (event.key === KEY) apply(read()); });
+})();
+
+
+/* =============================================================
+   11. (v9.5) PRESS LAYER: everything answers a press, with a finger, a pen or a mouse.
+   -------------------------------------------------------------
+   WHAT   One delegated listener on the document. On pointer-down it finds the ONE element that should answer
+          (control or card first, then text, then section: see resolve()) and gives it a short, quiet reaction; on release the element
+          comes back smoothly. Hover is NOT touched (only a press), so nothing moves under a resting mouse.
+   KINDS  tile    cards, covers, big links    -> shrink by about 8 px in total (scale, around the centre)
+          section whole sections             -> shrink by about 3 px, around the press point (a breath)
+          dip     small links                -> opacity 0.55 (same as .section-head__more:active in CSS)
+          text    paragraphs, headings, items -> opacity 0.75
+   WHERE  Settings: 11.1. Which element answers: 11.2 (selectors) and resolve(). Animation: show() and finish().
+   NOT    Buttons, tabs and language links already have :active rules in css/main.css (section "Press feedback"),
+          so this layer skips them (SEL_HANDLED_BY_CSS). Skipped zones (own gestures or own styles): SEL_SKIP_ZONE.
+   HOW    Web Animations on the `scale` and `opacity` properties only. They do not touch `transform` or the
+          `transition` lists of the components (tilt, reveal, hover keep working) and nothing stays on the element
+          after release (the animation is cancelled, so no stacking context is left behind).
+   RULES  Reduced motion: no movement, a short opacity dip only (sections: nothing). Touch: the reaction shows
+          after TOUCH_DELAY, so the start of a scroll (pointercancel) never flashes; a quick tap still shows for
+          MIN_SHOWN. Moving more than SLOP px, scrolling, a context menu or a drag gives the press up.
+   ============================================================= */
+(function () {
+    'use strict';
+
+    // Old browsers without pointer events or Web Animations: the CSS :active rules still work, nothing else happens.
+    if (!window.PointerEvent || !Element.prototype.animate) return;
+
+    /* ---------- 11.1 Settings (all numbers of this layer are here) ---------- */
+    var SLOP = 8;             // px the pointer may travel before the press is given up (scroll, text selection, drag)
+    var TOUCH_DELAY = 70;     // ms a finger must stay before the reaction shows (a scroll starts earlier and cancels it)
+    var MIN_SHOWN = 90;       // ms a reaction stays visible at least, so even a very quick tap is seen
+    var DOWN_MS = 90;         // going in: almost at once (same feel as --t-press)
+    var UP_MS = 340;          // coming back: smooth
+    var DOWN_EASE = 'cubic-bezier(0.2, 0, 0, 1)';
+    var UP_EASE = 'cubic-bezier(0.2, 0.8, 0.2, 1)';
+    var REDUCED_OPACITY = 0.7;                            // reduced motion: the only reaction
+    var TILE = { px: 8, min: 0.008, max: 0.03 };          // total shrink in px, kept between min and max (as a fraction)
+    var SECTION = { px: 3, min: 0, max: 0.006 };
+    var DIP_OPACITY = 0.55;
+    var TEXT_OPACITY = 0.75;
+    var BIG_W = 120, BIG_H = 56;                          // a link at least this big is a tile, a smaller one is a dip
+
+    /* ---------- 11.2 Which element answers (priority is explained above resolve()) ---------- */
+    var SEL_SKIP_ZONE = '.rmodal, .lightbox, .mobile-menu, .consent, .push-ask, [data-no-press], input, textarea, select, option, [disabled], [aria-disabled="true"]';
+    var SEL_HANDLED_BY_CSS = '.btn, .year-tabs__link, .langs__link, .section-head__more';
+    var SEL_CONTROL = 'a[href], button, summary, [role="button"], [role="tab"], .link-button';
+    var SEL_CARD = '.news-card, .release, .release-mini, .plat, .yt, .numbers__hero, .bio-facts__item, .bio-moments__item, .callout, .faq__item, .embed-block, .empty, figure, .photo-grid li';
+    var SEL_TEXT = 'p, h1, h2, h3, h4, h5, h6, li, dt, dd, blockquote, figcaption, td, th';
+    var SEL_SECTION = 'section, article, .page-head, .section__body, .prose, .site-footer';
+    var SEL_FIXED_INSIDE = '.consent, .push-ask, .mobile-menu, .lightbox, .rmodal, .progress';   // a scaled box would hold these: such sections do not scale
+
+    var cur = null;   // the one press in progress: { el, kind, x, y, timer, shown, shownAt, prop, base, to, anim, ended }
+
+    function isReduced() {
+        if (window.STW && STW.motion && STW.motion.reduced) return STW.motion.reduced();
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    function isBig(el) {
+        var box = el.getBoundingClientRect();
+        return box.width >= BIG_W && box.height >= BIG_H;
+    }
+
+    // true when a fixed box (cookie notice, open window ...) is currently shown inside el: a scaled el would hold it
+    function holdsFixed(el) {
+        var list = el.querySelectorAll(SEL_FIXED_INSIDE);
+        for (var i = 0; i < list.length; i++) if (list[i].getClientRects().length) return true;   // hidden ones (display: none) do not count
+        return false;
+    }
+
+    // Walks up from what was pressed and returns { el, kind } for the element that answers, or null.
+    // Priority (so text inside a card moves the whole card, and a link inside a card moves the link):
+    //   1. the nearest control or card above the press point  -> tile (big) or dip (small link)
+    //   2. else the nearest text element                       -> text
+    //   3. else the nearest section                            -> section
+    function resolve(target) {
+        if (!target || !target.closest || target.closest(SEL_SKIP_ZONE)) return null;
+        var text = null, section = null;
+        for (var el = target; el && el !== document.body && el !== document.documentElement; el = el.parentElement) {
+            if (el.matches(SEL_CONTROL)) {
+                if (el.matches(SEL_HANDLED_BY_CSS) || el.closest(SEL_HANDLED_BY_CSS)) return null;   // the CSS answers it
+                return { el: el, kind: isBig(el) ? 'tile' : 'dip' };
+            }
+            if (el.matches(SEL_HANDLED_BY_CSS)) return null;
+            if (el.matches(SEL_CARD)) return { el: el, kind: 'tile' };
+            if (!text && el.matches(SEL_TEXT)) text = el;
+            if (!section && el.matches(SEL_SECTION) && !holdsFixed(el)) section = el;
+        }
+        if (text) return { el: text, kind: 'text' };
+        if (section) return { el: section, kind: 'section' };
+        return null;
+    }
+
+    function frame(prop, value) { var o = {}; o[prop] = String(value); return o; }
+
+    // fraction to shrink: a total of cfg.px pixels over the longest side, kept between min and max
+    function shrinkFor(el, cfg) {
+        var box = el.getBoundingClientRect();
+        var side = Math.max(box.width, box.height, 1);
+        return Math.min(cfg.max, Math.max(cfg.min, cfg.px / side));
+    }
+
+    /* ---------- 11.3 The reaction: going in ---------- */
+    function show(p) {
+        if (p.shown || p.ended) return;
+        var reduced = isReduced();
+        var el = p.el;
+        if (p.kind === 'section' && reduced) { p.gone = true; return; }   // a whole section never fades: nothing to show
+        if (p.kind === 'tile' && !reduced) {
+            p.prop = 'scale'; p.base = 1; p.to = 1 - shrinkFor(el, TILE);
+        } else if (p.kind === 'section') {
+            p.prop = 'scale'; p.base = 1; p.to = 1 - shrinkFor(el, SECTION);
+            // around the press point, so even a tall section moves only a few px near the finger
+            var box = el.getBoundingClientRect();
+            p.prevOrigin = el.style.transformOrigin;
+            el.style.transformOrigin = Math.round(p.x - box.left) + 'px ' + Math.round(p.y - box.top) + 'px';
+        } else {
+            p.prop = 'opacity';
+            p.base = parseFloat(window.getComputedStyle(el).opacity);
+            if (isNaN(p.base)) p.base = 1;
+            p.to = reduced ? REDUCED_OPACITY : (p.kind === 'dip' ? DIP_OPACITY : (p.kind === 'text' ? TEXT_OPACITY : REDUCED_OPACITY));
+        }
+        p.shown = true;
+        p.shownAt = performance.now();
+        p.anim = el.animate([frame(p.prop, p.base), frame(p.prop, p.to)], { duration: DOWN_MS, easing: DOWN_EASE, fill: 'forwards' });
+    }
+
+    /* ---------- 11.4 The reaction: coming back ---------- */
+    function finish(p) {
+        if (!p.shown || !p.anim) return;
+        var el = p.el;
+        var now = window.getComputedStyle(el)[p.prop];                 // where the press is right now (it may still be going in)
+        var from = parseFloat(now);
+        if (isNaN(from)) from = p.base;                                 // `scale: none` means 1
+        p.anim.cancel();
+        var back = el.animate([frame(p.prop, from), frame(p.prop, p.base)], { duration: UP_MS, easing: UP_EASE });
+        var restore = function () {
+            if (p.prevOrigin !== undefined && !(cur && cur.el === el)) el.style.transformOrigin = p.prevOrigin;
+        };
+        back.onfinish = restore;
+        back.oncancel = restore;
+        p.anim = null;
+    }
+
+    // Ends a press. tap = true when the pointer was lifted in place (a quick tap shows first, then comes back).
+    function end(p, tap) {
+        if (!p || p.ended) return;
+        clearTimeout(p.timer);
+        if (cur === p) cur = null;
+        if (!p.shown && tap) show(p);                                   // a quick tap: show it now, then let it go
+        p.ended = true;                                                 // (set after show(), which refuses an ended press)
+        if (!p.shown || p.gone) return;                                 // scroll or drag began before it showed: nothing to undo
+        var wait = Math.max(0, p.shownAt + MIN_SHOWN - performance.now());
+        setTimeout(function () { finish(p); }, wait);
+    }
+
+    /* ---------- 11.5 Events (one set, on the document) ---------- */
+    document.addEventListener('pointerdown', function (event) {
+        if (!event.isPrimary) return;                                   // a second finger is not a new press
+        if (event.pointerType === 'mouse' && event.button !== 0) return;
+        if (cur) end(cur, false);
+        var hit = resolve(event.target);
+        if (!hit) return;
+        var p = cur = { el: hit.el, kind: hit.kind, x: event.clientX, y: event.clientY, timer: 0, shown: false, ended: false, gone: false };
+        if (event.pointerType === 'mouse') show(p);
+        else p.timer = setTimeout(function () { show(p); }, TOUCH_DELAY);
+    }, { passive: true, capture: true });
+
+    document.addEventListener('pointermove', function (event) {
+        if (!cur || !event.isPrimary) return;
+        var dx = event.clientX - cur.x, dy = event.clientY - cur.y;
+        if (dx * dx + dy * dy > SLOP * SLOP) end(cur, false);          // it became a scroll, a drag or a text selection
+    }, { passive: true, capture: true });
+
+    document.addEventListener('pointerup', function (event) { if (event.isPrimary) end(cur, true); }, { passive: true, capture: true });
+    document.addEventListener('pointercancel', function () { end(cur, false); }, { passive: true, capture: true });
+    document.addEventListener('dragstart', function () { end(cur, false); }, true);
+    document.addEventListener('contextmenu', function () { end(cur, false); }, true);
+    document.addEventListener('scroll', function () { end(cur, false); }, { passive: true, capture: true });
+    window.addEventListener('blur', function () { end(cur, false); });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) end(cur, false); });
 })();
