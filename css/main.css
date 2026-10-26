@@ -1767,9 +1767,15 @@ body {
 .btn:active,
 .year-tabs__link:active,
 .langs__link:active {
-    transform: scale(0.97);
     background-color: var(--color-hover);
     transition-duration: var(--t-press);
+}
+
+/* v9.6: the shrink itself is made by js/fluid.js (a spring, from pointerdown); this is only the fallback without it */
+html:not(.fluid) .btn:active,
+html:not(.fluid) .year-tabs__link:active,
+html:not(.fluid) .langs__link:active {
+    transform: scale(0.97);
 }
 
 .btn--solid:active {
@@ -1801,7 +1807,7 @@ body {
     transition: transform var(--t-rise) var(--ease);
 }
 
-.hero__ring:hover .hero__photo {
+html:not(.fluid) .hero__ring:hover .hero__photo {   /* v9.6: with fluid.js the whole ring grows on a spring (1.07) */
     transform: scale(1.04);
 }
 
@@ -2276,7 +2282,7 @@ html.sheet-back .site-footer {
     line-height: 1.9;
 }
 
-.rmodal__tracks li:hover {
+html:not(.fluid) .rmodal__tracks li:hover {   /* v9.6: with fluid.js one sliding highlight (.lens) replaces it */
     background: var(--mat-row-hover);
 }
 
@@ -3814,7 +3820,7 @@ html {
     z-index: 0;
 }
 
-.year-tabs.is-ready .year-tabs__indicator {
+html:not(.fluid) .year-tabs.is-ready .year-tabs__indicator {   /* v9.6: with fluid.js a spring moves it (js/fluid.js glide) */
     transition: left 0.4s var(--ease-standard), top 0.4s var(--ease-standard),
                 width 0.4s var(--ease-standard), height 0.4s var(--ease-standard);
 }
@@ -3890,13 +3896,13 @@ html {
 }
 
 @media (hover: hover) {
-    .section-head__more:hover .section-head__arrow {
+    html:not(.fluid) .section-head__more:hover .section-head__arrow {   /* v9.6: fluid.js shoots the arrow out on a spring */
         transform: translateX(0.25rem);
     }
 }
 
 /* the press answers at once and comes back smoothly (SKILL 1) */
-.section-head__more:active {
+html:not(.fluid) .section-head__more:active {   /* v9.6: with fluid.js the spring dips the opacity */
     opacity: 0.55;
     transition-duration: var(--t-press);
 }
@@ -3945,7 +3951,7 @@ html {
 }
 
 @media (hover: hover) {
-    .btn--back:hover .btn__arrow {
+    html:not(.fluid) .btn--back:hover .btn__arrow {
         transform: translateX(-0.25rem);
     }
 }
@@ -4485,4 +4491,79 @@ summary,
 [role="tab"],
 .link-button {
     -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =============================================================
+   9.6 (v9.6): fluid.js. The class `fluid` on <html> is set by js/fluid.js when it runs. Everything here is for that case;
+   the rules above that carry html:not(.fluid) are the fallback when it does not run.
+   ============================================================= */
+
+/* reveal: the slide is done by the spring (translate), so the CSS hidden state is only transparent and nothing moves
+   when the class is-in comes (no second animation on top of the spring) */
+html.fluid.js:not(.no-reveal) [data-reveal],
+html.fluid.js:not(.no-reveal) .news-card,
+html.fluid.js:not(.no-reveal) .photo-grid li {
+    transform: none;
+}
+
+html.fluid.js:not(.no-reveal) .is-in.is-in {
+    transition: transform var(--t-rise) var(--ease);
+}
+
+/* the round photo: held, dragged with a finger or a mouse, thrown */
+html.fluid .hero__ring {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+html.fluid .hero__ring img {
+    -webkit-user-drag: none;
+    user-drag: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    html.fluid .hero__ring {
+        cursor: grab;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.fluid .hero__ring {
+        touch-action: auto;
+        cursor: auto;
+    }
+}
+
+/* a name slides on hover: a transform needs a box, so the name inside the rail link is inline-block */
+html.fluid .rail-link__name {
+    display: inline-block;
+}
+
+/* the lens of a list (rows of the tracklist): one highlight that glides between rows; a ripple opens at a touch */
+html.fluid .rmodal__tracks,
+html.fluid .rmodal__tracks li {
+    position: relative;
+}
+
+.lens {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 0;
+    border-radius: var(--radius-s, 8px);
+    background: var(--mat-row-hover);
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.lens__ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    pointer-events: none;
 }

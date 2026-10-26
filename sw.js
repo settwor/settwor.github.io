@@ -8,7 +8,7 @@
    Other websites (Spotify, YouTube, Google Analytics) are never touched.
    To force everybody to download everything again, change VERSION.
    ============================================================= */
-const VERSION = 'v81';
+const VERSION = 'v82';
 const STATIC_CACHE = 'settwor-static-' + VERSION;
 const PAGE_CACHE = 'settwor-pages-' + VERSION;
 const IMAGE_CACHE = 'settwor-images-' + VERSION;
@@ -18,7 +18,7 @@ const FONT_MAX_AGE = 30 * 24 * 60 * 60 * 1000;   // fonts: 30 days
 const IMAGE_LIMIT = 250;                         // at most this many pictures are kept
 const PAGE_LIMIT = 40;
 
-const START_FILES = ['/css/main.css', '/js/main.js', '/fonts.css', '/images/favicon.png', '/images/SETTWOR%20vector.svg'];
+const START_FILES = ['/css/main.css', '/js/main.js', '/js/fluid.js', '/fonts.css', '/images/favicon.png', '/images/SETTWOR%20vector.svg'];
 
 self.addEventListener('install', function (event) {
     event.waitUntil(
