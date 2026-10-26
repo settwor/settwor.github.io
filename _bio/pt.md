@@ -186,9 +186,9 @@ external:
 ---
 ## Informações breves
 
-SETTWOR é um produtor musical especializado em [phonk](https://en.wikipedia.org/wiki/Phonk), [funk brasileiro](https://en.wikipedia.org/wiki/Funk_carioca) e [música eletrônica de dança](https://en.wikipedia.org/wiki/Electronic_dance_music). Natural de [Kryvyi Rih](https://en.wikipedia.org/wiki/Kryvyi_Rih), na [Ucrânia](https://en.wikipedia.org/wiki/Ukraine), mudou-se para a [Polônia](https://en.wikipedia.org/wiki/Poland) em 2022. É mais conhecido por suas obras musicais, seu canal no [YouTube](https://youtube.com/c/settwor) e pelos vídeos curtos no [TikTok](https://en.wikipedia.org/wiki/TikTok) com suas faixas.[\[1\]](#ref-1)[\[14\]](#ref-14)[\[15\]](#ref-15)
+SETTWOR é um produtor musical que trabalha com [phonk](https://en.wikipedia.org/wiki/Phonk), [funk brasileiro](https://en.wikipedia.org/wiki/Funk_carioca) e [música eletrônica de dança](https://en.wikipedia.org/wiki/Electronic_dance_music). Natural de [Kryvyi Rih](https://en.wikipedia.org/wiki/Kryvyi_Rih), na [Ucrânia](https://en.wikipedia.org/wiki/Ukraine), mudou-se para a [Polônia](https://en.wikipedia.org/wiki/Poland) em 2022. É mais conhecido por suas obras musicais, seu canal no [YouTube](https://youtube.com/c/settwor) e pelos vídeos curtos no [TikTok](https://en.wikipedia.org/wiki/TikTok) com suas faixas.[\[1\]](#ref-1)[\[14\]](#ref-14)[\[15\]](#ref-15)
 
-SETTWOR é um dos artistas de phonk mais ouvidos ativamente no [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio), onde suas faixas somam reproduções de forma constante e continuam atraindo novos ouvintes.[\[2\]](#ref-2)
+No [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio), SETTWOR é um dos artistas de phonk mais ouvidos. Suas faixas somam reproduções de forma constante e continuam chegando a novos ouvintes.[\[2\]](#ref-2)
 
 ### Informações pessoais
 
@@ -202,71 +202,71 @@ Desde 2022, ele mora na [Polônia](https://en.wikipedia.org/wiki/Poland).
 
 SETTWOR nasceu em 8 de fevereiro de 2007, em [Kryvyi Rih](https://en.wikipedia.org/wiki/Kryvyi_Rih), na [Ucrânia](https://en.wikipedia.org/wiki/Ukraine).[\[1\]](#ref-1)[\[16\]](#ref-16)
 
-Desde pequeno, SETTWOR demonstrou notável persistência e um forte desejo de aprender tudo o que despertava seu interesse. Quanto mais difícil a tarefa, mais motivado ele ficava para dominá-la. A música não foi sua primeira paixão: nos primeiros anos, a programação dominava sua vida. Ele estudou a fundo linguagens de programação, que por muito tempo continuaram sendo seu principal foco.
+Desde pequeno, SETTWOR foi persistente e queria entender tudo o que despertava seu interesse. Quanto mais difícil a tarefa, mais gostava de dominá-la. A música não foi sua primeira paixão. Primeiro veio a programação: ele estudou a fundo linguagens de programação, e por muito tempo isso foi o centro de sua vida.
 
-Com o tempo, SETTWOR explorou vários hobbies até descobrir a paixão pela música. Aprendeu música por conta própria, dedicando incontáveis horas a experimentar e a adquirir novas habilidades. Mais tarde, comentou que adoraria ter estudado música profissionalmente, pois ela sempre o fascinou e lhe pareceu incrivelmente significativa.
+Depois experimentou vários hobbies até descobrir a música. Aprendeu sozinho, experimentando por incontáveis horas. Mais tarde, comentou que adoraria ter estudado música profissionalmente, pois ela sempre o fascinou e foi importante para ele.
 
 ### Primeiros lançamentos
 
-A partir de 2018, SETTWOR começou a aprender produção musical do zero. Tudo começou com beats simples, longe de serem perfeitos: sucessos raramente surgem na primeira tentativa. Aos poucos, suas habilidades melhoraram e ele percebeu que queria ser um músico e produtor completo, e não apenas um criador de beats.[\[19\]](#ref-19)
+Em 2018, SETTWOR começou a aprender produção musical do zero. Tudo começou com beats simples, longe de serem perfeitos: sucessos raramente surgem na primeira tentativa. Suas habilidades melhoraram e logo ele percebeu que queria ser um músico e produtor completo, e não apenas um criador de beats.[\[19\]](#ref-19)
 
-Em 2021, depois de inúmeros experimentos e iterações, lançou sua primeira faixa, “[Light Wave](/releases.html#release-light-wave)”.[\[19\]](#ref-19)[\[20\]](#ref-20)
+Em 2020, adotou o nome artístico SETTWOR e criou um canal no [YouTube](https://youtube.com/c/settwor) com o mesmo nome para compartilhar seu trabalho e sua música futura.[\[3\]](#ref-3)
 
-Em 2020, adotou o nome artístico SETTWOR e criou um canal no [YouTube](https://youtube.com/c/settwor) com o mesmo nome para compartilhar seu trabalho e suas futuras músicas. Em 8 de maio de 2022, lançou sua primeira faixa do gênero [phonk](https://en.wikipedia.org/wiki/Phonk): [Lunatic](/releases.html#release-lunatic).[\[3\]](#ref-3)
+Seu primeiro lançamento, “[Light Wave](/releases.html#release-light-wave)”, saiu em 2021, depois de muitas tentativas e erros.[\[19\]](#ref-19)[\[20\]](#ref-20) A primeira faixa do gênero [phonk](https://en.wikipedia.org/wiki/Phonk), [Lunatic](/releases.html#release-lunatic), saiu em 8 de maio de 2022.[\[3\]](#ref-3)
 
-SETTWOR recebeu seus primeiros ouvintes com um carinho incrível: parecia-lhe quase impossível que alguém estivesse realmente ouvindo sua música. Cada reprodução lhe dava esperança de que seu trabalho pudesse tocar as pessoas e lhe trazia uma enorme motivação para seguir em frente. SETTWOR já disse várias vezes o quanto valoriza cada ouvinte: eles significam para ele mais do que se pode imaginar.
+SETTWOR recebeu seus primeiros ouvintes com muito carinho: parecia quase impossível para ele que alguém realmente ouvisse sua música. Cada reprodução dava esperança de que seu trabalho pudesse agradar às pessoas e o motivava a continuar. Ele já disse várias vezes quanto valoriza cada ouvinte: eles significam para ele mais do que se pode imaginar.
 
 ### Desenvolvimento do estilo
 
-De 2021 a 2025, SETTWOR desenvolveu continuamente suas habilidades musicais, ganhando experiência aos poucos e lançando cada vez mais faixas. Nesse período, publicou música praticamente sem público formado, concentrando-se principalmente em aprender e aperfeiçoar seu som. O phonk continuava sendo o principal gênero de seus lançamentos na época.
+De 2021 a 2025, SETTWOR foi ganhando experiência e lançando cada vez mais faixas. Quase não tinha público. Ele se concentrou em aprender e em encontrar seu próprio som, e o phonk continuou sendo o gênero principal.
 
-Em 9 de fevereiro de 2023, SETTWOR lançou a faixa [GOT ME UP](/releases.html#release-got-me-up). Mais tarde, com o lançamento do álbum [GET IT, Vol.1](/releases.html#release-get-it-vol-1) e com mais experiência e conhecimento técnico, apresentou uma versão atualizada chamada [GOT ME UP 2](/releases.html#release-get-it-vol-1), uma reinterpretação refinada e aprimorada da faixa original. Com o tempo, GOT ME UP 2 tornou-se o lançamento de maior sucesso da carreira de SETTWOR, destacando-se de forma significativa em número de reproduções em comparação com as demais obras.[\[6\]](#ref-6)[\[20\]](#ref-20)
+Em 9 de fevereiro de 2023, lançou a faixa [GOT ME UP](/releases.html#release-got-me-up). Mais tarde, com o álbum [GET IT, Vol.1](/releases.html#release-get-it-vol-1), já com mais experiência e conhecimento técnico, apresentou uma versão reformulada, [GOT ME UP 2](/releases.html#release-get-it-vol-1). Com o tempo, GOT ME UP 2 se tornou seu lançamento de maior sucesso, bem à frente de suas outras obras em reproduções.[\[6\]](#ref-6)[\[20\]](#ref-20)
 
-Em 15 de dezembro de 2023, o lançamento de [DON'T STOP](/releases.html#release-don-t-stop) marcou o primeiro grande ponto de virada no desenvolvimento artístico de SETTWOR. A faixa diferia visivelmente de seus lançamentos anteriores de phonk e apresentava uma nova direção em seu som. Depois desse lançamento, SETTWOR continuou trabalhando com phonk, mas com mudanças de estilo e de abordagem de produção, passando a se concentrar principalmente em projetos de álbum em vez de singles avulsos. A partir daí, a experimentação com diversos estilos musicais passou a ser uma marca de seu trabalho e continua sendo até hoje.[\[20\]](#ref-20)
+Em 15 de dezembro de 2023, saiu [DON'T STOP](/releases.html#release-don-t-stop). Soava claramente diferente de seus lançamentos anteriores de phonk e apontava para uma nova direção. Foi a primeira virada clara em seu trabalho. Ele continuou com o phonk, mas o estilo e a abordagem de produção mudaram, e ele passou a focar em álbuns em vez de singles avulsos. Desde então, experimenta com vários estilos, e continua fazendo isso.[\[20\]](#ref-20)
 
 ### Música e vida
 
-A música tomou completamente a vida de SETTWOR, deixando pouco espaço para qualquer outra coisa. Ele saía de casa quase todos os dias para ouvir as próprias faixas por horas, pensando o tempo todo em como melhorá-las. Mesmo quando não tinha tempo livre para refletir, a música estava sempre com ele: ideias, planos, formas de melhorar suas músicas, formas de garantir que as pessoas as ouvissem.
+A música tomou quase toda a vida de SETTWOR e deixou pouco espaço para qualquer outra coisa. Ele saía de casa quase todos os dias e ouvia suas próprias faixas por horas, pensando em como melhorá-las. Mesmo quando não tinha tempo livre para refletir, a música estava com ele: ideias, planos, formas de melhorar suas músicas, formas de garantir que as pessoas as ouvissem.
 
-SETTWOR ao mesmo tempo amava e se ressentia de quanto a música havia se tornado parte da sua vida. Mesmo assim, anos de reflexão, experimentação e desenvolvimento pessoal valeram a pena. Esse período se tornou uma das etapas mais importantes de sua vida e carreira, e lançou as bases de tudo o que ele cria hoje.
+SETTWOR ao mesmo tempo amava e se ressentia do quanto a música havia se tornado parte de sua vida. Os anos de reflexão, experimentação e autodesenvolvimento deram resultado. Tudo o que ele faz hoje se apoia neles.
 
-### 2025: um ponto de virada
+### 2025
 
-Antes de lançar seu mixtape [BREAKPOINT Mixtape](/releases.html#release-breakpoint-mixtape) em 28 de março de 2025, SETTWOR decidiu divulgar suas faixas de forma mais ativa do que nunca. Ele também sugeriu uma possível saída do gênero phonk, parcial ou total, para explorar novos caminhos musicais. Como planejado, o lançamento de BREAKPOINT Mixtape marcou um verdadeiro ponto de virada em sua carreira, sinalizando uma mudança de estilo e uma aproximação de outros sons. Atualmente, ele trabalha em faixas mais próximas do [funk brasileiro](https://en.wikipedia.org/wiki/Funk_carioca), do house e do [EDM](https://en.wikipedia.org/wiki/Electronic_dance_music).[\[5\]](#ref-5)
+Antes de lançar seu mixtape [BREAKPOINT Mixtape](/releases.html#release-breakpoint-mixtape) em 28 de março de 2025, SETTWOR decidiu divulgar suas faixas mais do que nunca. Também sugeriu que poderia deixar o phonk, parcial ou totalmente, para explorar outros caminhos. Foi o que aconteceu: o mixtape trouxe uma mudança de estilo e uma aproximação de outros sons. Hoje, ele trabalha em faixas mais próximas do [funk brasileiro](https://en.wikipedia.org/wiki/Funk_carioca), do house e do [EDM](https://en.wikipedia.org/wiki/Electronic_dance_music).[\[5\]](#ref-5)
 
-O mixtape realmente se tornou um ponto de ruptura. Pouco depois do lançamento, a faixa [GOT ME UP 2](/releases.html#release-get-it-vol-1), do álbum anterior [GET IT, Vol.1](/releases.html#release-get-it-vol-1), alcançou um número recorde de reproduções na história de SETTWOR, e continua crescendo. Cada vez mais músicas suas ganham atenção, reproduções e lugares em playlists.[\[6\]](#ref-6)
+Pouco depois do mixtape, a faixa [GOT ME UP 2](/releases.html#release-get-it-vol-1) do álbum anterior [GET IT, Vol.1](/releases.html#release-get-it-vol-1) alcançou o maior número de reproduções da história de SETTWOR e continua crescendo. Cada vez mais músicas suas ganham atenção, reproduções e lugares em playlists.[\[6\]](#ref-6)
 
-Em 26 de setembro de 2025, SETTWOR lançou uma faixa de bass agressiva e acelerada chamada [OG KILLIN'](/releases.html#release-og-killin). A música captura a essência crua do phonk autêntico da velha escola em seu auge, o som que fez os fãs se apaixonarem pelo gênero, servindo como uma homenagem ao phonk lendário e autêntico.[\[20\]](#ref-20)
+Em 26 de setembro de 2025, saiu [OG KILLIN'](/releases.html#release-og-killin): uma faixa de bass agressiva e acelerada. Ela traz a energia crua do phonk da velha escola em seu auge, o som que fez os fãs se apaixonarem pelo gênero, e é uma homenagem ao phonk lendário e autêntico.[\[20\]](#ref-20)
 
-De forma inesperada, a faixa alcançou números recordes de reproduções para SETTWOR nos primeiros dias após o lançamento, mostrando que os ouvintes ainda têm grande interesse pelo som clássico do phonk da velha escola.
+Para o próprio artista foi uma surpresa, mas nos primeiros dias após o lançamento a faixa teve números recordes de reproduções. O interesse dos ouvintes pelo phonk clássico da velha escola continuava ali.
 
-Em 12 de dezembro de 2025, SETTWOR lançou [NOITE SELVAGEM](/releases.html#release-noite-selvagem), sua primeira faixa do gênero funk brasileiro. O lançamento marca um novo capítulo criativo em sua trajetória musical e evidencia seu interesse em explorar diferentes sons e estilos.[\[7\]](#ref-7)
+Em 12 de dezembro de 2025, saiu [NOITE SELVAGEM](/releases.html#release-noite-selvagem), sua primeira faixa do gênero funk brasileiro. O lançamento abriu uma nova direção em sua música e mostrou seu interesse em explorar diferentes sons e estilos.[\[7\]](#ref-7)
 
-No fim de 2025, SETTWOR se interessou pelo funk brasileiro e lançou duas faixas nesse estilo. O início de 2026 também foi dedicado ao funk, único gênero que ele lançou até a primavera. Segundo o artista, esse período tinha o objetivo de testar o funk brasileiro com o seu público. Ao mesmo tempo, SETTWOR afirmou que não pretende migrar totalmente para o gênero, encarando-o estritamente como um experimento, pois o funk brasileiro não se alinha à sua direção musical principal.[\[15\]](#ref-15)[\[20\]](#ref-20)
+No fim de 2025, SETTWOR se interessou pelo funk brasileiro e lançou duas faixas nesse estilo. O início de 2026 também foi de funk, e até a primavera foi o único gênero que ele lançou. Segundo o artista, nesse período ele testava como o público receberia o funk brasileiro. Ele disse que não pretende migrar totalmente para o gênero: para ele é um experimento, pois o funk brasileiro não é sua direção principal.[\[15\]](#ref-15)[\[20\]](#ref-20)
 
-### 2026: o ano dos recordes
+### 2026
 
-A partir de 2026, SETTWOR intensificou a divulgação de seus lançamentos mais do que nunca, o que logo se refletiu em suas estatísticas. No fim de janeiro, ele atingiu seu melhor desempenho no [Spotify](https://open.spotify.com/artist/5BD8hsAGp1fwJKcnlQWjGf) até então: seu público cresceu para milhares de ouvintes diários, e suas faixas foram adicionadas a milhares de playlists no primeiro mês do ano.[\[2\]](#ref-2)
+A partir de 2026, SETTWOR divulgou seus lançamentos mais do que nunca, e os números logo mostraram isso. No fim de janeiro, ele teve seu melhor desempenho no [Spotify](https://open.spotify.com/artist/5BD8hsAGp1fwJKcnlQWjGf) até então: seu público cresceu para milhares de ouvintes diários, e suas faixas entraram em milhares de playlists no primeiro mês do ano.[\[2\]](#ref-2)
 
-Em fevereiro, o crescimento não só continuou como se acelerou: o total de reproduções mais que dobrou em relação ao recorde de janeiro. Nessa altura, SETTWOR já tinha dezenas de milhares de ouvintes mensais no Spotify, e seu público mensal combinado em todas as plataformas digitais ultrapassava 50 mil ouvintes.
+Em fevereiro, o crescimento se acelerou: o total de reproduções mais que dobrou em relação a janeiro, que na época era o recorde. Nessa altura, SETTWOR já tinha dezenas de milhares de ouvintes mensais no Spotify, e seu público mensal combinado em todas as plataformas digitais ultrapassava 50 mil ouvintes.
 
-O crescimento continuou em ritmo mais estável ao longo de março e, em abril, o total mensal de reproduções ultrapassou 200 mil, quase o dobro do mês anterior. Esse foi um novo recorde absoluto na história de SETTWOR.
+Em março o crescimento foi mais estável. Em abril, o total mensal de reproduções ultrapassou 200 mil, quase o dobro do mês anterior. Nunca antes ele tivera um mês melhor.
 
-Em 4 de setembro de 2026, [SE TU QUER](https://open.spotify.com/album/4G27W8LQxr3H8mROcotpUQ?si=oyYOnmnaRu6c9dVP1Q6XqA) foi relançada, desta vez como uma colaboração com Mc Baiano, cujos vocais SETTWOR havia usado na versão original da faixa. O lançamento foi feito pela Authentic Records. A faixa foi a primeira colaboração de SETTWOR com outro artista em cinco anos de carreira musical.[\[8\]](#ref-8)[\[17\]](#ref-17)
+Em 4 de setembro de 2026, [SE TU QUER](https://open.spotify.com/album/4G27W8LQxr3H8mROcotpUQ?si=oyYOnmnaRu6c9dVP1Q6XqA) foi relançada como colaboração com Mc Baiano, cujos vocais SETTWOR já havia usado na versão original da faixa. O lançamento foi feito pela Authentic Records. Em cinco anos de carreira musical, é a primeira colaboração de SETTWOR com outro artista.[\[8\]](#ref-8)[\[17\]](#ref-17)
 
-Em 10 de outubro de 2026, é lançada a nova faixa [Toma Jatada](https://open.spotify.com/album/00W2qdOjV3whkK3L6W2VxL?si=AMXQNtG0TZa1gZQpQDFLnA), uma colaboração entre SETTWOR e [MC GW](https://open.spotify.com/artist/0f1IECbrVV952unZkzrsg2?si=hnimUqf2S4yWmN5XUBcApw), um artista muito conhecido e a principal voz do funk brasileiro. O lançamento teve o apoio da Authentic Records.[\[9\]](#ref-9)[\[13\]](#ref-13)[\[18\]](#ref-18)
+Em 10 de outubro de 2026, saiu [Toma Jatada](https://open.spotify.com/album/00W2qdOjV3whkK3L6W2VxL?si=AMXQNtG0TZa1gZQpQDFLnA), uma colaboração entre SETTWOR e [MC GW](https://open.spotify.com/artist/0f1IECbrVV952unZkzrsg2?si=hnimUqf2S4yWmN5XUBcApw), um artista muito conhecido e a principal voz do funk brasileiro. O lançamento teve o apoio da Authentic Records.[\[9\]](#ref-9)[\[13\]](#ref-13)[\[18\]](#ref-18)
 
 ### Série de lançamentos
 
-Com o lançamento de [OG KILLIN'](/releases.html#release-og-killin), SETTWOR iniciou uma série regular de lançamentos, comprometendo-se a soltar faixas novas a cada duas sextas-feiras, ou seja, dois lançamentos por mês. Nessa série, já foram lançadas faixas como OG KILLIN', [Ball Hard](/releases.html#release-ball-hard), [anguish✟](/releases.html#release-anguish), [Disco 00](/releases.html#release-disco-00), [THE TROOPER](/releases.html#release-the-trooper), [PIT STOP](/releases.html#release-pit-stop), [NOITE SELVAGEM](/releases.html#release-noite-selvagem), [MENTE LOUCA](/releases.html#release-mente-louca), [SE TU QUER](/releases.html#release-se-tu-quer), [GUARDA CHUVA](/releases.html#release-guarda-chuva), [BATE NA PICA](/releases.html#release-bate-na-pica), [ENTÃO CHUPA](/releases.html#release-entao-chupa), [MEU BONECO](/releases.html#release-meu-boneco), [GOT ME UP (Deluxe)](/releases.html#release-got-me-up-deluxe), [BRUMA AURA](/releases.html#release-bruma-aura) e [XEREQUINHA NERVOSA](/releases.html#release-xerequinha-nervosa). Após o lançamento de “XEREQUINHA NERVOSA”, SETTWOR pausou sua série regular de lançamentos.[\[11\]](#ref-11)[\[12\]](#ref-12)[\[20\]](#ref-20)
+Com [OG KILLIN'](/releases.html#release-og-killin), SETTWOR iniciou uma série regular de lançamentos: uma faixa nova a cada duas sextas-feiras, ou seja, dois lançamentos por mês. Na série saíram faixas como OG KILLIN', [Ball Hard](/releases.html#release-ball-hard), [anguish✟](/releases.html#release-anguish), [Disco 00](/releases.html#release-disco-00), [THE TROOPER](/releases.html#release-the-trooper), [PIT STOP](/releases.html#release-pit-stop), [NOITE SELVAGEM](/releases.html#release-noite-selvagem), [MENTE LOUCA](/releases.html#release-mente-louca), [SE TU QUER](/releases.html#release-se-tu-quer), [GUARDA CHUVA](/releases.html#release-guarda-chuva), [BATE NA PICA](/releases.html#release-bate-na-pica), [ENTÃO CHUPA](/releases.html#release-entao-chupa), [MEU BONECO](/releases.html#release-meu-boneco), [GOT ME UP (Deluxe)](/releases.html#release-got-me-up-deluxe), [BRUMA AURA](/releases.html#release-bruma-aura) e [XEREQUINHA NERVOSA](/releases.html#release-xerequinha-nervosa). Após “XEREQUINHA NERVOSA”, SETTWOR pausou a série.[\[11\]](#ref-11)[\[12\]](#ref-12)[\[20\]](#ref-20)
 
 ## Obras de destaque
 
-- [Light Wave](/releases.html#release-light-wave) (2021): a faixa de estreia de SETTWOR, que marcou o início de sua carreira musical.
+- [Light Wave](/releases.html#release-light-wave) (2021): a faixa de estreia de SETTWOR, com a qual começou sua carreira musical.
 - [LUNATIC](/releases.html#release-lunatic) (2022): seu primeiro lançamento do gênero [phonk](https://en.wikipedia.org/wiki/Phonk).
 - [GET IT, Vol.1](/releases.html#release-get-it-vol-1) (álbum, 2024): o primeiro álbum completo de SETTWOR.
 - [GOT ME UP 2](/releases.html#release-get-it-vol-1) (2024): a primeira faixa do artista a alcançar um número significativo de reproduções.
-- [BREAKPOINT Mixtape](/releases.html#release-breakpoint-mixtape) (2025): um lançamento que marcou uma mudança em seu estilo musical principal e um afastamento parcial do phonk.
+- [BREAKPOINT Mixtape](/releases.html#release-breakpoint-mixtape) (2025): o lançamento com o qual começou uma mudança em seu estilo musical principal e um afastamento parcial do phonk.
 - [NOITE SELVAGEM](/releases.html#release-noite-selvagem) (2025): a primeira faixa de SETTWOR no gênero [funk brasileiro](https://en.wikipedia.org/wiki/Funk_carioca).
 - [SE TU QUER](/releases.html#release-se-tu-quer) (2026): o primeiro trabalho de SETTWOR com outro artista.
 
@@ -274,15 +274,15 @@ Com o lançamento de [OG KILLIN'](/releases.html#release-og-killin), SETTWOR ini
 
 ### GOT ME UP 2
 
-Em 3 de abril de 2025, a faixa [GOT ME UP 2](/releases.html#release-get-it-vol-1), do álbum [GET IT, Vol.1](/releases.html#release-get-it-vol-1), chegou a 100 mil reproduções no [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio), uma das conquistas mais notáveis de SETTWOR até então.[\[6\]](#ref-6)
+Em 3 de abril de 2025, a faixa [GOT ME UP 2](/releases.html#release-get-it-vol-1), do álbum [GET IT, Vol.1](/releases.html#release-get-it-vol-1), chegou a 100 mil reproduções no [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio). Na época, foi um dos melhores resultados de SETTWOR.[\[6\]](#ref-6)
 
-Alguns meses depois, em 22 de julho de 2025, a faixa ultrapassou 500 mil reproduções, consolidando-se ainda mais como um lançamento-chave na carreira do artista.
+Alguns meses depois, em 22 de julho de 2025, a faixa ultrapassou 500 mil reproduções e passou a ser um lançamento-chave na carreira do artista.
 
-Em 22 de fevereiro de 2026, a música superou 1 milhão de reproduções totais em todas as plataformas digitais, tornando-se a primeira faixa de SETTWOR a chegar a um milhão.
+Em 22 de fevereiro de 2026, a música superou 1 milhão de reproduções totais em todas as plataformas digitais. É a primeira faixa de SETTWOR a chegar a um milhão.
 
-Pouco depois, GOT ME UP 2 também alcançou 1 milhão de reproduções no Pandora, confirmando sua popularidade contínua na plataforma.
+Pouco depois, GOT ME UP 2 também chegou a 1 milhão de reproduções no Pandora. Lá, sua popularidade segue estável.
 
-A faixa continua somando reproduções de forma constante, refletindo o interesse contínuo dos ouvintes e um grande potencial de repetição.
+As reproduções continuam entrando, e muitos ouvintes voltam a ouvir a faixa.
 
 ### GOT ME UP (Deluxe)
 
@@ -294,26 +294,26 @@ No total, o álbum contém 12 faixas.
 
 Pouco depois do lançamento, a versão original de GOT ME UP foi removida das plataformas de streaming e ficou disponível exclusivamente no álbum GOT ME UP (Deluxe).
 
-A qualidade de som de GOT ME UP (Alternate Mix) e GOT ME UP 2 (Alternate Mix) mostra uma clara melhora, evidenciando o crescimento técnico do artista e seu desenvolvimento na produção ao longo do tempo.
+GOT ME UP (Alternate Mix) e GOT ME UP 2 (Alternate Mix) soam claramente melhores que os originais, o que mostra como a capacidade de produção do artista cresceu com o tempo.
 
 ### Outras faixas
 
-A faixa [PIT STOP](/releases.html#release-pit-stop) tornou-se o lançamento de crescimento mais rápido da história de SETTWOR durante sua primeira semana. Mais tarde, [SE TU QUER](/releases.html#release-se-tu-quer) estabeleceu um novo recorde ao atingir 1.000 reproduções no [Spotify](https://open.spotify.com/artist/5BD8hsAGp1fwJKcnlQWjGf) em 6 dias e 10 mil em 36 dias. Isso foi superado por [XEREQUINHA NERVOSA](/releases.html#release-xerequinha-nervosa), que chegou a 10 mil reproduções em apenas 11 dias.[\[8\]](#ref-8)[\[11\]](#ref-11)[\[12\]](#ref-12)
+A faixa [PIT STOP](/releases.html#release-pit-stop) tornou-se o lançamento de crescimento mais rápido da história de SETTWOR durante sua primeira semana. Mais tarde, [SE TU QUER](/releases.html#release-se-tu-quer) estabeleceu um novo recorde ao atingir 1.000 reproduções no [Spotify](https://open.spotify.com/artist/5BD8hsAGp1fwJKcnlQWjGf) em 6 dias e 10 mil em 36 dias. [XEREQUINHA NERVOSA](/releases.html#release-xerequinha-nervosa) superou essa marca: 10 mil reproduções em apenas 11 dias.[\[8\]](#ref-8)[\[11\]](#ref-11)[\[12\]](#ref-12)
 
 ### Histórico de reproduções
 
-SETTWOR alcançou seu primeiro milhão de reproduções totais em 21 de outubro de 2025, contando desde o lançamento de sua primeira faixa em 2021. Isso significa que levou cerca de cinco anos para atingir esse marco. O segundo milhão veio muito mais rápido, nos seis meses seguintes, sendo alcançado em 17 de maio de 2026.
+SETTWOR alcançou seu primeiro milhão de reproduções totais em 21 de outubro de 2025, contando desde o lançamento de sua primeira faixa em 2021. Isso levou cerca de cinco anos. O segundo milhão veio muito mais rápido, nos seis meses seguintes: em 17 de maio de 2026.
 
 ## Histórico do canal
 
-O canal de SETTWOR no [YouTube](https://youtube.com/c/settwor) mostrou um crescimento constante e impressionante ao longo dos anos. Em 7 de agosto de 2022, o canal chegou aos primeiros 1.000 inscritos e, em 2 de outubro de 2022, já havia ultrapassado 1 milhão de visualizações totais. Menos de um ano depois, em 11 de junho de 2023, o número de inscritos saltou para 10 mil, enquanto as visualizações totais chegaram a 5 milhões em 24 de maio de 2023. Mantendo o ritmo, SETTWOR alcançou 15 mil inscritos em 15 de abril de 2024 e passou de 10 milhões de visualizações em 9 de julho de 2024, consolidando sua presença como criador reconhecido na cena musical.[\[3\]](#ref-3)
+Em 7 de agosto de 2022, o canal de SETTWOR no [YouTube](https://youtube.com/c/settwor) tinha 1.000 inscritos e, em 2 de outubro de 2022, passou de 1 milhão de visualizações totais. Em 24 de maio de 2023, chegou a 5 milhões de visualizações e, em 11 de junho de 2023, a 10 mil inscritos. Em 15 de abril de 2024, tinha 15 mil inscritos e, em 9 de julho de 2024, passou de 10 milhões de visualizações.[\[3\]](#ref-3)
 
-O canal de SETTWOR tem mais de 600 vídeos, incluindo edições de várias faixas em diferentes estilos, como áudio 8D, slowed, sped up, alguns mashups, além das músicas autorais do próprio SETTWOR.[\[3\]](#ref-3)
+O canal tem mais de 600 vídeos: edições de várias faixas em estilos como áudio 8D, slowed, sped up, alguns mashups e as músicas autorais do próprio SETTWOR.[\[3\]](#ref-3)
 
 Em 2 de novembro de 2022, SETTWOR recebeu o status de canal oficial de músico.
 
-Em 13 de junho de 2023, um dia antes do terceiro aniversário do canal, o YouTube excluiu o canal sem motivo conhecido, conforme SETTWOR informou em suas redes sociais. No mesmo dia, após um recurso, o canal foi restaurado; o motivo da exclusão foi bastante estranho. SETTWOR escreveu em seu canal do [Telegram](https://settw0r.t.me)[\[4\]](#ref-4):
+Em 13 de junho de 2023, um dia antes do terceiro aniversário do canal, o YouTube o excluiu sem motivo conhecido, conforme SETTWOR informou em suas redes sociais. No mesmo dia, após um recurso, o canal foi restaurado. O motivo da exclusão foi bastante estranho. SETTWOR escreveu em seu canal do [Telegram](https://settw0r.t.me)[\[4\]](#ref-4):
 
 > "Excluíram o canal por causa de 'Sveta Kakala Skazhi', ou melhor, por causa do cara que balançava a bunda no início. Disseram que era conteúdo sexual que causa excitação. Por algum motivo excluíram o canal, embora devessem primeiro ter dado um aviso e só depois de quatro avisos excluí-lo. Depois de restaurar o canal, me deram um aviso e apagaram o vídeo. Entrei com um recurso para restaurar o vídeo; ele foi restaurado, mas marcado como +18."
 
-Em 11 de outubro de 2025, o canal de SETTWOR foi hackeado e golpistas assumiram o controle da conta. No dia seguinte, os hackers venderam o canal. Três dias após o incidente, em 14 de outubro de 2025, SETTWOR recuperou com sucesso seu canal e sua conta com a ajuda do suporte do YouTube.[\[3\]](#ref-3)
+Em 11 de outubro de 2025, o canal foi hackeado e golpistas assumiram o controle da conta. No dia seguinte, venderam o canal. Em 14 de outubro de 2025, três dias após o incidente, SETTWOR recuperou seu canal e sua conta com a ajuda do suporte do YouTube.[\[3\]](#ref-3)
