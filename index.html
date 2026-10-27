@@ -7,6 +7,8 @@ seo_title: SETTWOR — Phonk & Brazilian Funk Producer | Official Site
 description: Official site of SETTWOR, a phonk and Brazilian funk producer from Ukraine based in Poland. Biography, releases, news, photos and contact.
 image: /images/main.jpg
 image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
+# Total number of releases shown in the key line below. Typed by the owner (57), NOT counted from the folder _releases.
+releases_total: "57"
 ---
 {%- comment -%} The texts of this page live in _data/home.yml and the links in _data/links.yml. {%- endcomment -%}
 {%- assign home = site.data.home -%}
@@ -40,7 +42,7 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 {{ home.about | markdownify }}
                 {%- comment -%}
                   The most important facts in one line (moved here from the footer in v10.5). Built from real data, nothing is typed:
-                  releases are counted from the folder _releases, the place and the date come from the front matter (lt_*) of top-phonk-artist.html.
+                  the number of releases is the front matter key releases_total of this page (57, typed by the owner; falls back to the count of the folder _releases if empty), the place and the date come from the front matter (lt_*) of top-phonk-artist.html.
                   "fast-growing" is the owner's wording: confirmations are to be added by the owner.
                 {%- endcomment -%}
                 {%- assign ft_all = site.releases | sort: "date" -%}
@@ -50,7 +52,7 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
                 {%- for ft_r in site.releases -%}{%- assign ft_ry = ft_r.date | date: "%Y" -%}{%- if ft_ry == ft_year -%}{%- assign ft_this = ft_this | plus: 1 -%}{%- endif -%}{%- endfor -%}
                 {%- assign ft_top = site.pages | where: "permalink", "/top-phonk-artist.html" | first -%}
                 {%- if ft_first %}
-                <p class="callout callout--key">SETTWOR is an active and fast-growing phonk and Brazilian funk producer: {{ ft_all.size }} releases since {{ ft_first.date | date: "%Y" }}{% if ft_this > 0 %}, {{ ft_this }} of them in {{ ft_year }}{% endif %}.{% if ft_top %} <a href="/top-phonk-artist.html">No. {{ ft_top.lt_phonk_place }} in Phonk on Pandora</a> (Ledgertone, {{ ft_top.lt_snapshot }}).{% endif %}</p>
+                <p class="callout callout--key">SETTWOR is an active and fast-growing phonk and Brazilian funk producer: {{ page.releases_total | default: ft_all.size }} releases since {{ ft_first.date | date: "%Y" }}{% if ft_this > 0 %}, {{ ft_this }} of them in {{ ft_year }}{% endif %}.{% if ft_top %} <a href="/top-phonk-artist.html">No. {{ ft_top.lt_phonk_place }} in Phonk on Pandora</a> (Ledgertone, {{ ft_top.lt_snapshot }}).{% endif %}</p>
                 {%- endif %}
                 {%- if home.callout and home.callout != "" %}
                 <p class="callout">{{ home.callout }}</p>

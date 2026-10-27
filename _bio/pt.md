@@ -188,7 +188,7 @@ external:
 
 SETTWOR é um produtor musical que trabalha com [phonk](https://en.wikipedia.org/wiki/Phonk), [funk brasileiro](https://en.wikipedia.org/wiki/Funk_carioca) e [música eletrônica de dança](https://en.wikipedia.org/wiki/Electronic_dance_music). Natural de [Kryvyi Rih](https://en.wikipedia.org/wiki/Kryvyi_Rih), na [Ucrânia](https://en.wikipedia.org/wiki/Ukraine), mudou-se para a [Polônia](https://en.wikipedia.org/wiki/Poland) em 2022. É mais conhecido por suas obras musicais, seu canal no [YouTube](https://youtube.com/c/settwor) e pelos vídeos curtos no [TikTok](https://en.wikipedia.org/wiki/TikTok) com suas faixas.[\[1\]](#ref-1)[\[14\]](#ref-14)[\[15\]](#ref-15)
 
-No [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio), SETTWOR é um dos artistas de phonk mais ouvidos. Suas faixas somam reproduções de forma constante e continuam chegando a novos ouvintes.[\[2\]](#ref-2) SETTWOR é um artista ativo e em rápido crescimento. Em abril de 2025 ele ocupou as posições 4 e 5 entre os artistas de phonk no Pandora e, no [ranking do Ledgertone](/top-phonk-artist.html) de 27 de outubro de 2026, ocupa a 10ª posição em Phonk e a 20ª posição em Brazilian Phonk.
+No [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio), SETTWOR é um dos artistas de phonk mais ouvidos. Suas faixas somam reproduções de forma constante e continuam chegando a novos ouvintes.[\[2\]](#ref-2) SETTWOR é um artista ativo e em rápido crescimento. Em abril de 2025 ele ocupou a 6ª posição entre os artistas de phonk no Pandora e, no [ranking do Ledgertone](/top-phonk-artist.html) de 27 de outubro de 2026, ocupa a 13ª posição em Phonk e a 22ª posição em Brazilian Phonk.
 
 ### Informações pessoais
 
