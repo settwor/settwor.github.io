@@ -1,0 +1,101 @@
+{%- comment -%}
+  Line chart of the music platforms: plays of EACH year (not a running total), one point per year.
+  Built from the same data as the cards (_data/platforms), no new data file. YouTube is not in it: it has no yearly numbers.
+  The field "Earlier" is not a year, so it is not a point; it is shown as a plain row under the chart.
+  Drawn at build time (SVG line + HTML dots); the full numbers are in the list under it (rule 4: no rounding).
+  Liquid has only whole numbers, so x and y are worked out in a 0..1000 box. Variables use the prefix tr_.
+  Not shown when fewer than two years have numbers.
+{%- endcomment -%}
+{%- include stats-calc.html -%}
+{%- assign tr_years = "2021,2022,2023,2024,2025,2026,2027" | split: "," -%}
+{%- assign tr_items = "" -%}
+{%- assign tr_first = -1 -%}
+{%- assign tr_last = -1 -%}
+{%- assign tr_max = 0 -%}
+{%- assign tr_peak = "" -%}
+{%- for tr_p in tr_years -%}
+  {%- assign tr_field = "y" | append: tr_p -%}
+  {%- assign tr_sum = 0 -%}
+  {%- for tr_key in st_plat_keys -%}
+    {%- assign tr_row = st_data[tr_key] -%}
+    {%- assign tr_sum = tr_sum | plus: tr_row[tr_field] -%}
+  {%- endfor -%}
+  {%- if tr_sum > 0 -%}
+    {%- if tr_first < 0 -%}{%- assign tr_first = forloop.index0 -%}{%- endif -%}
+    {%- assign tr_last = forloop.index0 -%}
+  {%- endif -%}
+  {%- if tr_sum > tr_max -%}{%- assign tr_max = tr_sum -%}{%- assign tr_peak = tr_p -%}{%- endif -%}
+  {%- assign tr_items = tr_items | append: tr_p | append: "|" | append: tr_sum | append: "~" -%}
+{%- endfor -%}
+{%- assign tr_all = tr_items | split: "~" -%}
+{%- assign tr_pts = "" -%}
+{%- for tr_it in tr_all -%}
+  {%- assign tr_i = forloop.index0 -%}
+  {%- if tr_i >= tr_first and tr_i <= tr_last and tr_it != "" -%}{%- assign tr_pts = tr_pts | append: tr_it | append: "~" -%}{%- endif -%}
+{%- endfor -%}
+{%- assign tr_list = tr_pts | split: "~" -%}
+{%- comment -%} newest year first for the list (the emulator has no "reversed" loop) {%- endcomment -%}
+{%- assign tr_rev = "" -%}
+{%- for tr_it in tr_list -%}{%- assign tr_rev = tr_it | append: "~" | append: tr_rev -%}{%- endfor -%}
+{%- assign tr_rows = tr_rev | split: "~" -%}
+{%- assign tr_n = tr_list.size -%}
+{%- assign tr_earlier = 0 -%}
+{%- for tr_key in st_plat_keys -%}
+  {%- assign tr_row = st_data[tr_key] -%}
+  {%- assign tr_earlier = tr_earlier | plus: tr_row.earlier -%}
+{%- endfor -%}
+
+{%- if tr_first >= 0 and tr_n > 1 and tr_max > 0 %}
+{%- assign tr_steps = tr_n | minus: 1 -%}
+{%- assign tr_line = "" %}
+    <div class="numbers__head" id="growth">
+        <h2 class="numbers__h">Plays by year</h2>
+        <span class="numbers__sum">Music platforms, plays in each year</span>
+    </div>
+    <div class="trend">
+        <div class="trend__plot" role="img" aria-label="Line chart: plays on music platforms in each year, from {{ tr_list[0] | split: '|' | first }} to {{ tr_list.last | split: '|' | first }}. Busiest year: {{ tr_peak }}.">
+            <div class="trend__draw">
+                <svg class="trend__svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                    <line class="trend__grid" x1="0" y1="250" x2="1000" y2="250"/>
+                    <line class="trend__grid" x1="0" y1="500" x2="1000" y2="500"/>
+                    <line class="trend__grid" x1="0" y1="750" x2="1000" y2="750"/>
+                    {%- for tr_it in tr_list %}
+                    {%- assign tr_v = tr_it | split: "|" -%}
+                    {%- assign tr_x = forloop.index0 | times: 1000 | divided_by: tr_steps -%}
+                    {%- assign tr_cv = tr_v[1] | plus: 0 -%}
+                    {%- comment -%} keep the top 8 percent free so the biggest year does not touch the edge {%- endcomment -%}
+                    {%- assign tr_y = tr_cv | times: 920 | divided_by: tr_max | minus: 1000 | times: -1 -%}
+                    {%- if forloop.first -%}{%- assign tr_line = "M" | append: tr_x | append: " " | append: tr_y -%}{%- else -%}{%- assign tr_line = tr_line | append: " L" | append: tr_x | append: " " | append: tr_y -%}{%- endif -%}
+                    {%- endfor %}
+                    <path class="trend__area" d="{{ tr_line }} L1000 1000 L0 1000 Z"/>
+                    <path class="trend__line" d="{{ tr_line }}"/>
+                </svg>
+                {%- for tr_it in tr_list %}
+                {%- assign tr_v = tr_it | split: "|" -%}
+                {%- assign tr_x = forloop.index0 | times: 1000 | divided_by: tr_steps -%}
+                {%- assign tr_cv = tr_v[1] | plus: 0 -%}
+                {%- assign tr_y = tr_cv | times: 920 | divided_by: tr_max | minus: 1000 | times: -1 %}
+                <i class="trend__dot{% if tr_v[0] == tr_peak %} trend__dot--now{% endif %}" style="left: {{ tr_x | divided_by: 10 }}.{{ tr_x | modulo: 10 }}%; top: {{ tr_y | divided_by: 10 }}.{{ tr_y | modulo: 10 }}%"></i>
+                {%- endfor %}
+            </div>
+            <div class="trend__axis" aria-hidden="true">
+                {%- for tr_it in tr_list %}
+                {%- assign tr_v = tr_it | split: "|" -%}
+                {%- assign tr_x = forloop.index0 | times: 1000 | divided_by: tr_steps %}
+                <span class="trend__tick{% if forloop.first %} trend__tick--first{% elsif forloop.last %} trend__tick--last{% endif %}" style="left: {{ tr_x | divided_by: 10 }}.{{ tr_x | modulo: 10 }}%">{{ tr_v[0] }}</span>
+                {%- endfor %}
+            </div>
+        </div>
+        <ul class="trend__rows">
+            {%- if tr_earlier > 0 %}
+            <li class="trend__row trend__row--earlier"><span>Earlier</span><i class="trend__bar" aria-hidden="true"></i><b>{% include num-full.html n=tr_earlier %}</b></li>
+            {%- endif %}
+            {%- for tr_it in tr_rows %}
+            {%- assign tr_v = tr_it | split: "|" -%}
+            {%- assign tr_cv = tr_v[1] | plus: 0 -%}
+            {%- assign tr_w = tr_cv | times: 1000 | divided_by: tr_max -%}
+            <li class="trend__row{% if tr_v[0] == tr_peak %} trend__row--peak{% endif %}"><span>{{ tr_v[0] }}</span><i class="trend__bar" aria-hidden="true"><u style="width: {{ tr_w | divided_by: 10 }}.{{ tr_w | modulo: 10 }}%"></u></i><b>{% include num-full.html n=tr_cv %}</b></li>
+            {%- endfor %}
+        </ul>
+    </div>
+{%- endif %}

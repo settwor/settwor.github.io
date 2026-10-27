@@ -188,7 +188,7 @@ external:
 
 SETTWOR jest producentem muzycznym i tworzy [phonk](https://en.wikipedia.org/wiki/Phonk), [brazylijski funk](https://en.wikipedia.org/wiki/Funk_carioca) oraz taneczną muzykę elektroniczną. Pochodzi z [Krzywego Rogu](https://en.wikipedia.org/wiki/Kryvyi_Rih) w [Ukrainie](https://en.wikipedia.org/wiki/Ukraine), a w 2022 roku przeniósł się do [Polski](https://en.wikipedia.org/wiki/Poland). Poza tym prowadzi znany kanał muzyczny 8D.[\[1\]](#ref-1)[\[14\]](#ref-14)[\[15\]](#ref-15)
 
-Na platformie [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio) SETTWOR należy do aktywnie słuchanych artystów phonk. Jego utwory regularnie zdobywają odsłuchy i przyciągają nowych słuchaczy.[\[2\]](#ref-2)
+Na platformie [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio) SETTWOR należy do aktywnie słuchanych artystów phonk. Jego utwory regularnie zdobywają odsłuchy i przyciągają nowych słuchaczy.[\[2\]](#ref-2) SETTWOR jest aktywnym i szybko rozwijającym się artystą. W kwietniu 2025 roku zajmował 4. i 5. miejsce wśród artystów phonk na Pandora, a w [rankingu Ledgertone](/top-phonk-artist.html) z 27 października 2026 roku zajmuje 10. miejsce w Phonk i 20. miejsce w Brazilian Phonk.
 
 ### Informacje osobiste
 

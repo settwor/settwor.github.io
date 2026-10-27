@@ -1,0 +1,112 @@
+---
+layout: page
+rail: site
+license_note: false
+permalink: /top-phonk-artist.html
+title: "SETTWOR in the top phonk artists on Pandora"
+seo_title: "SETTWOR: Top 10 Phonk Artist on Pandora, Top 7 in Brazilian Phonk | Official Site"
+description: "SETTWOR had 23,000 listeners over 28 days on Pandora, place 10 in Phonk and place 7 in Brazilian Phonk in the Ledgertone ranking of October 2026."
+image: /images/main.jpg
+image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
+# The numbers of this page. They come from https://ledgertone.github.io/settwor.html. When Ledgertone
+# publishes a new snapshot, change them here (and "updated"), the text and the structured data follow.
+lt_snapshot: "25 October 2026"
+lt_snapshot_iso: "2026-10-25"
+lt_listeners: "23,000"
+lt_phonk_place: "10"
+lt_phonk_ranked: "132"
+lt_phonk_total: "2,759"
+lt_bphonk_place: "7"
+lt_bphonk_ranked: "44"
+lt_bphonk_total: "1,887"
+---
+{%- comment -%}
+  A page about the artist's place in the Ledgertone ranking (https://ledgertone.github.io/).
+  Only figures that Ledgertone itself shows. Ledgertone is run by SETTWOR and the page says so.
+  Growth is claimed on the home page by the owner; the confirmations (a second snapshot) are to be added here by the owner.
+{%- endcomment -%}
+<div class="prose">
+            <h1>SETTWOR: a top phonk artist on Pandora</h1>
+            <p class="meta">Ledgertone snapshot of {{ page.lt_snapshot }}</p>
+
+            <p>This information is from {{ page.lt_snapshot }}. SETTWOR is a phonk and Brazilian funk producer from Ukraine based in Poland. In the <a href="https://ledgertone.github.io/settwor.html" rel="noopener">Ledgertone ranking of Pandora artists</a>, he is number {{ page.lt_phonk_place }} in Phonk and number {{ page.lt_bphonk_place }} in Brazilian Phonk, with {{ page.lt_listeners }} listeners over 28 days.</p>
+
+            <h2>The numbers</h2>
+            <ul>
+                <li><strong>28-day listeners on Pandora:</strong> {{ page.lt_listeners }}</li>
+                <li><strong>Phonk:</strong> place {{ page.lt_phonk_place }} of {{ page.lt_phonk_total }} artists in the genre, counted among the {{ page.lt_phonk_ranked }} artists that have a listener number</li>
+                <li><strong>Brazilian Phonk:</strong> place {{ page.lt_bphonk_place }} of {{ page.lt_bphonk_total }} artists in the genre, counted among the {{ page.lt_bphonk_ranked }} artists that have a listener number</li>
+                <li><strong>Date of these numbers:</strong> {{ page.lt_snapshot }}</li>
+            </ul>
+
+            <h2>How to read these numbers</h2>
+            <p><strong>{{ page.lt_listeners }} listeners in 28 days</strong> is how many people played SETTWOR on Pandora in the 28 days before {{ page.lt_snapshot }}, as shown on his artist profile. With it he is number {{ page.lt_phonk_place }} among the {{ page.lt_phonk_ranked }} phonk artists that have a listener number in the snapshot.</p>
+
+            <p>It is not the first time he is at the very top. In April 2025 SETTWOR held places 4 and 5 among all phonk artists on Pandora.</p>
+
+            <p>The figure is a record of one moment. It is not live and it does not come from the Pandora API, so it may differ from what Pandora shows today.</p>
+
+            <h2>Who runs Ledgertone</h2>
+            <p>Ledgertone is an independent project run by SETTWOR, and he is listed in the ranking. He is placed by the same rule as every other artist: by the 28-day listeners number in the snapshot. Ledgertone is not affiliated with Pandora. Pandora is a trademark of its respective owner.</p>
+
+            <h2>Listen and read more</h2>
+            <ul>
+                <li><a href="https://www.pandora.com/artist/settwor/ARZ4r4pddcgPq3c" rel="noopener">SETTWOR on Pandora</a></li>
+                <li><a href="https://open.spotify.com/artist/5BD8hsAGp1fwJKcnlQWjGf" rel="noopener">SETTWOR on Spotify</a></li>
+                <li><a href="https://ledgertone.github.io/settwor.html" rel="noopener">SETTWOR on Pandora: 28-day listeners (Ledgertone)</a>, <a href="https://ledgertone.github.io/settwor-ru.html" rel="noopener" hreflang="ru" lang="ru">по-русски</a></li>
+                <li><a href="https://ledgertone.github.io/index.html" rel="noopener">Full Ledgertone ranking</a></li>
+                <li><a href="/streams.html">Plays and views on every platform</a> and <a href="/releases.html">all releases</a></li>
+            </ul>
+
+            <h2>Questions</h2>
+            <h3>Is SETTWOR one of the top phonk artists on Pandora?</h3>
+            <p>In the Ledgertone snapshot of {{ page.lt_snapshot }} he is place {{ page.lt_phonk_place }} in Phonk among the {{ page.lt_phonk_ranked }} artists with a listener number, with {{ page.lt_listeners }} listeners over 28 days.</p>
+            <h3>Is SETTWOR in the top of Brazilian phonk?</h3>
+            <p>In the same snapshot he is place {{ page.lt_bphonk_place }} in Brazilian Phonk among the {{ page.lt_bphonk_ranked }} artists with a listener number.</p>
+            <h3>Where do these numbers come from?</h3>
+            <p>From the 28-day listeners figure on the Pandora artist profile, recorded by Ledgertone on {{ page.lt_snapshot }}. It is a snapshot, not live data.</p>
+            <h3>Who runs Ledgertone?</h3>
+            <p>SETTWOR runs it and is placed in it by the same rule as every other artist.</p>
+</div>
+
+<!-- Structured data: this page, the questions and the artist it is about -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": {{ "/top-phonk-artist.html" | absolute_url | append: "#page" | jsonify }},
+            "url": {{ "/top-phonk-artist.html" | absolute_url | jsonify }},
+            "name": {{ page.seo_title | jsonify }},
+            "description": {{ page.description | jsonify }},
+            "inLanguage": "en",
+            "dateModified": {{ page.lt_snapshot_iso | jsonify }},
+            "isPartOf": { "@id": "{{ site.url }}/#website" },
+            "about": { "@id": "{{ site.url }}/#artist" },
+            "citation": { "@type": "WebPage", "@id": "https://ledgertone.github.io/settwor.html#page", "url": "https://ledgertone.github.io/settwor.html" },
+            "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "SETTWOR", "item": "{{ site.url }}/" },
+                    { "@type": "ListItem", "position": 2, "name": "Top phonk artist", "item": {{ "/top-phonk-artist.html" | absolute_url | jsonify }} }
+                ]
+            }
+        },
+        {
+            "@type": "FAQPage",
+            "@id": {{ "/top-phonk-artist.html" | absolute_url | append: "#faq" | jsonify }},
+            "url": {{ "/top-phonk-artist.html" | absolute_url | jsonify }},
+            "inLanguage": "en",
+            "about": { "@id": "{{ site.url }}/#artist" },
+            "mainEntity": [
+                { "@type": "Question", "name": "Is SETTWOR one of the top phonk artists on Pandora?", "acceptedAnswer": { "@type": "Answer", "text": "In the Ledgertone snapshot of {{ page.lt_snapshot }} he is place {{ page.lt_phonk_place }} in Phonk among the {{ page.lt_phonk_ranked }} artists with a listener number, with {{ page.lt_listeners }} listeners over 28 days." } },
+                { "@type": "Question", "name": "Is SETTWOR in the top of Brazilian phonk?", "acceptedAnswer": { "@type": "Answer", "text": "In the same snapshot he is place {{ page.lt_bphonk_place }} in Brazilian Phonk among the {{ page.lt_bphonk_ranked }} artists with a listener number." } },
+                { "@type": "Question", "name": "Where do these numbers come from?", "acceptedAnswer": { "@type": "Answer", "text": "From the 28-day listeners figure on the Pandora artist profile, recorded by Ledgertone on {{ page.lt_snapshot }}. It is a snapshot, not live data." } },
+                { "@type": "Question", "name": "Who runs Ledgertone?", "acceptedAnswer": { "@type": "Answer", "text": "SETTWOR runs it and is placed in it by the same rule as every other artist." } }
+            ]
+        },
+{% include person-jsonld.html %}
+    ]
+}
+</script>

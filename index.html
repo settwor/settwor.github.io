@@ -38,6 +38,20 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
             </div>
             <div class="section__body">
                 {{ home.about | markdownify }}
+                {%- comment -%}
+                  The most important facts in one line (moved here from the footer in v10.5). Built from real data, nothing is typed:
+                  releases are counted from the folder _releases, the place and the date come from the front matter (lt_*) of top-phonk-artist.html.
+                  "fast-growing" is the owner's wording: confirmations are to be added by the owner.
+                {%- endcomment -%}
+                {%- assign ft_all = site.releases | sort: "date" -%}
+                {%- assign ft_first = ft_all | first -%}
+                {%- assign ft_year = site.time | date: "%Y" -%}
+                {%- assign ft_this = 0 -%}
+                {%- for ft_r in site.releases -%}{%- assign ft_ry = ft_r.date | date: "%Y" -%}{%- if ft_ry == ft_year -%}{%- assign ft_this = ft_this | plus: 1 -%}{%- endif -%}{%- endfor -%}
+                {%- assign ft_top = site.pages | where: "permalink", "/top-phonk-artist.html" | first -%}
+                {%- if ft_first %}
+                <p class="callout callout--key">SETTWOR is an active and fast-growing phonk and Brazilian funk producer: {{ ft_all.size }} releases since {{ ft_first.date | date: "%Y" }}{% if ft_this > 0 %}, {{ ft_this }} of them in {{ ft_year }}{% endif %}.{% if ft_top %} <a href="/top-phonk-artist.html">No. {{ ft_top.lt_phonk_place }} in Phonk on Pandora</a> (Ledgertone, {{ ft_top.lt_snapshot }}).{% endif %}</p>
+                {%- endif %}
                 {%- if home.callout and home.callout != "" %}
                 <p class="callout">{{ home.callout }}</p>
                 {%- endif %}

@@ -10,7 +10,7 @@
     var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (calm || !('IntersectionObserver' in window)) return;
 
-    var targets = box.querySelectorAll('.numbers__hero, .plat, .yt');
+    var targets = box.querySelectorAll('.numbers__hero, .plat, .yt, .trend');
     if (!targets.length) return;
     targets.forEach(function (el, i) { el.style.setProperty('--i', i % 4); });
 

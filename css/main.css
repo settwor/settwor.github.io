@@ -4569,3 +4569,216 @@ html.fluid .rmodal__tracks li {
     background: rgba(255, 255, 255, 0.14);
     pointer-events: none;
 }
+
+
+/* =============================================================
+   10.9: Streams page, line chart "Plays by year" (was 10.8 "Plays over time") (_includes/stats-trend.html).
+   The line is an SVG stretched to the box (preserveAspectRatio none, non-scaling stroke); the dots and the
+   years are HTML placed by percent, so they stay round and sharp. Monochrome: it follows the text colour,
+   so the dark theme needs no extra rules. Drawn when the card comes into view (js/stats.js adds .is-seen).
+   ============================================================= */
+.trend {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: 1.1rem 1.15rem var(--space-4);
+    border: 1px solid var(--color-line-soft);
+    border-top: 4px solid var(--color-text);
+    border-radius: var(--radius-l);
+    background: var(--color-surface);
+    font-variant-numeric: tabular-nums;
+}
+
+.trend__plot {
+    position: relative;
+    margin: 0.6rem 0.6rem 0;
+    padding-bottom: 1.7rem;
+}
+
+.trend__draw {
+    position: relative;
+    height: 11rem;
+    border-bottom: 1px solid var(--color-line);
+    clip-path: inset(-1rem -1rem -1px -1rem);
+}
+
+.trend__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.trend__grid {
+    stroke: var(--color-line-soft);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+}
+
+.trend__area {
+    fill: var(--color-text);
+    fill-opacity: 0.07;
+    stroke: none;
+}
+
+.trend__line {
+    fill: none;
+    stroke: var(--color-text);
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.trend__dot {
+    position: absolute;
+    width: 0.7rem;
+    height: 0.7rem;
+    margin: -0.35rem 0 0 -0.35rem;
+    border: 2px solid var(--color-text);
+    border-radius: 50%;
+    background: var(--color-surface);
+}
+
+.trend__dot--now {
+    background: var(--color-text);
+    box-shadow: 0 0 0 4px var(--color-line-soft);
+}
+
+.trend__axis {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1.2rem;
+}
+
+.trend__tick {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    color: var(--color-muted);
+    font-size: var(--fs-caption);
+    white-space: nowrap;
+}
+
+.trend__tick {
+    font-size: 0.6875rem;
+}
+
+.trend__tick--first {
+    transform: translateX(-0.6rem);
+}
+
+.trend__tick--last {
+    transform: translateX(calc(-100% + 0.6rem));
+}
+
+.trend__rows {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.trend__row {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr) 6.4rem;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0.42rem 0;
+    border-top: 1px solid var(--color-line-soft);
+    color: var(--color-muted);
+    font-size: var(--fs-footnote);
+}
+
+.trend__bar {
+    position: relative;
+    display: block;
+    height: 0.5rem;
+    border-radius: 99px;
+    background: var(--color-line-soft);
+    overflow: hidden;
+}
+
+.trend__bar u {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 99px;
+    background: var(--color-text);
+    opacity: 0.55;
+    text-decoration: none;
+}
+
+.trend__row b {
+    color: var(--color-text-soft);
+    font-weight: normal;
+    text-align: right;
+}
+
+.trend__row--peak .trend__bar u {
+    opacity: 1;
+}
+
+.trend__row--peak span,
+.trend__row--peak b {
+    color: var(--color-text);
+    font-weight: var(--fw-semibold);
+}
+
+.trend__row--earlier {
+    border-top: 0;
+    order: 99;
+}
+
+.trend__row--earlier .trend__bar {
+    background: none;
+}
+
+/* the bars of the list grow with the line */
+.numbers.is-armed .trend:not(.is-seen) .trend__bar u {
+    transform: scaleX(0);
+}
+
+.numbers .trend.is-seen .trend__bar u {
+    transform: scaleX(1);
+    transform-origin: left center;
+    transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.4s;
+}
+
+/* the line is drawn from left to right, the dots follow */
+.numbers.is-armed .trend:not(.is-seen) .trend__draw {
+    clip-path: inset(-1rem 100% -1px -1rem);
+}
+
+.numbers.is-armed .trend:not(.is-seen) .trend__dot {
+    opacity: 0;
+}
+
+.numbers .trend.is-seen .trend__draw {
+    clip-path: inset(-1rem -1rem -1px -1rem);
+    transition: clip-path 1.3s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s;
+}
+
+.numbers .trend.is-seen .trend__dot {
+    opacity: 1;
+    transition: opacity var(--t-rise) ease 0.9s;
+}
+
+@container numbers (min-width: 34rem) {
+    .trend {
+        padding: var(--space-5) var(--space-6);
+    }
+
+    .trend__draw {
+        height: 14rem;
+    }
+
+    .trend__tick {
+        font-size: var(--fs-caption);
+    }
+
+}

@@ -188,7 +188,7 @@ external:
 
 SETTWOR працює музичним продюсером і робить [фонк](https://en.wikipedia.org/wiki/Phonk), [бразильський фанк](https://en.wikipedia.org/wiki/Funk_carioca) та [танцювальну електронну музику](https://en.wikipedia.org/wiki/Electronic_dance_music). Родом він із [Кривого Рогу](https://en.wikipedia.org/wiki/Kryvyi_Rih), [Україна](https://en.wikipedia.org/wiki/Ukraine), а в 2022 році переїхав до [Польщі](https://en.wikipedia.org/wiki/Poland). Окрім музики, керує відомим 8D-каналом.[\[1\]](#ref-1)[\[14\]](#ref-14)[\[15\]](#ref-15)
 
-На платформі [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio) SETTWOR входить до числа виконавців фонку, яких активно слухають. Його треки стабільно набирають прослуховування й продовжують залучати нових слухачів.[\[2\]](#ref-2)
+На платформі [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio) SETTWOR входить до числа виконавців фонку, яких активно слухають. Його треки стабільно набирають прослуховування й продовжують залучати нових слухачів.[\[2\]](#ref-2) SETTWOR — активний і стрімко зростаючий артист. У квітні 2025 року він посідав 4–5 місця серед виконавців фонку на Pandora, а в [рейтингу Ledgertone](/top-phonk-artist.html) від 27 жовтня 2026 року посідає 10 місце в Phonk і 20 місце в Brazilian Phonk.
 
 ### Особиста інформація
 
