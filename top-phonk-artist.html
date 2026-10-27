@@ -14,10 +14,8 @@ lt_snapshot: "25 October 2026"
 lt_snapshot_iso: "2026-10-25"
 lt_listeners: "23,000"
 lt_phonk_place: "10"
-lt_phonk_ranked: "132"
 lt_phonk_total: "2,759"
 lt_bphonk_place: "7"
-lt_bphonk_ranked: "44"
 lt_bphonk_total: "1,887"
 ---
 {%- comment -%}
@@ -34,13 +32,13 @@ lt_bphonk_total: "1,887"
             <h2>The numbers</h2>
             <ul>
                 <li><strong>28-day listeners on Pandora:</strong> {{ page.lt_listeners }}</li>
-                <li><strong>Phonk:</strong> place {{ page.lt_phonk_place }} of {{ page.lt_phonk_total }} artists in the genre, counted among the {{ page.lt_phonk_ranked }} artists that have a listener number</li>
-                <li><strong>Brazilian Phonk:</strong> place {{ page.lt_bphonk_place }} of {{ page.lt_bphonk_total }} artists in the genre, counted among the {{ page.lt_bphonk_ranked }} artists that have a listener number</li>
+                <li><strong>Phonk:</strong> place {{ page.lt_phonk_place }} of {{ page.lt_phonk_total }} artists in the genre</li>
+                <li><strong>Brazilian Phonk:</strong> place {{ page.lt_bphonk_place }} of {{ page.lt_bphonk_total }} artists in the genre</li>
                 <li><strong>Date of these numbers:</strong> {{ page.lt_snapshot }}</li>
             </ul>
 
             <h2>How to read these numbers</h2>
-            <p><strong>{{ page.lt_listeners }} listeners in 28 days</strong> is how many people played SETTWOR on Pandora in the 28 days before {{ page.lt_snapshot }}, as shown on his artist profile. With it he is number {{ page.lt_phonk_place }} among the {{ page.lt_phonk_ranked }} phonk artists that have a listener number in the snapshot.</p>
+            <p><strong>{{ page.lt_listeners }} listeners in 28 days</strong> is how many people played SETTWOR on Pandora in the 28 days before {{ page.lt_snapshot }}, as shown on his artist profile. With it he is number {{ page.lt_phonk_place }} among thousands of phonk artists on Pandora.</p>
 
             <p>It is not the first time he is at the very top. In April 2025 SETTWOR held places 4 and 5 among all phonk artists on Pandora.</p>
 
@@ -60,9 +58,9 @@ lt_bphonk_total: "1,887"
 
             <h2>Questions</h2>
             <h3>Is SETTWOR one of the top phonk artists on Pandora?</h3>
-            <p>In the Ledgertone snapshot of {{ page.lt_snapshot }} he is place {{ page.lt_phonk_place }} in Phonk among the {{ page.lt_phonk_ranked }} artists with a listener number, with {{ page.lt_listeners }} listeners over 28 days.</p>
+            <p>In the Ledgertone snapshot of {{ page.lt_snapshot }} he is place {{ page.lt_phonk_place }} in Phonk among thousands of artists, with {{ page.lt_listeners }} listeners over 28 days.</p>
             <h3>Is SETTWOR in the top of Brazilian phonk?</h3>
-            <p>In the same snapshot he is place {{ page.lt_bphonk_place }} in Brazilian Phonk among the {{ page.lt_bphonk_ranked }} artists with a listener number.</p>
+            <p>In the same snapshot he is place {{ page.lt_bphonk_place }} in Brazilian Phonk among thousands of artists.</p>
             <h3>Where do these numbers come from?</h3>
             <p>From the 28-day listeners figure on the Pandora artist profile, recorded by Ledgertone on {{ page.lt_snapshot }}. It is a snapshot, not live data.</p>
             <h3>Who runs Ledgertone?</h3>
@@ -100,8 +98,8 @@ lt_bphonk_total: "1,887"
             "inLanguage": "en",
             "about": { "@id": "{{ site.url }}/#artist" },
             "mainEntity": [
-                { "@type": "Question", "name": "Is SETTWOR one of the top phonk artists on Pandora?", "acceptedAnswer": { "@type": "Answer", "text": "In the Ledgertone snapshot of {{ page.lt_snapshot }} he is place {{ page.lt_phonk_place }} in Phonk among the {{ page.lt_phonk_ranked }} artists with a listener number, with {{ page.lt_listeners }} listeners over 28 days." } },
-                { "@type": "Question", "name": "Is SETTWOR in the top of Brazilian phonk?", "acceptedAnswer": { "@type": "Answer", "text": "In the same snapshot he is place {{ page.lt_bphonk_place }} in Brazilian Phonk among the {{ page.lt_bphonk_ranked }} artists with a listener number." } },
+                { "@type": "Question", "name": "Is SETTWOR one of the top phonk artists on Pandora?", "acceptedAnswer": { "@type": "Answer", "text": "In the Ledgertone snapshot of {{ page.lt_snapshot }} he is place {{ page.lt_phonk_place }} in Phonk among thousands of artists, with {{ page.lt_listeners }} listeners over 28 days." } },
+                { "@type": "Question", "name": "Is SETTWOR in the top of Brazilian phonk?", "acceptedAnswer": { "@type": "Answer", "text": "In the same snapshot he is place {{ page.lt_bphonk_place }} in Brazilian Phonk among thousands of artists." } },
                 { "@type": "Question", "name": "Where do these numbers come from?", "acceptedAnswer": { "@type": "Answer", "text": "From the 28-day listeners figure on the Pandora artist profile, recorded by Ledgertone on {{ page.lt_snapshot }}. It is a snapshot, not live data." } },
                 { "@type": "Question", "name": "Who runs Ledgertone?", "acceptedAnswer": { "@type": "Answer", "text": "SETTWOR runs it and is placed in it by the same rule as every other artist." } }
             ]
