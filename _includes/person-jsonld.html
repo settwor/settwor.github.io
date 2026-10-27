@@ -3,6 +3,7 @@
   a page says "this page is about SETTWOR", so Google never has to look for it on another page.
   Facts shown here are the same as on the website. Edit them here, in one place.
   "subjectOf" lists the Ledgertone pages about the artist (added in v9.3; the Organization node is in ledgertone-jsonld.html).
+  "sameAs" also holds https://cdras.github.io/ (CDRA, added in v10.0; pairs with the visible link in footer.html).
 {%- endcomment -%}
         {
             "@type": "Person",
@@ -25,7 +26,8 @@
                 {%- include artist-urls.html %},
                 {{ au_apple | jsonify }},
                 {{ au_pandora | jsonify }},
-                {{ au_ytm | jsonify }}
+                {{ au_ytm | jsonify }},
+                "https://cdras.github.io/"
                 {%- for item in site.data.links.elsewhere %},
                 {{ item.url | jsonify }}
                 {%- endfor %}

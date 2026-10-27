@@ -368,9 +368,10 @@ main:focus {
     gap: var(--space-1);
     padding: var(--space-4);
     overflow-y: auto;
-    background: var(--mat-chrome-bg-thick);
-    -webkit-backdrop-filter: var(--mat-chrome-blur);
-    backdrop-filter: var(--mat-chrome-blur);
+    overscroll-behavior: contain;
+    /* 9.9: solid, no backdrop blur. A full-screen layer with blur(20px) saturate(180%) that moves every frame
+       made the opening lag on phones (the browser re-blurs the page behind it on each frame). */
+    background: var(--color-bg);
     visibility: hidden;
     transform: translate3d(100%, 0, 0);
     touch-action: pan-y;
@@ -378,6 +379,7 @@ main:focus {
 
 .mobile-menu.is-open {
     visibility: visible;
+    will-change: transform;   /* own layer only while it is open or moving */
 }
 
 .mobile-menu a {

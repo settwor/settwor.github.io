@@ -81,8 +81,13 @@
 {% include bio-router.html %}
     <script>document.documentElement.className+=" js";setTimeout(function(){if(!window.__ready)document.documentElement.className+=" no-reveal"},3000)</script>
     <script>try{var t=localStorage.getItem("settwor-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <!-- Icons (v10.2): Google wants a square icon, a multiple of 48 px, on a crawlable address; favicon.ico in the root is the fallback for every browser. -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="/images/favicon-48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     <meta name="apple-mobile-web-app-title" content="SETTWOR">   <!-- the name under the icon when the site is added to the iPhone home screen -->
     <meta name="application-name" content="SETTWOR">
     <link rel="stylesheet" href="/fonts.css">
