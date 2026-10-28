@@ -1,5 +1,5 @@
 /* =============================================================
-   SETTWOR - fluid.js (v9.6): one small spring system, no libraries.
+   SETTWOR - fluid.js (v11.5): one small spring system, no libraries.
    -------------------------------------------------------------
    Everything that moves under a finger or a mouse is a spring: it has a position, a speed and a target. Every frame the
    target pulls the value. A new spring starts from the value AND the speed that are on the screen now, so any motion can
@@ -11,6 +11,7 @@
    4. Avatar        the round photo grows, sinks, can be dragged (rubber band at the edge, throw with a soft bounce).
    5. Lens          one highlight slides between the rows of a list marked data-lens; a ripple opens at a touch.
    6. Keyboard      Enter and Space press a control the same way a mouse does.
+   7. Pull to refresh  touch only: pull the page down from the very top, hold past the mark, let go: the page reloads.
    Reduced motion: no scale, no shift, no springs; a press is a short dip of opacity (0.72) and entrances are a plain fade.
 
    Why `translate`, `rotate` and `scale` (the separate CSS properties) and not one `transform` string: this site already
@@ -684,4 +685,134 @@
     document.addEventListener('pointerout', function (event) {
         if (lensList && event.pointerType !== 'touch' && !event.relatedTarget) lensOff(lensList);
     }, true);
+
+    /* ---------- 7. Pull to refresh (touch only, v11.5) ---------- */
+    // Built so that a hard flick UP the page (which ends at the top) can never refresh it. A pull only counts when ALL of
+    // this is true: the finger went down while the page was already resting at the very top (not scrolled in the last
+    // `rest` ms), the first clear move is downward and mostly vertical, the badge is pulled past the mark, it is held there
+    // for `hold` ms, the whole touch lasted at least `min` ms, and the finger is lifted (not cancelled). A touch that begins
+    // anywhere lower on the page never counts, even if it scrolls to the top while the finger is still down.
+    var PULL = {
+        start: 10,       // px: the finger must go this far before anything shows (a tap or a wobble does nothing)
+        max: 130,        // px: the badge can follow the finger at most this far (rubber band)
+        reach: 220,      // px of finger travel that bring the badge about 63 percent of the way to `max`
+        arm: 64,         // px of badge travel = the mark ("release to refresh")
+        hold: 180,       // ms: the badge must have been past the mark this long when the finger lifts
+        min: 320,        // ms: the whole touch must have lasted this long (a fast flick is not a pull)
+        rest: 160,       // ms: the page must have stopped scrolling this long before the finger came down
+        angle: 1.6,      // the move must be at least 1.6 times longer down than sideways
+        wait: 380,       // ms: the spinner shows this long, then the page reloads
+        giveUp: 9000     // ms: if the reload has not happened by now (offline?), the badge goes away
+    };
+    var PULL_TOP = -48;  // px: where the badge waits above its place (invisible there)
+    var pull = null, pullBadge = null, pullIcon = null, pullSr = null, pullBusy = false, pullScrollAt = 0;
+
+    if (('ontouchstart' in window) || (navigator.maxTouchPoints > 0)) {
+        root.classList.add('ptr-on');   // main.css: no native pull-to-refresh or glow, this one replaces it
+
+        window.addEventListener('scroll', function () { pullScrollAt = Date.now(); }, { passive: true });
+
+        document.addEventListener('touchstart', function (event) {
+            if (pull && pull.on) pullBack();           // a second finger: give up
+            pull = null;
+            if (pullBusy || event.touches.length !== 1) return;
+            if (!pullAtTop() || Date.now() - pullScrollAt < PULL.rest || pullBlocked(event.target)) return;
+            var t = event.touches[0];
+            pull = { x: t.clientX, y: t.clientY, t0: Date.now(), on: false, dead: false, armed: false, armedAt: 0 };
+        }, { passive: true });
+
+        document.addEventListener('touchmove', function (event) {
+            var p = pull;
+            if (!p || p.dead) return;
+            if (event.touches.length !== 1 || !pullAtTop()) { p.dead = true; if (p.on) pullBack(); return; }
+            var t = event.touches[0], dx = t.clientX - p.x, dy = t.clientY - p.y;
+            if (!p.on) {
+                if (Math.abs(dx) < PULL.start && Math.abs(dy) < PULL.start) return;               // no clear direction yet
+                if (dy < PULL.start || Math.abs(dx) * PULL.angle > dy) { p.dead = true; return; } // up or sideways: a scroll or a swipe
+                p.on = true;
+                pullBuild();
+                pullBadge.classList.add('is-on');
+                set(pullIcon, { r: 0 });
+            }
+            if (event.cancelable) event.preventDefault();      // the page is at the top: nothing to scroll, no native bounce either
+            var raw = dy - PULL.start;
+            if (raw < 0) { p.dead = true; pullBack(); return; }  // the finger came back: cancelled, the page scrolls as usual
+            var d = PULL.max * (1 - Math.exp(-raw / PULL.reach));
+            set(pullBadge, { y: PULL_TOP + d, o: Math.min(1, d / 28), s: 0.6 + 0.4 * Math.min(1, d / PULL.arm) });
+            if (!p.armed && d >= PULL.arm) {
+                p.armed = true; p.armedAt = Date.now();
+                pullBadge.classList.add('is-armed');
+                to(pullIcon, { r: 180 }, { t: 0.3 });
+            } else if (p.armed && d < PULL.arm - 6) {
+                p.armed = false;
+                pullBadge.classList.remove('is-armed');
+                to(pullIcon, { r: 0 }, { t: 0.3 });
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchend', function () { pullEnd(false); }, { passive: true });
+        document.addEventListener('touchcancel', function () { pullEnd(true); }, { passive: true });
+        window.addEventListener('pageshow', function (event) { if (event.persisted && pullBadge) { pullBusy = false; pullHide(); } });
+    }
+
+    function pullAtTop() { return (window.pageYOffset || root.scrollTop || 0) <= 0; }
+
+    // Not for: an open window or menu, form fields, the avatar (it is dragged), a sideways scroller, a box scrolled down.
+    function pullBlocked(target) {
+        if (document.body.classList.contains('menu-open') || root.classList.contains('sheet-back')) return true;
+        if (document.querySelector('[role="dialog"][aria-modal="true"]:not([hidden])')) return true;
+        if (!target || !target.closest) return true;
+        if (target.closest('input, textarea, select, iframe, video, [contenteditable], [data-no-pull], ' + AVATAR)) return true;
+        for (var el = target; el && el !== document.body && el !== root; el = el.parentElement) {
+            var cs = window.getComputedStyle(el);
+            if ((cs.overflowY === 'auto' || cs.overflowY === 'scroll') && el.scrollHeight > el.clientHeight && el.scrollTop > 0) return true;
+            if ((cs.overflowX === 'auto' || cs.overflowX === 'scroll') && el.scrollWidth > el.clientWidth) return true;
+        }
+        return false;
+    }
+
+    function pullBuild() {
+        if (pullBadge) return;
+        pullBadge = document.createElement('div');
+        pullBadge.className = 'ptr';
+        pullBadge.setAttribute('role', 'status');
+        pullBadge.setAttribute('aria-live', 'polite');
+        pullBadge.innerHTML =
+            '<span class="ptr__disc">' +
+            '<svg class="ptr__arrow" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+            '<svg class="ptr__spin" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="36 80"/></svg>' +
+            '</span><span class="ptr__sr"></span>';
+        document.body.appendChild(pullBadge);
+        pullIcon = pullBadge.querySelector('.ptr__arrow');
+        pullSr = pullBadge.querySelector('.ptr__sr');
+    }
+
+    function pullEnd(cancelled) {
+        var p = pull;
+        pull = null;
+        if (!p || !p.on) return;
+        var now = Date.now();
+        if (!cancelled && !p.dead && p.armed && now - p.armedAt >= PULL.hold && now - p.t0 >= PULL.min) pullGo(); else pullBack();
+    }
+
+    function pullGo() {
+        pullBusy = true;
+        pullBadge.classList.add('is-busy');
+        pullSr.textContent = 'Refreshing';
+        to(pullBadge, { y: PULL_TOP + PULL.arm, o: 1, s: 1 }, { t: 0.3 });
+        setTimeout(function () { window.location.reload(); }, PULL.wait);
+        setTimeout(function () { pullBusy = false; pullBack(); }, PULL.giveUp);
+    }
+
+    function pullBack() {
+        if (!pullBadge) return;
+        to(pullBadge, { y: PULL_TOP, o: 0, s: 0.6 }, { t: 0.35, done: pullHide });
+    }
+
+    function pullHide() {
+        if (pullBusy || (pull && pull.on)) return;     // a new pull has begun, or the reload is on its way
+        stop(pullBadge); stop(pullIcon);
+        pullBadge.classList.remove('is-on', 'is-armed', 'is-busy');
+        pullSr.textContent = '';
+    }
 })();
