@@ -1,6 +1,6 @@
-SETTWOR site v11.7 (28 October 2026), includes everything of v11.6 (font, Brazilian Phonk place, version in the footer). Contains ONLY the changed files; copy them over the site, same paths. Replaces the earlier zips of today (font, index.html): this one has everything.
+SETTWOR site v11.8 (28 October 2026), includes everything of v11.7 and v11.6 (font, Brazilian Phonk place, version in the footer, room under the footer). Contains ONLY the changed files; copy them over the site, same paths. Replaces the earlier zips of today (font, index.html): this one has everything.
 
-NEW vs v11.6: css/main.css section 9.1 and js/main.js section 12 (room under the footer for the bottom banners). Replaces the v11.6 zip.
+NEW vs v11.7: css/main.css token --fw-body (normal text weight 450 instead of 500). Replaces the v11.7 zip.
 Details of every change: CHANGELOG.md, entries 11.7 and 11.6.
 
 If you changed css/main.css, index.html or AI-NOTES.md after v11.5, do NOT overwrite them; take only the changed lines (listed in CHANGELOG.md).

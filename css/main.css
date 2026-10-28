@@ -31,6 +31,7 @@
     --font-ui: var(--font-brand);
     --fw-regular: 400;
     --fw-medium: 500;
+    --fw-body: 450;     /* normal text, a little lighter than Medium (v11.8); Geologica is a variable font, so 450 is real */
     --fw-semibold: 700; /* Geologica has a real 600, but the design keeps Bold here on purpose */
     --fw-bold: 700;
 
@@ -167,7 +168,7 @@ body {
     background: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-ui);
-    font-weight: var(--fw-medium); /* body text was Medium before the redesign */
+    font-weight: var(--fw-body); /* body text: 450 since v11.8 (Medium 500 before) */
     font-size: var(--fs-body);
     line-height: var(--lh-body);
     overflow-x: hidden;
@@ -3896,7 +3897,7 @@ html:not(.fluid) .year-tabs.is-ready .year-tabs__indicator {   /* v9.6: with flu
     min-height: 2.75rem;
     color: var(--color-text-soft);
     font-size: var(--fs-subhead);
-    font-weight: var(--fw-medium);
+    font-weight: var(--fw-body);
     white-space: nowrap;
     transition: opacity var(--t-sheet) var(--ease-standard);
 }
@@ -4865,29 +4866,4 @@ html.ptr-on {
 
 @media (prefers-reduced-motion: reduce) {
     .ptr.is-busy .ptr__spin { animation: none; }
-}
-
-/* News: smaller text (v11.8) */
-.news-card__title {
-    font-size: 0.9375rem;      /* was 1.0625rem */
-    line-height: 1.35;
-}
-
-.news-card__text p {
-    font-size: 0.8125rem;      /* was 0.875rem */
-}
-
-.article__body {
-    font-size: 0.96875rem;     /* was 1.0625rem */
-    line-height: 1.6;
-}
-
-@media (min-width: 48em) {
-    .news-card__title {
-        font-size: 1rem;       /* was 1.125rem */
-    }
-
-    .news-card__text p {
-        font-size: 0.875rem;
-    }
 }

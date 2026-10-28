@@ -3,7 +3,7 @@ title: SETTWOR launches Ledgertone, an independent phonk ranking on Pandora
 description: Ledgertone ranks artists in Phonk and Brazilian Phonk by their
   28-day listeners on Pandora. Every figure is collected by hand.
 date: 2026-10-28T12:00
-image: /images/ledgertone.png
+image: /images/news/ledgertone.png
 image_alt: Ledgertone logo.
 image_caption: Ledgertone logo.
 published: true
