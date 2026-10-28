@@ -31,6 +31,10 @@
     --font-ui: var(--font-brand);
     --fw-regular: 400;
     --fw-medium: 500;
+    --fw-hero-title: 700;   /* hero name on desktop (v11.9 made it 600 by mistake, back to Bold in v11.10) */
+    --fw-hero-tagline: var(--fw-body); /* line under the name on desktop: as before, the body weight */
+    --fw-hero-title-phone: 600;   /* v11.10: phones only (was Bold 700) */
+    --fw-hero-tagline-phone: 600; /* v11.10: phones only (was Bold 700) */
     --fw-body: 450;     /* normal text, a little lighter than Medium (v11.8); Geologica is a variable font, so 450 is real */
     --fw-semibold: 700; /* Geologica has a real 600, but the design keeps Bold here on purpose */
     --fw-bold: 700;
@@ -556,7 +560,7 @@ main:focus {
 .hero__title {
     font-family: var(--font-brand);
     font-size: var(--fs-title-3);
-    font-weight: var(--fw-bold);
+    font-weight: var(--fw-hero-title);
     letter-spacing: var(--track-display);
     line-height: var(--lh-title);
 }
@@ -564,6 +568,7 @@ main:focus {
 .hero__tagline {
     margin-top: var(--space-1);
     font-size: var(--fs-subhead);
+    font-weight: var(--fw-hero-tagline);
 }
 
 .hero__note {
@@ -2682,9 +2687,13 @@ html:not(.fluid) .rmodal__tracks li:hover {   /* v9.6: with fluid.js one sliding
         margin-bottom: 0.35rem;
     }
 
+    .hero__title {
+        font-weight: var(--fw-hero-title-phone);
+    }
+
     .hero__tagline {
         font-family: var(--font-ui);
-        font-weight: var(--fw-semibold);
+        font-weight: var(--fw-hero-tagline-phone);
         line-height: var(--lh-headline);
     }
 
