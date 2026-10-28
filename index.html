@@ -52,7 +52,7 @@ releases_total: "57"
                 {%- for ft_r in site.releases -%}{%- assign ft_ry = ft_r.date | date: "%Y" -%}{%- if ft_ry == ft_year -%}{%- assign ft_this = ft_this | plus: 1 -%}{%- endif -%}{%- endfor -%}
                 {%- assign ft_top = site.pages | where: "permalink", "/top-phonk-artist.html" | first -%}
                 {%- if ft_first %}
-                <p class="callout callout--key">SETTWOR is an active and fast-growing phonk and Brazilian funk producer: {{ page.releases_total | default: ft_all.size }} releases since {{ ft_first.date | date: "%Y" }}{% if ft_this > 0 %}, {{ ft_this }} of them in {{ ft_year }}{% endif %}.{% if ft_top %} <a href="/top-phonk-artist.html">No. {{ ft_top.lt_phonk_place }} in Phonk on Pandora</a> (Ledgertone, {{ ft_top.lt_snapshot }}).{% endif %}</p>
+                <p class="callout callout--key">SETTWOR is an active and fast-growing phonk and Brazilian funk producer: {{ page.releases_total | default: ft_all.size }} releases since {{ ft_first.date | date: "%Y" }}{% if ft_this > 0 %}, {{ ft_this }} of them in {{ ft_year }}{% endif %}.{% if ft_top %} <a href="/top-phonk-artist.html">No. {{ ft_top.lt_phonk_place }} in Phonk{% if ft_top.lt_bphonk_place %} and No. {{ ft_top.lt_bphonk_place }} in Brazilian Phonk{% endif %} on Pandora</a> (Ledgertone, {{ ft_top.lt_snapshot }}).{% endif %}</p>
                 {%- endif %}
                 {%- if home.callout and home.callout != "" %}
                 <p class="callout">{{ home.callout }}</p>

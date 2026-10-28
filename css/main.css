@@ -24,14 +24,14 @@
     --color-hover: #e6e6e6;
     --color-on-text: #fff;   /* text on a --color-text fill (6.4: it flips with the theme) */
 
-    /* Typography: Neue Machina everywhere (owner's decision, v2.9).
+    /* Typography: Geologica everywhere (SIL OFL 1.1, files and licence in /fonts, @font-face in /fonts.css).
        To go back to the system font for text, set --font-ui to
        system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif. */
-    --font-brand: 'Neue Machina', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    --font-brand: 'Geologica', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
     --font-ui: var(--font-brand);
     --fw-regular: 400;
     --fw-medium: 500;
-    --fw-semibold: 700; /* Neue Machina has no 600: Bold */
+    --fw-semibold: 700; /* Geologica has a real 600, but the design keeps Bold here on purpose */
     --fw-bold: 700;
 
     /* Type scale (rem, follows the browser text size). Pair = size + leading + tracking. */
@@ -136,7 +136,7 @@
     /* Vibrancy (todo design 4.4, SKILL 12). Text on a translucent surface is never flat grey: higher contrast,
        a heavier weight, +0.01em of tracking. Colour belongs on a solid layer, not on the translucent
        foreground (this site is black and white, so nothing coloured sits on a material).
-       Neue Machina has Medium (500, the body weight of the whole site) and Bold (700), nothing in between.
+       The site uses Medium (500, the body weight of the whole site) and Bold (700), nothing in between.
        So the weight step is used only for short SMALL labels (caption, footnote size, a few words): they get Bold.
        Body-size text and every full sentence on a material stay Medium (the next face is a jump to Bold: it would
        flatten the hierarchy with titles and make long lines wrap) and get the contrast and the tracking only. */
@@ -1409,6 +1409,15 @@ a.release__cover:hover img {
 }
 
 /* 6.1 (v5.9): the old global "transition-duration: 0.01ms" is gone; reduced motion is handled in section 6.1 at the end of this file. */
+
+
+/* 9.1 (v11.7): room under the footer for the fixed banners at the bottom of the screen.
+   The cookie banner (.consent) and the notification card (.push-ask__card) lie ON TOP of the page, so on a phone
+   they covered the last lines of the footer and the page could not be scrolled further. js/main.js section 12
+   measures them and sets --bottom-banner-h on <html> (0 when none is visible); the footer grows by that height. */
+.site-footer {
+    padding-bottom: calc(var(--space-5) + var(--bottom-banner-h, 0px));
+}
 
 
 /* ---------- 10. Desktop (min-width: 40rem) ---------- */

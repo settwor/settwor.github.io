@@ -1,0 +1,15 @@
+SETTWOR site v11.7 (28 October 2026), includes everything of v11.6 (font, Brazilian Phonk place, version in the footer). Contains ONLY the changed files; copy them over the site, same paths. Replaces the earlier zips of today (font, index.html): this one has everything.
+
+NEW vs v11.6: css/main.css section 9.1 and js/main.js section 12 (room under the footer for the bottom banners). Replaces the v11.6 zip.
+Details of every change: CHANGELOG.md, entries 11.7 and 11.6.
+
+If you changed css/main.css, index.html or AI-NOTES.md after v11.5, do NOT overwrite them; take only the changed lines (listed in CHANGELOG.md).
+
+YOU STILL NEED TO DO (I could not download the font file here)
+  1. Download Geologica: https://fonts.google.com/specimen/Geologica ("Get font" -> "Download all").
+  2. pip install fonttools brotli
+     python tools/make-font-woff2.py "path/to/the Geologica variable .ttf from the zip"
+     -> creates fonts/Geologica-VariableFont.woff2 and fonts/Geologica-VariableFont.ttf
+  3. Delete the old font files: run delete-old-neue-machina-fonts.bat (Windows) in the site root,
+     or delete everything in /fonts whose name starts with "NeueMachina-" (28 files).
+  4. Publish everything in ONE commit: without step 2 the site would show the system font.

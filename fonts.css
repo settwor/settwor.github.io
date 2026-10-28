@@ -1,17 +1,19 @@
-/* Neue Machina: ONE family, weights as font-weight (200 Ultralight ... 900 Black).
-   Only woff2 and woff are loaded (every modern browser). The .eot and .ttf files
-   stay in /fonts but are not referenced. Paths are relative to this file (site root). */
-@font-face { font-family: 'Neue Machina'; font-weight: 200; font-style: normal; font-display: swap;
-    src: url('fonts/NeueMachina-Ultralight.woff2') format('woff2'), url('fonts/NeueMachina-Ultralight.woff') format('woff'); }
-@font-face { font-family: 'Neue Machina'; font-weight: 300; font-style: normal; font-display: swap;
-    src: url('fonts/NeueMachina-Light.woff2') format('woff2'), url('fonts/NeueMachina-Light.woff') format('woff'); }
-@font-face { font-family: 'Neue Machina'; font-weight: 400; font-style: normal; font-display: swap;
-    src: url('fonts/NeueMachina-Regular.woff2') format('woff2'), url('fonts/NeueMachina-Regular.woff') format('woff'); }
-@font-face { font-family: 'Neue Machina'; font-weight: 500; font-style: normal; font-display: swap;
-    src: url('fonts/NeueMachina-Medium.woff2') format('woff2'), url('fonts/NeueMachina-Medium.woff') format('woff'); }
-@font-face { font-family: 'Neue Machina'; font-weight: 700; font-style: normal; font-display: swap;
-    src: url('fonts/NeueMachina-Bold.woff2') format('woff2'), url('fonts/NeueMachina-Bold.woff') format('woff'); }
-@font-face { font-family: 'Neue Machina'; font-weight: 800; font-style: normal; font-display: swap;
-    src: url('fonts/NeueMachina-Ultrabold.woff2') format('woff2'), url('fonts/NeueMachina-Ultrabold.woff') format('woff'); }
-@font-face { font-family: 'Neue Machina'; font-weight: 900; font-style: normal; font-display: swap;
-    src: url('fonts/NeueMachina-Black.woff2') format('woff2'), url('fonts/NeueMachina-Black.woff') format('woff'); }
+/* =============================================================
+   SETTWOR — fonts.css
+   -------------------------------------------------------------
+   Typeface: Geologica (one variable font, weights 100-900, Latin + Cyrillic).
+   Licence:  SIL Open Font License 1.1: free for commercial use, text in /fonts/OFL.txt.
+   Files:    /fonts/Geologica-VariableFont.woff2 (main) and .ttf (fallback for old browsers).
+             How to create/put them there: /fonts/README.txt and tools/make-font-woff2.py.
+   Used by:  css/main.css (variable --font-brand in section 1 "Tokens").
+   Loaded:   _layouts/default.html (<link rel="stylesheet" href="/fonts.css">), cached by sw.js (START_FILES).
+   Paths are relative to this file (site root).
+   ============================================================= */
+@font-face {
+    font-family: 'Geologica';
+    font-weight: 100 900;      /* variable range: the browser picks any weight between */
+    font-style: normal;
+    font-display: swap;        /* text is visible at once in the fallback font, then swaps */
+    src: url('fonts/Geologica-VariableFont.woff2') format('woff2'),
+         url('fonts/Geologica-VariableFont.ttf') format('truetype');
+}

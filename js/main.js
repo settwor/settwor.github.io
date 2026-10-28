@@ -7,6 +7,7 @@
    8. Motion (header, reveal, buttons, tilt)   9. Releases: preview window
    10. Motion engine (springs for gestures; window.STW.motion; used from todo design 3.2)
    11. Press layer: since v9.6 in js/fluid.js (springs for press, hover, avatar drag, list lens, reveal; settings at its top)
+   12. Footer room: space under the footer while a banner (cookie, notifications) covers the bottom of the screen (v11.7)
    Google Analytics is loaded ONLY after the visitor clicks "Accept".
    ============================================================= */
 (function () {
@@ -1555,3 +1556,36 @@ document.addEventListener('click', function (event) {
 
 /* 11. Press layer: moved in v9.6 to js/fluid.js (section 2 there). It is the same layer, now on springs, and it also
    covers buttons, tabs and chips (they used CSS :active before). Do not add a press mechanism here. */
+
+
+/* 12. Footer room (v11.7). WHAT: keeps the last lines of the footer reachable on a phone.
+   WHY: .consent and .push-ask__card are position: fixed at the bottom and lie over the page; nothing reserved the space under them.
+   HOW: measures every visible banner (offsetHeight does not change during the "grow" animation) and writes the largest one,
+   plus its distance from the screen edge, into the CSS variable --bottom-banner-h on <html>. css/main.css section 9.1 uses it.
+   WHEN it runs: at load, when a banner is shown or hidden (attribute "hidden"), when its size changes, and when the screen turns. */
+(function () {
+    'use strict';
+    var root = document.documentElement;
+    var ids = ['consent', 'push-ask'];      // the two banners; the second is only in the page when OneSignal is set up
+
+    function measure() {
+        var room = 0;
+        ids.forEach(function (id) {
+            var box = document.getElementById(id);
+            if (!box || box.hidden) return;
+            var card = box.querySelector('.push-ask__card') || box;     // push-ask: the full-screen frame is not the card
+            var gap = parseFloat(getComputedStyle(box).bottom) || 0;   // consent floats a little above the screen edge
+            room = Math.max(room, card.offsetHeight + gap);
+        });
+        root.style.setProperty('--bottom-banner-h', room ? Math.ceil(room) + 'px' : '0px');
+    }
+
+    ids.forEach(function (id) {
+        var box = document.getElementById(id);
+        if (!box) return;
+        if (window.MutationObserver) new MutationObserver(measure).observe(box, { attributes: true, attributeFilter: ['hidden', 'class'] });
+        if (window.ResizeObserver) new ResizeObserver(measure).observe(box.querySelector('.push-ask__card') || box);
+    });
+    window.addEventListener('resize', measure);
+    measure();
+})();
