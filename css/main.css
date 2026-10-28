@@ -4866,3 +4866,28 @@ html.ptr-on {
 @media (prefers-reduced-motion: reduce) {
     .ptr.is-busy .ptr__spin { animation: none; }
 }
+
+/* News: smaller text (v11.8) */
+.news-card__title {
+    font-size: 0.9375rem;      /* was 1.0625rem */
+    line-height: 1.35;
+}
+
+.news-card__text p {
+    font-size: 0.8125rem;      /* was 0.875rem */
+}
+
+.article__body {
+    font-size: 0.96875rem;     /* was 1.0625rem */
+    line-height: 1.6;
+}
+
+@media (min-width: 48em) {
+    .news-card__title {
+        font-size: 1rem;       /* was 1.125rem */
+    }
+
+    .news-card__text p {
+        font-size: 0.875rem;
+    }
+}
