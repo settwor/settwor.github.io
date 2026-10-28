@@ -1,15 +1,12 @@
-# Photographs. Every photo is one item. The year tabs on the Photos page are made from the dates.
-# Small copies for the grid are found automatically (images/small/, made by tools/compress-images.py).
-# The date format is YYYY-MM-DD. Add a new photo with the "Add" button in Pages CMS.
 photos:
   - image: /images/69.jpeg
-    date: 2026-06-19
+    date: 2026-09-10
     alt: SETTWOR, photo from 2026
   - image: /images/68.jpeg
-    date: 2026-06-19
+    date: 2026-09-10
     alt: SETTWOR, photo from 2026
   - image: /images/67.jpeg
-    date: 2026-06-19
+    date: 2026-09-10
     alt: SETTWOR, photo from 2026
   - image: /images/66.jpeg
     date: 2026-06-19
