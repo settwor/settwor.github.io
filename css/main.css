@@ -36,8 +36,8 @@
     --fw-hero-title-phone: 600;   /* v11.10: phones only (was Bold 700) */
     --fw-hero-tagline-phone: 600; /* v11.10: phones only (was Bold 700) */
     --fw-body: 450;     /* normal text, a little lighter than Medium (v11.8); Geologica is a variable font, so 450 is real */
-    --fw-semibold: 700; /* Geologica has a real 600, but the design keeps Bold here on purpose */
-    --fw-bold: 700;
+    --fw-semibold: 600; /* v11.11: one step down from Bold 700 (the font has a real 600) */
+    --fw-bold: 600;     /* v11.11: one step down from 700; the hero name on desktop keeps 700 on purpose (--fw-hero-title) */
 
     /* Type scale (rem, follows the browser text size). Pair = size + leading + tracking. */
     --fs-caption: 0.75rem;
