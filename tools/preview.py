@@ -61,7 +61,7 @@ def as_dt(v):
     return None
 
 
-SITE_URL = "https://settwor.github.io"
+SITE_URL = "https://settwor.com.pl"
 
 
 def f_date(v, fmt):

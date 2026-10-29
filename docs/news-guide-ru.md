@@ -78,7 +78,7 @@ Search Console → Sitemaps → `sitemap.xml`. URL Inspection → адрес н�
 2. **Push-уведомления в браузере (колокольчик)** через OneSignal, бесплатный тариф. Код уже в сайте и выключен, пока не вписан App ID.
    Настройка один раз:
    1. Зарегистрируйтесь на onesignal.com → New App/Website → тип **Web** → **Typical Site**.
-   2. Site Name: `SETTWOR`, Site URL: `https://settwor.github.io` (точно так, без слэша в конце), включите Auto Resubscribe.
+   2. Site Name: `SETTWOR`, Site URL: `https://settwor.com.pl` (точно так, без слэша в конце), включите Auto Resubscribe.
    3. Скопируйте **App ID** (длинный код вида `xxxxxxxx-xxxx-...`) и вставьте в `_config.yml` в строку `onesignal_app_id: ""`.
    4. После публикации в углу сайта появится колокольчик. Подпишитесь сами с телефона или компьютера.
    Колокольчик уже включён (App ID вписан в `_config.yml`).

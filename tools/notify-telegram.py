@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 import yaml
 
-SITE = "https://settwor.github.io"
+SITE = "https://settwor.com.pl"
 TZ = ZoneInfo("Europe/Warsaw")
 
 

@@ -35,6 +35,19 @@
 {%- assign og_image_path = "/images/main.jpg" -%}
 {%- endif %}
 
+{%- comment -%}
+    v11.18: the site moved to {{ site.url }}. When the page is opened on the old GitHub Pages
+    address, send the visitor to the same page on the new address (GitHub Pages cannot send a 301).
+    On the new address this does nothing. It also does nothing while site.url is still the old address.
+{%- endcomment %}
+    <script>
+    (function () {
+        var to = {{ site.url | jsonify }};
+        if (location.hostname === "settwor.github.io" && to.indexOf("//settwor.github.io") === -1) {
+            location.replace(to + location.pathname + location.search + location.hash);
+        }
+    })();
+    </script>
     <title>{{ full_title | escape }}</title>
     <meta name="description" content="{{ meta_description | escape }}">
 {%- if page.legacy_url and page.legacy_url != "" %}

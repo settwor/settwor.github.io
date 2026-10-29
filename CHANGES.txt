@@ -1,7 +1,11 @@
-SETTWOR site v11.17 (29 October 2026). Contains ONLY the changed files; copy them over the site, same paths. Replaces the v11.16 zip (the 11.16 changes are already on your site if you published it; if not, publish v11.16 first).
+SETTWOR site v11.18 (29 October 2026). Contains ONLY the changed files; copy them over the site, same paths. Replaces the v11.17 zip.
 
-NEW vs v11.16: the home page has a section "CDRA awards" with the three CDRA award plaques (light and dark, they follow the theme), at the very bottom of the page, after the questions. New: _includes/cdra-awards.html, _includes/cdra-plaque.html. Changed: index.html, css/main.css, privacy.html, sw.js (v100), VERSION, _includes/site-version.html, CHANGELOG.md, AI-NOTES.md.
+NEW vs v11.17: the site moves to https://settwor.com.pl (Cloudflare Pages). The old address settwor.github.io redirects to the new one by a small script (_layouts/default.html). Changed: _layouts/default.html, license.html, tools/preview.py, tools/notify-telegram.py, tools/notify-push.py, docs/news-guide-ru.md, VERSION, _includes/site-version.html, CHANGELOG.md, AI-NOTES.md.
 
 YOU STILL NEED TO DO
-  1. After publishing, open the home page: three plaques under "CDRA awards", on a light and on a dark theme (footer switch), on a phone too. I could not test the live widget here.
-  2. CDRA: in its JSON-LD put "creator": {"@id": "https://settwor.github.io/#artist"} and do not redefine the type (open since 11.16).
+  1. _config.yml (not in this zip): set  url: "https://settwor.com.pl"  (no slash at the end). Leave baseurl: "".
+  2. Delete the file sitemap1.xml by hand.
+  3. Keep the repository PUBLIC and GitHub Pages ON for 2 to 4 weeks, so the old address can redirect.
+  4. OneSignal: change Site URL to https://settwor.com.pl.
+  5. CDRA site: JSON-LD creator = {"@id": "https://settwor.com.pl/#artist"}.
+  6. Search Console: add a Domain property for settwor.com.pl and send sitemap.xml.

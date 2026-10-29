@@ -124,7 +124,7 @@ def send_any_segment(app_id, key, title, text, url):
 
 def main(argv):
     dry = "--dry-run" in argv
-    feed = "https://settwor.github.io/feed.xml"
+    feed = "https://settwor.com.pl/feed.xml"
     files = []
     i = 0
     while i < len(argv):
