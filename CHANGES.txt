@@ -1,9 +1,8 @@
-SETTWOR site v11.13 (29 October 2026), includes everything of v11.12 (favicon). Contains ONLY the changed files; copy them over the site, same paths. Replaces the v11.12 zip.
+SETTWOR site v11.16 (29 October 2026). Contains ONLY the changed files; copy them over the site, same paths. Replaces the v11.15 zip (the 11.15 changes are in the same file, so one publish is enough).
 
-NEW vs v11.12: photos. Newest day first; photos of the same day follow the order of the list in Pages CMS (drag to change). New files: _includes/photos-sorted.html, _includes/photo-pick.html. Changed: photo.html, index.html, .pages.yml (hint text).
-Details: CHANGELOG.md, entries 11.13 and 11.12.
-If you changed .pages.yml yourself, take only the description line under "Photographs".
+NEW vs v11.15: the artist in structured data has three more profile links (Apple Music, YouTube Music, YouTube). Changed: _includes/person-jsonld.html.
+The rule about the one artist entity is fixed in AI-NOTES.md (rule 11) and in CHANGELOG.md, entry 11.16.
 
 YOU STILL NEED TO DO
-  1. Favicon: check that images/favicon-48/96/192/512.png and apple-touch-icon.png show the NEW icon; after publishing ask Google to index https://settwor.github.io/ (Search Console > URL inspection).
-  2. Photos: in Pages CMS > Photos drag photos of one day into the order you want.
+  1. After publishing, open the page source of the home page: sameAs must have no empty entries, no double commas and no address twice. Then run https://search.google.com/test/rich-results on it.
+  2. CDRA: in its JSON-LD put "creator": {"@id": "https://settwor.github.io/#artist"} and do not redefine the type.

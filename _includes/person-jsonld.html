@@ -1,35 +1,45 @@
 {%- comment -%}
-  The artist as structured data (schema.org Person). It is printed in full wherever
+  The artist as structured data (schema.org MusicGroup, owner decision v11.14; before that Person). It is printed in full wherever
   a page says "this page is about SETTWOR", so Google never has to look for it on another page.
   Facts shown here are the same as on the website. Edit them here, in one place.
   "subjectOf" lists the Ledgertone pages about the artist (added in v9.3; the Organization node is in ledgertone-jsonld.html).
+  MusicGroup has no jobTitle, birthDate, birthPlace, nationality or homeLocation (those are Person-only), so they are not printed any more; the same facts stay in the visible biography.
   "sameAs" also holds https://cdras.github.io/ (CDRA, added in v10.0; pairs with the visible link in footer.html).
+  v11.15: "genre" lists only the two main genres (Brazilian Phonk, Phonk), owner decision. "sameAs" got seven more profiles (Shazam, MusicBrainz, Musixmatch, Genius, Deezer, Amazon Music, TikTok); each is printed only if it is not already in the lists above (checked with the string pj_have), so the data files can add the same address later without a double entry.
+  v11.16: "sameAs" got three more profiles (Apple Music, YouTube Music, YouTube), ten extra profiles in all. pj_have now also holds au_apple, au_pandora and au_ytm (set by artist-urls.html), so an address the defaults already print is not printed twice. The rule for the entity: ONE MusicGroup with the one @id https://settwor.github.io/#artist; Ledgertone and CDRA refer to it by that @id as creator/founder and never redefine the type; the markup is for an unambiguous entity, not for a ranking boost (Google needs no special markup or llms.txt for Search or AI features; llms.txt brings nothing and does no harm, so none is made).
 {%- endcomment -%}
+{%- assign pj_have = "" -%}
+{%- for item in site.data.links.follow %}{% assign pj_have = pj_have | append: item.url | append: " " %}{% endfor -%}
+{%- for item in site.data.links.elsewhere %}{% assign pj_have = pj_have | append: item.url | append: " " %}{% endfor -%}
         {
-            "@type": "Person",
+            "@type": "MusicGroup",
             "@id": "{{ site.url }}/#artist",
             "name": "SETTWOR",
             "alternateName": ["Setwor", "Сеттвор", "Сетвор"],
             "url": "{{ site.url }}/",
             "image": "{{ site.url }}/images/main.jpg",
-            "jobTitle": "Music producer",
             "description": "Active music producer specializing in phonk, Brazilian funk and dance/electronic music, originally from Ukraine and based in Poland.",
-            "birthDate": "2007-02-08",
-            "birthPlace": { "@type": "Place", "name": "Kryvyi Rih, Ukraine" },
-            "nationality": { "@type": "Country", "name": "Ukraine" },
-            "homeLocation": { "@type": "Place", "name": "Poland" },
-            "knowsAbout": ["Phonk", "Brazilian funk", "Electronic dance music", "Music production"],
+            "location": { "@type": "Place", "name": "Poland" },
+            "genre": ["Brazilian Phonk", "Phonk"],
+            "knowsAbout": ["Brazilian Phonk", "Phonk", "Brazilian funk", "Electronic dance music", "Music production"],
             "sameAs": [
                 {%- for item in site.data.links.follow %}
                 {{ item.url | jsonify }}{% unless forloop.last %},{% endunless %}
                 {%- endfor %}
-                {%- include artist-urls.html %},
+                {%- include artist-urls.html -%}
+                {%- assign pj_have = pj_have | append: au_apple | append: " " | append: au_pandora | append: " " | append: au_ytm | append: " " -%},
                 {{ au_apple | jsonify }},
                 {{ au_pandora | jsonify }},
                 {{ au_ytm | jsonify }},
                 "https://cdras.github.io/"
                 {%- for item in site.data.links.elsewhere %},
                 {{ item.url | jsonify }}
+                {%- endfor %}
+                {%- assign pj_extra = "https://www.shazam.com/artist/settwor/1526983418|https://musicbrainz.org/artist/895afe57-dd9f-40f1-a761-b7db0b88e6d4|https://www.musixmatch.com/artist/SETTWOR-1|https://genius.com/artists/Settwor|https://www.deezer.com/artist/103506422|https://www.amazon.com/music/player/artists/B08FH5CSWV/settwor|https://www.tiktok.com/@settwor|https://music.apple.com/us/artist/settwor/1526983418|https://music.youtube.com/@SETTWOR|https://www.youtube.com/@SETTWOR" | split: "|" %}
+                {%- for pj_url in pj_extra %}
+                {%- unless pj_have contains pj_url %},
+                {{ pj_url | jsonify }}
+                {%- endunless %}
                 {%- endfor %}
             ],
             "subjectOf": [
