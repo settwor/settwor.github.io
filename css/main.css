@@ -4876,3 +4876,72 @@ html.ptr-on {
 @media (prefers-reduced-motion: reduce) {
     .ptr.is-busy .ptr__spin { animation: none; }
 }
+
+
+/* =============================================================
+   11.17 (v11.17): CDRA award plaques on the home page (_includes/cdra-awards.html, cdra-plaque.html).
+   Each plaque is two iframes (light and dark) of https://cdras.github.io/embed/. The one that matches the theme is shown:
+   the system theme when there is no data-theme, otherwise the footer switch. The plaque has its own colours, so the page tokens are not used on it.
+   ============================================================= */
+.cdra__intro {
+    max-width: 42rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-text-soft);
+}
+
+.cdra__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cdra__item {
+    min-width: 0;
+    max-width: 504px;
+}
+
+.cdra__frame {
+    display: block;
+    width: 100%;
+    max-width: 504px;
+    height: auto;
+    border: 0;
+}
+
+.cdra__frame--light {
+    color-scheme: light;
+}
+
+.cdra__frame--dark {
+    display: none;
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .cdra__frame--light {
+        display: none;
+    }
+
+    :root:not([data-theme="light"]) .cdra__frame--dark {
+        display: block;
+    }
+}
+
+[data-theme="dark"] .cdra__frame--light {
+    display: none;
+}
+
+[data-theme="dark"] .cdra__frame--dark {
+    display: block;
+}
+
+[data-theme="light"] .cdra__frame--light {
+    display: block;
+}
+
+[data-theme="light"] .cdra__frame--dark {
+    display: none;
+}

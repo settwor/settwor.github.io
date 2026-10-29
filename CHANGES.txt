@@ -1,8 +1,7 @@
-SETTWOR site v11.16 (29 October 2026). Contains ONLY the changed files; copy them over the site, same paths. Replaces the v11.15 zip (the 11.15 changes are in the same file, so one publish is enough).
+SETTWOR site v11.17 (29 October 2026). Contains ONLY the changed files; copy them over the site, same paths. Replaces the v11.16 zip (the 11.16 changes are already on your site if you published it; if not, publish v11.16 first).
 
-NEW vs v11.15: the artist in structured data has three more profile links (Apple Music, YouTube Music, YouTube). Changed: _includes/person-jsonld.html.
-The rule about the one artist entity is fixed in AI-NOTES.md (rule 11) and in CHANGELOG.md, entry 11.16.
+NEW vs v11.16: the home page has a section "CDRA awards" with the three CDRA award plaques (light and dark, they follow the theme), at the very bottom of the page, after the questions. New: _includes/cdra-awards.html, _includes/cdra-plaque.html. Changed: index.html, css/main.css, privacy.html, sw.js (v100), VERSION, _includes/site-version.html, CHANGELOG.md, AI-NOTES.md.
 
 YOU STILL NEED TO DO
-  1. After publishing, open the page source of the home page: sameAs must have no empty entries, no double commas and no address twice. Then run https://search.google.com/test/rich-results on it.
-  2. CDRA: in its JSON-LD put "creator": {"@id": "https://settwor.github.io/#artist"} and do not redefine the type.
+  1. After publishing, open the home page: three plaques under "CDRA awards", on a light and on a dark theme (footer switch), on a phone too. I could not test the live widget here.
+  2. CDRA: in its JSON-LD put "creator": {"@id": "https://settwor.github.io/#artist"} and do not redefine the type (open since 11.16).

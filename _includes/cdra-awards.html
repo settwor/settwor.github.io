@@ -1,0 +1,17 @@
+{%- comment -%}
+  CDRA award plaques on the home page (v11.17). The plaques are the official widget of https://cdras.github.io (iframe, no script, no cookies).
+  A new award: copy its file name, title and ratio from https://cdras.github.io/EMBED.html and add one more include line below.
+  Pairs with the footer link and the cdras.github.io entry in sameAs (person-jsonld.html).
+{%- endcomment -%}
+        <section class="section cdra" id="awards" aria-labelledby="awards-title">
+            <div class="section-head">
+                <h2 class="section-title" id="awards-title">CDRA awards</h2>
+                <a class="section-head__more" href="https://cdras.github.io/" rel="noopener">All awards<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <p class="cdra__intro">CDRA (Certified Digital Release Award) is SETTWOR&rsquo;s own award for stream milestones. It is not an official certification by any record industry organization.</p>
+            <ul class="cdra__list">
+                {%- include cdra-plaque.html file="GOT-ME-UP-2-1m" title="GOT ME UP 2, 1,000,000 streams" ratio="504/626" %}
+                {%- include cdra-plaque.html file="GET-IT-Vol-1-1m" title="GET IT, Vol.1, 1,000,000 streams" ratio="504/626" %}
+                {%- include cdra-plaque.html file="SETTWOR-2-5m" title="SETTWOR, 2,500,000 streams" ratio="504/606" %}
+            </ul>
+        </section>

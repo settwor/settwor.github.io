@@ -1,0 +1,9 @@
+{%- comment -%}
+  One CDRA award plaque (v11.17). Parameters: file (the embed file name without .html, as in https://cdras.github.io/EMBED.html),
+  title (text after "CDRA Award: ", the same as in the code on EMBED.html), ratio (504/626 for a track or album plaque, 504/606 for an artist plaque).
+  Two iframes: the light and the dark plaque. The CSS (section 11.17) shows the one that matches the theme (system or the footer switch). No script.
+{%- endcomment -%}
+<li class="cdra__item">
+    <iframe class="cdra__frame cdra__frame--light" src="https://cdras.github.io/embed/{{ include.file }}.html" title="CDRA Award: {{ include.title | escape }}" loading="lazy" style="aspect-ratio:{{ include.ratio }}"></iframe>
+    <iframe class="cdra__frame cdra__frame--dark" src="https://cdras.github.io/embed/{{ include.file }}-dark.html" title="CDRA Award: {{ include.title | escape }}" loading="lazy" style="aspect-ratio:{{ include.ratio }}"></iframe>
+</li>
