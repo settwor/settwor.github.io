@@ -11,22 +11,23 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
 ---
 {%- comment -%}
   One page for all photographs. The photos live in _data/gallery.yml
-  (Pages CMS: "Photos"). The year tabs are made from the dates.
+  (Pages CMS: "Photos"). The year tabs are made from the dates. Order: newest day first, photos of one day in the order of the list (v11.13, _includes/photos-sorted.html).
   Pictures load only when they come into view (loading="lazy"), and
   with JavaScript only the chosen year is shown.
 {%- endcomment -%}
-{%- assign photos = site.data.gallery.photos | sort: "date" | reverse -%}
+{%- include photos-sorted.html -%}
         <header class="page-head">
             <h1 class="page-head__title">{{ site.data.pages.photos.title }}</h1>
             <p class="page-head__lead">{{ site.data.pages.photos.lead }}</p>
         </header>
 
-        {%- if photos.size == 0 %}
+        {%- if ph_keys.size == 0 %}
         {%- include empty-state.html title="No photos here yet" text="Official photos will appear here, sorted by year." href="/" label="Go to the home page" %}
         {%- else %}
         <nav class="year-tabs" aria-label="Choose a year" data-year-tabs>
             {%- assign seen_years = "" -%}
-            {%- for photo in photos -%}
+            {%- for ph_key in ph_keys -%}
+            {%- include photo-pick.html key=ph_key -%}
             {%- assign photo_year = photo.date | date: "%Y" -%}
             {%- unless seen_years contains photo_year %}
             <a class="year-tabs__link" href="#y{{ photo_year }}">{{ photo_year }}</a>
@@ -37,7 +38,8 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
 
         <div class="gallery">
             {%- assign current_year = "" -%}
-            {%- for photo in photos -%}
+            {%- for ph_key in ph_keys -%}
+            {%- include photo-pick.html key=ph_key -%}
             {%- assign photo_year = photo.date | date: "%Y" -%}
             {%- if photo_year != current_year %}
             {%- unless forloop.first %}
@@ -51,14 +53,14 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
             {%- endif %}
                     <li data-reveal><a href="{{ photo.image | uri_escape }}" data-lightbox><img src="{% include thumb-url.html src=photo.image %}" alt="{{ photo.alt | escape }}" width="400" height="400" loading="lazy" decoding="async"></a></li>
             {%- endfor %}
-            {%- if photos.size > 0 %}
+            {%- if ph_keys.size > 0 %}
                 </ul>
             </section>
             {%- endif %}
         </div>
 
         {%- endif %}
-        {%- if photos.size > 0 %}
+        {%- if ph_keys.size > 0 %}
         <p class="gallery__note">All photographs © SETTWOR, licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">CC BY 4.0</a>: free to share and adapt with credit. <a href="/license.html">How to give credit</a>.</p>
         {%- endif %}
 
@@ -67,7 +69,8 @@ image_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
 {
     "@context": "https://schema.org",
     "@graph": [
-        {%- for photo in photos %}
+        {%- for ph_key in ph_keys %}
+{%- include photo-pick.html key=ph_key %}
 {% include image-object.html src=photo.image alt=photo.alt date=photo.date %}{% unless forloop.last %},{% endunless %}
         {%- endfor %}
     ]

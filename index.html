@@ -142,8 +142,8 @@ releases_total: "57"
 
 {%- include stats-block.html %}
 
-        {%- assign home_photos = site.data.gallery.photos | sort: "date" | reverse %}
-        {%- if home_photos.size > 0 %}
+        {%- include photos-sorted.html %}
+        {%- if ph_keys.size > 0 %}
         <section class="section" id="photos" aria-labelledby="photos-title">
             <div class="section-head">
                 <h2 class="section-title" id="photos-title">Photos</h2>
@@ -151,7 +151,8 @@ releases_total: "57"
             </div>
             <!-- The 9 newest photos of the gallery (_data/gallery.yml) -->
             <ul class="photo-grid">
-                {%- for photo in home_photos limit: 9 %}
+                {%- for ph_key in ph_keys limit: 9 %}
+                {%- include photo-pick.html key=ph_key %}
                 <li><a href="/photo.html#y{{ photo.date | date: "%Y" }}"><img src="{% include thumb-url.html src=photo.image %}" alt="{{ photo.alt | escape }}" width="300" height="300" loading="lazy" decoding="async"></a></li>
                 {%- endfor %}
             </ul>

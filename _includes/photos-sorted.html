@@ -1,0 +1,10 @@
+{%- comment -%}
+  The photos in display order (v11.13): newest DAY first; photos of the same day
+  keep the order of the list in _data/gallery.yml (the first one in the list is shown
+  first). Result: the array ph_keys. Each entry is "YYYY-MM-DD" + 7 digits (2000000
+  minus the place in the list). To get the photo of one entry include photo-pick.html
+  with key=ph_key: it sets the variable photo.
+  Why not "sort: date": it ignores the list order inside one day.
+{%- endcomment -%}
+{%- capture ph_raw -%}{%- for ph_p in site.data.gallery.photos -%}{{ ph_p.date | date: "%Y-%m-%d" | default: "0000-00-00" }}{{ 2000000 | minus: forloop.index0 }}~{%- endfor -%}{%- endcapture -%}
+{%- assign ph_keys = ph_raw | split: "~" | sort | reverse -%}

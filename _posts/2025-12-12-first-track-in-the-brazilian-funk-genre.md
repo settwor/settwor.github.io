@@ -1,6 +1,6 @@
 ---
 title: SETTWOR Releases First Track in the Brazilian Funk Genre
-description: SETTWOR has released a new track in a new style — the reasons and context are explained below
+description: "SETTWOR released NOITE SELVAGEM, his first Brazilian funk track: why he tried the style and what comes next."
 date: 2025-12-12T11:00
 image: /images/releases/NOITE SELVAGEM.png
 image_alt: Cover art of NOITE SELVAGEM, SETTWOR's first Brazilian funk track
@@ -21,10 +21,10 @@ sources:
   url: "/bio.html"
   site: "settwor.github.io"
 ---
-On December 12, 2025, SETTWOR released [NOITE SELVAGEM](https://open.spotify.com/album/5csiNJwLmytqkoFfQcWINZ), his first track in the [Brazilian funk](https://en.wikipedia.org/wiki/Funk_carioca) genre. The release marks a new creative chapter in his musical journey and demonstrates the artist’s interest in experimenting with different sounds and styles.[\[1\]](#ref-1)[\[3\]](#ref-3)
+On December 12, 2025, SETTWOR released [NOITE SELVAGEM](https://open.spotify.com/album/5csiNJwLmytqkoFfQcWINZ), his first track in the [Brazilian funk](https://en.wikipedia.org/wiki/Funk_carioca) genre.[\[1\]](#ref-1)[\[3\]](#ref-3)
 
-The track retains SETTWOR’s signature production approach: heavy bass, minimalist arrangement, and a strong focus on rhythm, creating a raw and energetic atmosphere. At the same time, the artist emphasizes that Brazilian funk is currently an experiment and he does not plan to fully transition into the genre. The main goal is to test the audience’s response to this new sound.
+The production is still his own: heavy bass, a minimal arrangement and a strong rhythm. SETTWOR says Brazilian funk is an experiment for now, and he does not plan to move into the genre fully. He wants to see how listeners respond to the sound.
 
-SETTWOR is already working on additional tracks in this style, and listeners can expect several more releases in the near future. Despite these experiments, the project remains true to its core musical direction and continues to develop its own unique sound. Read more about his path in the [official biography](/bio.html)[\[4\]](#ref-4).
+More tracks in this style are already in progress. Several should come out in the near future. You can read more about his path in the [official biography](/bio.html).[\[4\]](#ref-4)
 
-The release is available on [all major streaming platforms](/releases.html#release-noite-selvagem)[\[2\]](#ref-2).
+NOITE SELVAGEM is available on [all major streaming platforms](/releases.html#release-noite-selvagem).[\[2\]](#ref-2)

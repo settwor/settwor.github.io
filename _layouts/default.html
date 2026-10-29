@@ -81,12 +81,10 @@
 {% include bio-router.html %}
     <script>document.documentElement.className+=" js";setTimeout(function(){if(!window.__ready)document.documentElement.className+=" no-reveal"},3000)</script>
     <script>try{var t=localStorage.getItem("settwor-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
-    <!-- Icons (v10.2): Google wants a square icon, a multiple of 48 px, on a crawlable address; favicon.ico in the root is the fallback for every browser. -->
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="48x48" href="/images/favicon-48.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <!-- Icons (v11.12): ?v= is the site version; raise it together with VERSION whenever the icon picture changes, so Google and browsers fetch the files again. Google needs a square icon, a multiple of 48 px, on a crawlable address. /favicon-48.png is cut from /favicon.ico (the same picture). -->
+    <link rel="icon" href="/favicon.ico?v=11.12" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=11.12">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=11.12">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="apple-mobile-web-app-title" content="SETTWOR">   <!-- the name under the icon when the site is added to the iPhone home screen -->
     <meta name="application-name" content="SETTWOR">

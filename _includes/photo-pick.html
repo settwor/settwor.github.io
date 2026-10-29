@@ -1,0 +1,4 @@
+{%- comment -%} Sets the variable photo from one entry of ph_keys (see photos-sorted.html). Usage: include photo-pick.html key=ph_key {%- endcomment -%}
+{%- assign ph_n = include.key | slice: 10, 7 | plus: 0 -%}
+{%- assign ph_n = 2000000 | minus: ph_n -%}
+{%- assign photo = site.data.gallery.photos[ph_n] -%}

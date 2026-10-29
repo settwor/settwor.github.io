@@ -290,7 +290,7 @@ content:
         label: Photographs
         type: object
         list: true
-        description: "Add a photo with the Add button. The order does not matter: the page sorts them by date."
+        description: "Add a photo with the Add button. The page shows the newest day first. Photos of the SAME day appear in the order of this list: the first one in the list is shown first. Drag a photo up or down to change it."
         fields:
           - name: image
             label: Picture
