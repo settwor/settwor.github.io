@@ -43,7 +43,7 @@
     <script>
     (function () {
         var to = {{ site.url | jsonify }};
-        if (location.hostname === "settwor.github.io" && to.indexOf("//settwor.github.io") === -1) {
+        if (location.hostname === "settwor.com.pl" && to.indexOf("//settwor.com.pl") === -1) {
             location.replace(to + location.pathname + location.search + location.hash);
         }
     })();

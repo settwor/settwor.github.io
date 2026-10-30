@@ -1,6 +1,6 @@
 SETTWOR site v11.18 (29 October 2026). Contains ONLY the changed files; copy them over the site, same paths. Replaces the v11.17 zip.
 
-NEW vs v11.17: the site moves to https://settwor.com.pl (Cloudflare Pages). The old address settwor.github.io redirects to the new one by a small script (_layouts/default.html). Changed: _layouts/default.html, license.html, tools/preview.py, tools/notify-telegram.py, tools/notify-push.py, docs/news-guide-ru.md, VERSION, _includes/site-version.html, CHANGELOG.md, AI-NOTES.md.
+NEW vs v11.17: the site moves to https://settwor.com.pl (Cloudflare Pages). The old address settwor.com.pl redirects to the new one by a small script (_layouts/default.html). Changed: _layouts/default.html, license.html, tools/preview.py, tools/notify-telegram.py, tools/notify-push.py, docs/news-guide-ru.md, VERSION, _includes/site-version.html, CHANGELOG.md, AI-NOTES.md.
 
 YOU STILL NEED TO DO
   1. _config.yml (not in this zip): set  url: "https://settwor.com.pl"  (no slash at the end). Leave baseurl: "".

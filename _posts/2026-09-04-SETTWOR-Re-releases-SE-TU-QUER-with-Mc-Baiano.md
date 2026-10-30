@@ -13,10 +13,10 @@ sources:
   site: "Spotify"
 - title: "SETTWOR Celebrates Five Years of Music"
   url: "/news/2026/10/SETTWOR-Celebrates-Five-Years-of-Music/"
-  site: "settwor.github.io"
+  site: "settwor.com.pl"
 - title: "SETTWOR Biography"
   url: "/bio.html"
-  site: "settwor.github.io"
+  site: "settwor.com.pl"
 ---
 On September 4, 2026, [SE TU QUER](https://open.spotify.com/album/4G27W8LQxr3H8mROcotpUQ) was re-released through Authentic Records as a collaboration between SETTWOR and Mc Baiano.[\[1\]](#ref-1)
 

@@ -13,13 +13,13 @@ sources:
   site: "Spotify"
 - title: "All SETTWOR releases"
   url: "/releases.html"
-  site: "settwor.github.io"
+  site: "settwor.com.pl"
 - title: "Funk carioca"
   url: "https://en.wikipedia.org/wiki/Funk_carioca"
   site: "Wikipedia"
 - title: "SETTWOR Biography"
   url: "/bio.html"
-  site: "settwor.github.io"
+  site: "settwor.com.pl"
 ---
 On December 12, 2025, SETTWOR released [NOITE SELVAGEM](https://open.spotify.com/album/5csiNJwLmytqkoFfQcWINZ), his first track in the [Brazilian funk](https://en.wikipedia.org/wiki/Funk_carioca) genre.[\[1\]](#ref-1)[\[3\]](#ref-3)
 

@@ -9,13 +9,13 @@ image_caption: Ledgertone logo.
 published: true
 sources:
 - title: "Ledgertone"
-  url: "https://ledgertone.github.io"
-  site: "ledgertone.github.io"
+  url: "https://ledgertone.settwor.com.pl"
+  site: "ledgertone.settwor.com.pl"
 - title: "About Ledgertone"
-  url: "https://ledgertone.github.io/about.html"
-  site: "ledgertone.github.io"
+  url: "https://ledgertone.settwor.com.pl/about.html"
+  site: "ledgertone.settwor.com.pl"
 ---
-SETTWOR launched [Ledgertone](https://ledgertone.github.io), an independent ranking of artists in two genres, Phonk and Brazilian Phonk. Artists are sorted by the number of listeners they had on Pandora over the last 28 days.[\[1\]](#ref-1)
+SETTWOR launched [Ledgertone](https://ledgertone.settwor.com.pl), an independent ranking of artists in two genres, Phonk and Brazilian Phonk. Artists are sorted by the number of listeners they had on Pandora over the last 28 days.[\[1\]](#ref-1)
 
 According to the project, it began with a small observation. SETTWOR noticed that some phonk artists had fewer listeners on Pandora than he did. He wanted to check, but found no combined data, so he recounted the numbers by hand, artist by artist. Later he decided to build a site where such data could be stored and checked again.[\[2\]](#ref-2)
 

@@ -29,7 +29,7 @@ sources:
   site: "Wikipedia"
 - title: "All SETTWOR releases"
   url: "/releases.html"
-  site: "settwor.github.io"
+  site: "settwor.com.pl"
 ---
 On October 10, 2026, SETTWOR released [*Toma Jatada*](https://open.spotify.com/album/00W2qdOjV3whkK3L6W2VxL), a collaboration with Brazilian artist [MC GW](https://open.spotify.com/artist/0f1IECbrVV952unZkzrsg2). Authentic Records supported the release. It is SETTWOR’s next track in [Brazilian funk](https://en.wikipedia.org/wiki/Funk_carioca).[\[1\]](#ref-1)[\[3\]](#ref-3)
 

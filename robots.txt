@@ -5,3 +5,4 @@ User-agent: *
 Allow: /
 
 Sitemap: {{ "/sitemap.xml" | absolute_url }}
+Sitemap: https://settwor.com.pl/projects/sitemap.xml

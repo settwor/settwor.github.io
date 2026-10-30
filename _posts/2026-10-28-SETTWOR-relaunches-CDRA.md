@@ -9,13 +9,13 @@ image_caption: CDRA logo.
 published: true
 sources:
 - title: "CDRA"
-  url: "https://cdras.github.io"
-  site: "cdras.github.io"
+  url: "https://cdra.settwor.com.pl"
+  site: "cdra.settwor.com.pl"
 - title: "Award standards"
-  url: "https://cdras.github.io/AWARD-STANDARDS.html"
-  site: "cdras.github.io"
+  url: "https://cdra.settwor.com.pl/AWARD-STANDARDS.html"
+  site: "cdra.settwor.com.pl"
 ---
-On October 27, 2026, [CDRA](https://cdras.github.io) went live again. SETTWOR created the project in 2025, and over time it was put on pause. Since then he has improved the site, revised the number of streams required for each award, and changed the design completely. Work on the project continues.[\[1\]](#ref-1)
+On October 27, 2026, [CDRA](https://cdra.settwor.com.pl) went live again. SETTWOR created the project in 2025, and over time it was put on pause. Since then he has improved the site, revised the number of streams required for each award, and changed the design completely. Work on the project continues.[\[1\]](#ref-1)
 
 CDRA stands for Certified Digital Release Award. It is a set of awards for reaching a certain number of streams. The site states that this is the project's own award, not an official certification by any record industry organization.
 

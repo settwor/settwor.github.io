@@ -1,6 +1,6 @@
 {%- comment -%}
   WHERE: printed once, in the @graph of index.html (home page only).
-  WHAT: the Organization node for Ledgertone (https://ledgertone.github.io/), run by SETTWOR.
+  WHAT: the Organization node for Ledgertone (https://ledgertone.settwor.com.pl/), run by SETTWOR.
         "founder" points to the artist by @id (the full Person is printed by person-jsonld.html),
         so no second copy of the artist is made here.
   RELATED: the two pages of Ledgertone that talk about the artist are listed in
@@ -10,8 +10,8 @@
 {%- endcomment -%}
         {
             "@type": "Organization",
-            "@id": "https://ledgertone.github.io/#org",
+            "@id": "https://ledgertone.settwor.com.pl/#org",
             "name": "Ledgertone",
-            "url": "https://ledgertone.github.io/",
+            "url": "https://ledgertone.settwor.com.pl/",
             "founder": { "@id": "{{ site.url }}/#artist" }
         }

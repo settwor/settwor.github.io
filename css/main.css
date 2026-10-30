@@ -4880,7 +4880,7 @@ html.ptr-on {
 
 /* =============================================================
    11.17 (v11.17): CDRA award plaques on the home page (_includes/cdra-awards.html, cdra-plaque.html).
-   Each plaque is two iframes (light and dark) of https://cdras.github.io/embed/. The one that matches the theme is shown:
+   Each plaque is two iframes (light and dark) of https://cdra.settwor.com.pl/embed/. The one that matches the theme is shown:
    the system theme when there is no data-theme, otherwise the footer switch. The plaque has its own colours, so the page tokens are not used on it.
    ============================================================= */
 .cdra__intro {
