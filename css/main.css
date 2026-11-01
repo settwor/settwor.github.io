@@ -1558,6 +1558,11 @@ a.release__cover:hover img {
         padding-block: 1.1rem;
     }
 
+    /* An entry without a picture keeps ONE column; the rule above would otherwise put its text into the 7rem column (11.19). */
+    .news-card__link--noimg {
+        grid-template-columns: 1fr;
+    }
+
     .news-card__img {
         width: 7rem;
         height: 7rem;
