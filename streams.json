@@ -1,0 +1,6 @@
+---
+layout: null
+permalink: /streams.json
+sitemap: false
+---
+{"generated":"{{ site.time | date_to_xmlschema }}","platforms":{{ site.data.platforms | jsonify }},"auto_stats":{{ site.data.auto_stats | jsonify }},"streams":{{ site.data.streams | jsonify }}}

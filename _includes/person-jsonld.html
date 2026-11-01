@@ -18,10 +18,10 @@
             "alternateName": ["Setwor", "Сеттвор", "Сетвор"],
             "url": "{{ site.url }}/",
             "image": "{{ site.url }}/images/main.jpg",
-            "description": "Active music producer specializing in phonk, Brazilian funk and dance/electronic music, originally from Ukraine and based in Poland.",
+            "description": "Active music producer specializing in phonk, Brazilian Phonk and dance/electronic music, originally from Ukraine and based in Poland.",
             "location": { "@type": "Place", "name": "Poland" },
             "genre": ["Brazilian Phonk", "Phonk"],
-            "knowsAbout": ["Brazilian Phonk", "Phonk", "Brazilian funk", "Electronic dance music", "Music production"],
+            "knowsAbout": ["Brazilian Phonk", "Phonk", "Electronic dance music", "Music production"],
             "sameAs": [
                 {%- for item in site.data.links.follow %}
                 {{ item.url | jsonify }}{% unless forloop.last %},{% endunless %}
