@@ -17,7 +17,7 @@
 {%- comment -%} The big number = music platforms + YouTube release videos. The smaller number under it = music platforms + the whole YouTube channel (release videos and all other videos). The bar and the list show only music platforms and the release videos. {%- endcomment -%}
 {%- assign big = st_panel_total -%}
 {%- if include.link %}
-    <a class="numbers__hero numbers__hero--link" href="{{ include.link }}" aria-label="{{ sp_aria_t | replace: "{n}", sp_big_txt }}">
+    <a class="numbers__hero numbers__hero--link" href="{{ include.link }}" aria-label="{% assign lq_stats_panel_1 = "{n}" %}{{ sp_aria_t | replace: lq_stats_panel_1, sp_big_txt }}">
 {%- else %}
     <div class="numbers__hero">
 {%- endif %}

@@ -17,5 +17,5 @@
 {%- assign i18n_dday = include.d | date: "%-d" -%}
 {%- assign i18n_dyear = include.d | date: "%Y" -%}
 {%- assign i18n_dfmt = i18n_dt.date_fmt | default: "{d} {m} {y}" -%}
-{{- i18n_dfmt | replace: "{d}", i18n_dday | replace: "{m}", i18n_dmon | replace: "{y}", i18n_dyear -}}
+{% assign lq_i18n_date_1 = "{d}" %}{% assign lq_i18n_date_2 = "{m}" %}{% assign lq_i18n_date_3 = "{y}" %}{{- i18n_dfmt | replace: lq_i18n_date_1, i18n_dday | replace: lq_i18n_date_2, i18n_dmon | replace: lq_i18n_date_3, i18n_dyear -}}
 {%- endif -%}

@@ -29,7 +29,7 @@
     {%- if st_plat_total > 0 %}
     <div class="numbers__head" id="platforms">
         <h2 class="numbers__h">{{ sd_platforms }}</h2>
-        <span class="numbers__sum">{{ sd_plays | replace: "{n}", sd_n_total }}</span>
+        <span class="numbers__sum">{% assign lq_stats_details_1 = "{n}" %}{{ sd_plays | replace: lq_stats_details_1, sd_n_total }}</span>
     </div>
     <ul class="numbers__plats">
         {%- for r in st_rows %}
@@ -67,7 +67,7 @@
             <div class="plat__foot">
                 <span class="tag">{{ sd_dashboard }}</span>
                 {%- if purl != "" %}
-                <a class="plat__link" href="{{ purl }}" rel="me noopener" target="_blank">{{ sd_open_on | replace: "{name}", rp[2] }} <i aria-hidden="true">&nearr;</i></a>
+                <a class="plat__link" href="{{ purl }}" rel="me noopener" target="_blank">{% assign lq_stats_details_2 = "{name}" %}{{ sd_open_on | replace: lq_stats_details_2, rp[2] }} <i aria-hidden="true">&nearr;</i></a>
                 {%- endif %}
             </div>
         </li>
@@ -78,7 +78,7 @@
     {%- if st_channel > 0 %}
     <div class="numbers__head" id="youtube">
         <h2 class="numbers__h">YouTube</h2>
-        <span class="numbers__sum">{{ sd_views | replace: "{n}", sd_n_channel }}</span>
+        <span class="numbers__sum">{% assign lq_stats_details_3 = "{n}" %}{{ sd_views | replace: lq_stats_details_3, sd_n_channel }}</span>
     </div>
     <ul class="numbers__yt">
         <li class="yt yt--main c-yt_clips">

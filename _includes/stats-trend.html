@@ -60,7 +60,7 @@
         <span class="numbers__sum">{{ tr_t_sub }}</span>
     </div>
     <div class="trend">
-        <div class="trend__plot" role="img" aria-label="{{ tr_t_aria | replace: "{from}", tr_from | replace: "{to}", tr_to | replace: "{peak}", tr_peak }}">
+        <div class="trend__plot" role="img" aria-label="{% assign lq_stats_trend_1 = "{from}" %}{% assign lq_stats_trend_2 = "{to}" %}{% assign lq_stats_trend_3 = "{peak}" %}{{ tr_t_aria | replace: lq_stats_trend_1, tr_from | replace: lq_stats_trend_2, tr_to | replace: lq_stats_trend_3, tr_peak }}">
             <div class="trend__draw">
                 <svg class="trend__svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
                     <line class="trend__grid" x1="0" y1="250" x2="1000" y2="250"/>
