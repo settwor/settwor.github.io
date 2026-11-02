@@ -1,40 +1,51 @@
 {%- comment -%}
-  v11.32. Language switcher: one link for every READY language version of this page (the group of the page, see i18n-alternates.html).
-  Prints NOTHING when the page has no group or fewer than two ready versions, so today's pages are unchanged.
-  Parameter: wrap="footer" prints a <nav class="footer-lang"> with a title (used by footer.html). Biography pages do not use it (they have their own lists).
-  Names: lang_name of the member if it has one, else the table below. A language without a version of this page is not listed
-  (a link to the language home is added in Phase 3, when the language homes exist).
-  Variables start with i18n_ls_ (an assign inside an include is global).
+  v11.60. Language switcher (dropdown) in the footer. Shown on EVERY page that has at least two ready language versions to offer:
+  for each language, the translation of this page if it exists, else the home page of that language (ready ones only).
+  Biography pages do not use it (they list their languages above). Variables start with i18n_ls_.
 {%- endcomment -%}
 {%- assign i18n_ls_ref = page.ref -%}
 {%- if page.collection == "bio" -%}{%- assign i18n_ls_ref = "bio" -%}{%- endif -%}
 {%- if i18n_ls_ref and i18n_ls_ref != "" and page.i18n_ready != false -%}
-{%- if i18n_ls_ref == "bio" -%}
-{%- assign i18n_ls_list = site.bio | sort: "order" -%}
+{%- if i18n_ls_ref == "bio" -%}{%- assign i18n_ls_grp = site.bio -%}{%- else -%}{%- assign i18n_ls_grp = site.pages | where: "ref", i18n_ls_ref -%}{%- endif -%}
 {%- else -%}
-{%- assign i18n_ls_list = site.pages | where: "ref", i18n_ls_ref | sort: "order" -%}
+{%- assign i18n_ls_grp = "" | split: "" -%}
 {%- endif -%}
+{%- assign i18n_ls_homes = site.pages | where: "ref", "home" -%}
+{%- assign i18n_ls_cur = page.lang | default: site.lang | default: "en" -%}
+{%- assign i18n_ls_names = "en:English,ru:Русский,uk:Українська,pl:Polski,es:Español,pt:Português" | split: "," -%}
+{%- capture i18n_ls_items -%}
 {%- assign i18n_ls_n = 0 -%}
-{%- for i18n_ls_it in i18n_ls_list -%}
-{%- unless i18n_ls_it.i18n_ready == false -%}{%- assign i18n_ls_n = i18n_ls_n | plus: 1 -%}{%- endunless -%}
-{%- endfor -%}
-{%- if i18n_ls_n > 1 -%}
-{%- assign i18n_ls_names = "en:English,ru:Русский,pl:Polski,es:Español,pt:Português,uk:Українська" | split: "," -%}
-{%- capture i18n_ls_title -%}{% include i18n-t.html key="footer_language" en="Language" %}{%- endcapture %}
-<nav class="footer-lang" aria-labelledby="footer-lang">
-    <h2 class="footer-title" id="footer-lang">{{ i18n_ls_title }}</h2>
-    <ul class="footer-links">
-        {%- for i18n_ls_it in i18n_ls_list -%}
-        {%- unless i18n_ls_it.i18n_ready == false -%}
-        {%- assign i18n_ls_code = i18n_ls_it.lang | default: "en" -%}
-        {%- assign i18n_ls_name = i18n_ls_it.lang_name -%}
-        {%- unless i18n_ls_name and i18n_ls_name != "" -%}
-        {%- for i18n_ls_pair in i18n_ls_names -%}{%- assign i18n_ls_kv = i18n_ls_pair | split: ":" -%}{%- if i18n_ls_kv[0] == i18n_ls_code -%}{%- assign i18n_ls_name = i18n_ls_kv[1] -%}{%- endif -%}{%- endfor -%}
-        {%- endunless %}
-        <li><a href="{{ i18n_ls_it.url }}" hreflang="{{ i18n_ls_code }}" lang="{{ i18n_ls_code }}"{% if i18n_ls_it.url == page.url %} aria-current="page"{% endif %}>{{ i18n_ls_name | default: i18n_ls_code }}</a></li>
-        {%- endunless -%}
-        {%- endfor %}
-    </ul>
-</nav>
+{%- for i18n_ls_pair in i18n_ls_names -%}
+{%- assign i18n_ls_kv = i18n_ls_pair | split: ":" -%}
+{%- assign i18n_ls_code = i18n_ls_kv[0] -%}
+{%- assign i18n_ls_url = "" -%}
+{%- for i18n_ls_it in i18n_ls_grp -%}{%- assign i18n_ls_l = i18n_ls_it.lang | default: "en" -%}{%- if i18n_ls_l == i18n_ls_code and i18n_ls_it.i18n_ready != false -%}{%- assign i18n_ls_url = i18n_ls_it.url -%}{%- endif -%}{%- endfor -%}
+{%- if i18n_ls_url == "" -%}{%- for i18n_ls_it in i18n_ls_homes -%}{%- assign i18n_ls_l = i18n_ls_it.lang | default: "en" -%}{%- if i18n_ls_l == i18n_ls_code and i18n_ls_it.i18n_ready != false -%}{%- assign i18n_ls_url = i18n_ls_it.url -%}{%- endif -%}{%- endfor -%}{%- endif -%}
+{%- if i18n_ls_url != "" -%}
+{%- assign i18n_ls_n = i18n_ls_n | plus: 1 -%}
+<li><a class="lang-dd__item" href="{{ i18n_ls_url }}" hreflang="{{ i18n_ls_code }}" lang="{{ i18n_ls_code }}"{% if i18n_ls_code == i18n_ls_cur %} aria-current="true"{% endif %}><span class="lang-dd__code">{{ i18n_ls_code | upcase }}</span><span>{{ i18n_ls_kv[1] }}</span></a></li>
 {%- endif -%}
+{%- endfor -%}
+{%- endcapture -%}
+{%- for i18n_ls_pair in i18n_ls_names -%}{%- assign i18n_ls_kv = i18n_ls_pair | split: ":" -%}{%- if i18n_ls_kv[0] == i18n_ls_cur -%}{%- assign i18n_ls_curname = i18n_ls_kv[1] -%}{%- endif -%}{%- endfor -%}
+{%- if i18n_ls_n > 1 -%}
+{%- capture i18n_ls_title -%}{% include i18n-t.html key="footer_language" en="Language" %}{%- endcapture %}
+<nav class="footer-lang lang-dd-wrap" aria-label="{{ i18n_ls_title }}">
+    <details class="lang-dd" data-lang-dd>
+        <summary class="lang-dd__btn">
+            <svg class="lang-dd__globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.7 3.9 5.9 3.9 9.5s-1.3 6.8-3.9 9.5c-2.6-2.7-3.9-5.9-3.9-9.5S9.4 5.2 12 2.5z"/></svg>
+            <span class="lang-dd__cur">{{ i18n_ls_curname | default: i18n_ls_cur }}</span>
+            <svg class="lang-dd__chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <ul class="lang-dd__list">{{ i18n_ls_items }}</ul>
+    </details>
+    <script>
+    (function () {
+        var d = document.querySelector('[data-lang-dd]');
+        if (!d) return;
+        document.addEventListener('click', function (e) { if (d.open && !d.contains(e.target)) d.open = false; });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && d.open) { d.open = false; d.querySelector('summary').focus(); } });
+    })();
+    </script>
+</nav>
 {%- endif -%}

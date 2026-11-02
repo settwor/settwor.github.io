@@ -85,7 +85,7 @@
     </div>
     {%- comment -%} v11.32: language switcher, printed only when this page has translations (not on biography pages: they list their languages above). {%- endcomment -%}
     {%- unless page.collection == "bio" %}{% include lang-switch.html %}{% endunless %}
-    <p class="footer-copy">© <span data-current-year>{{ site.time | date: "%Y" }}</span> SETTWOR. {{ ft_t_official }} <span class="footer-est">est. 2024</span> <span class="footer-ver">{{ ft_t_ver }} {% include site-version.html %}</span></p>
+    <p class="footer-copy">© <span data-current-year>{{ site.time | date: "%Y" }}</span> SETTWOR. {{ ft_t_official }} <span class="footer-est">est. 2022</span> <span class="footer-ver">{{ ft_t_ver }} {% include site-version.html %}</span></p>
     <!-- Visible links to the projects of the artist: Ledgertone (pairs with "subjectOf" in person-jsonld.html) and CDRA (pairs with the cdra.settwor.com.pl entry in "sameAs"). One line since v10.1. -->
-    <p class="footer-copy">{{ ft_t_projects }} <a href="https://ledgertone.settwor.com.pl/settwor.html" rel="noopener">Ledgertone: {{ ft_t_ledger }}</a> (<a href="https://ledgertone.settwor.com.pl/settwor-ru.html" rel="noopener" hreflang="ru" lang="ru">RU</a>) · <a href="https://cdra.settwor.com.pl/" rel="noopener">CDRA: {{ ft_t_cdra }}</a></p>
+    <p class="footer-copy">{{ ft_t_projects }} <a href="https://ledgertone.settwor.com.pl/settwor.html" rel="noopener">Ledgertone: {{ ft_t_ledger }}</a> (<a href="https://ledgertone.settwor.com.pl/settwor-ru.html" rel="noopener" hreflang="ru" lang="ru">RU</a>) · <a href="https://cdra.settwor.com.pl/" rel="noopener">CDRA: {{ ft_t_cdra }}</a> · <a href="https://settwor.com.pl/projects/" rel="noopener">settwor.com.pl/projects</a></p>
 </footer>

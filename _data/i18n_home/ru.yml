@@ -4,24 +4,24 @@
 # Status: AI draft, NOT read by the owner yet. The page in this language stays out of Google (i18n_ready: false) until it is read.
 # Not translated on purpose: SETTWOR, release and track names, platform names, e-mail. Photo, video id, Spotify id and links are read from the English data.
 hero:
-  photo_alt: "Портрет SETTWOR, phonk-артиста и продюсера"
+  photo_alt: "Портрет SETTWOR, фонк-артиста и продюсера"
   title: SETTWOR
-  tagline: "Phonk-артист и продюсер"
+  tagline: "Фонк-артист и продюсер"
   note: "Официальный сайт. Родом из Кривого Рога, Украина, живёт в Польше, активен с 2021 года."
   listen_label: "Слушать на Spotify"
 
 about_title: "О SETTWOR"
 # Markdown: a blank line starts a new paragraph, [text](https://address) makes a link.
 about: |
-  SETTWOR — [phonk](https://en.wikipedia.org/wiki/Phonk)-артист и продюсер, который также работает в жанрах [бразильского фанка](https://en.wikipedia.org/wiki/Funk_carioca) и танцевальной/электронной музыки. Родом из [Кривого Рога](https://en.wikipedia.org/wiki/Kryvyi_Rih), Украина, в 2022 году переехал в Польшу.
+  SETTWOR — [фонк](https://en.wikipedia.org/wiki/Phonk)-артист и продюсер, который также работает в жанрах [бразильского фанка](https://en.wikipedia.org/wiki/Funk_carioca) и танцевальной/электронной музыки. Родом из [Кривого Рога](https://en.wikipedia.org/wiki/Kryvyi_Rih), Украина, в 2022 году переехал в Польшу.
 
   Наиболее известен своей музыкой, каналом на YouTube и короткими видео в TikTok с его треками. Он также владелец одного из популярных 8D-музыкальных каналов.
-callout: "SETTWOR — один из самых популярных phonk-артистов на Pandora."
+callout: "SETTWOR — один из самых популярных фонк-артистов на Pandora."
 
 facts_label: "Ключевые факты"
 facts:
   - label: "Род занятий"
-    value: "Phonk-артист и продюсер"
+    value: "Фонк-артист и продюсер"
   - label: "Дата рождения"
     value: "8 февраля 2007"
   - label: "Место рождения"
@@ -31,7 +31,7 @@ facts:
   - label: "Живёт в"
     value: "Польше"
   - label: "Жанры"
-    value: "бразильский фанк, phonk"
+    value: "бразильский фанк, фонк"
   - label: "Активен с"
     value: "2021"
   - label: "Email"
@@ -43,9 +43,9 @@ video:
 faq_title: "Вопросы о SETTWOR"
 faq:
   - q: "Кто такой SETTWOR?"
-    a: "SETTWOR — phonk-артист и продюсер из Кривого Рога, Украина, живущий в Польше. Он делает phonk, бразильский фанк и танцевальную/электронную музыку и выпускает музыку с 2021 года."
+    a: "SETTWOR — фонк-артист и продюсер из Кривого Рога, Украина, живущий в Польше. Он делает фонк, бразильский фанк и танцевальную/электронную музыку и выпускает музыку с 2021 года."
   - q: "В каких жанрах работает SETTWOR?"
-    a: "В основном в phonk и бразильском фанке, а также в EDM."
+    a: "В основном в фонке и бразильском фанке, а также в EDM."
   - q: "Какой самый популярный трек SETTWOR?"
     a: "GOT ME UP 2, из альбома GET IT, Vol.1. 22 февраля 2026 года он преодолел отметку 1,000,000 прослушиваний на всех платформах и стал самым успешным релизом в его карьере."
   - q: "Когда SETTWOR выпустил первый трек?"
@@ -61,11 +61,11 @@ faq:
 
 # The key line of the About block. Pieces, no plural forms (the number comes after a colon). {y} = year, {n} = number, {p} = place, {date} = date in the language.
 key_line:
-  intro: "SETTWOR — активный и быстрорастущий phonk-артист и продюсер"
+  intro: "SETTWOR — активный и быстрорастущий фонк-артист и продюсер"
   releases: "Релизов с {y} года: {n}"
   this_year: ", из них в {y} году: {n}"
-  rank_phonk: "№ {p} в Phonk"
-  rank_bphonk: "№ {p} в Brazilian Phonk"
+  rank_phonk: "№ {p} в фонке"
+  rank_bphonk: "№ {p} в бразильском фонке"
   join: " и "
   on_pandora: " на Pandora"
   source: "Ledgertone, {date}"

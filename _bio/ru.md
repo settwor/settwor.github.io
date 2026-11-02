@@ -118,7 +118,7 @@ sources:
 - title: "MC GW — страница исполнителя"
   url: "https://open.spotify.com/artist/0f1IECbrVV952unZkzrsg2"
   site: "Spotify"
-- title: "Phonk"
+- title: "Фонк"
   url: "https://en.wikipedia.org/wiki/Phonk"
   site: "Википедия (EN)"
 - title: "Funk carioca"
@@ -168,7 +168,7 @@ external:
 - name: "Creative Commons BY 4.0"
   url: "https://creativecommons.org/licenses/by/4.0/"
   desc: "лицензия фотографий"
-- name: "Phonk"
+- name: "Фонк"
   url: "https://en.wikipedia.org/wiki/Phonk"
   desc: "Википедия (EN)"
 - name: "Funk carioca"
@@ -188,7 +188,7 @@ external:
 
 SETTWOR работает музыкальным продюсером и делает [фонк](https://en.wikipedia.org/wiki/Phonk), [бразильский фанк](https://en.wikipedia.org/wiki/Funk_carioca) и [танцевальную электронную музыку](https://en.wikipedia.org/wiki/Electronic_dance_music). Родом он из [Кривого Рога](https://en.wikipedia.org/wiki/Kryvyi_Rih), [Украина](https://en.wikipedia.org/wiki/Ukraine), а в 2022 году переехал в [Польшу](https://en.wikipedia.org/wiki/Poland). Кроме музыки управляет известным 8D-каналом.[\[1\]](#ref-1)[\[14\]](#ref-14)[\[15\]](#ref-15)
 
-На платформе [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio) SETTWOR входит в число исполнителей фонка, которых активно слушают. Его треки стабильно набирают прослушивания и продолжают привлекать новых слушателей.[\[2\]](#ref-2) SETTWOR — активный и быстрорастущий артист. В апреле 2025 года он занимал 6 место среди исполнителей фонка на Pandora, а в [рейтинге Ledgertone](/top-phonk-artist.html) от 27 октября 2026 года занимает 13 место в Phonk и 22 место в Brazilian Phonk.
+На платформе [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio) SETTWOR входит в число исполнителей фонка, которых активно слушают. Его треки стабильно набирают прослушивания и продолжают привлекать новых слушателей.[\[2\]](#ref-2) SETTWOR — активный и быстрорастущий артист. В апреле 2025 года он занимал 6 место среди исполнителей фонка на Pandora, а в [рейтинге Ledgertone](/top-phonk-artist.html) от 27 октября 2026 года занимает 13 место в фонке и 22 место в бразильском фонке.
 
 ### Личная информация
 

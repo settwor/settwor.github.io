@@ -1,0 +1,17 @@
+---
+layout: page
+rail: photos
+license_note: true
+lang: ru
+lang_name: Русский
+ref: photo
+order: 2
+# false = noindex, out of every hreflang set, out of the sitemap, not in the language switcher. Turn it to true only after the text is read (todo i18n.md D7).
+i18n_ready: true
+title: "Фотографии"
+seo_title: "Фотографии SETTWOR | Официальные фото 2022–2026"
+description: "Официальные фотографии SETTWOR с 2022 года до сегодняшнего дня, по годам. Все фото можно свободно использовать с указанием автора по лицензии CC BY 4.0."
+image: /images/main.jpg
+image_alt: "Портрет SETTWOR, фонк-артиста и продюсера"
+---
+{%- include photo-body.html -%}

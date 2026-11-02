@@ -1,0 +1,92 @@
+# Texts of the home page, Русский (v11.38, Phase 3). Same structure as _data/home.yml, plus `labels`, `facts_label` and `key_line`.
+# CREATE ONLY IF MISSING: this file is new in 11.38. If it already exists on the live site, merge, never overwrite.
+# Why this folder and not _data/i18n/<lang>/: a folder and the file <lang>.yml of the same name give the same Jekyll data key, the folder would wipe the interface file.
+# Status: AI draft, NOT read by the owner yet. The page in this language stays out of Google (i18n_ready: false) until it is read.
+# Not translated on purpose: SETTWOR, release and track names, platform names, e-mail. Photo, video id, Spotify id and links are read from the English data.
+hero:
+  photo_alt: "Портрет SETTWOR, фонк-артиста и продюсера"
+  title: SETTWOR
+  tagline: "фонк-артист и продюсер"
+  note: "Официальный сайт. Родом из Кривого Рога, Украина, живёт в Польше, активен с 2021 года."
+  listen_label: "Слушать на Spotify"
+
+about_title: "О SETTWOR"
+# Markdown: a blank line starts a new paragraph, [text](https://address) makes a link.
+about: |
+  SETTWOR — [ÑÐ¾Ð½Ðº](https://en.wikipedia.org/wiki/Phonk)-артист и продюсер, который также работает в жанрах [бразильского фанка](https://en.wikipedia.org/wiki/Funk_carioca) и танцевальной/электронной музыки. Родом из [Кривого Рога](https://en.wikipedia.org/wiki/Kryvyi_Rih), Украина, в 2022 году переехал в Польшу.
+
+  Наиболее известен своей музыкой, каналом на YouTube и короткими видео в TikTok с его треками. Он также владелец одного из популярных 8D-музыкальных каналов.
+callout: "SETTWOR — один из самых популярных фонк-артистов на Pandora."
+
+facts_label: "Ключевые факты"
+facts:
+  - label: "Род занятий"
+    value: "фонк-артист и продюсер"
+  - label: "Дата рождения"
+    value: "8 февраля 2007"
+  - label: "Место рождения"
+    value: "Кривой Рог, Украина"
+  - label: "Гражданство"
+    value: "украинское"
+  - label: "Живёт в"
+    value: "Польше"
+  - label: "Жанры"
+    value: "бразильский фанк, ÑÐ¾Ð½Ðº"
+  - label: "Активен с"
+    value: "2021"
+  - label: "Email"
+    value: "settwor@gmail.com"
+
+video:
+  title: "SETTWOR — популярное видео на YouTube"
+
+faq_title: "Вопросы о SETTWOR"
+faq:
+  - q: "Кто такой SETTWOR?"
+    a: "SETTWOR — фонк-артист и продюсер из Кривого Рога, Украина, живущий в Польше. Он делает ÑÐ¾Ð½Ðº, бразильский фанк и танцевальную/электронную музыку и выпускает музыку с 2021 года."
+  - q: "В каких жанрах работает SETTWOR?"
+    a: "В основном в ÑÐ¾Ð½Ðº и бразильском фанке, а также в EDM."
+  - q: "Какой самый популярный трек SETTWOR?"
+    a: "GOT ME UP 2, из альбома GET IT, Vol.1. 22 февраля 2026 года он преодолел отметку 1,000,000 прослушиваний на всех платформах и стал самым успешным релизом в его карьере."
+  - q: "Когда SETTWOR выпустил первый трек?"
+    a: "В 2021 году, это «Light Wave». Имя SETTWOR он взял и открыл свой канал на YouTube в 2020 году."
+  - q: "С кем сотрудничал SETTWOR?"
+    a: "С Mc Baiano над переизданием «SE TU QUER» (4 сентября 2026) и с MC GW над треком «Toma Jatada» (10 октября 2026). Оба релиза поддержал Authentic Records."
+  - q: "Где можно слушать SETTWOR?"
+    a: "На Spotify, Apple Music, YouTube и других платформах. Ссылки для каждого релиза есть на странице «Релизы» этого сайта."
+  - q: "Какие официальные соцсети у SETTWOR?"
+    a: "Spotify, YouTube (youtube.com/c/settwor), Instagram (instagram.com/settwor) и Telegram (settw0r.t.me). Все они указаны на этом сайте."
+  - q: "Как связаться с SETTWOR?"
+    a: "По электронной почте: settwor@gmail.com."
+
+# The key line of the About block. Pieces, no plural forms (the number comes after a colon). {y} = year, {n} = number, {p} = place, {date} = date in the language.
+key_line:
+  intro: "SETTWOR — активный и быстрорастущий фонк-артист и продюсер"
+  releases: "Релизов с {y} года: {n}"
+  this_year: ", из них в {y} году: {n}"
+  rank_phonk: "№ {p} в ÑÐ¾Ð½Ðº"
+  rank_bphonk: "№ {p} в Ð±ÑÐ°Ð·Ð¸Ð»ÑÑÐºÐ¸Ð¹ ÑÐ¾Ð½Ðº"
+  join: " и "
+  on_pandora: " на Pandora"
+  source: "Ledgertone, {date}"
+
+# Section titles, links and small texts of the home page. {title} = release title, {y} = year.
+labels:
+  full_bio: "Полная биография"
+  releases_title: "Последние релизы"
+  releases_all: "Все релизы"
+  release_aria: "{title}: слушать и список треков"
+  cover_of: "Обложка: {title}"
+  listen_title: "Слушать и смотреть"
+  video_alt_pre: "Видео не загружается?"
+  video_alt_link: "Открыть на YouTube"
+  spotify_title: "SETTWOR на Spotify"
+  spotify_alt_pre: "Плеер не загружается?"
+  spotify_alt_link: "Открыть на Spotify"
+  photos_title: "Фото"
+  photos_all: "Все фото"
+  photo_alt: "SETTWOR, фото {y} года"
+  social_title: "Соцсети"
+  faq_more: "Ещё в биографии"
+  kind_album: "Альбом"
+  kind_mixtape: "Микстейп"

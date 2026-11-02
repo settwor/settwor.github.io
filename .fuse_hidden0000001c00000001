@@ -1,0 +1,16 @@
+---
+layout: page
+rail: home
+lang: en
+ref: home
+order: 1
+license_note: true
+title: SETTWOR
+seo_title: SETTWOR — Phonk Artist & Producer | Official Site
+description: Official site of SETTWOR, a phonk artist and producer from Ukraine based in Poland, also making Brazilian Phonk. Biography, releases, news, photos and contact.
+image: /images/main.jpg
+image_alt: Portrait of SETTWOR, phonk artist and producer
+# Total number of releases shown in the key line below. Typed by the owner (57), NOT counted from the folder _releases.
+releases_total: "57"
+---
+{%- include home-body.html -%}

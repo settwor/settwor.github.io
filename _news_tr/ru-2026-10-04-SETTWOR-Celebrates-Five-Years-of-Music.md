@@ -25,7 +25,7 @@ sources:
 - title: "SETTWOR — канал на YouTube"
   url: "https://youtube.com/c/settwor"
   site: "YouTube"
-- title: "Phonk"
+- title: "Фонк"
   url: "https://en.wikipedia.org/wiki/Phonk"
   site: "Wikipedia"
 - title: "Funk carioca"
@@ -49,9 +49,9 @@ SETTWOR начал учиться музыкальному продакшну с
 
 **В поисках своего звучания**
 
-8 мая 2022 года он выпустил [*LUNATIC*](/releases.html#release-lunatic), свой первый трек в жанре [phonk](https://en.wikipedia.org/wiki/Phonk). Phonk стал основным направлением его ранних релизов.
+8 мая 2022 года он выпустил [*LUNATIC*](/releases.html#release-lunatic), свой первый трек в жанре [фонк](https://en.wikipedia.org/wiki/Phonk). Фонк стал основным направлением его ранних релизов.
 
-Его звучание начало меняться с [*DON’T STOP*](/releases.html#release-don-t-stop) в декабре 2023 года. В 2024 году он выпустил свой первый полноформатный альбом, [*GET IT, Vol.1*](/releases.html#release-get-it-vol-1). В него вошёл *GOT ME UP 2*, позже ставший его самым успешным треком. 28 марта 2025 года он выпустил [*BREAKPOINT Mixtape*](/releases.html#release-breakpoint-mixtape). После него он начал исследовать Brazilian Phonk, хаус и [EDM](https://en.wikipedia.org/wiki/Electronic_dance_music).[\[2\]](#ref-2)[\[5\]](#ref-5)[\[6\]](#ref-6)[\[7\]](#ref-7)
+Его звучание начало меняться с [*DON’T STOP*](/releases.html#release-don-t-stop) в декабре 2023 года. В 2024 году он выпустил свой первый полноформатный альбом, [*GET IT, Vol.1*](/releases.html#release-get-it-vol-1). В него вошёл *GOT ME UP 2*, позже ставший его самым успешным треком. 28 марта 2025 года он выпустил [*BREAKPOINT Mixtape*](/releases.html#release-breakpoint-mixtape). После него он начал исследовать бразильский фонк, хаус и [EDM](https://en.wikipedia.org/wiki/Electronic_dance_music).[\[2\]](#ref-2)[\[5\]](#ref-5)[\[6\]](#ref-6)[\[7\]](#ref-7)
 
 **Пять лет роста**
 

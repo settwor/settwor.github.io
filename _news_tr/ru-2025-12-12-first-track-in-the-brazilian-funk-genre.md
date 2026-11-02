@@ -4,12 +4,12 @@ lang: ru
 ref: first-track-in-the-brazilian-funk-genre
 # false = noindex, out of every hreflang set, out of the sitemap. Turn it to true only after the text is read (todo i18n.md D7; ru: the owner can read it himself).
 i18n_ready: true
-title: "SETTWOR выпускает первый трек в жанре Brazilian Phonk"
-description: "SETTWOR выпустил NOITE SELVAGEM, свой первый трек в Brazilian Phonk: почему он попробовал этот стиль и что дальше."
+title: "SETTWOR выпускает первый трек в жанре бразильский фонк"
+description: "SETTWOR выпустил NOITE SELVAGEM, свой первый трек в бразильском фонке: почему он попробовал этот стиль и что дальше."
 date: 2025-12-12T11:00
 permalink: /ru/news/2025/12/first-track-in-the-brazilian-funk-genre/
 image: /images/releases/NOITE SELVAGEM.png
-image_alt: "Обложка NOITE SELVAGEM, первого трека SETTWOR в Brazilian Phonk"
+image_alt: "Обложка NOITE SELVAGEM, первого трека SETTWOR в бразильском фонке"
 image_caption: "Обложка «NOITE SELVAGEM», SETTWOR"
 listen_url: https://open.spotify.com/album/5csiNJwLmytqkoFfQcWINZ
 sources:
@@ -26,9 +26,9 @@ sources:
   url: "/bioRU.html"
   site: "settwor.com.pl"
 ---
-12 декабря 2025 года SETTWOR выпустил [NOITE SELVAGEM](https://open.spotify.com/album/5csiNJwLmytqkoFfQcWINZ), свой первый трек в жанре Brazilian Phonk.[\[1\]](#ref-1)[\[3\]](#ref-3)
+12 декабря 2025 года SETTWOR выпустил [NOITE SELVAGEM](https://open.spotify.com/album/5csiNJwLmytqkoFfQcWINZ), свой первый трек в жанре бразильский фонк.[\[1\]](#ref-1)[\[3\]](#ref-3)
 
-Продакшн по-прежнему его собственный: тяжёлый бас, минималистичная аранжировка и сильный ритм. SETTWOR говорит, что Brazilian Phonk пока эксперимент и полностью переходить в этот жанр он не планирует. Он хочет посмотреть, как слушатели отреагируют на такое звучание.
+Продакшн по-прежнему его собственный: тяжёлый бас, минималистичная аранжировка и сильный ритм. SETTWOR говорит, что бразильский фонк пока эксперимент и полностью переходить в этот жанр он не планирует. Он хочет посмотреть, как слушатели отреагируют на такое звучание.
 
 Другие треки в этом стиле уже в работе. Несколько должны выйти в ближайшем будущем. Подробнее о его пути можно прочитать в [официальной биографии](/bioRU.html).[\[4\]](#ref-4)
 

@@ -1,0 +1,16 @@
+---
+layout: page
+rail: streams
+lang: ru
+lang_name: Русский
+ref: streams
+order: 2
+# false = noindex, out of every hreflang set, out of the sitemap, not in the language switcher. Turn it to true only after the text is read (todo i18n.md D7).
+i18n_ready: true
+title: "Стримы"
+seo_title: "Стримы SETTWOR | Прослушивания и просмотры на всех платформах"
+description: "Сколько раз слушали музыку SETTWOR: Spotify, Apple Music, Pandora, Deezer и другие платформы, а также просмотры релизов и всего канала на YouTube."
+image: /images/main.jpg
+image_alt: "Портрет SETTWOR, phonk-артиста и продюсера"
+---
+{%- include streams-body.html -%}

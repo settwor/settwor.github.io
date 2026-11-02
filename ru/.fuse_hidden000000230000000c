@@ -1,0 +1,17 @@
+---
+layout: page
+rail: home
+license_note: true
+lang: ru
+lang_name: Русский
+ref: home
+order: 2
+# false = noindex, out of every hreflang set, out of the sitemap, not in the language switcher. Turn it to true only after the text is read (todo i18n.md D7).
+i18n_ready: true
+title: SETTWOR
+seo_title: "SETTWOR — бразильский фонк и фонк артист | Официальный сайт"
+description: "Официальный сайт SETTWOR, phonk-артиста и продюсера из Украины, живущего в Польше; также делает Ð±ÑÐ°Ð·Ð¸Ð»ÑÑÐºÐ¸Ð¹ ÑÐ¾Ð½Ðº. Биография, релизы, новости, фото и контакты."
+image: /images/main.jpg
+image_alt: "Портрет SETTWOR, phonk-артиста и продюсера"
+---
+{%- include home-body.html -%}

@@ -1,0 +1,91 @@
+{%- include i18n-lang.html -%}
+{%- comment -%}
+  11.34 (languages, Phase 2): texts by page language (i18n-t.html, English fallback kept here), variables start with ft_.
+  11.39 (Phase 4): the gate for biography pages is removed (a biography page has the footer of its own language). 11.58 (Phase 7): the legal links lead to the READY page of the language (i18n-urls.html), else to the English page.
+{%- endcomment -%}
+{%- assign ft_tl = i18n_lang -%}{%- assign ft_lp = i18n_lp -%}
+{%- if ft_lp == "" -%}
+{%- assign ft_releases = "/releases.html" -%}{%- assign ft_news = "/news/" -%}{%- assign ft_streams = "/streams.html" -%}{%- assign ft_photos = "/photo.html" -%}{%- assign ft_bio = "/bio.html" -%}{%- assign ft_biolink = " data-bio-link" -%}{%- assign ft_privacy = "/privacy.html" -%}{%- assign ft_license = "/license.html" -%}
+{%- else -%}
+{%- include i18n-urls.html lang=ft_tl -%}
+{%- assign ft_releases = i18n_u_releases -%}{%- assign ft_news = i18n_u_news -%}{%- assign ft_streams = i18n_u_streams -%}{%- assign ft_photos = i18n_u_photo -%}{%- assign ft_bio = i18n_bio -%}{%- assign ft_biolink = "" -%}{%- assign ft_privacy = i18n_u_privacy -%}{%- assign ft_license = i18n_u_license -%}
+{%- endif -%}
+{%- capture ft_t_site -%}{% include i18n-t.html key="footer_site" en="Site" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_releases -%}{% include i18n-t.html key="menu_releases" en="Releases" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_news -%}{% include i18n-t.html key="menu_news" en="News" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_streams -%}{% include i18n-t.html key="menu_streams" en="Streams" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_bio -%}{% include i18n-t.html key="menu_biography" en="Biography" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_photos -%}{% include i18n-t.html key="menu_photos" en="Photos" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_rss -%}{% include i18n-t.html key="footer_rss" en="RSS feed" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_push -%}{% include i18n-t.html key="footer_notifications" en="Get notifications" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_listen -%}{% include i18n-t.html key="footer_listen" en="Listen" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_legal -%}{% include i18n-t.html key="footer_legal" en="Legal" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_license -%}{% include i18n-t.html key="footer_license" en="Photo license" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_privacy -%}{% include i18n-t.html key="footer_privacy" en="Privacy policy" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_cookies -%}{% include i18n-t.html key="footer_cookies" en="Cookie settings" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_theme -%}{% include i18n-t.html key="footer_theme" en="Colour theme" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_auto -%}{% include i18n-t.html key="theme_auto" en="Auto" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_light -%}{% include i18n-t.html key="theme_light" en="Light" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_dark -%}{% include i18n-t.html key="theme_dark" en="Dark" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_official -%}{% include i18n-t.html key="footer_official" en="Official website." lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_ver -%}{% include i18n-t.html key="footer_version" en="Site version" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_projects -%}{% include i18n-t.html key="footer_projects" en="Projects by SETTWOR:" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_ledger -%}{% include i18n-t.html key="footer_ledgertone" en="SETTWOR on Pandora" lang=ft_tl %}{%- endcapture -%}
+{%- capture ft_t_cdra -%}{% include i18n-t.html key="footer_cdra" en="stream milestone awards" lang=ft_tl %}{%- endcapture -%}
+<!-- ===== Footer (one copy for the whole site) ===== -->
+<footer class="site-footer">
+    <div class="site-footer__grid">
+        <nav aria-labelledby="footer-site">
+            <h2 class="footer-title" id="footer-site">{{ ft_t_site }}</h2>
+            <ul class="footer-links">
+                <li><a href="{{ ft_releases }}">{{ ft_t_releases }}</a></li>
+                <li><a href="{{ ft_news }}">{{ ft_t_news }}</a></li>
+                <li><a href="{{ ft_streams }}">{{ ft_t_streams }}</a></li>
+                <li><a href="{{ ft_bio }}"{{ ft_biolink }}>{{ ft_t_bio }}</a></li>
+                <li><a href="{{ ft_photos }}">{{ ft_t_photos }}</a></li>
+                <li><a href="/feed.xml">{{ ft_t_rss }}</a></li>
+                {%- if site.onesignal_app_id and site.onesignal_app_id != "" %}
+                <li><button class="link-button" type="button" data-push-open hidden>{{ ft_t_push }}</button></li>
+                {%- endif %}
+            </ul>
+        </nav>
+        <nav aria-labelledby="footer-bio">
+            <h2 class="footer-title" id="footer-bio">{{ ft_t_bio }}</h2>
+            <ul class="footer-links">
+                {%- assign bio_list = site.bio | sort: "order" %}
+                {%- for item in bio_list %}
+                <li><a href="{{ item.url }}" hreflang="{{ item.lang }}" lang="{{ item.lang }}">{{ item.lang_name }}</a></li>
+                {%- endfor %}
+            </ul>
+        </nav>
+        {%- include artist-urls.html %}
+        <nav aria-labelledby="footer-listen">
+            <h2 class="footer-title" id="footer-listen">{{ ft_t_listen }}</h2>
+            <ul class="footer-links">
+                <li><a href="{{ au_spotify }}" rel="me noopener">Spotify</a></li>
+                <li><a href="{{ au_apple }}" rel="me noopener">Apple Music</a></li>
+                <li><a href="{{ au_pandora }}" rel="me noopener">Pandora</a></li>
+                <li><a href="{{ au_ytm }}" rel="me noopener">YouTube Music</a></li>
+            </ul>
+        </nav>
+        <nav aria-labelledby="footer-legal">
+            <h2 class="footer-title" id="footer-legal">{{ ft_t_legal }}</h2>
+            <ul class="footer-links">
+                <li><a href="{{ ft_license }}">{{ ft_t_license }}</a></li>
+                <li><a href="{{ ft_privacy }}">{{ ft_t_privacy }}</a></li>
+                <li><button class="link-button" type="button" data-consent-open>{{ ft_t_cookies }}</button></li>
+            </ul>
+            <div class="theme-switch" role="group" aria-labelledby="theme-label" hidden>
+                <span class="theme-switch__label" id="theme-label">{{ ft_t_theme }}</span>
+                <button class="btn btn--sm" type="button" data-theme-set="auto" aria-pressed="true">{{ ft_t_auto }}</button>
+                <button class="btn btn--sm" type="button" data-theme-set="light" aria-pressed="false">{{ ft_t_light }}</button>
+                <button class="btn btn--sm" type="button" data-theme-set="dark" aria-pressed="false">{{ ft_t_dark }}</button>
+            </div>
+        </nav>
+    </div>
+    {%- comment -%} v11.32: language switcher, printed only when this page has translations (not on biography pages: they list their languages above). {%- endcomment -%}
+    {%- unless page.collection == "bio" %}{% include lang-switch.html %}{% endunless %}
+    <p class="footer-copy">© <span data-current-year>{{ site.time | date: "%Y" }}</span> SETTWOR. {{ ft_t_official }} <span class="footer-est">est. 2024</span> <span class="footer-ver">{{ ft_t_ver }} {% include site-version.html %}</span></p>
+    <!-- Visible links to the projects of the artist: Ledgertone (pairs with "subjectOf" in person-jsonld.html) and CDRA (pairs with the cdra.settwor.com.pl entry in "sameAs"). One line since v10.1. -->
+    <p class="footer-copy">{{ ft_t_projects }} <a href="https://ledgertone.settwor.com.pl/settwor.html" rel="noopener">Ledgertone: {{ ft_t_ledger }}</a> (<a href="https://ledgertone.settwor.com.pl/settwor-ru.html" rel="noopener" hreflang="ru" lang="ru">RU</a>) · <a href="https://cdra.settwor.com.pl/" rel="noopener">CDRA: {{ ft_t_cdra }}</a></p>
+</footer>

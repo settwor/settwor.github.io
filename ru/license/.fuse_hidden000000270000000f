@@ -1,0 +1,43 @@
+---
+layout: page
+rail: site
+license_note: false
+lang: ru
+lang_name: Русский
+ref: license
+order: 2
+# false = noindex, out of every hreflang set, out of the sitemap, not in the language switcher. Turn it to true only after the text is read (todo i18n.md D7).
+i18n_ready: true
+permalink: /ru/license/
+title: "Лицензия на фотографии (CC BY 4.0)"
+description: "Как использовать фотографии SETTWOR с этого сайта: их можно свободно распространять и изменять по лицензии CC BY 4.0 с указанием автора."
+---
+<div class="prose">
+            <h1>Лицензия на фотографии</h1>
+            <p class="meta">Последнее обновление: 13 октября 2026 г.</p>
+            <p>Английская версия, <a href="/license.html" hreflang="en" lang="en">Photo license</a>, является основной. Этот перевод приведён для удобства.</p>
+
+            <h2>На что распространяется лицензия</h2>
+            <p>Фотографии SETTWOR, опубликованные на этом сайте (портрет на главной странице и снимки в разделе <a href="{% include i18n-urls.html lang="ru" %}{{ i18n_u_photo }}">«Фотографии»</a>), распространяются по лицензии <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">Creative Commons «Атрибуция» 4.0 Всемирная (CC BY 4.0)</a>.</p>
+
+            <h2>Что вы можете делать</h2>
+            <ul>
+                <li>Распространять: копировать и передавать фотографии на любом носителе и в любом формате.</li>
+                <li>Изменять: обрезать, редактировать и создавать на их основе новое, в том числе в коммерческих целях.</li>
+            </ul>
+            <p>Взамен вы должны указать автора, дать ссылку на лицензию и отметить, если вы вносили изменения.</p>
+
+            <h2>Как указать автора</h2>
+            <p>Разместите указание автора рядом с фотографией, либо в подписи или описании там, где фотография появляется. Пример:</p>
+            <pre>Фото: SETTWOR (settwor.com.pl), лицензия CC BY 4.0</pre>
+            <p>По возможности сделайте «SETTWOR» ссылкой на <a href="https://settwor.com.pl/">settwor.com.pl</a>, а «CC BY 4.0» ссылкой на страницу лицензии, указанную выше.</p>
+
+            <h2>На что лицензия не распространяется</h2>
+            <p>Лицензия относится только к фотографиям. Она не охватывает музыку и записи, обложки релизов, имя и логотип SETTWOR, а также тексты этого сайта. Не используйте фотографию так, чтобы это создавало впечатление, что SETTWOR поддерживает вас или ваш продукт.</p>
+
+            <h2>Шрифт</h2>
+            <p>Сайт набран шрифтом Geologica, copyright 2020 The Geologica Project Authors (<a href="https://github.com/googlefonts/geologica">github.com/googlefonts/geologica</a>), используемым по лицензии SIL Open Font License 1.1. <a href="/fonts/OFL.txt">Текст лицензии</a> хранится вместе с файлами шрифта. Шрифт не входит в собственное лицензируемое содержимое SETTWOR.</p>
+
+            <h2>Другое использование и исходные файлы</h2>
+            <p>За файлами в исходном разрешении или для любого использования, требующего других условий, пишите на <a href="mailto:settwor@gmail.com">settwor@gmail.com</a>.</p>
+</div>

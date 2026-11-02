@@ -1,0 +1,16 @@
+---
+layout: page
+rail: releases
+lang: ru
+lang_name: Русский
+ref: releases
+order: 2
+# false = noindex, out of every hreflang set, out of the sitemap, not in the language switcher. Turn it to true only after the text is read (todo i18n.md D7).
+i18n_ready: true
+title: "Релизы"
+seo_title: "Релизы SETTWOR | Песни, синглы и альбомы"
+description: "Все релизы SETTWOR, сначала новые: синглы, альбомы и микстейпы с 2021 года до сегодняшнего дня, со ссылками на Spotify."
+image: "/images/SETTWOR with releases.png"
+image_alt: "SETTWOR с частью своих релизов"
+---
+{%- include releases-body.html -%}
