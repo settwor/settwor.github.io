@@ -28,6 +28,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ATOM = "{http://www.w3.org/2005/Atom}"
 API = "https://api.onesignal.com/notifications"
 WAIT_MINUTES = 15
+# Square PNG with the logo, shown in the notification. Must open over https without redirects.
+ICON_PATH = "/images/favicon-192.png"
 
 
 def read_json_yaml(path):
@@ -75,15 +77,19 @@ def page_is_live(url):
         return False
 
 
-def send(app_id, key, title, text, url, segment="Total Subscriptions"):
-    body = json.dumps({
+def send(app_id, key, title, text, url, segment="Total Subscriptions", icon=None):
+    payload = {
         "app_id": app_id,
         "target_channel": "push",
         "included_segments": [segment],
         "headings": {"en": title},
         "contents": {"en": text},
         "url": url,
-    }).encode("utf-8")
+    }
+    if icon:  # without an icon the browser draws a placeholder letter ("S")
+        payload["chrome_web_icon"] = icon
+        payload["firefox_icon"] = icon
+    body = json.dumps(payload).encode("utf-8")
     req = urllib.request.Request(API, data=body, method="POST", headers={
         "Content-Type": "application/json",
         "Authorization": "Key " + key,
@@ -111,10 +117,10 @@ def diagnose(app_id, key):
             print("DIAG: players request with %s failed: %s %s" % (scheme, e, detail))
 
 
-def send_any_segment(app_id, key, title, text, url):
+def send_any_segment(app_id, key, title, text, url, icon=None):
     res = {}
     for seg in SEGMENTS:
-        res = send(app_id, key, title, text, url, seg)
+        res = send(app_id, key, title, text, url, seg, icon)
         print("OneSignal answered for segment '%s': %s" % (seg, json.dumps(res, ensure_ascii=False)))
         if res.get("id") and not res.get("errors"):
             return res
@@ -139,7 +145,10 @@ def main(argv):
         print("No new articles: nothing to send.")
         return 0
 
-    app_id = str((read_json_yaml("_config.yml") or {}).get("onesignal_app_id") or "")
+    config = read_json_yaml("_config.yml") or {}
+    app_id = str(config.get("onesignal_app_id") or "")
+    site_url = str(config.get("url") or "https://settwor.com.pl").rstrip("/")
+    icon = site_url + ICON_PATH
     key = os.environ.get("ONESIGNAL_API_KEY", "")
     if not dry and (not app_id or not key):
         print("OneSignal is not set up (onesignal_app_id or ONESIGNAL_API_KEY is empty): nothing sent.")
@@ -182,10 +191,10 @@ def main(argv):
             continue
 
         if dry:
-            print("DRY RUN\n  title: %s\n  text:  %s\n  url:   %s" % (title, text, url))
+            print("DRY RUN\n  title: %s\n  text:  %s\n  url:   %s\n  icon:  %s" % (title, text, url, icon))
             continue
         try:
-            res = send_any_segment(app_id, key, title, text, url)
+            res = send_any_segment(app_id, key, title, text, url, icon)
             if not res.get("id") or res.get("errors"):
                 print("NOT SENT: OneSignal created no message. Most likely nobody is subscribed yet "
                       "(check OneSignal -> Audience -> Subscriptions) or the API key / App ID do not match.")
