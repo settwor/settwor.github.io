@@ -3,23 +3,25 @@ layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-{%- comment -%} Fixed pages. Add a new page to this list when you create one. {%- endcomment -%}
-{%- assign fixed_pages = "/,/news/,/releases.html,/streams.html,/top-phonk-artist.html,/photo.html,/license.html,/privacy.html" | split: "," -%}
-{%- for fixed in fixed_pages %}
-    <url><loc>{{ fixed | absolute_url }}</loc></url>
-{%- endfor %}
-{%- comment -%} Biographies: one entry per language file in the folder _bio, each one lists all language versions (hreflang). {%- endcomment -%}
-{%- assign default_bio = site.bio | where: "lang", "en" | first -%}
+{%- comment -%} Fixed pages. Add a new page to this list when you create one. The home page ("/") is NOT here since 11.38, `/license.html` and `/privacy.html` (11.58) and "/streams.html" (11.44) "/releases.html" (11.45) and "/photo.html" (11.46) are NOT here: they have `ref` and are listed by the group loop below. {%- endcomment -%}
+{%- comment -%} Biographies: one entry per language file in the folder _bio, each one lists all language versions (hreflang, include i18n-alternates.html). {%- endcomment -%}
 {%- for item in site.bio %}
     <url>
         <loc>{{ item.url | absolute_url | xml_escape }}</loc>
-        {%- for alt in site.bio %}
-        <xhtml:link rel="alternate" hreflang="{{ alt.lang }}" href="{{ alt.url | absolute_url | xml_escape }}"/>
-        {%- endfor %}
-        {%- if default_bio %}
-        <xhtml:link rel="alternate" hreflang="x-default" href="{{ default_bio.url | absolute_url | xml_escape }}"/>
-        {%- endif %}
+        {%- include i18n-alternates.html ref="bio" mode="sitemap" %}
     </url>
+{%- endfor %}
+{%- comment -%}
+  Pages of translation groups (front matter `ref`, v11.30). Each one lists all READY versions. When an English fixed page gets a `ref`,
+  take it out of the list `fixed_pages` above, or it is listed twice. Pages with `i18n_ready: false` are skipped.
+{%- endcomment -%}
+{%- for item in site.pages %}
+{%- if item.ref and item.ref != "" and item.i18n_ready != false %}
+    <url>
+        <loc>{{ item.url | absolute_url | xml_escape }}</loc>
+        {%- include i18n-alternates.html ref=item.ref mode="sitemap" %}
+    </url>
+{%- endif %}
 {%- endfor %}
 {%- comment -%} News articles. Entries that point to an old page use that old address. {%- endcomment -%}
 {%- for post in site.posts %}
@@ -28,7 +30,17 @@ layout: null
         {%- if post.updated and post.updated != "" %}
         <lastmod>{{ post.updated | date_to_xmlschema }}</lastmod>
         {%- endif %}
+        {%- include i18n-alternates.html ref=post.slug mode="sitemap" %}
     </url>
+{%- endfor %}
+{%- comment -%} Translated news articles (collection news_tr, v11.50): only ready ones. Their hreflang group = the slug of the English post (i18n-alternates.html, v11.52). {%- endcomment -%}
+{%- for item in site.news_tr %}
+{%- unless item.i18n_ready == false %}
+    <url>
+        <loc>{{ item.url | uri_escape | absolute_url | xml_escape }}</loc>
+        {%- include i18n-alternates.html ref=item.ref mode="sitemap" %}
+    </url>
+{%- endunless %}
 {%- endfor %}
 {%- comment -%} Song lyrics pages (folder "lyrics", layout "lyrics"). {%- endcomment -%}
 {%- assign sm_lyrics = site.pages | where: "layout", "lyrics" -%}

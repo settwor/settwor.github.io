@@ -3,10 +3,12 @@
   Usage: include empty-state.html title="..." text="..." href="..." label="..."
   href and label are optional: a way forward (SKILL 16 wayfinding: "Where can I go?").
 {%- endcomment -%}
+{%- include i18n-gate.html -%}
+{%- capture es_more -%}{% include i18n-t.html key="empty_continue" en="Continue" lang=i18n_gtl %}{%- endcapture -%}
 <div class="empty">
     <p class="empty__title">{{ include.title }}</p>
     <p class="empty__text">{{ include.text }}</p>
     {%- if include.href and include.href != "" %}
-    <a class="btn empty__action" href="{{ include.href }}">{{ include.label | default: "Continue" }}</a>
+    <a class="btn empty__action" href="{{ include.href }}">{{ include.label | default: es_more }}</a>
     {%- endif %}
 </div>

@@ -46,7 +46,7 @@ As he says in [his biography](/bio.html), hearing that people were listening to 
 
 On May 8, 2022, he released [*LUNATIC*](/releases.html#release-lunatic), his first track in the [phonk](https://en.wikipedia.org/wiki/Phonk) genre. Phonk became the main direction of his early releases.
 
-His sound began to change with [*DON’T STOP*](/releases.html#release-don-t-stop) in December 2023. In 2024 he released his first full-length album, [*GET IT, Vol.1*](/releases.html#release-get-it-vol-1). It included *GOT ME UP 2*, later his most successful track. On March 28, 2025, he released [*BREAKPOINT Mixtape*](/releases.html#release-breakpoint-mixtape). After it he started exploring [Brazilian funk](https://en.wikipedia.org/wiki/Funk_carioca), house and [EDM](https://en.wikipedia.org/wiki/Electronic_dance_music).[\[2\]](#ref-2)[\[5\]](#ref-5)[\[6\]](#ref-6)[\[7\]](#ref-7)
+His sound began to change with [*DON’T STOP*](/releases.html#release-don-t-stop) in December 2023. In 2024 he released his first full-length album, [*GET IT, Vol.1*](/releases.html#release-get-it-vol-1). It included *GOT ME UP 2*, later his most successful track. On March 28, 2025, he released [*BREAKPOINT Mixtape*](/releases.html#release-breakpoint-mixtape). After it he started exploring Brazilian Phonk, house and [EDM](https://en.wikipedia.org/wiki/Electronic_dance_music).[\[2\]](#ref-2)[\[5\]](#ref-5)[\[6\]](#ref-6)[\[7\]](#ref-7)
 
 **Five years of growth**
 

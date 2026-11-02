@@ -1,15 +1,22 @@
+{%- include i18n-gate.html -%}
 {%- comment -%}
   "Get new articles" box. A website cannot push messages by itself, so people follow
   the news with the feed (/feed.xml) in any RSS reader or, when OneSignal is set up
   (onesignal_app_id in _config.yml), with the bell in the corner of the page.
 {%- endcomment -%}
+{%- capture sb_title -%}{% include i18n-t.html key="subscribe_title" en="Get new articles" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture sb_lead -%}{% include i18n-t.html key="subscribe_lead" en="New releases and news appear here first." lang=i18n_gtl %}{%- endcapture -%}
+{%- capture sb_push -%}{% include i18n-t.html key="subscribe_push" en="Press “Get notifications” to hear about every new article in your browser, or add the feed to an RSS reader such as Feedly or Inoreader." lang=i18n_gtl %}{%- endcapture -%}
+{%- capture sb_rss -%}{% include i18n-t.html key="subscribe_rss" en="Add the feed to an RSS reader such as Feedly or Inoreader." lang=i18n_gtl %}{%- endcapture -%}
+{%- capture sb_btn -%}{% include i18n-t.html key="footer_notifications" en="Get notifications" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture sb_feed -%}{% include i18n-t.html key="footer_rss" en="RSS feed" lang=i18n_gtl %}{%- endcapture -%}
 <section class="subscribe" aria-labelledby="subscribe-title">
-    <h2 class="subscribe__title" id="subscribe-title">Get new articles</h2>
-    <p class="subscribe__text">New releases and news appear here first.{% if site.onesignal_app_id and site.onesignal_app_id != "" %} Press “Get notifications” to hear about every new article in your browser, or add the feed to an RSS reader such as Feedly or Inoreader.{% else %} Add the feed to an RSS reader such as Feedly or Inoreader.{% endif %}</p>
+    <h2 class="subscribe__title" id="subscribe-title">{{ sb_title }}</h2>
+    <p class="subscribe__text">{{ sb_lead }}{% if site.onesignal_app_id and site.onesignal_app_id != "" %} {{ sb_push }}{% else %} {{ sb_rss }}{% endif %}</p>
     <div class="subscribe__actions">
         {%- if site.onesignal_app_id and site.onesignal_app_id != "" %}
-        <button class="btn btn--thin" type="button" data-push-open hidden>Get notifications</button>
+        <button class="btn btn--thin" type="button" data-push-open hidden>{{ sb_btn }}</button>
         {%- endif %}
-        <a class="btn btn--thin" href="/feed.xml" type="application/atom+xml">RSS feed</a>
+        <a class="btn btn--thin" href="/feed.xml" type="application/atom+xml">{{ sb_feed }}</a>
     </div>
 </section>

@@ -53,19 +53,20 @@
 {%- if page.legacy_url and page.legacy_url != "" %}
     <meta name="robots" content="noindex, follow">
     <meta http-equiv="refresh" content="0; url={{ canonical }}">
+{%- elsif page.i18n_ready == false %}
+    <meta name="robots" content="noindex, follow">
 {%- else %}
     <meta name="robots" content="index, follow, max-image-preview:large">
 {%- endif %}
     <link rel="canonical" href="{{ canonical }}">
-{%- if page.collection == "bio" %}
-{%- for item in site.bio %}
-    <link rel="alternate" hreflang="{{ item.lang }}" href="{{ item.url | absolute_url }}">
-{%- endfor %}
-{%- assign default_bio = site.bio | where: "lang", "en" | first %}
-{%- if default_bio %}
-    <link rel="alternate" hreflang="x-default" href="{{ default_bio.url | absolute_url }}">
-{%- endif %}
-{%- endif %}
+{%- comment -%} v11.30: hreflang of the translation group of this page (biographies today; every page with a `ref` later). Nothing is printed for a page without a group or a page that is not ready. {%- endcomment -%}
+{%- assign i18n_page_ref = page.ref -%}
+{%- if page.collection == "bio" %}{%- assign i18n_page_ref = "bio" -%}{%- endif -%}
+{%- comment -%} v11.52: an English news post has no `ref`: its group is its slug (see i18n-alternates.html). {%- endcomment -%}
+{%- if page.layout == "article" and page.ref == nil and page.slug %}{%- assign i18n_page_ref = page.slug -%}{%- endif -%}
+{%- unless page.i18n_ready == false %}
+{%- include i18n-alternates.html ref=i18n_page_ref mode="head" %}
+{%- endunless %}
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" content="#f6f6f6" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
@@ -77,6 +78,16 @@
     <!-- Open Graph / Twitter -->
     <meta property="og:type" content="{% if page.layout == "article" %}article{% else %}website{% endif %}">
     <meta property="og:site_name" content="SETTWOR">
+{%- comment -%} v11.31: og:locale of the page and og:locale:alternate of its ready translations. {%- endcomment -%}
+{%- assign i18n_cur = page.lang | default: site.lang -%}
+{%- capture i18n_cur_loc %}{% include i18n-locale.html code=i18n_cur %}{% endcapture -%}
+{%- assign i18n_cur_loc = i18n_cur_loc | strip -%}
+{%- if i18n_cur_loc != "" %}
+    <meta property="og:locale" content="{{ i18n_cur_loc }}">
+{%- endif %}
+{%- unless page.i18n_ready == false %}
+{%- include i18n-alternates.html ref=i18n_page_ref mode="og" cur=i18n_cur %}
+{%- endunless %}
     <meta property="og:title" content="{{ page.seo_title | default: page.title | escape }}">
     <meta property="og:description" content="{{ meta_description | escape }}">
     <meta property="og:url" content="{{ canonical }}">
@@ -91,7 +102,7 @@
 {%- endif %}
     <meta name="twitter:card" content="{% if page.image and page.image != "" %}summary_large_image{% else %}summary{% endif %}">
 
-{% include bio-router.html %}
+{% include lang-suggest.html %}
     <script>document.documentElement.className+=" js";setTimeout(function(){if(!window.__ready)document.documentElement.className+=" no-reveal"},3000)</script>
     <script>try{var t=localStorage.getItem("settwor-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
     <!-- Icons (v11.12): ?v= is the site version; raise it together with VERSION whenever the icon picture changes, so Google and browsers fetch the files again. Google needs a square icon, a multiple of 48 px, on a crawlable address. /favicon-48.png is cut from /favicon.ico (the same picture). -->
@@ -109,7 +120,7 @@
 </head>
 
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">{%- include i18n-gate.html -%}{% include i18n-t.html key="skip_link" en="Skip to content" lang=i18n_gtl %}</a>
 
     {% include header.html %}
 
@@ -118,6 +129,7 @@
     {% include footer.html %}
 
     {% include consent.html %}
+    {% include js-strings.html %}
     {% include push-ask.html %}
 </body>
 

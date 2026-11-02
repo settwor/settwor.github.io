@@ -51,7 +51,8 @@
 {%- assign st_list_all = st_list -%}
 {%- if st_clips > 0 -%}
   {%- assign padded = "000000000000" | append: st_clips | slice: -12, 12 -%}
-  {%- assign st_list_all = st_list_all | append: padded | append: "|yt_clips|YouTube: release videos~" -%}
+  {%- capture st_yt_name -%}{% include i18n-t.html key="numbers_yt_row" en="YouTube: release videos" %}{%- endcapture -%}
+  {%- assign st_list_all = st_list_all | append: padded | append: "|yt_clips|" | append: st_yt_name | append: "~" -%}
 {%- endif -%}
 {%- assign st_rows_all = st_list_all | split: "~" | sort | reverse -%}
 

@@ -1,6 +1,31 @@
 ---
 layout: default
 ---
+{%- comment -%}
+  v11.49. One layout for every language. English reads site.posts. Another language reads the collection news_tr (folder _news_tr, Phase 6)
+  filtered by `lang`, so the previous / next article and the latest list never mix languages. Texts: keys art_* of _data/i18n/<lang>.yml (English stays here).
+  Variables start with art_.
+{%- endcomment -%}
+{%- include i18n-lang.html -%}
+{%- include i18n-urls.html lang=i18n_lang -%}
+{%- if i18n_lang == "en" -%}{%- assign art_pool = site.posts -%}{%- else -%}{%- assign art_pool = site.news_tr | where: "lang", i18n_lang | sort: "date" | reverse -%}{%- endif -%}
+{%- capture art_by %}{% include i18n-t.html key="art_by" en="By" %}{% endcapture -%}
+{%- capture art_published %}{% include i18n-t.html key="art_published" en="Published" %}{% endcapture -%}
+{%- capture art_updated %}{% include i18n-t.html key="art_updated" en="Updated" %}{% endcapture -%}
+{%- capture art_more %}{% include i18n-t.html key="art_more_title" en="More on this site" %}{% endcapture -%}
+{%- capture art_t_bio %}{% include i18n-t.html key="art_bio" en="Biography of SETTWOR" %}{% endcapture -%}
+{%- capture art_t_rel %}{% include i18n-t.html key="art_releases" en="All releases" %}{% endcapture -%}
+{%- capture art_t_photo %}{% include i18n-t.html key="art_photos" en="Photos" %}{% endcapture -%}
+{%- capture art_t_all %}{% include i18n-t.html key="art_all_news" en="All news" %}{% endcapture -%}
+{%- capture art_t_newer %}{% include i18n-t.html key="art_newer" en="Newer" %}{% endcapture -%}
+{%- capture art_t_older %}{% include i18n-t.html key="art_older" en="Older" %}{% endcapture -%}
+{%- capture art_t_amore %}{% include i18n-t.html key="art_aria_more" en="More news" %}{% endcapture -%}
+{%- capture art_t_latest %}{% include i18n-t.html key="art_latest" en="Latest news" %}{% endcapture -%}
+{%- capture art_t_aelse %}{% include i18n-t.html key="art_aria_elsewhere" en="Elsewhere on the web" %}{% endcapture -%}
+{%- capture art_t_listen %}{% include i18n-t.html key="art_listen" en="Listen to the release" %}{% endcapture -%}
+{%- capture art_t_spot %}{% include i18n-t.html key="art_open_spotify" en="Open on Spotify" %}{% endcapture -%}
+{%- capture art_t_open %}{% include i18n-t.html key="art_open_release" en="Open the release" %}{% endcapture -%}
+{%- capture art_t_news %}{% include i18n-t.html key="menu_news" en="News" %}{% endcapture -%}
 {%- assign author_name = page.author | default: "SETTWOR" -%}
 {%- assign cover = "" -%}
 {%- if page.image and page.image != "" -%}
@@ -13,7 +38,8 @@ layout: default
 {%- assign older = nil -%}
 {%- assign last_post = nil -%}
 {%- assign found = false -%}
-{%- for item in site.posts -%}
+{%- for item in art_pool -%}
+{%- unless item.i18n_ready == false -%}
 {%- if found and older == nil -%}
 {%- assign older = item -%}
 {%- endif -%}
@@ -22,6 +48,7 @@ layout: default
 {%- assign newer = last_post -%}
 {%- endif -%}
 {%- assign last_post = item -%}
+{%- endunless -%}
 {%- endfor -%}
 
 <div class="page">
@@ -35,7 +62,7 @@ layout: default
         </section>
 {%- else %}
         <article class="article">
-            <p class="back">{% include back-link.html href="/news/" label="News" %}</p>
+            <p class="back">{% include back-link.html href=i18n_u_news label="News" lkey="menu_news" %}</p>
 
             <header class="article__head">
                 <h1 class="article__title">{{ page.title }}</h1>
@@ -43,10 +70,10 @@ layout: default
                 <p class="article__deck">{{ page.description }}</p>
                 {%- endif %}
                 <p class="article__meta">
-                    <span>By <a href="/" rel="author">{{ author_name }}</a></span>
-                    <span>Published <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time></span>
+                    <span>{{ art_by }} <a href="{% if i18n_lang == "en" %}/{% else %}{{ i18n_u_home }}{% endif %}" rel="author">{{ author_name }}</a></span>
+                    <span>{{ art_published }} <time datetime="{{ page.date | date_to_xmlschema }}">{% include i18n-date.html d=page.date %}</time></span>
                     {%- if page.updated and page.updated != "" %}
-                    <span>Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%-d %B %Y" }}</time></span>
+                    <span>{{ art_updated }} <time datetime="{{ page.updated | date_to_xmlschema }}">{% include i18n-date.html d=page.updated %}</time></span>
                     {%- endif %}
                 </p>
             </header>
@@ -65,9 +92,9 @@ layout: default
             </div>
 
             {%- if page.listen_url and page.listen_url != "" %}
-            <aside class="listen" aria-label="Listen to the release">
-                <p class="listen__text">Listen to the release</p>
-                <a class="btn" href="{{ page.listen_url }}" rel="noopener">{% if page.listen_url contains "spotify" %}Open on Spotify{% else %}Open the release{% endif %}</a>
+            <aside class="listen" aria-label="{{ art_t_listen }}">
+                <p class="listen__text">{{ art_t_listen }}</p>
+                <a class="btn" href="{{ page.listen_url }}" rel="noopener">{% if page.listen_url contains "spotify" %}{{ art_t_spot }}{% else %}{{ art_t_open }}{% endif %}</a>
             </aside>
             {%- endif %}
 
@@ -75,28 +102,28 @@ layout: default
 
             {%- assign first_bio = site.bio | sort: "order" | first %}
             <aside class="article__more" aria-labelledby="more-title">
-                <h2 class="article__more-title" id="more-title">More on this site</h2>
+                <h2 class="article__more-title" id="more-title">{{ art_more }}</h2>
                 <ul>
-                    <li><a href="{{ first_bio.url }}">Biography of SETTWOR</a></li>
-                    <li><a href="/releases.html">All releases</a></li>
-                    <li><a href="/photo.html">Photos</a></li>
-                    <li><a href="/news/">All news</a></li>
+                    <li><a href="{% if i18n_lang == "en" %}{{ first_bio.url }}{% else %}{{ i18n_bio }}{% endif %}">{{ art_t_bio }}</a></li>
+                    <li><a href="{{ i18n_u_releases }}">{{ art_t_rel }}</a></li>
+                    <li><a href="{{ i18n_u_photo }}">{{ art_t_photo }}</a></li>
+                    <li><a href="{{ i18n_u_news }}">{{ art_t_all }}</a></li>
                 </ul>
             </aside>
 
             {% include subscribe.html %}
 
             {%- if newer or older %}
-            <nav class="pager" aria-label="More news">
+            <nav class="pager" aria-label="{{ art_t_amore }}">
                 {%- if newer %}
                 <a class="pager__link pager__link--newer" href="{{ newer.legacy_url | default: newer.url }}">
-                    <span class="pager__label">Newer</span>
+                    <span class="pager__label">{{ art_t_newer }}</span>
                     <span class="pager__title">{{ newer.title }}</span>
                 </a>
                 {%- endif %}
                 {%- if older %}
                 <a class="pager__link pager__link--older" href="{{ older.legacy_url | default: older.url }}">
-                    <span class="pager__label">Older</span>
+                    <span class="pager__label">{{ art_t_older }}</span>
                     <span class="pager__title">{{ older.title }}</span>
                 </a>
                 {%- endif %}
@@ -107,29 +134,29 @@ layout: default
     </main>
 
     <!-- Right rail: links (below the article on phones) -->
-    <aside class="rail rail--end" aria-label="Elsewhere on the web">
+    <aside class="rail rail--end" aria-label="{{ art_t_aelse }}">
         <div class="rail__inner">
             {% include rail-end.html %}
         </div>
     </aside>
 
     <!-- Left rail: other news (wide screens only) -->
-    <aside class="rail rail--start" aria-label="More news">
+    <aside class="rail rail--start" aria-label="{{ art_t_amore }}">
         <div class="rail__inner">
             <nav class="rail-block" aria-labelledby="rail-more-news">
-                <h2 class="rail-block__title" id="rail-more-news">Latest news</h2>
+                <h2 class="rail-block__title" id="rail-more-news">{{ art_t_latest }}</h2>
                 <ul class="rail-list">
-                    {%- for item in site.posts limit: 5 %}
-                    {%- if item.url != page.url %}
+                    {%- for item in art_pool limit: 5 %}
+                    {%- if item.url != page.url and item.i18n_ready != false %}
                     <li>
                         <a class="rail-link" href="{{ item.legacy_url | default: item.url }}">
                             <span class="rail-link__name">{{ item.title }}</span>
-                            <span class="rail-link__desc">{{ item.date | date: "%-d %B %Y" }}</span>
+                            <span class="rail-link__desc">{% include i18n-date.html d=item.date %}</span>
                         </a>
                     </li>
                     {%- endif %}
                     {%- endfor %}
-                    <li><a class="rail-link" href="/news/"><span class="rail-link__name">All news</span></a></li>
+                    <li><a class="rail-link" href="{{ i18n_u_news }}"><span class="rail-link__name">{{ art_t_all }}</span></a></li>
                 </ul>
             </nav>
             {% include rail-reading.html %}

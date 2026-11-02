@@ -1,0 +1,10 @@
+{%- comment -%}
+  v11.31. One interface text in the language of the page, with the English text as the fallback.
+  Use: {% include i18n-t.html key="menu_news" en="News" %}   (flat key, no dots; en = the English text, it stays in the template)
+  The translations live in _data/i18n/<lang>.yml (one flat list per language: menu_news: Новости). A missing file or a missing key gives the English text.
+  Optional: lang="ru" to force a language. Prints the text on one line, no spaces around it, so it can sit inside an attribute.
+{%- endcomment -%}
+{%- assign i18n_tl = include.lang | default: page.lang | default: site.lang -%}
+{%- assign i18n_tbl = site.data.i18n[i18n_tl] -%}
+{%- assign i18n_tv = i18n_tbl[include.key] -%}
+{%- if i18n_tv and i18n_tv != "" -%}{{- i18n_tv -}}{%- else -%}{{- include.en -}}{%- endif -%}

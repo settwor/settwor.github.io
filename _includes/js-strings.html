@@ -1,0 +1,25 @@
+{%- include i18n-gate.html -%}
+{%- include i18n-urls.html lang=i18n_gtl -%}
+{%- comment -%}
+  11.37: the texts that js/main.js and js/fluid.js put on the page (picture viewer, release window, pull to refresh) as data attributes of one hidden element.
+  The scripts read them with a helper and keep the English text as the fallback. Values must not contain double quotes. Variables start with js_s. 11.59: data-license-url = the license page of the language (READY page, else English, i18n-urls.html).
+{%- endcomment -%}
+<div id="stw-strings" hidden
+    data-photograph="{% include i18n-t.html key="js_photograph" en="Photograph" lang=i18n_gtl %}"
+    data-close="{% include i18n-t.html key="js_close" en="Close" lang=i18n_gtl %}"
+    data-prev-photo="{% include i18n-t.html key="js_prev_photo" en="Previous photo" lang=i18n_gtl %}"
+    data-next-photo="{% include i18n-t.html key="js_next_photo" en="Next photo" lang=i18n_gtl %}"
+    data-license-url="{{ i18n_u_license }}"
+    data-credit="{% include i18n-t.html key="js_credit" en="How to give credit" lang=i18n_gtl %}"
+    data-cover-of="{% include i18n-t.html key="js_cover_of" en="Cover of " lang=i18n_gtl %}"
+    data-listen="{% include i18n-t.html key="js_listen" en="Listen" lang=i18n_gtl %}"
+    data-search-on="{% include i18n-t.html key="js_search_on" en="Search for this release on " lang=i18n_gtl %}"
+    data-search-note="{% include i18n-t.html key="js_search_note" en="Buttons with ⌕ open a search on that platform." lang=i18n_gtl %}"
+    data-tracklist="{% include i18n-t.html key="js_tracklist" en="Tracklist" lang=i18n_gtl %}"
+    data-lyrics="{% include i18n-t.html key="js_lyrics" en="Lyrics" lang=i18n_gtl %}"
+    data-lyrics-of="{% include i18n-t.html key="js_lyrics_of" en="Open the lyrics of " lang=i18n_gtl %}"
+    data-tracklist-page="{% include i18n-t.html key="js_tracklist_page" en="Open the tracklist page" lang=i18n_gtl %}"
+    data-no-tracklist="{% include i18n-t.html key="js_no_tracklist" en="The tracklist of this release is not added yet." lang=i18n_gtl %}"
+    data-prev-release="{% include i18n-t.html key="js_prev_release" en="Previous release" lang=i18n_gtl %}"
+    data-next-release="{% include i18n-t.html key="js_next_release" en="Next release" lang=i18n_gtl %}"
+    data-refreshing="{% include i18n-t.html key="js_refreshing" en="Refreshing" lang=i18n_gtl %}"></div>

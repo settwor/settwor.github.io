@@ -4,17 +4,35 @@ title: Page not found
 description: "This page does not exist. Use the links to find the news, releases or biography of SETTWOR."
 permalink: /404.html
 ---
+{%- include i18n-gate.html -%}
+{%- comment -%} 11.36: the 404 page is one file for the whole site and has no lang, so it is English; the keys are ready for the day it gets one. Title and description in the front matter stay English. {%- endcomment -%}
+{%- capture nf_h -%}{% include i18n-t.html key="notfound_title" en="Page not found" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture nf_p -%}{% include i18n-t.html key="notfound_text" en="This address does not exist on the site. It may have been moved or typed incorrectly." lang=i18n_gtl %}{%- endcapture -%}
+{%- capture nf_home -%}{% include i18n-t.html key="notfound_home" en="Go to the home page" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture nf_rel -%}{% include i18n-t.html key="menu_releases" en="Releases" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture nf_news -%}{% include i18n-t.html key="menu_news" en="News" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture nf_str -%}{% include i18n-t.html key="menu_streams" en="Streams" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture nf_bio -%}{% include i18n-t.html key="menu_biography" en="Biography" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture nf_ph -%}{% include i18n-t.html key="menu_photos" en="Photos" lang=i18n_gtl %}{%- endcapture -%}
 <div class="page page--single">
     <main class="page__main prose" id="main" tabindex="-1">
-        <h1>Page not found</h1>
-        <p>This address does not exist on the site. It may have been moved or typed incorrectly.</p>
+        <h1>{{ nf_h }}</h1>
+        <p>{{ nf_p }}</p>
         <ul>
-            <li><a href="/">Go to the home page</a></li>
-            <li><a href="/releases.html">Releases</a></li>
-            <li><a href="/news/">News</a></li>
-            <li><a href="/streams.html">Streams</a></li>
-            <li><a href="/bio.html">Biography</a></li>
-            <li><a href="/photo.html">Photos</a></li>
+            <li><a href="{{ i18n_glp }}/">{{ nf_home }}</a></li>
+            {%- if i18n_glp == "" %}
+            <li><a href="/releases.html">{{ nf_rel }}</a></li>
+            <li><a href="/news/">{{ nf_news }}</a></li>
+            <li><a href="/streams.html">{{ nf_str }}</a></li>
+            <li><a href="/bio.html">{{ nf_bio }}</a></li>
+            <li><a href="/photo.html">{{ nf_ph }}</a></li>
+            {%- else %}
+            <li><a href="{{ i18n_glp }}/releases/">{{ nf_rel }}</a></li>
+            <li><a href="{{ i18n_glp }}/news/">{{ nf_news }}</a></li>
+            <li><a href="{{ i18n_glp }}/streams/">{{ nf_str }}</a></li>
+            <li><a href="{{ i18n_bio }}">{{ nf_bio }}</a></li>
+            <li><a href="{{ i18n_glp }}/photo/">{{ nf_ph }}</a></li>
+            {%- endif %}
         </ul>
     </main>
 </div>

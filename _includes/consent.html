@@ -1,12 +1,21 @@
+{%- include i18n-gate.html -%}
+{%- comment -%} 11.36: texts by page language (i18n-t.html, English kept here), variables start with cn_. 11.58: the privacy address follows the language (i18n-urls.html, English fallback). {%- endcomment -%}
+{%- include i18n-urls.html lang=i18n_gtl -%}
+{%- capture cn_aria -%}{% include i18n-t.html key="consent_aria" en="Cookie consent" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture cn_text -%}{% include i18n-t.html key="consent_text" en="This site uses Google Analytics cookies to see which pages are read. They are set only if you accept. You can change this any time with “Cookie settings” in the footer." lang=i18n_gtl %}{%- endcapture -%}
+{%- capture cn_priv -%}{% include i18n-t.html key="footer_privacy" en="Privacy policy" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture cn_no -%}{% include i18n-t.html key="consent_decline" en="Decline" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture cn_yes -%}{% include i18n-t.html key="consent_accept" en="Accept" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture cn_nojs -%}{% include i18n-t.html key="consent_noscript" en="JavaScript is disabled: the menu button and cookie settings are unavailable, and analytics stays off." lang=i18n_gtl %}{%- endcapture -%}
 <!-- ===== Cookie consent (analytics is loaded only after "Accept") ===== -->
-<div class="consent" id="consent" role="region" aria-label="Cookie consent" hidden>
-    <p class="consent__text">This site uses Google Analytics cookies to see which pages are read. They are set only if you accept. You can change this any time with “Cookie settings” in the footer. <a href="/privacy.html">Privacy policy</a></p>
+<div class="consent" id="consent" role="region" aria-label="{{ cn_aria }}" hidden>
+    <p class="consent__text">{{ cn_text }} <a href="{{ i18n_u_privacy }}">{{ cn_priv }}</a></p>
     <div class="consent__actions">
-        <button class="btn btn--sm" type="button" data-consent="denied">Decline</button>
-        <button class="btn btn--sm" type="button" data-consent="granted">Accept</button>
+        <button class="btn btn--sm" type="button" data-consent="denied">{{ cn_no }}</button>
+        <button class="btn btn--sm" type="button" data-consent="granted">{{ cn_yes }}</button>
     </div>
 </div>
 
 <noscript>
-    <p class="noscript">JavaScript is disabled: the menu button and cookie settings are unavailable, and analytics stays off.</p>
+    <p class="noscript">{{ cn_nojs }}</p>
 </noscript>

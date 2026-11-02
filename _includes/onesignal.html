@@ -29,6 +29,12 @@
                         "dialog.main.button.unsubscribe": "UNSUBSCRIBE"
                     }
                 }
+            }).then(function () {
+                window.__oneSignalOk = true;
+            }).catch(function (e) {
+                // most often: the Site URL in the OneSignal dashboard does not match this domain
+                window.__oneSignalOk = false;
+                if (window.console) console.error('OneSignal init failed:', e);
             });
         });
     </script>

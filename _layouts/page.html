@@ -7,6 +7,9 @@ layout: default
   A page chooses its left column with "rail:" and shows the photo
   license note with "license_note: true".
 {%- endcomment -%}
+{%- include i18n-gate.html -%}
+{%- capture pg_aria_end -%}{% include i18n-t.html key="rail_end_aria" en="Elsewhere on the web" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture pg_aria_start -%}{% include i18n-t.html key="rail_start_aria" en="Page navigation" lang=i18n_gtl %}{%- endcapture -%}
 <div class="page">
 
     <main class="page__main" id="main" tabindex="-1">
@@ -14,14 +17,14 @@ layout: default
     </main>
 
     <!-- Right column (below the content on phones) -->
-    <aside class="rail rail--end" aria-label="Elsewhere on the web">
+    <aside class="rail rail--end" aria-label="{{ pg_aria_end }}">
         <div class="rail__inner">
             {% include rail-end.html %}
         </div>
     </aside>
 
     <!-- Left column (wide screens only) -->
-    <aside class="rail rail--start" aria-label="Page navigation">
+    <aside class="rail rail--start" aria-label="{{ pg_aria_start }}">
         <div class="rail__inner">
             {% include rail-start.html %}
         </div>

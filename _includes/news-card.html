@@ -11,12 +11,12 @@
 {%- assign nc_thumb = nc_thumb | strip -%}
 {%- endif -%}
 <article class="news-card">
-    <a class="news-card__link{% unless nc_thumb and nc_thumb != "" %} news-card__link--noimg{% endunless %}" href="{{ nc_href }}">
-        {%- if nc_thumb and nc_thumb != "" %}
+    <a class="news-card__link{% if nc_thumb == "" %} news-card__link--noimg{% endif %}" href="{{ nc_href }}">
+        {%- if nc_thumb != "" %}
         <img class="news-card__img" src="{{ nc_thumb }}" alt="" width="128" height="128" loading="lazy">
         {%- endif %}
         <div class="news-card__text">
-            <time class="news-card__date" datetime="{{ nc_post.date | date_to_xmlschema }}">{{ nc_post.date | date: "%-d %B %Y" }}</time>
+            <time class="news-card__date" datetime="{{ nc_post.date | date_to_xmlschema }}">{% include i18n-date.html d=nc_post.date %}</time>
             <h3 class="news-card__title">{{ nc_post.title | escape }}</h3>
             {%- if nc_post.description and nc_post.description != "" %}
             <p>{{ nc_post.description | escape }}</p>

@@ -3,7 +3,8 @@
   title (text after "CDRA Award: ", the same as in the code on EMBED.html), ratio (504/626 for a track or album plaque, 504/606 for an artist plaque).
   Two iframes: the light and the dark plaque. The CSS (section 11.17) shows the one that matches the theme (system or the footer switch). No script.
 {%- endcomment -%}
+{%- capture cp_award -%}{% include i18n-t.html key="cdra_award" en="CDRA Award" %}{%- endcapture -%}
 <li class="cdra__item">
-    <iframe class="cdra__frame cdra__frame--light" src="https://cdra.settwor.com.pl/embed/{{ include.file }}.html" title="CDRA Award: {{ include.title | escape }}" loading="lazy" style="aspect-ratio:{{ include.ratio }}"></iframe>
-    <iframe class="cdra__frame cdra__frame--dark" src="https://cdra.settwor.com.pl/embed/{{ include.file }}-dark.html" title="CDRA Award: {{ include.title | escape }}" loading="lazy" style="aspect-ratio:{{ include.ratio }}"></iframe>
+    <iframe class="cdra__frame cdra__frame--light" src="https://cdra.settwor.com.pl/embed/{{ include.file }}.html" title="{{ cp_award }}: {{ include.title | escape }}" loading="lazy" style="aspect-ratio:{{ include.ratio }}"></iframe>
+    <iframe class="cdra__frame cdra__frame--dark" src="https://cdra.settwor.com.pl/embed/{{ include.file }}-dark.html" title="{{ cp_award }}: {{ include.title | escape }}" loading="lazy" style="aspect-ratio:{{ include.ratio }}"></iframe>
 </li>

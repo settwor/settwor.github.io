@@ -1,0 +1,9 @@
+{%- comment -%}
+  v11.35. The temporary GATE used by the shared templates (rails; header.html and footer.html have the same lines inline).
+  Sets i18n_gtl = the language the interface texts are taken from, i18n_glp = the address prefix for internal links.
+  11.39 (Phase 4): the gate for biography pages is REMOVED. A biography page now uses the interface of its own language (the safe
+  fallback of i18n-urls.html still gives English addresses for pages that are not translated or not ready).
+  Prints nothing. Variables start with i18n_g (assign in an include is global).
+{%- endcomment -%}
+{%- include i18n-lang.html -%}
+{%- assign i18n_gtl = i18n_lang -%}{%- assign i18n_glp = i18n_lp -%}

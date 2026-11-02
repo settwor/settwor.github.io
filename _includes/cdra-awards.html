@@ -3,15 +3,23 @@
   A new award: copy its file name, title and ratio from https://cdra.settwor.com.pl/EMBED.html and add one more include line below.
   Pairs with the footer link and the cdra.settwor.com.pl entry in sameAs (person-jsonld.html).
 {%- endcomment -%}
+{%- comment -%} 11.38: texts by page language (keys cdra_*, English kept here as the fallback). {%- endcomment -%}
+{%- capture cd_title -%}{% include i18n-t.html key="cdra_title" en="CDRA awards" %}{%- endcapture -%}
+{%- capture cd_all -%}{% include i18n-t.html key="cdra_all" en="All awards" %}{%- endcapture -%}
+{%- capture cd_streams -%}{% include i18n-t.html key="cdra_streams" en="streams" %}{%- endcapture -%}
+{%- capture cd_intro -%}{% include i18n-t.html key="cdra_intro" en="CDRA (Certified Digital Release Award) is SETTWOR&rsquo;s own award for stream milestones. It is not an official certification by any record industry organization." %}{%- endcapture -%}
+{%- capture cd_t1 -%}GOT ME UP 2, 1,000,000 {{ cd_streams }}{%- endcapture -%}
+{%- capture cd_t2 -%}GET IT, Vol.1, 1,000,000 {{ cd_streams }}{%- endcapture -%}
+{%- capture cd_t3 -%}SETTWOR, 2,500,000 {{ cd_streams }}{%- endcapture -%}
         <section class="section cdra" id="awards" aria-labelledby="awards-title">
             <div class="section-head">
-                <h2 class="section-title" id="awards-title">CDRA awards</h2>
-                <a class="section-head__more" href="https://cdra.settwor.com.pl/" rel="noopener">All awards<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+                <h2 class="section-title" id="awards-title">{{ cd_title }}</h2>
+                <a class="section-head__more" href="https://cdra.settwor.com.pl/" rel="noopener">{{ cd_all }}<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
             </div>
-            <p class="cdra__intro">CDRA (Certified Digital Release Award) is SETTWOR&rsquo;s own award for stream milestones. It is not an official certification by any record industry organization.</p>
+            <p class="cdra__intro">{{ cd_intro }}</p>
             <ul class="cdra__list">
-                {%- include cdra-plaque.html file="GOT-ME-UP-2-1m" title="GOT ME UP 2, 1,000,000 streams" ratio="504/626" %}
-                {%- include cdra-plaque.html file="GET-IT-Vol-1-1m" title="GET IT, Vol.1, 1,000,000 streams" ratio="504/626" %}
-                {%- include cdra-plaque.html file="SETTWOR-2-5m" title="SETTWOR, 2,500,000 streams" ratio="504/606" %}
+                {%- include cdra-plaque.html file="GOT-ME-UP-2-1m" title=cd_t1 ratio="504/626" %}
+                {%- include cdra-plaque.html file="GET-IT-Vol-1-1m" title=cd_t2 ratio="504/626" %}
+                {%- include cdra-plaque.html file="SETTWOR-2-5m" title=cd_t3 ratio="504/606" %}
             </ul>
         </section>

@@ -3,7 +3,7 @@
 # =============================================================
 
 title: SETTWOR
-description: Official site of SETTWOR, an active phonk and Brazilian funk producer from Ukraine based in Poland.
+description: Official site of SETTWOR, an active phonk artist and producer from Ukraine based in Poland.
 url: "https://settwor.com.pl"
 baseurl: ""
 lang: en
@@ -67,6 +67,8 @@ collections:
     permalink: /bio/:name/
   releases:
     output: false
+  news_tr:
+    output: true
 
 # Files that must NOT be published on the website.
 exclude:

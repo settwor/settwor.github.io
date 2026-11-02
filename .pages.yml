@@ -2,7 +2,7 @@
 # Pages CMS settings for settwor.com.pl
 # Open https://app.pagescms.org, sign in with GitHub and choose
 # this repository. Everything editable on the site is listed here.
-# Sections of the menu: News, Biography, Photos, Releases, Lyrics, the group
+# Sections of the menu: News, News (other languages), the five groups "Texts: <language>", Biography, Photos, Releases, Lyrics, the group
 # "Streams" (plays per platform) and the group "Site" (home page, links, page texts).
 # =============================================================
 
@@ -112,6 +112,134 @@ content:
         type: boolean
         default: true
         description: "Switch off to hide the article without deleting it. Keep it ON for a normal article."
+
+  # ---------------------------------------------------------
+  # NEWS IN OTHER LANGUAGES (11.66): one file in the folder _news_tr per
+  # translated article. English articles stay in "News" above and are never
+  # mixed with these. Needs the collection news_tr in _config.yml (todo i18n.md,
+  # Phase 6). Keep ref and permalink as they are: they tie the translation to
+  # the English article and to its address (see docs/i18n-guide-ru.md, Phase 8).
+  # ---------------------------------------------------------
+  - name: news_tr
+    label: News (other languages)
+    type: collection
+    path: _news_tr
+    format: yaml-frontmatter
+    # File name: <lang>-<yyyy>-<mm>-<dd>-<English slug>.md, for example
+    # pl-2026-11-01-SETTWOR-starts-planning-Nutaria-Records.md (Portuguese files have no prefix).
+    # The prefix keeps two languages of the same article from overwriting each other.
+    filename:
+      template: "{year}-{month}-{day}-{primary}.md"
+      field: create
+    view:
+      fields: [title, lang, i18n_ready, date]
+      primary: title
+      sort: [date, lang, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: layout
+        label: Layout
+        type: string
+        default: article
+        hidden: true
+
+      - name: lang
+        label: Language
+        type: select
+        required: true
+        options:
+          values:
+            - { value: pt, label: Português }
+            - { value: pl, label: Polski }
+            - { value: ru, label: Русский }
+            - { value: uk, label: Українська }
+            - { value: es, label: Español }
+        description: "The language of this translation. It must match the first part of the web address (/pl/news/...)."
+
+      - name: ref
+        label: English article (do not change)
+        type: string
+        required: true
+        description: "The name of the English article this text translates (the end of its file name, without the date), for example SETTWOR-launches-Ledgertone. All languages of one article have the same value. Never change it for an existing file."
+
+      - name: i18n_ready
+        label: Read and ready for Google
+        type: boolean
+        default: false
+        description: "OFF = the page is hidden from Google and from the language buttons. Switch ON only after you have read the whole text. For a normal new translation keep it OFF."
+
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: "The headline in this language. It is also the first line Google shows."
+
+      - name: description
+        label: Short summary
+        type: text
+        required: true
+        description: "One or two sentences (up to 160 characters) in this language. Put the text in quotes if it contains a colon followed by a space."
+
+      - name: date
+        label: Date and time
+        type: date
+        required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm"
+        description: "The same date and time as the English article. Do not change it later."
+
+      - name: permalink
+        label: Web address (do not change)
+        type: string
+        required: true
+        description: "Form: /<lang>/news/<yyyy>/<mm>/<English slug>/, for example /pl/news/2026/11/SETTWOR-starts-planning-Nutaria-Records/. Google knows this address: never change it for a published page."
+
+      - name: image
+        label: Cover picture
+        type: image
+        options:
+          path: images/news
+          rename: true
+          extensions: [jpg, jpeg, png, webp]
+        description: "The same picture as in the English article."
+
+      - name: image_alt
+        label: Describe the picture
+        type: string
+        description: "In this language. Say what is shown."
+
+      - name: image_caption
+        label: Picture caption
+        type: string
+        description: "Optional. In this language."
+
+      - name: body
+        label: Text of the article
+        type: rich-text
+
+      - name: listen_url
+        label: Link to the release
+        type: string
+        description: "Optional. The same link as in the English article. Do not invent a link."
+
+      - name: sources
+        label: Sources (numbered list at the bottom)
+        type: object
+        list: true
+        description: "Optional. The same sources as in the English article, in the same order."
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: url
+            label: Address
+            type: string
+          - name: site
+            label: Site (shown in grey after the title)
+            type: string
 
   # ---------------------------------------------------------
   # BIOGRAPHY: one file in the folder _bio per language.
@@ -850,3 +978,1836 @@ content:
               - name: caption
                 label: Caption
                 type: string
+
+  # ---------------------------------------------------------
+  # TEXTS IN OTHER LANGUAGES (11.67): one group per language, three files each
+  # (interface, home page, list pages). Saving in Pages CMS rewrites the file and
+  # drops the comment lines at its top; the texts and keys stay. A missing or empty
+  # text falls back to English on the site. Never rename a key (left column).
+  # Generated from the files in _data/i18n, _data/i18n_home and _data/i18n_pages.
+  # ---------------------------------------------------------
+
+  - name: texts_pt
+    label: "Texts: Português"
+    type: group
+    items:
+      - name: texts_pt_interface
+        label: "Interface (menus, footer, buttons)"
+        type: file
+        path: _data/i18n/pt.yml
+        format: yaml
+        fields:
+          - { name: "menu_releases", label: "menu_releases", type: string }
+          - { name: "menu_news", label: "menu_news", type: string }
+          - { name: "menu_streams", label: "menu_streams", type: string }
+          - { name: "menu_biography", label: "menu_biography", type: string }
+          - { name: "menu_photos", label: "menu_photos", type: string }
+          - { name: "header_open_menu", label: "header_open_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_close_menu", label: "header_close_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_nav_start", label: "header_nav_start", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_nav_end", label: "header_nav_end", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_mobile_menu", label: "header_mobile_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_home", label: "header_home", type: string, description: "header.html: aria-label texts" }
+          - { name: "footer_site", label: "footer_site", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_rss", label: "footer_rss", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_notifications", label: "footer_notifications", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_listen", label: "footer_listen", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_legal", label: "footer_legal", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_license", label: "footer_license", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_privacy", label: "footer_privacy", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_cookies", label: "footer_cookies", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_theme", label: "footer_theme", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_auto", label: "theme_auto", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_light", label: "theme_light", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_dark", label: "theme_dark", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_official", label: "footer_official", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_version", label: "footer_version", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_projects", label: "footer_projects", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_ledgertone", label: "footer_ledgertone", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_cdra", label: "footer_cdra", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_language", label: "footer_language", type: string, description: "footer.html (11.34)" }
+          - { name: "rail_follow", label: "rail_follow", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_listen", label: "rail_listen", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_contact", label: "rail_contact", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_elsewhere", label: "rail_elsewhere", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_photos_title", label: "rail_photos_title", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_photos_text", label: "rail_photos_text", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_license_link", label: "rail_license_link", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_reading", label: "rail_reading", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_on_page", label: "rail_on_page", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_about", label: "toc_about", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_releases", label: "toc_releases", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_listen", label: "toc_listen", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_news", label: "toc_news", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_numbers", label: "toc_numbers", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_social", label: "toc_social", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_faq", label: "toc_faq", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_bio_toc", label: "rail_bio_toc", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_by_year", label: "rail_by_year", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_year", label: "rail_year", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_total", label: "toc_total", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_platforms", label: "toc_platforms", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_profiles", label: "toc_profiles", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_bio_in", label: "rail_bio_in", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_on_site", label: "rail_on_site", type: string, description: "rail-*.html (11.35)" }
+          - { name: "menu_top_phonk", label: "menu_top_phonk", type: string, description: "rail-*.html (11.35)" }
+          - { name: "consent_aria", label: "consent_aria", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_text", label: "consent_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_decline", label: "consent_decline", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_accept", label: "consent_accept", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_noscript", label: "consent_noscript", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_title", label: "subscribe_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_lead", label: "subscribe_lead", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_push", label: "subscribe_push", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_rss", label: "subscribe_rss", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "empty_continue", label: "empty_continue", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "back_to", label: "back_to", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_title", label: "push_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_text", label: "push_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_caption", label: "push_caption", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_now", label: "push_now", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_no", label: "push_no", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_yes", label: "push_yes", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_fine", label: "push_fine", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_done_title", label: "push_done_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_done_text", label: "push_done_text", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_already_title", label: "push_already_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_already_text", label: "push_already_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_close", label: "push_close", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_error_title", label: "push_error_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_error_text", label: "push_error_text", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_blocked_title", label: "push_blocked_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_blocked_text", label: "push_blocked_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_title", label: "notfound_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_text", label: "notfound_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_home", label: "notfound_home", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "skip_link", label: "skip_link", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_photograph", label: "js_photograph", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_close", label: "js_close", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_prev_photo", label: "js_prev_photo", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_next_photo", label: "js_next_photo", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_credit", label: "js_credit", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_cover_of", label: "js_cover_of", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_listen", label: "js_listen", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_search_on", label: "js_search_on", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_search_note", label: "js_search_note", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_tracklist", label: "js_tracklist", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_lyrics", label: "js_lyrics", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_lyrics_of", label: "js_lyrics_of", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_tracklist_page", label: "js_tracklist_page", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_no_tracklist", label: "js_no_tracklist", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_prev_release", label: "js_prev_release", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_next_release", label: "js_next_release", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_refreshing", label: "js_refreshing", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "numbers_title", label: "numbers_title", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_all", label: "numbers_all", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_total", label: "numbers_total", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_across_both", label: "numbers_across_both", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_across_music", label: "numbers_across_music", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_yt_clips", label: "numbers_yt_clips", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_all_videos", label: "numbers_all_videos", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_cta", label: "numbers_cta", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_aria", label: "numbers_aria", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_title", label: "cdra_title", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_all", label: "cdra_all", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_streams", label: "cdra_streams", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_award", label: "cdra_award", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_intro", label: "cdra_intro", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "date_months", label: "date_months", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "date_fmt", label: "date_fmt", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_yt_row", label: "numbers_yt_row", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "rail_end_aria", label: "rail_end_aria", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "rail_start_aria", label: "rail_start_aria", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - name: "links_desc"
+            label: "links_desc"
+            type: object
+            description: "small descriptions of the link lists (links.yml): the key is the ENGLISH text, the value its translation"
+            fields:
+              - { name: "Artist page and tracks", label: "Artist page and tracks", type: string }
+              - { name: "Artist page", label: "Artist page", type: string }
+              - { name: "Official channel", label: "Official channel", type: string }
+              - { name: "The genre, on Wikipedia", label: "The genre, on Wikipedia", type: string }
+              - { name: "Brazilian Phonk, on Wikipedia", label: "Brazilian Phonk, on Wikipedia", type: string }
+              - { name: "EDM, on Wikipedia", label: "EDM, on Wikipedia", type: string }
+              - { name: "The profession, on Wikipedia", label: "The profession, on Wikipedia", type: string }
+              - { name: "Hometown, on Wikipedia", label: "Hometown, on Wikipedia", type: string }
+              - { name: "The license of the photographs", label: "The license of the photographs", type: string }
+          - { name: "trend_title", label: "trend_title", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "trend_sub", label: "trend_sub", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "trend_aria", label: "trend_aria", type: text, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "numbers_earlier", label: "numbers_earlier", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "details_platforms", label: "details_platforms", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_plays", label: "details_plays", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_plays_total", label: "details_plays_total", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_dashboard", label: "details_dashboard", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_on", label: "details_open_on", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_views", label: "details_views", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_whole_channel", label: "details_whole_channel", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_live", label: "details_live", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_channel_total", label: "details_channel_total", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_whole_note", label: "details_whole_note", type: text, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_channel", label: "details_open_channel", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_release_videos", label: "details_release_videos", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_release_note", label: "details_release_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_playlist", label: "details_open_playlist", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_other_videos", label: "details_other_videos", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_other_note", label: "details_other_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "art_by", label: "art_by", type: string, description: "news article layout (11.49)" }
+          - { name: "art_published", label: "art_published", type: string, description: "news article layout (11.49)" }
+          - { name: "art_updated", label: "art_updated", type: string, description: "news article layout (11.49)" }
+          - { name: "art_more_title", label: "art_more_title", type: string, description: "news article layout (11.49)" }
+          - { name: "art_bio", label: "art_bio", type: string, description: "news article layout (11.49)" }
+          - { name: "art_releases", label: "art_releases", type: string, description: "news article layout (11.49)" }
+          - { name: "art_photos", label: "art_photos", type: string, description: "news article layout (11.49)" }
+          - { name: "art_all_news", label: "art_all_news", type: string, description: "news article layout (11.49)" }
+          - { name: "art_newer", label: "art_newer", type: string, description: "news article layout (11.49)" }
+          - { name: "art_older", label: "art_older", type: string, description: "news article layout (11.49)" }
+          - { name: "art_aria_more", label: "art_aria_more", type: string, description: "news article layout (11.49)" }
+          - { name: "art_latest", label: "art_latest", type: string, description: "news article layout (11.49)" }
+          - { name: "art_aria_elsewhere", label: "art_aria_elsewhere", type: string, description: "news article layout (11.49)" }
+          - { name: "art_listen", label: "art_listen", type: string, description: "news article layout (11.49)" }
+          - { name: "art_open_spotify", label: "art_open_spotify", type: string, description: "news article layout (11.49)" }
+          - { name: "art_open_release", label: "art_open_release", type: string, description: "news article layout (11.49)" }
+      - name: texts_pt_home
+        label: "Home page"
+        type: file
+        path: _data/i18n_home/pt.yml
+        format: yaml
+        fields:
+          - name: "hero"
+            label: "hero"
+            type: object
+            description: "Not translated on purpose: SETTWOR, release and track names, platform names, e-mail. Photo, video id, Spotify id and links are read from the English data."
+            fields:
+              - { name: "photo_alt", label: "photo_alt", type: string }
+              - { name: "title", label: "title", type: string }
+              - { name: "tagline", label: "tagline", type: string }
+              - { name: "note", label: "note", type: text }
+              - { name: "listen_label", label: "listen_label", type: string }
+          - { name: "about_title", label: "about_title", type: string }
+          - { name: "about", label: "about", type: text, description: "Markdown: a blank line starts a new paragraph, [text](https://address) makes a link." }
+          - { name: "callout", label: "callout", type: string }
+          - { name: "facts_label", label: "facts_label", type: string }
+          - name: "facts"
+            label: "facts"
+            type: object
+            list: true
+            fields:
+              - { name: "label", label: "label", type: string }
+              - { name: "value", label: "value", type: string }
+          - name: "video"
+            label: "video"
+            type: object
+            fields:
+              - { name: "title", label: "title", type: string }
+          - { name: "faq_title", label: "faq_title", type: string }
+          - name: "faq"
+            label: "faq"
+            type: object
+            list: true
+            fields:
+              - { name: "q", label: "q", type: string }
+              - { name: "a", label: "a", type: text }
+          - name: "key_line"
+            label: "key_line"
+            type: object
+            description: "The key line of the About block. Pieces, no plural forms (the number comes after a colon). {y} = year, {n} = number, {p} = place, {date} = date in the language."
+            fields:
+              - { name: "intro", label: "intro", type: string }
+              - { name: "releases", label: "releases", type: string }
+              - { name: "this_year", label: "this_year", type: string }
+              - { name: "rank_phonk", label: "rank_phonk", type: string }
+              - { name: "rank_bphonk", label: "rank_bphonk", type: string }
+              - { name: "join", label: "join", type: string }
+              - { name: "on_pandora", label: "on_pandora", type: string }
+              - { name: "source", label: "source", type: string }
+          - name: "labels"
+            label: "labels"
+            type: object
+            description: "Section titles, links and small texts of the home page. {title} = release title, {y} = year."
+            fields:
+              - { name: "full_bio", label: "full_bio", type: string }
+              - { name: "releases_title", label: "releases_title", type: string }
+              - { name: "releases_all", label: "releases_all", type: string }
+              - { name: "release_aria", label: "release_aria", type: string }
+              - { name: "cover_of", label: "cover_of", type: string }
+              - { name: "listen_title", label: "listen_title", type: string }
+              - { name: "video_alt_pre", label: "video_alt_pre", type: string }
+              - { name: "video_alt_link", label: "video_alt_link", type: string }
+              - { name: "spotify_title", label: "spotify_title", type: string }
+              - { name: "spotify_alt_pre", label: "spotify_alt_pre", type: string }
+              - { name: "spotify_alt_link", label: "spotify_alt_link", type: string }
+              - { name: "photos_title", label: "photos_title", type: string }
+              - { name: "photos_all", label: "photos_all", type: string }
+              - { name: "photo_alt", label: "photo_alt", type: string }
+              - { name: "social_title", label: "social_title", type: string }
+              - { name: "faq_more", label: "faq_more", type: string }
+              - { name: "kind_album", label: "kind_album", type: string }
+              - { name: "kind_mixtape", label: "kind_mixtape", type: string }
+      - name: texts_pt_pages
+        label: "List pages (Streams, Releases, Photo, News, Top Phonk)"
+        type: file
+        path: _data/i18n_pages/pt.yml
+        format: yaml
+        fields:
+          - name: "streams"
+            label: "streams"
+            type: object
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "live", label: "live", type: string }
+              - { name: "verified", label: "verified", type: string }
+              - { name: "profiles_title", label: "profiles_title", type: string }
+              - { name: "profiles_note", label: "profiles_note", type: string }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: text }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+          - name: "releases"
+            label: "releases"
+            type: object
+            description: "Releases page (v11.45). {title} = the release name (filled in by the template). Release and track names are never translated."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: string }
+              - { name: "image_alt", label: "image_alt", type: string }
+              - { name: "caption", label: "caption", type: string }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: text }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "cover_of", label: "cover_of", type: string }
+              - { name: "aria", label: "aria", type: string }
+              - { name: "listen", label: "listen", type: string }
+              - { name: "kind_single", label: "kind_single", type: string }
+              - { name: "kind_album", label: "kind_album", type: string }
+              - { name: "kind_mixtape", label: "kind_mixtape", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+          - name: "photo"
+            label: "photo"
+            type: object
+            description: "Photo page (v11.46). The alt text of each photo in this language is the pattern `labels.photo_alt` of _data/i18n_home/<lang>.yml ({y} = year)."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: string }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "tabs_aria", label: "tabs_aria", type: string }
+              - { name: "note_a", label: "note_a", type: string }
+              - { name: "note_b", label: "note_b", type: string }
+              - { name: "note_credit", label: "note_credit", type: string }
+              - { name: "credit", label: "credit", type: string }
+          - name: "top_phonk"
+            label: "top_phonk"
+            type: object
+            description: "Top Phonk page (v11.47). Placeholders {snapshot} {listeners} {phonk_place} {phonk_total} {bphonk_place} {bphonk_total} are filled by the template. AI draft, not read by the owner."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "meta", label: "meta", type: string }
+              - { name: "intro_a", label: "intro_a", type: text }
+              - { name: "intro_link", label: "intro_link", type: string }
+              - { name: "intro_b", label: "intro_b", type: text }
+              - { name: "numbers_h", label: "numbers_h", type: string }
+              - { name: "li_listeners_l", label: "li_listeners_l", type: string }
+              - { name: "li_phonk_l", label: "li_phonk_l", type: string }
+              - { name: "li_phonk_t", label: "li_phonk_t", type: string }
+              - { name: "li_bphonk_l", label: "li_bphonk_l", type: string }
+              - { name: "li_bphonk_t", label: "li_bphonk_t", type: string }
+              - { name: "li_date_l", label: "li_date_l", type: string }
+              - { name: "read_h", label: "read_h", type: string }
+              - { name: "read_1_strong", label: "read_1_strong", type: string }
+              - { name: "read_1_rest", label: "read_1_rest", type: text }
+              - { name: "read_2", label: "read_2", type: text }
+              - { name: "read_3", label: "read_3", type: text }
+              - { name: "who_h", label: "who_h", type: string }
+              - { name: "who_p", label: "who_p", type: text }
+              - { name: "more_h", label: "more_h", type: string }
+              - { name: "more_pandora", label: "more_pandora", type: string }
+              - { name: "more_spotify", label: "more_spotify", type: string }
+              - { name: "more_lt", label: "more_lt", type: string }
+              - { name: "more_full", label: "more_full", type: string }
+              - { name: "more_streams", label: "more_streams", type: string }
+              - { name: "more_and", label: "more_and", type: string }
+              - { name: "more_releases", label: "more_releases", type: string }
+              - { name: "faq_h", label: "faq_h", type: string }
+              - { name: "q1", label: "q1", type: string }
+              - { name: "a1", label: "a1", type: text }
+              - { name: "q2", label: "q2", type: string }
+              - { name: "a2", label: "a2", type: text }
+              - { name: "q3", label: "q3", type: string }
+              - { name: "a3", label: "a3", type: text }
+              - { name: "q4", label: "q4", type: string }
+              - { name: "a4", label: "a4", type: text }
+              - { name: "crumb", label: "crumb", type: string }
+          - name: "news"
+            label: "news"
+            type: object
+            description: "News list page (v11.50)"
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: string }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+
+  - name: texts_pl
+    label: "Texts: Polski"
+    type: group
+    items:
+      - name: texts_pl_interface
+        label: "Interface (menus, footer, buttons)"
+        type: file
+        path: _data/i18n/pl.yml
+        format: yaml
+        fields:
+          - { name: "menu_releases", label: "menu_releases", type: string }
+          - { name: "menu_news", label: "menu_news", type: string }
+          - { name: "menu_streams", label: "menu_streams", type: string }
+          - { name: "menu_biography", label: "menu_biography", type: string }
+          - { name: "menu_photos", label: "menu_photos", type: string }
+          - { name: "header_open_menu", label: "header_open_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_close_menu", label: "header_close_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_nav_start", label: "header_nav_start", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_nav_end", label: "header_nav_end", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_mobile_menu", label: "header_mobile_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_home", label: "header_home", type: string, description: "header.html: aria-label texts" }
+          - { name: "footer_site", label: "footer_site", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_rss", label: "footer_rss", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_notifications", label: "footer_notifications", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_listen", label: "footer_listen", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_legal", label: "footer_legal", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_license", label: "footer_license", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_privacy", label: "footer_privacy", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_cookies", label: "footer_cookies", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_theme", label: "footer_theme", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_auto", label: "theme_auto", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_light", label: "theme_light", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_dark", label: "theme_dark", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_official", label: "footer_official", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_version", label: "footer_version", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_projects", label: "footer_projects", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_ledgertone", label: "footer_ledgertone", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_cdra", label: "footer_cdra", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_language", label: "footer_language", type: string, description: "footer.html (11.34)" }
+          - { name: "rail_follow", label: "rail_follow", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_listen", label: "rail_listen", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_contact", label: "rail_contact", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_elsewhere", label: "rail_elsewhere", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_photos_title", label: "rail_photos_title", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_photos_text", label: "rail_photos_text", type: text, description: "rail-*.html (11.35)" }
+          - { name: "rail_license_link", label: "rail_license_link", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_reading", label: "rail_reading", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_on_page", label: "rail_on_page", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_about", label: "toc_about", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_releases", label: "toc_releases", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_listen", label: "toc_listen", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_news", label: "toc_news", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_numbers", label: "toc_numbers", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_social", label: "toc_social", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_faq", label: "toc_faq", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_bio_toc", label: "rail_bio_toc", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_by_year", label: "rail_by_year", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_year", label: "rail_year", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_total", label: "toc_total", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_platforms", label: "toc_platforms", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_profiles", label: "toc_profiles", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_bio_in", label: "rail_bio_in", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_on_site", label: "rail_on_site", type: string, description: "rail-*.html (11.35)" }
+          - { name: "menu_top_phonk", label: "menu_top_phonk", type: string, description: "rail-*.html (11.35)" }
+          - { name: "consent_aria", label: "consent_aria", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_text", label: "consent_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_decline", label: "consent_decline", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_accept", label: "consent_accept", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_noscript", label: "consent_noscript", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_title", label: "subscribe_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_lead", label: "subscribe_lead", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_push", label: "subscribe_push", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_rss", label: "subscribe_rss", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "empty_continue", label: "empty_continue", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "back_to", label: "back_to", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_title", label: "push_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_text", label: "push_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_caption", label: "push_caption", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_now", label: "push_now", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_no", label: "push_no", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_yes", label: "push_yes", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_fine", label: "push_fine", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_done_title", label: "push_done_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_done_text", label: "push_done_text", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_already_title", label: "push_already_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_already_text", label: "push_already_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_close", label: "push_close", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_error_title", label: "push_error_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_error_text", label: "push_error_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_blocked_title", label: "push_blocked_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_blocked_text", label: "push_blocked_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_title", label: "notfound_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_text", label: "notfound_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_home", label: "notfound_home", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "skip_link", label: "skip_link", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_photograph", label: "js_photograph", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_close", label: "js_close", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_prev_photo", label: "js_prev_photo", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_next_photo", label: "js_next_photo", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_credit", label: "js_credit", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_cover_of", label: "js_cover_of", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_listen", label: "js_listen", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_search_on", label: "js_search_on", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_search_note", label: "js_search_note", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_tracklist", label: "js_tracklist", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_lyrics", label: "js_lyrics", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_lyrics_of", label: "js_lyrics_of", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_tracklist_page", label: "js_tracklist_page", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_no_tracklist", label: "js_no_tracklist", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_prev_release", label: "js_prev_release", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_next_release", label: "js_next_release", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_refreshing", label: "js_refreshing", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "numbers_title", label: "numbers_title", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_all", label: "numbers_all", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_total", label: "numbers_total", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_across_both", label: "numbers_across_both", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_across_music", label: "numbers_across_music", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_yt_clips", label: "numbers_yt_clips", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_all_videos", label: "numbers_all_videos", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_cta", label: "numbers_cta", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_aria", label: "numbers_aria", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_title", label: "cdra_title", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_all", label: "cdra_all", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_streams", label: "cdra_streams", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_award", label: "cdra_award", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_intro", label: "cdra_intro", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "date_months", label: "date_months", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "date_fmt", label: "date_fmt", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_yt_row", label: "numbers_yt_row", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "rail_end_aria", label: "rail_end_aria", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "rail_start_aria", label: "rail_start_aria", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - name: "links_desc"
+            label: "links_desc"
+            type: object
+            description: "small descriptions of the link lists (links.yml): the key is the ENGLISH text, the value its translation"
+            fields:
+              - { name: "Artist page and tracks", label: "Artist page and tracks", type: string }
+              - { name: "Artist page", label: "Artist page", type: string }
+              - { name: "Official channel", label: "Official channel", type: string }
+              - { name: "The genre, on Wikipedia", label: "The genre, on Wikipedia", type: string }
+              - { name: "Brazilian Phonk, on Wikipedia", label: "Brazilian Phonk, on Wikipedia", type: string }
+              - { name: "EDM, on Wikipedia", label: "EDM, on Wikipedia", type: string }
+              - { name: "The profession, on Wikipedia", label: "The profession, on Wikipedia", type: string }
+              - { name: "Hometown, on Wikipedia", label: "Hometown, on Wikipedia", type: string }
+              - { name: "The license of the photographs", label: "The license of the photographs", type: string }
+          - { name: "trend_title", label: "trend_title", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "trend_sub", label: "trend_sub", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "trend_aria", label: "trend_aria", type: text, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "numbers_earlier", label: "numbers_earlier", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "details_platforms", label: "details_platforms", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_plays", label: "details_plays", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_plays_total", label: "details_plays_total", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_dashboard", label: "details_dashboard", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_on", label: "details_open_on", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_views", label: "details_views", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_whole_channel", label: "details_whole_channel", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_live", label: "details_live", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_channel_total", label: "details_channel_total", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_whole_note", label: "details_whole_note", type: text, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_channel", label: "details_open_channel", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_release_videos", label: "details_release_videos", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_release_note", label: "details_release_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_playlist", label: "details_open_playlist", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_other_videos", label: "details_other_videos", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_other_note", label: "details_other_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "art_by", label: "art_by", type: string, description: "news article layout (11.49)" }
+          - { name: "art_published", label: "art_published", type: string, description: "news article layout (11.49)" }
+          - { name: "art_updated", label: "art_updated", type: string, description: "news article layout (11.49)" }
+          - { name: "art_more_title", label: "art_more_title", type: string, description: "news article layout (11.49)" }
+          - { name: "art_bio", label: "art_bio", type: string, description: "news article layout (11.49)" }
+          - { name: "art_releases", label: "art_releases", type: string, description: "news article layout (11.49)" }
+          - { name: "art_photos", label: "art_photos", type: string, description: "news article layout (11.49)" }
+          - { name: "art_all_news", label: "art_all_news", type: string, description: "news article layout (11.49)" }
+          - { name: "art_newer", label: "art_newer", type: string, description: "news article layout (11.49)" }
+          - { name: "art_older", label: "art_older", type: string, description: "news article layout (11.49)" }
+          - { name: "art_aria_more", label: "art_aria_more", type: string, description: "news article layout (11.49)" }
+          - { name: "art_latest", label: "art_latest", type: string, description: "news article layout (11.49)" }
+          - { name: "art_aria_elsewhere", label: "art_aria_elsewhere", type: string, description: "news article layout (11.49)" }
+          - { name: "art_listen", label: "art_listen", type: string, description: "news article layout (11.49)" }
+          - { name: "art_open_spotify", label: "art_open_spotify", type: string, description: "news article layout (11.49)" }
+          - { name: "art_open_release", label: "art_open_release", type: string, description: "news article layout (11.49)" }
+      - name: texts_pl_home
+        label: "Home page"
+        type: file
+        path: _data/i18n_home/pl.yml
+        format: yaml
+        fields:
+          - name: "hero"
+            label: "hero"
+            type: object
+            description: "Not translated on purpose: SETTWOR, release and track names, platform names, e-mail. Photo, video id, Spotify id and links are read from the English data."
+            fields:
+              - { name: "photo_alt", label: "photo_alt", type: string }
+              - { name: "title", label: "title", type: string }
+              - { name: "tagline", label: "tagline", type: string }
+              - { name: "note", label: "note", type: text }
+              - { name: "listen_label", label: "listen_label", type: string }
+          - { name: "about_title", label: "about_title", type: string }
+          - { name: "about", label: "about", type: text, description: "Markdown: a blank line starts a new paragraph, [text](https://address) makes a link." }
+          - { name: "callout", label: "callout", type: string }
+          - { name: "facts_label", label: "facts_label", type: string }
+          - name: "facts"
+            label: "facts"
+            type: object
+            list: true
+            fields:
+              - { name: "label", label: "label", type: string }
+              - { name: "value", label: "value", type: string }
+          - name: "video"
+            label: "video"
+            type: object
+            fields:
+              - { name: "title", label: "title", type: string }
+          - { name: "faq_title", label: "faq_title", type: string }
+          - name: "faq"
+            label: "faq"
+            type: object
+            list: true
+            fields:
+              - { name: "q", label: "q", type: string }
+              - { name: "a", label: "a", type: text }
+          - name: "key_line"
+            label: "key_line"
+            type: object
+            description: "The key line of the About block. Pieces, no plural forms (the number comes after a colon). {y} = year, {n} = number, {p} = place, {date} = date in the language."
+            fields:
+              - { name: "intro", label: "intro", type: string }
+              - { name: "releases", label: "releases", type: string }
+              - { name: "this_year", label: "this_year", type: string }
+              - { name: "rank_phonk", label: "rank_phonk", type: string }
+              - { name: "rank_bphonk", label: "rank_bphonk", type: string }
+              - { name: "join", label: "join", type: string }
+              - { name: "on_pandora", label: "on_pandora", type: string }
+              - { name: "source", label: "source", type: string }
+          - name: "labels"
+            label: "labels"
+            type: object
+            description: "Section titles, links and small texts of the home page. {title} = release title, {y} = year."
+            fields:
+              - { name: "full_bio", label: "full_bio", type: string }
+              - { name: "releases_title", label: "releases_title", type: string }
+              - { name: "releases_all", label: "releases_all", type: string }
+              - { name: "release_aria", label: "release_aria", type: string }
+              - { name: "cover_of", label: "cover_of", type: string }
+              - { name: "listen_title", label: "listen_title", type: string }
+              - { name: "video_alt_pre", label: "video_alt_pre", type: string }
+              - { name: "video_alt_link", label: "video_alt_link", type: string }
+              - { name: "spotify_title", label: "spotify_title", type: string }
+              - { name: "spotify_alt_pre", label: "spotify_alt_pre", type: string }
+              - { name: "spotify_alt_link", label: "spotify_alt_link", type: string }
+              - { name: "photos_title", label: "photos_title", type: string }
+              - { name: "photos_all", label: "photos_all", type: string }
+              - { name: "photo_alt", label: "photo_alt", type: string }
+              - { name: "social_title", label: "social_title", type: string }
+              - { name: "faq_more", label: "faq_more", type: string }
+              - { name: "kind_album", label: "kind_album", type: string }
+              - { name: "kind_mixtape", label: "kind_mixtape", type: string }
+      - name: texts_pl_pages
+        label: "List pages (Streams, Releases, Photo, News, Top Phonk)"
+        type: file
+        path: _data/i18n_pages/pl.yml
+        format: yaml
+        fields:
+          - name: "streams"
+            label: "streams"
+            type: object
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "live", label: "live", type: string }
+              - { name: "verified", label: "verified", type: string }
+              - { name: "profiles_title", label: "profiles_title", type: string }
+              - { name: "profiles_note", label: "profiles_note", type: string }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: text }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+          - name: "releases"
+            label: "releases"
+            type: object
+            description: "Releases page (v11.45). {title} = the release name (filled in by the template). Release and track names are never translated."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: string }
+              - { name: "image_alt", label: "image_alt", type: string }
+              - { name: "caption", label: "caption", type: string }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: text }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "cover_of", label: "cover_of", type: string }
+              - { name: "aria", label: "aria", type: string }
+              - { name: "listen", label: "listen", type: string }
+              - { name: "kind_single", label: "kind_single", type: string }
+              - { name: "kind_album", label: "kind_album", type: string }
+              - { name: "kind_mixtape", label: "kind_mixtape", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+          - name: "photo"
+            label: "photo"
+            type: object
+            description: "Photo page (v11.46). The alt text of each photo in this language is the pattern `labels.photo_alt` of _data/i18n_home/<lang>.yml ({y} = year)."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: string }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "tabs_aria", label: "tabs_aria", type: string }
+              - { name: "note_a", label: "note_a", type: string }
+              - { name: "note_b", label: "note_b", type: string }
+              - { name: "note_credit", label: "note_credit", type: string }
+              - { name: "credit", label: "credit", type: string }
+          - name: "top_phonk"
+            label: "top_phonk"
+            type: object
+            description: "Top Phonk page (v11.47). Placeholders {snapshot} {listeners} {phonk_place} {phonk_total} {bphonk_place} {bphonk_total} are filled by the template. AI draft, not read by the owner."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "meta", label: "meta", type: string }
+              - { name: "intro_a", label: "intro_a", type: text }
+              - { name: "intro_link", label: "intro_link", type: string }
+              - { name: "intro_b", label: "intro_b", type: text }
+              - { name: "numbers_h", label: "numbers_h", type: string }
+              - { name: "li_listeners_l", label: "li_listeners_l", type: string }
+              - { name: "li_phonk_l", label: "li_phonk_l", type: string }
+              - { name: "li_phonk_t", label: "li_phonk_t", type: string }
+              - { name: "li_bphonk_l", label: "li_bphonk_l", type: string }
+              - { name: "li_bphonk_t", label: "li_bphonk_t", type: string }
+              - { name: "li_date_l", label: "li_date_l", type: string }
+              - { name: "read_h", label: "read_h", type: string }
+              - { name: "read_1_strong", label: "read_1_strong", type: string }
+              - { name: "read_1_rest", label: "read_1_rest", type: text }
+              - { name: "read_2", label: "read_2", type: text }
+              - { name: "read_3", label: "read_3", type: text }
+              - { name: "who_h", label: "who_h", type: string }
+              - { name: "who_p", label: "who_p", type: text }
+              - { name: "more_h", label: "more_h", type: string }
+              - { name: "more_pandora", label: "more_pandora", type: string }
+              - { name: "more_spotify", label: "more_spotify", type: string }
+              - { name: "more_lt", label: "more_lt", type: string }
+              - { name: "more_full", label: "more_full", type: string }
+              - { name: "more_streams", label: "more_streams", type: string }
+              - { name: "more_and", label: "more_and", type: string }
+              - { name: "more_releases", label: "more_releases", type: string }
+              - { name: "faq_h", label: "faq_h", type: string }
+              - { name: "q1", label: "q1", type: string }
+              - { name: "a1", label: "a1", type: text }
+              - { name: "q2", label: "q2", type: string }
+              - { name: "a2", label: "a2", type: text }
+              - { name: "q3", label: "q3", type: string }
+              - { name: "a3", label: "a3", type: text }
+              - { name: "q4", label: "q4", type: string }
+              - { name: "a4", label: "a4", type: text }
+              - { name: "crumb", label: "crumb", type: string }
+          - name: "news"
+            label: "news"
+            type: object
+            description: "News list page (v11.50)"
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: string }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+
+  - name: texts_ru
+    label: "Texts: Русский"
+    type: group
+    items:
+      - name: texts_ru_interface
+        label: "Interface (menus, footer, buttons)"
+        type: file
+        path: _data/i18n/ru.yml
+        format: yaml
+        fields:
+          - { name: "menu_releases", label: "menu_releases", type: string }
+          - { name: "menu_news", label: "menu_news", type: string }
+          - { name: "menu_streams", label: "menu_streams", type: string }
+          - { name: "menu_biography", label: "menu_biography", type: string }
+          - { name: "menu_photos", label: "menu_photos", type: string }
+          - { name: "header_open_menu", label: "header_open_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_close_menu", label: "header_close_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_nav_start", label: "header_nav_start", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_nav_end", label: "header_nav_end", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_mobile_menu", label: "header_mobile_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_home", label: "header_home", type: string, description: "header.html: aria-label texts" }
+          - { name: "footer_site", label: "footer_site", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_rss", label: "footer_rss", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_notifications", label: "footer_notifications", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_listen", label: "footer_listen", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_legal", label: "footer_legal", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_license", label: "footer_license", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_privacy", label: "footer_privacy", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_cookies", label: "footer_cookies", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_theme", label: "footer_theme", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_auto", label: "theme_auto", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_light", label: "theme_light", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_dark", label: "theme_dark", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_official", label: "footer_official", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_version", label: "footer_version", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_projects", label: "footer_projects", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_ledgertone", label: "footer_ledgertone", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_cdra", label: "footer_cdra", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_language", label: "footer_language", type: string, description: "footer.html (11.34)" }
+          - { name: "rail_follow", label: "rail_follow", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_listen", label: "rail_listen", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_contact", label: "rail_contact", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_elsewhere", label: "rail_elsewhere", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_photos_title", label: "rail_photos_title", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_photos_text", label: "rail_photos_text", type: text, description: "rail-*.html (11.35)" }
+          - { name: "rail_license_link", label: "rail_license_link", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_reading", label: "rail_reading", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_on_page", label: "rail_on_page", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_about", label: "toc_about", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_releases", label: "toc_releases", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_listen", label: "toc_listen", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_news", label: "toc_news", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_numbers", label: "toc_numbers", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_social", label: "toc_social", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_faq", label: "toc_faq", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_bio_toc", label: "rail_bio_toc", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_by_year", label: "rail_by_year", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_year", label: "rail_year", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_total", label: "toc_total", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_platforms", label: "toc_platforms", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_profiles", label: "toc_profiles", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_bio_in", label: "rail_bio_in", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_on_site", label: "rail_on_site", type: string, description: "rail-*.html (11.35)" }
+          - { name: "menu_top_phonk", label: "menu_top_phonk", type: string, description: "rail-*.html (11.35)" }
+          - { name: "consent_aria", label: "consent_aria", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_text", label: "consent_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_decline", label: "consent_decline", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_accept", label: "consent_accept", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_noscript", label: "consent_noscript", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_title", label: "subscribe_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_lead", label: "subscribe_lead", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_push", label: "subscribe_push", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_rss", label: "subscribe_rss", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "empty_continue", label: "empty_continue", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "back_to", label: "back_to", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_title", label: "push_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_text", label: "push_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_caption", label: "push_caption", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_now", label: "push_now", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_no", label: "push_no", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_yes", label: "push_yes", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_fine", label: "push_fine", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_done_title", label: "push_done_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_done_text", label: "push_done_text", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_already_title", label: "push_already_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_already_text", label: "push_already_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_close", label: "push_close", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_error_title", label: "push_error_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_error_text", label: "push_error_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_blocked_title", label: "push_blocked_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_blocked_text", label: "push_blocked_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_title", label: "notfound_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_text", label: "notfound_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_home", label: "notfound_home", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "skip_link", label: "skip_link", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_photograph", label: "js_photograph", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_close", label: "js_close", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_prev_photo", label: "js_prev_photo", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_next_photo", label: "js_next_photo", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_credit", label: "js_credit", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_cover_of", label: "js_cover_of", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_listen", label: "js_listen", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_search_on", label: "js_search_on", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_search_note", label: "js_search_note", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_tracklist", label: "js_tracklist", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_lyrics", label: "js_lyrics", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_lyrics_of", label: "js_lyrics_of", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_tracklist_page", label: "js_tracklist_page", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_no_tracklist", label: "js_no_tracklist", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_prev_release", label: "js_prev_release", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_next_release", label: "js_next_release", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_refreshing", label: "js_refreshing", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "numbers_title", label: "numbers_title", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_all", label: "numbers_all", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_total", label: "numbers_total", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_across_both", label: "numbers_across_both", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_across_music", label: "numbers_across_music", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_yt_clips", label: "numbers_yt_clips", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_all_videos", label: "numbers_all_videos", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_cta", label: "numbers_cta", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_aria", label: "numbers_aria", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_title", label: "cdra_title", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_all", label: "cdra_all", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_streams", label: "cdra_streams", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_award", label: "cdra_award", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_intro", label: "cdra_intro", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "date_months", label: "date_months", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "date_fmt", label: "date_fmt", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_yt_row", label: "numbers_yt_row", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "rail_end_aria", label: "rail_end_aria", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "rail_start_aria", label: "rail_start_aria", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - name: "links_desc"
+            label: "links_desc"
+            type: object
+            description: "small descriptions of the link lists (links.yml): the key is the ENGLISH text, the value its translation"
+            fields:
+              - { name: "Artist page and tracks", label: "Artist page and tracks", type: string }
+              - { name: "Artist page", label: "Artist page", type: string }
+              - { name: "Official channel", label: "Official channel", type: string }
+              - { name: "The genre, on Wikipedia", label: "The genre, on Wikipedia", type: string }
+              - { name: "Brazilian Phonk, on Wikipedia", label: "Brazilian Phonk, on Wikipedia", type: string }
+              - { name: "EDM, on Wikipedia", label: "EDM, on Wikipedia", type: string }
+              - { name: "The profession, on Wikipedia", label: "The profession, on Wikipedia", type: string }
+              - { name: "Hometown, on Wikipedia", label: "Hometown, on Wikipedia", type: string }
+              - { name: "The license of the photographs", label: "The license of the photographs", type: string }
+          - { name: "trend_title", label: "trend_title", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "trend_sub", label: "trend_sub", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "trend_aria", label: "trend_aria", type: text, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "numbers_earlier", label: "numbers_earlier", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "details_platforms", label: "details_platforms", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_plays", label: "details_plays", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_plays_total", label: "details_plays_total", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_dashboard", label: "details_dashboard", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_on", label: "details_open_on", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_views", label: "details_views", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_whole_channel", label: "details_whole_channel", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_live", label: "details_live", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_channel_total", label: "details_channel_total", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_whole_note", label: "details_whole_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_channel", label: "details_open_channel", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_release_videos", label: "details_release_videos", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_release_note", label: "details_release_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_playlist", label: "details_open_playlist", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_other_videos", label: "details_other_videos", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_other_note", label: "details_other_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "art_by", label: "art_by", type: string, description: "news article layout (11.49)" }
+          - { name: "art_published", label: "art_published", type: string, description: "news article layout (11.49)" }
+          - { name: "art_updated", label: "art_updated", type: string, description: "news article layout (11.49)" }
+          - { name: "art_more_title", label: "art_more_title", type: string, description: "news article layout (11.49)" }
+          - { name: "art_bio", label: "art_bio", type: string, description: "news article layout (11.49)" }
+          - { name: "art_releases", label: "art_releases", type: string, description: "news article layout (11.49)" }
+          - { name: "art_photos", label: "art_photos", type: string, description: "news article layout (11.49)" }
+          - { name: "art_all_news", label: "art_all_news", type: string, description: "news article layout (11.49)" }
+          - { name: "art_newer", label: "art_newer", type: string, description: "news article layout (11.49)" }
+          - { name: "art_older", label: "art_older", type: string, description: "news article layout (11.49)" }
+          - { name: "art_aria_more", label: "art_aria_more", type: string, description: "news article layout (11.49)" }
+          - { name: "art_latest", label: "art_latest", type: string, description: "news article layout (11.49)" }
+          - { name: "art_aria_elsewhere", label: "art_aria_elsewhere", type: string, description: "news article layout (11.49)" }
+          - { name: "art_listen", label: "art_listen", type: string, description: "news article layout (11.49)" }
+          - { name: "art_open_spotify", label: "art_open_spotify", type: string, description: "news article layout (11.49)" }
+          - { name: "art_open_release", label: "art_open_release", type: string, description: "news article layout (11.49)" }
+      - name: texts_ru_home
+        label: "Home page"
+        type: file
+        path: _data/i18n_home/ru.yml
+        format: yaml
+        fields:
+          - name: "hero"
+            label: "hero"
+            type: object
+            description: "Not translated on purpose: SETTWOR, release and track names, platform names, e-mail. Photo, video id, Spotify id and links are read from the English data."
+            fields:
+              - { name: "photo_alt", label: "photo_alt", type: string }
+              - { name: "title", label: "title", type: string }
+              - { name: "tagline", label: "tagline", type: string }
+              - { name: "note", label: "note", type: text }
+              - { name: "listen_label", label: "listen_label", type: string }
+          - { name: "about_title", label: "about_title", type: string }
+          - { name: "about", label: "about", type: text, description: "Markdown: a blank line starts a new paragraph, [text](https://address) makes a link." }
+          - { name: "callout", label: "callout", type: string }
+          - { name: "facts_label", label: "facts_label", type: string }
+          - name: "facts"
+            label: "facts"
+            type: object
+            list: true
+            fields:
+              - { name: "label", label: "label", type: string }
+              - { name: "value", label: "value", type: string }
+          - name: "video"
+            label: "video"
+            type: object
+            fields:
+              - { name: "title", label: "title", type: string }
+          - { name: "faq_title", label: "faq_title", type: string }
+          - name: "faq"
+            label: "faq"
+            type: object
+            list: true
+            fields:
+              - { name: "q", label: "q", type: string }
+              - { name: "a", label: "a", type: text }
+          - name: "key_line"
+            label: "key_line"
+            type: object
+            description: "The key line of the About block. Pieces, no plural forms (the number comes after a colon). {y} = year, {n} = number, {p} = place, {date} = date in the language."
+            fields:
+              - { name: "intro", label: "intro", type: string }
+              - { name: "releases", label: "releases", type: string }
+              - { name: "this_year", label: "this_year", type: string }
+              - { name: "rank_phonk", label: "rank_phonk", type: string }
+              - { name: "rank_bphonk", label: "rank_bphonk", type: string }
+              - { name: "join", label: "join", type: string }
+              - { name: "on_pandora", label: "on_pandora", type: string }
+              - { name: "source", label: "source", type: string }
+          - name: "labels"
+            label: "labels"
+            type: object
+            description: "Section titles, links and small texts of the home page. {title} = release title, {y} = year."
+            fields:
+              - { name: "full_bio", label: "full_bio", type: string }
+              - { name: "releases_title", label: "releases_title", type: string }
+              - { name: "releases_all", label: "releases_all", type: string }
+              - { name: "release_aria", label: "release_aria", type: string }
+              - { name: "cover_of", label: "cover_of", type: string }
+              - { name: "listen_title", label: "listen_title", type: string }
+              - { name: "video_alt_pre", label: "video_alt_pre", type: string }
+              - { name: "video_alt_link", label: "video_alt_link", type: string }
+              - { name: "spotify_title", label: "spotify_title", type: string }
+              - { name: "spotify_alt_pre", label: "spotify_alt_pre", type: string }
+              - { name: "spotify_alt_link", label: "spotify_alt_link", type: string }
+              - { name: "photos_title", label: "photos_title", type: string }
+              - { name: "photos_all", label: "photos_all", type: string }
+              - { name: "photo_alt", label: "photo_alt", type: string }
+              - { name: "social_title", label: "social_title", type: string }
+              - { name: "faq_more", label: "faq_more", type: string }
+              - { name: "kind_album", label: "kind_album", type: string }
+              - { name: "kind_mixtape", label: "kind_mixtape", type: string }
+      - name: texts_ru_pages
+        label: "List pages (Streams, Releases, Photo, News, Top Phonk)"
+        type: file
+        path: _data/i18n_pages/ru.yml
+        format: yaml
+        fields:
+          - name: "streams"
+            label: "streams"
+            type: object
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "live", label: "live", type: string }
+              - { name: "verified", label: "verified", type: string }
+              - { name: "profiles_title", label: "profiles_title", type: string }
+              - { name: "profiles_note", label: "profiles_note", type: string }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: text }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+          - name: "releases"
+            label: "releases"
+            type: object
+            description: "Releases page (v11.45). {title} = the release name (filled in by the template). Release and track names are never translated."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: string }
+              - { name: "image_alt", label: "image_alt", type: string }
+              - { name: "caption", label: "caption", type: string }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: text }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "cover_of", label: "cover_of", type: string }
+              - { name: "aria", label: "aria", type: string }
+              - { name: "listen", label: "listen", type: string }
+              - { name: "kind_single", label: "kind_single", type: string }
+              - { name: "kind_album", label: "kind_album", type: string }
+              - { name: "kind_mixtape", label: "kind_mixtape", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+          - name: "photo"
+            label: "photo"
+            type: object
+            description: "Photo page (v11.46). The alt text of each photo in this language is the pattern `labels.photo_alt` of _data/i18n_home/<lang>.yml ({y} = year)."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: string }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "tabs_aria", label: "tabs_aria", type: string }
+              - { name: "note_a", label: "note_a", type: string }
+              - { name: "note_b", label: "note_b", type: string }
+              - { name: "note_credit", label: "note_credit", type: string }
+              - { name: "credit", label: "credit", type: string }
+          - name: "top_phonk"
+            label: "top_phonk"
+            type: object
+            description: "Top Phonk page (v11.47). Placeholders {snapshot} {listeners} {phonk_place} {phonk_total} {bphonk_place} {bphonk_total} are filled by the template. AI draft, not read by the owner."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "meta", label: "meta", type: string }
+              - { name: "intro_a", label: "intro_a", type: text }
+              - { name: "intro_link", label: "intro_link", type: string }
+              - { name: "intro_b", label: "intro_b", type: text }
+              - { name: "numbers_h", label: "numbers_h", type: string }
+              - { name: "li_listeners_l", label: "li_listeners_l", type: string }
+              - { name: "li_phonk_l", label: "li_phonk_l", type: string }
+              - { name: "li_phonk_t", label: "li_phonk_t", type: string }
+              - { name: "li_bphonk_l", label: "li_bphonk_l", type: string }
+              - { name: "li_bphonk_t", label: "li_bphonk_t", type: string }
+              - { name: "li_date_l", label: "li_date_l", type: string }
+              - { name: "read_h", label: "read_h", type: string }
+              - { name: "read_1_strong", label: "read_1_strong", type: string }
+              - { name: "read_1_rest", label: "read_1_rest", type: text }
+              - { name: "read_2", label: "read_2", type: text }
+              - { name: "read_3", label: "read_3", type: text }
+              - { name: "who_h", label: "who_h", type: string }
+              - { name: "who_p", label: "who_p", type: text }
+              - { name: "more_h", label: "more_h", type: string }
+              - { name: "more_pandora", label: "more_pandora", type: string }
+              - { name: "more_spotify", label: "more_spotify", type: string }
+              - { name: "more_lt", label: "more_lt", type: string }
+              - { name: "more_full", label: "more_full", type: string }
+              - { name: "more_streams", label: "more_streams", type: string }
+              - { name: "more_and", label: "more_and", type: string }
+              - { name: "more_releases", label: "more_releases", type: string }
+              - { name: "faq_h", label: "faq_h", type: string }
+              - { name: "q1", label: "q1", type: string }
+              - { name: "a1", label: "a1", type: text }
+              - { name: "q2", label: "q2", type: string }
+              - { name: "a2", label: "a2", type: text }
+              - { name: "q3", label: "q3", type: string }
+              - { name: "a3", label: "a3", type: text }
+              - { name: "q4", label: "q4", type: string }
+              - { name: "a4", label: "a4", type: text }
+              - { name: "crumb", label: "crumb", type: string }
+          - name: "news"
+            label: "news"
+            type: object
+            description: "News list page (v11.50)"
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: string }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+
+  - name: texts_uk
+    label: "Texts: Українська"
+    type: group
+    items:
+      - name: texts_uk_interface
+        label: "Interface (menus, footer, buttons)"
+        type: file
+        path: _data/i18n/uk.yml
+        format: yaml
+        fields:
+          - { name: "menu_releases", label: "menu_releases", type: string }
+          - { name: "menu_news", label: "menu_news", type: string }
+          - { name: "menu_streams", label: "menu_streams", type: string }
+          - { name: "menu_biography", label: "menu_biography", type: string }
+          - { name: "menu_photos", label: "menu_photos", type: string }
+          - { name: "header_open_menu", label: "header_open_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_close_menu", label: "header_close_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_nav_start", label: "header_nav_start", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_nav_end", label: "header_nav_end", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_mobile_menu", label: "header_mobile_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_home", label: "header_home", type: string, description: "header.html: aria-label texts" }
+          - { name: "footer_site", label: "footer_site", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_rss", label: "footer_rss", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_notifications", label: "footer_notifications", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_listen", label: "footer_listen", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_legal", label: "footer_legal", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_license", label: "footer_license", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_privacy", label: "footer_privacy", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_cookies", label: "footer_cookies", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_theme", label: "footer_theme", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_auto", label: "theme_auto", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_light", label: "theme_light", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_dark", label: "theme_dark", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_official", label: "footer_official", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_version", label: "footer_version", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_projects", label: "footer_projects", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_ledgertone", label: "footer_ledgertone", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_cdra", label: "footer_cdra", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_language", label: "footer_language", type: string, description: "footer.html (11.34)" }
+          - { name: "rail_follow", label: "rail_follow", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_listen", label: "rail_listen", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_contact", label: "rail_contact", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_elsewhere", label: "rail_elsewhere", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_photos_title", label: "rail_photos_title", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_photos_text", label: "rail_photos_text", type: text, description: "rail-*.html (11.35)" }
+          - { name: "rail_license_link", label: "rail_license_link", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_reading", label: "rail_reading", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_on_page", label: "rail_on_page", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_about", label: "toc_about", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_releases", label: "toc_releases", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_listen", label: "toc_listen", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_news", label: "toc_news", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_numbers", label: "toc_numbers", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_social", label: "toc_social", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_faq", label: "toc_faq", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_bio_toc", label: "rail_bio_toc", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_by_year", label: "rail_by_year", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_year", label: "rail_year", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_total", label: "toc_total", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_platforms", label: "toc_platforms", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_profiles", label: "toc_profiles", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_bio_in", label: "rail_bio_in", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_on_site", label: "rail_on_site", type: string, description: "rail-*.html (11.35)" }
+          - { name: "menu_top_phonk", label: "menu_top_phonk", type: string, description: "rail-*.html (11.35)" }
+          - { name: "consent_aria", label: "consent_aria", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_text", label: "consent_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_decline", label: "consent_decline", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_accept", label: "consent_accept", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_noscript", label: "consent_noscript", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_title", label: "subscribe_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_lead", label: "subscribe_lead", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_push", label: "subscribe_push", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_rss", label: "subscribe_rss", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "empty_continue", label: "empty_continue", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "back_to", label: "back_to", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_title", label: "push_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_text", label: "push_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_caption", label: "push_caption", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_now", label: "push_now", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_no", label: "push_no", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_yes", label: "push_yes", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_fine", label: "push_fine", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_done_title", label: "push_done_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_done_text", label: "push_done_text", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_already_title", label: "push_already_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_already_text", label: "push_already_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_close", label: "push_close", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_error_title", label: "push_error_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_error_text", label: "push_error_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_blocked_title", label: "push_blocked_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_blocked_text", label: "push_blocked_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_title", label: "notfound_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_text", label: "notfound_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_home", label: "notfound_home", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "skip_link", label: "skip_link", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_photograph", label: "js_photograph", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_close", label: "js_close", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_prev_photo", label: "js_prev_photo", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_next_photo", label: "js_next_photo", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_credit", label: "js_credit", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_cover_of", label: "js_cover_of", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_listen", label: "js_listen", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_search_on", label: "js_search_on", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_search_note", label: "js_search_note", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_tracklist", label: "js_tracklist", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_lyrics", label: "js_lyrics", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_lyrics_of", label: "js_lyrics_of", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_tracklist_page", label: "js_tracklist_page", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_no_tracklist", label: "js_no_tracklist", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_prev_release", label: "js_prev_release", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_next_release", label: "js_next_release", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_refreshing", label: "js_refreshing", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "numbers_title", label: "numbers_title", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_all", label: "numbers_all", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_total", label: "numbers_total", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_across_both", label: "numbers_across_both", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_across_music", label: "numbers_across_music", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_yt_clips", label: "numbers_yt_clips", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_all_videos", label: "numbers_all_videos", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_cta", label: "numbers_cta", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_aria", label: "numbers_aria", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_title", label: "cdra_title", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_all", label: "cdra_all", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_streams", label: "cdra_streams", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_award", label: "cdra_award", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_intro", label: "cdra_intro", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "date_months", label: "date_months", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "date_fmt", label: "date_fmt", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_yt_row", label: "numbers_yt_row", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "rail_end_aria", label: "rail_end_aria", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "rail_start_aria", label: "rail_start_aria", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - name: "links_desc"
+            label: "links_desc"
+            type: object
+            description: "small descriptions of the link lists (links.yml): the key is the ENGLISH text, the value its translation"
+            fields:
+              - { name: "Artist page and tracks", label: "Artist page and tracks", type: string }
+              - { name: "Artist page", label: "Artist page", type: string }
+              - { name: "Official channel", label: "Official channel", type: string }
+              - { name: "The genre, on Wikipedia", label: "The genre, on Wikipedia", type: string }
+              - { name: "Brazilian Phonk, on Wikipedia", label: "Brazilian Phonk, on Wikipedia", type: string }
+              - { name: "EDM, on Wikipedia", label: "EDM, on Wikipedia", type: string }
+              - { name: "The profession, on Wikipedia", label: "The profession, on Wikipedia", type: string }
+              - { name: "Hometown, on Wikipedia", label: "Hometown, on Wikipedia", type: string }
+              - { name: "The license of the photographs", label: "The license of the photographs", type: string }
+          - { name: "trend_title", label: "trend_title", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "trend_sub", label: "trend_sub", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "trend_aria", label: "trend_aria", type: text, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "numbers_earlier", label: "numbers_earlier", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "details_platforms", label: "details_platforms", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_plays", label: "details_plays", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_plays_total", label: "details_plays_total", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_dashboard", label: "details_dashboard", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_on", label: "details_open_on", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_views", label: "details_views", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_whole_channel", label: "details_whole_channel", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_live", label: "details_live", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_channel_total", label: "details_channel_total", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_whole_note", label: "details_whole_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_channel", label: "details_open_channel", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_release_videos", label: "details_release_videos", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_release_note", label: "details_release_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_playlist", label: "details_open_playlist", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_other_videos", label: "details_other_videos", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_other_note", label: "details_other_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "art_by", label: "art_by", type: string, description: "news article layout (11.49)" }
+          - { name: "art_published", label: "art_published", type: string, description: "news article layout (11.49)" }
+          - { name: "art_updated", label: "art_updated", type: string, description: "news article layout (11.49)" }
+          - { name: "art_more_title", label: "art_more_title", type: string, description: "news article layout (11.49)" }
+          - { name: "art_bio", label: "art_bio", type: string, description: "news article layout (11.49)" }
+          - { name: "art_releases", label: "art_releases", type: string, description: "news article layout (11.49)" }
+          - { name: "art_photos", label: "art_photos", type: string, description: "news article layout (11.49)" }
+          - { name: "art_all_news", label: "art_all_news", type: string, description: "news article layout (11.49)" }
+          - { name: "art_newer", label: "art_newer", type: string, description: "news article layout (11.49)" }
+          - { name: "art_older", label: "art_older", type: string, description: "news article layout (11.49)" }
+          - { name: "art_aria_more", label: "art_aria_more", type: string, description: "news article layout (11.49)" }
+          - { name: "art_latest", label: "art_latest", type: string, description: "news article layout (11.49)" }
+          - { name: "art_aria_elsewhere", label: "art_aria_elsewhere", type: string, description: "news article layout (11.49)" }
+          - { name: "art_listen", label: "art_listen", type: string, description: "news article layout (11.49)" }
+          - { name: "art_open_spotify", label: "art_open_spotify", type: string, description: "news article layout (11.49)" }
+          - { name: "art_open_release", label: "art_open_release", type: string, description: "news article layout (11.49)" }
+      - name: texts_uk_home
+        label: "Home page"
+        type: file
+        path: _data/i18n_home/uk.yml
+        format: yaml
+        fields:
+          - name: "hero"
+            label: "hero"
+            type: object
+            description: "Not translated on purpose: SETTWOR, release and track names, platform names, e-mail. Photo, video id, Spotify id and links are read from the English data."
+            fields:
+              - { name: "photo_alt", label: "photo_alt", type: string }
+              - { name: "title", label: "title", type: string }
+              - { name: "tagline", label: "tagline", type: string }
+              - { name: "note", label: "note", type: text }
+              - { name: "listen_label", label: "listen_label", type: string }
+          - { name: "about_title", label: "about_title", type: string }
+          - { name: "about", label: "about", type: text, description: "Markdown: a blank line starts a new paragraph, [text](https://address) makes a link." }
+          - { name: "callout", label: "callout", type: string }
+          - { name: "facts_label", label: "facts_label", type: string }
+          - name: "facts"
+            label: "facts"
+            type: object
+            list: true
+            fields:
+              - { name: "label", label: "label", type: string }
+              - { name: "value", label: "value", type: string }
+          - name: "video"
+            label: "video"
+            type: object
+            fields:
+              - { name: "title", label: "title", type: string }
+          - { name: "faq_title", label: "faq_title", type: string }
+          - name: "faq"
+            label: "faq"
+            type: object
+            list: true
+            fields:
+              - { name: "q", label: "q", type: string }
+              - { name: "a", label: "a", type: text }
+          - name: "key_line"
+            label: "key_line"
+            type: object
+            description: "The key line of the About block. Pieces, no plural forms (the number comes after a colon). {y} = year, {n} = number, {p} = place, {date} = date in the language."
+            fields:
+              - { name: "intro", label: "intro", type: string }
+              - { name: "releases", label: "releases", type: string }
+              - { name: "this_year", label: "this_year", type: string }
+              - { name: "rank_phonk", label: "rank_phonk", type: string }
+              - { name: "rank_bphonk", label: "rank_bphonk", type: string }
+              - { name: "join", label: "join", type: string }
+              - { name: "on_pandora", label: "on_pandora", type: string }
+              - { name: "source", label: "source", type: string }
+          - name: "labels"
+            label: "labels"
+            type: object
+            description: "Section titles, links and small texts of the home page. {title} = release title, {y} = year."
+            fields:
+              - { name: "full_bio", label: "full_bio", type: string }
+              - { name: "releases_title", label: "releases_title", type: string }
+              - { name: "releases_all", label: "releases_all", type: string }
+              - { name: "release_aria", label: "release_aria", type: string }
+              - { name: "cover_of", label: "cover_of", type: string }
+              - { name: "listen_title", label: "listen_title", type: string }
+              - { name: "video_alt_pre", label: "video_alt_pre", type: string }
+              - { name: "video_alt_link", label: "video_alt_link", type: string }
+              - { name: "spotify_title", label: "spotify_title", type: string }
+              - { name: "spotify_alt_pre", label: "spotify_alt_pre", type: string }
+              - { name: "spotify_alt_link", label: "spotify_alt_link", type: string }
+              - { name: "photos_title", label: "photos_title", type: string }
+              - { name: "photos_all", label: "photos_all", type: string }
+              - { name: "photo_alt", label: "photo_alt", type: string }
+              - { name: "social_title", label: "social_title", type: string }
+              - { name: "faq_more", label: "faq_more", type: string }
+              - { name: "kind_album", label: "kind_album", type: string }
+              - { name: "kind_mixtape", label: "kind_mixtape", type: string }
+      - name: texts_uk_pages
+        label: "List pages (Streams, Releases, Photo, News, Top Phonk)"
+        type: file
+        path: _data/i18n_pages/uk.yml
+        format: yaml
+        fields:
+          - name: "streams"
+            label: "streams"
+            type: object
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "live", label: "live", type: string }
+              - { name: "verified", label: "verified", type: string }
+              - { name: "profiles_title", label: "profiles_title", type: string }
+              - { name: "profiles_note", label: "profiles_note", type: string }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: text }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+          - name: "releases"
+            label: "releases"
+            type: object
+            description: "Releases page (v11.45). {title} = the release name (filled in by the template). Release and track names are never translated."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: string }
+              - { name: "image_alt", label: "image_alt", type: string }
+              - { name: "caption", label: "caption", type: string }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: string }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "cover_of", label: "cover_of", type: string }
+              - { name: "aria", label: "aria", type: string }
+              - { name: "listen", label: "listen", type: string }
+              - { name: "kind_single", label: "kind_single", type: string }
+              - { name: "kind_album", label: "kind_album", type: string }
+              - { name: "kind_mixtape", label: "kind_mixtape", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+          - name: "photo"
+            label: "photo"
+            type: object
+            description: "Photo page (v11.46). The alt text of each photo in this language is the pattern `labels.photo_alt` of _data/i18n_home/<lang>.yml ({y} = year)."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: string }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "tabs_aria", label: "tabs_aria", type: string }
+              - { name: "note_a", label: "note_a", type: string }
+              - { name: "note_b", label: "note_b", type: string }
+              - { name: "note_credit", label: "note_credit", type: string }
+              - { name: "credit", label: "credit", type: string }
+          - name: "top_phonk"
+            label: "top_phonk"
+            type: object
+            description: "Top Phonk page (v11.47). Placeholders {snapshot} {listeners} {phonk_place} {phonk_total} {bphonk_place} {bphonk_total} are filled by the template. AI draft, not read by the owner."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "meta", label: "meta", type: string }
+              - { name: "intro_a", label: "intro_a", type: text }
+              - { name: "intro_link", label: "intro_link", type: string }
+              - { name: "intro_b", label: "intro_b", type: text }
+              - { name: "numbers_h", label: "numbers_h", type: string }
+              - { name: "li_listeners_l", label: "li_listeners_l", type: string }
+              - { name: "li_phonk_l", label: "li_phonk_l", type: string }
+              - { name: "li_phonk_t", label: "li_phonk_t", type: string }
+              - { name: "li_bphonk_l", label: "li_bphonk_l", type: string }
+              - { name: "li_bphonk_t", label: "li_bphonk_t", type: string }
+              - { name: "li_date_l", label: "li_date_l", type: string }
+              - { name: "read_h", label: "read_h", type: string }
+              - { name: "read_1_strong", label: "read_1_strong", type: string }
+              - { name: "read_1_rest", label: "read_1_rest", type: text }
+              - { name: "read_2", label: "read_2", type: text }
+              - { name: "read_3", label: "read_3", type: text }
+              - { name: "who_h", label: "who_h", type: string }
+              - { name: "who_p", label: "who_p", type: text }
+              - { name: "more_h", label: "more_h", type: string }
+              - { name: "more_pandora", label: "more_pandora", type: string }
+              - { name: "more_spotify", label: "more_spotify", type: string }
+              - { name: "more_lt", label: "more_lt", type: string }
+              - { name: "more_full", label: "more_full", type: string }
+              - { name: "more_streams", label: "more_streams", type: string }
+              - { name: "more_and", label: "more_and", type: string }
+              - { name: "more_releases", label: "more_releases", type: string }
+              - { name: "faq_h", label: "faq_h", type: string }
+              - { name: "q1", label: "q1", type: string }
+              - { name: "a1", label: "a1", type: text }
+              - { name: "q2", label: "q2", type: string }
+              - { name: "a2", label: "a2", type: text }
+              - { name: "q3", label: "q3", type: string }
+              - { name: "a3", label: "a3", type: text }
+              - { name: "q4", label: "q4", type: string }
+              - { name: "a4", label: "a4", type: text }
+              - { name: "crumb", label: "crumb", type: string }
+          - name: "news"
+            label: "news"
+            type: object
+            description: "News list page (v11.50)"
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: string }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: string }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+
+  - name: texts_es
+    label: "Texts: Español"
+    type: group
+    items:
+      - name: texts_es_interface
+        label: "Interface (menus, footer, buttons)"
+        type: file
+        path: _data/i18n/es.yml
+        format: yaml
+        fields:
+          - { name: "menu_releases", label: "menu_releases", type: string }
+          - { name: "menu_news", label: "menu_news", type: string }
+          - { name: "menu_streams", label: "menu_streams", type: string }
+          - { name: "menu_biography", label: "menu_biography", type: string }
+          - { name: "menu_photos", label: "menu_photos", type: string }
+          - { name: "header_open_menu", label: "header_open_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_close_menu", label: "header_close_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_nav_start", label: "header_nav_start", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_nav_end", label: "header_nav_end", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_mobile_menu", label: "header_mobile_menu", type: string, description: "header.html: aria-label texts" }
+          - { name: "header_home", label: "header_home", type: string, description: "header.html: aria-label texts" }
+          - { name: "footer_site", label: "footer_site", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_rss", label: "footer_rss", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_notifications", label: "footer_notifications", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_listen", label: "footer_listen", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_legal", label: "footer_legal", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_license", label: "footer_license", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_privacy", label: "footer_privacy", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_cookies", label: "footer_cookies", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_theme", label: "footer_theme", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_auto", label: "theme_auto", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_light", label: "theme_light", type: string, description: "footer.html (11.34)" }
+          - { name: "theme_dark", label: "theme_dark", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_official", label: "footer_official", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_version", label: "footer_version", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_projects", label: "footer_projects", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_ledgertone", label: "footer_ledgertone", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_cdra", label: "footer_cdra", type: string, description: "footer.html (11.34)" }
+          - { name: "footer_language", label: "footer_language", type: string, description: "footer.html (11.34)" }
+          - { name: "rail_follow", label: "rail_follow", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_listen", label: "rail_listen", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_contact", label: "rail_contact", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_elsewhere", label: "rail_elsewhere", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_photos_title", label: "rail_photos_title", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_photos_text", label: "rail_photos_text", type: text, description: "rail-*.html (11.35)" }
+          - { name: "rail_license_link", label: "rail_license_link", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_reading", label: "rail_reading", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_on_page", label: "rail_on_page", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_about", label: "toc_about", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_releases", label: "toc_releases", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_listen", label: "toc_listen", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_news", label: "toc_news", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_numbers", label: "toc_numbers", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_social", label: "toc_social", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_faq", label: "toc_faq", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_bio_toc", label: "rail_bio_toc", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_by_year", label: "rail_by_year", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_year", label: "rail_year", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_total", label: "toc_total", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_platforms", label: "toc_platforms", type: string, description: "rail-*.html (11.35)" }
+          - { name: "toc_profiles", label: "toc_profiles", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_bio_in", label: "rail_bio_in", type: string, description: "rail-*.html (11.35)" }
+          - { name: "rail_on_site", label: "rail_on_site", type: string, description: "rail-*.html (11.35)" }
+          - { name: "menu_top_phonk", label: "menu_top_phonk", type: string, description: "rail-*.html (11.35)" }
+          - { name: "consent_aria", label: "consent_aria", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_text", label: "consent_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_decline", label: "consent_decline", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_accept", label: "consent_accept", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "consent_noscript", label: "consent_noscript", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_title", label: "subscribe_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_lead", label: "subscribe_lead", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_push", label: "subscribe_push", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "subscribe_rss", label: "subscribe_rss", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "empty_continue", label: "empty_continue", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "back_to", label: "back_to", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_title", label: "push_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_text", label: "push_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_caption", label: "push_caption", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_now", label: "push_now", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_no", label: "push_no", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_yes", label: "push_yes", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_fine", label: "push_fine", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_done_title", label: "push_done_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_done_text", label: "push_done_text", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_already_title", label: "push_already_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_already_text", label: "push_already_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_close", label: "push_close", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_error_title", label: "push_error_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_error_text", label: "push_error_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_blocked_title", label: "push_blocked_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "push_blocked_text", label: "push_blocked_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_title", label: "notfound_title", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_text", label: "notfound_text", type: text, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "notfound_home", label: "notfound_home", type: string, description: "consent, subscribe, empty state, back link, push ask, 404 (11.36)" }
+          - { name: "skip_link", label: "skip_link", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_photograph", label: "js_photograph", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_close", label: "js_close", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_prev_photo", label: "js_prev_photo", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_next_photo", label: "js_next_photo", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_credit", label: "js_credit", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_cover_of", label: "js_cover_of", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_listen", label: "js_listen", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_search_on", label: "js_search_on", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_search_note", label: "js_search_note", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_tracklist", label: "js_tracklist", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_lyrics", label: "js_lyrics", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_lyrics_of", label: "js_lyrics_of", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_tracklist_page", label: "js_tracklist_page", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_no_tracklist", label: "js_no_tracklist", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_prev_release", label: "js_prev_release", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_next_release", label: "js_next_release", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "js_refreshing", label: "js_refreshing", type: string, description: "skip link, texts of js/main.js and js/fluid.js (11.37)" }
+          - { name: "numbers_title", label: "numbers_title", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_all", label: "numbers_all", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_total", label: "numbers_total", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_across_both", label: "numbers_across_both", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_across_music", label: "numbers_across_music", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_yt_clips", label: "numbers_yt_clips", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_all_videos", label: "numbers_all_videos", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_cta", label: "numbers_cta", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_aria", label: "numbers_aria", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_title", label: "cdra_title", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_all", label: "cdra_all", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_streams", label: "cdra_streams", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_award", label: "cdra_award", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "cdra_intro", label: "cdra_intro", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "date_months", label: "date_months", type: text, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "date_fmt", label: "date_fmt", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "numbers_yt_row", label: "numbers_yt_row", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "rail_end_aria", label: "rail_end_aria", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - { name: "rail_start_aria", label: "rail_start_aria", type: string, description: "home page: numbers panel, CDRA awards, dates (11.38). date_months = twelve names in the form that follows a day number, date_fmt = pattern." }
+          - name: "links_desc"
+            label: "links_desc"
+            type: object
+            description: "small descriptions of the link lists (links.yml): the key is the ENGLISH text, the value its translation"
+            fields:
+              - { name: "Artist page and tracks", label: "Artist page and tracks", type: string }
+              - { name: "Artist page", label: "Artist page", type: string }
+              - { name: "Official channel", label: "Official channel", type: string }
+              - { name: "The genre, on Wikipedia", label: "The genre, on Wikipedia", type: string }
+              - { name: "Brazilian Phonk, on Wikipedia", label: "Brazilian Phonk, on Wikipedia", type: string }
+              - { name: "EDM, on Wikipedia", label: "EDM, on Wikipedia", type: string }
+              - { name: "The profession, on Wikipedia", label: "The profession, on Wikipedia", type: string }
+              - { name: "Hometown, on Wikipedia", label: "Hometown, on Wikipedia", type: string }
+              - { name: "The license of the photographs", label: "The license of the photographs", type: string }
+          - { name: "trend_title", label: "trend_title", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "trend_sub", label: "trend_sub", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "trend_aria", label: "trend_aria", type: text, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "numbers_earlier", label: "numbers_earlier", type: string, description: "stats-trend.html (11.42): chart of plays by year; {from}, {to}, {peak} are filled in by the template" }
+          - { name: "details_platforms", label: "details_platforms", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_plays", label: "details_plays", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_plays_total", label: "details_plays_total", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_dashboard", label: "details_dashboard", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_on", label: "details_open_on", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_views", label: "details_views", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_whole_channel", label: "details_whole_channel", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_live", label: "details_live", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_channel_total", label: "details_channel_total", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_whole_note", label: "details_whole_note", type: text, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_channel", label: "details_open_channel", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_release_videos", label: "details_release_videos", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_release_note", label: "details_release_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_open_playlist", label: "details_open_playlist", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_other_videos", label: "details_other_videos", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "details_other_note", label: "details_other_note", type: string, description: "stats-details.html (11.43): platform cards and YouTube tiles; {n} = the number, {name} = the platform name (filled in by the template)" }
+          - { name: "art_by", label: "art_by", type: string, description: "news article layout (11.49)" }
+          - { name: "art_published", label: "art_published", type: string, description: "news article layout (11.49)" }
+          - { name: "art_updated", label: "art_updated", type: string, description: "news article layout (11.49)" }
+          - { name: "art_more_title", label: "art_more_title", type: string, description: "news article layout (11.49)" }
+          - { name: "art_bio", label: "art_bio", type: string, description: "news article layout (11.49)" }
+          - { name: "art_releases", label: "art_releases", type: string, description: "news article layout (11.49)" }
+          - { name: "art_photos", label: "art_photos", type: string, description: "news article layout (11.49)" }
+          - { name: "art_all_news", label: "art_all_news", type: string, description: "news article layout (11.49)" }
+          - { name: "art_newer", label: "art_newer", type: string, description: "news article layout (11.49)" }
+          - { name: "art_older", label: "art_older", type: string, description: "news article layout (11.49)" }
+          - { name: "art_aria_more", label: "art_aria_more", type: string, description: "news article layout (11.49)" }
+          - { name: "art_latest", label: "art_latest", type: string, description: "news article layout (11.49)" }
+          - { name: "art_aria_elsewhere", label: "art_aria_elsewhere", type: string, description: "news article layout (11.49)" }
+          - { name: "art_listen", label: "art_listen", type: string, description: "news article layout (11.49)" }
+          - { name: "art_open_spotify", label: "art_open_spotify", type: string, description: "news article layout (11.49)" }
+          - { name: "art_open_release", label: "art_open_release", type: string, description: "news article layout (11.49)" }
+      - name: texts_es_home
+        label: "Home page"
+        type: file
+        path: _data/i18n_home/es.yml
+        format: yaml
+        fields:
+          - name: "hero"
+            label: "hero"
+            type: object
+            description: "Not translated on purpose: SETTWOR, release and track names, platform names, e-mail. Photo, video id, Spotify id and links are read from the English data."
+            fields:
+              - { name: "photo_alt", label: "photo_alt", type: string }
+              - { name: "title", label: "title", type: string }
+              - { name: "tagline", label: "tagline", type: string }
+              - { name: "note", label: "note", type: text }
+              - { name: "listen_label", label: "listen_label", type: string }
+          - { name: "about_title", label: "about_title", type: string }
+          - { name: "about", label: "about", type: text, description: "Markdown: a blank line starts a new paragraph, [text](https://address) makes a link." }
+          - { name: "callout", label: "callout", type: string }
+          - { name: "facts_label", label: "facts_label", type: string }
+          - name: "facts"
+            label: "facts"
+            type: object
+            list: true
+            fields:
+              - { name: "label", label: "label", type: string }
+              - { name: "value", label: "value", type: string }
+          - name: "video"
+            label: "video"
+            type: object
+            fields:
+              - { name: "title", label: "title", type: string }
+          - { name: "faq_title", label: "faq_title", type: string }
+          - name: "faq"
+            label: "faq"
+            type: object
+            list: true
+            fields:
+              - { name: "q", label: "q", type: string }
+              - { name: "a", label: "a", type: text }
+          - name: "key_line"
+            label: "key_line"
+            type: object
+            description: "The key line of the About block. Pieces, no plural forms (the number comes after a colon). {y} = year, {n} = number, {p} = place, {date} = date in the language."
+            fields:
+              - { name: "intro", label: "intro", type: text }
+              - { name: "releases", label: "releases", type: string }
+              - { name: "this_year", label: "this_year", type: string }
+              - { name: "rank_phonk", label: "rank_phonk", type: string }
+              - { name: "rank_bphonk", label: "rank_bphonk", type: string }
+              - { name: "join", label: "join", type: string }
+              - { name: "on_pandora", label: "on_pandora", type: string }
+              - { name: "source", label: "source", type: string }
+          - name: "labels"
+            label: "labels"
+            type: object
+            description: "Section titles, links and small texts of the home page. {title} = release title, {y} = year."
+            fields:
+              - { name: "full_bio", label: "full_bio", type: string }
+              - { name: "releases_title", label: "releases_title", type: string }
+              - { name: "releases_all", label: "releases_all", type: string }
+              - { name: "release_aria", label: "release_aria", type: string }
+              - { name: "cover_of", label: "cover_of", type: string }
+              - { name: "listen_title", label: "listen_title", type: string }
+              - { name: "video_alt_pre", label: "video_alt_pre", type: string }
+              - { name: "video_alt_link", label: "video_alt_link", type: string }
+              - { name: "spotify_title", label: "spotify_title", type: string }
+              - { name: "spotify_alt_pre", label: "spotify_alt_pre", type: string }
+              - { name: "spotify_alt_link", label: "spotify_alt_link", type: string }
+              - { name: "photos_title", label: "photos_title", type: string }
+              - { name: "photos_all", label: "photos_all", type: string }
+              - { name: "photo_alt", label: "photo_alt", type: string }
+              - { name: "social_title", label: "social_title", type: string }
+              - { name: "faq_more", label: "faq_more", type: string }
+              - { name: "kind_album", label: "kind_album", type: string }
+              - { name: "kind_mixtape", label: "kind_mixtape", type: string }
+      - name: texts_es_pages
+        label: "List pages (Streams, Releases, Photo, News, Top Phonk)"
+        type: file
+        path: _data/i18n_pages/es.yml
+        format: yaml
+        fields:
+          - name: "streams"
+            label: "streams"
+            type: object
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "live", label: "live", type: string }
+              - { name: "verified", label: "verified", type: string }
+              - { name: "profiles_title", label: "profiles_title", type: string }
+              - { name: "profiles_note", label: "profiles_note", type: string }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: text }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+          - name: "releases"
+            label: "releases"
+            type: object
+            description: "Releases page (v11.45). {title} = the release name (filled in by the template). Release and track names are never translated."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "image_alt", label: "image_alt", type: string }
+              - { name: "caption", label: "caption", type: string }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: text }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "cover_of", label: "cover_of", type: string }
+              - { name: "aria", label: "aria", type: string }
+              - { name: "listen", label: "listen", type: string }
+              - { name: "kind_single", label: "kind_single", type: string }
+              - { name: "kind_album", label: "kind_album", type: string }
+              - { name: "kind_mixtape", label: "kind_mixtape", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }
+          - name: "photo"
+            label: "photo"
+            type: object
+            description: "Photo page (v11.46). The alt text of each photo in this language is the pattern `labels.photo_alt` of _data/i18n_home/<lang>.yml ({y} = year)."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: string }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "tabs_aria", label: "tabs_aria", type: string }
+              - { name: "note_a", label: "note_a", type: string }
+              - { name: "note_b", label: "note_b", type: string }
+              - { name: "note_credit", label: "note_credit", type: string }
+              - { name: "credit", label: "credit", type: string }
+          - name: "top_phonk"
+            label: "top_phonk"
+            type: object
+            description: "Top Phonk page (v11.47). Placeholders {snapshot} {listeners} {phonk_place} {phonk_total} {bphonk_place} {bphonk_total} are filled by the template. AI draft, not read by the owner."
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "meta", label: "meta", type: string }
+              - { name: "intro_a", label: "intro_a", type: text }
+              - { name: "intro_link", label: "intro_link", type: string }
+              - { name: "intro_b", label: "intro_b", type: text }
+              - { name: "numbers_h", label: "numbers_h", type: string }
+              - { name: "li_listeners_l", label: "li_listeners_l", type: string }
+              - { name: "li_phonk_l", label: "li_phonk_l", type: string }
+              - { name: "li_phonk_t", label: "li_phonk_t", type: string }
+              - { name: "li_bphonk_l", label: "li_bphonk_l", type: string }
+              - { name: "li_bphonk_t", label: "li_bphonk_t", type: string }
+              - { name: "li_date_l", label: "li_date_l", type: string }
+              - { name: "read_h", label: "read_h", type: string }
+              - { name: "read_1_strong", label: "read_1_strong", type: string }
+              - { name: "read_1_rest", label: "read_1_rest", type: text }
+              - { name: "read_2", label: "read_2", type: text }
+              - { name: "read_3", label: "read_3", type: text }
+              - { name: "who_h", label: "who_h", type: string }
+              - { name: "who_p", label: "who_p", type: text }
+              - { name: "more_h", label: "more_h", type: string }
+              - { name: "more_pandora", label: "more_pandora", type: string }
+              - { name: "more_spotify", label: "more_spotify", type: string }
+              - { name: "more_lt", label: "more_lt", type: string }
+              - { name: "more_full", label: "more_full", type: string }
+              - { name: "more_streams", label: "more_streams", type: string }
+              - { name: "more_and", label: "more_and", type: string }
+              - { name: "more_releases", label: "more_releases", type: string }
+              - { name: "faq_h", label: "faq_h", type: string }
+              - { name: "q1", label: "q1", type: string }
+              - { name: "a1", label: "a1", type: text }
+              - { name: "q2", label: "q2", type: string }
+              - { name: "a2", label: "a2", type: text }
+              - { name: "q3", label: "q3", type: string }
+              - { name: "a3", label: "a3", type: text }
+              - { name: "q4", label: "q4", type: string }
+              - { name: "a4", label: "a4", type: text }
+              - { name: "crumb", label: "crumb", type: string }
+          - name: "news"
+            label: "news"
+            type: object
+            description: "News list page (v11.50)"
+            fields:
+              - { name: "title", label: "title", type: string }
+              - { name: "lead", label: "lead", type: text }
+              - { name: "empty_title", label: "empty_title", type: string }
+              - { name: "empty_text", label: "empty_text", type: string }
+              - { name: "empty_label", label: "empty_label", type: string }
+              - { name: "schema_name", label: "schema_name", type: string }

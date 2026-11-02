@@ -1,9 +1,9 @@
 # Texts and settings of the home page. Edit them in Pages CMS ("Home page").
 hero:
   photo: /images/main.jpg
-  photo_alt: Portrait of SETTWOR, phonk and Brazilian funk producer
+  photo_alt: Portrait of SETTWOR, phonk artist and producer
   title: SETTWOR
-  tagline: Phonk and Brazilian funk producer
+  tagline: Phonk artist and producer
   note: The official website. From Kryvyi Rih, Ukraine, based in Poland, active since 2021.
   # The big buttons under the name. The second one always opens the newest release.
   listen_label: Listen on Spotify
@@ -12,14 +12,14 @@ hero:
 about_title: About SETTWOR
 # Markdown: a blank line starts a new paragraph, [text](https://address) makes a link.
 about: |
-  SETTWOR is a music producer specializing in [phonk](https://en.wikipedia.org/wiki/Phonk), [Brazilian funk](https://en.wikipedia.org/wiki/Funk_carioca), and dance/electronic music. Originally from [Kryvyi Rih](https://en.wikipedia.org/wiki/Kryvyi_Rih), Ukraine, he relocated to Poland in 2022.
+  SETTWOR is a [phonk](https://en.wikipedia.org/wiki/Phonk) artist and producer who also works in Brazilian Phonk and dance/electronic music. Originally from [Kryvyi Rih](https://en.wikipedia.org/wiki/Kryvyi_Rih), Ukraine, he relocated to Poland in 2022.
 
   He is best known for his music, his YouTube channel, and short TikTok videos featuring his tracks. He is also the owner of one of the popular 8D music channels.
 callout: SETTWOR is one of the most popular phonk artists on Pandora.
 
 facts:
   - label: Occupation
-    value: Music producer
+    value: Phonk artist and producer
   - label: Date of birth
     value: 8 February 2007
   - label: Place of birth
@@ -29,7 +29,7 @@ facts:
   - label: Based in
     value: Poland
   - label: Genres
-    value: Brazilian funk, phonk
+    value: Brazilian Phonk, phonk
   - label: Active since
     value: "2021"
   - label: Email
@@ -44,9 +44,9 @@ spotify_artist_id: 5BD8hsAGp1fwJKcnlQWjGf
 faq_title: Questions about SETTWOR
 faq:
   - q: Who is SETTWOR?
-    a: SETTWOR is a music producer from Kryvyi Rih, Ukraine, based in Poland. He makes phonk, Brazilian funk and dance/electronic music and has released music since 2021.
+    a: SETTWOR is a phonk artist and producer from Kryvyi Rih, Ukraine, based in Poland. He makes phonk, Brazilian Phonk and dance/electronic music and has released music since 2021.
   - q: Which genres does SETTWOR work in?
-    a: Mainly phonk and Brazilian funk, also EDM.
+    a: Mainly phonk and Brazilian Phonk, also EDM.
   - q: What is SETTWOR's most popular track?
     a: GOT ME UP 2, from the album GET IT, Vol.1. It passed 1,000,000 streams across all platforms on 22 February 2026 and is the most successful release of his career.
   - q: When did SETTWOR release his first track?

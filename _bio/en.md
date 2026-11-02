@@ -1,7 +1,7 @@
 ---
 title: SETTWOR Biography
 seo_title: SETTWOR Official Biography
-description: 'Official biography of SETTWOR in English: early years, releases, records and channel history of the phonk and Brazilian funk producer.'
+description: 'Official biography of SETTWOR in English: early years, releases, records and channel history of the phonk and Brazilian Phonk producer.'
 lang: en
 lang_name: English
 order: 1
@@ -18,7 +18,7 @@ snapshot:
 - label: Lives in
   value: Poland (since 2022)
 - label: Genres
-  value: Phonk, Brazilian funk, EDM
+  value: Phonk, Brazilian Phonk, EDM
 - label: Active since
   value: '2021'
 - label: Contact
@@ -33,14 +33,14 @@ highlights:
 - year: '2024'
   text: First album, GET IT, Vol.1, with GOT ME UP 2. His YouTube channel passes 10 million views.
 - year: '2025'
-  text: BREAKPOINT Mixtape (28 March). OG KILLIN' (26 September) starts a release series. First Brazilian funk track, NOITE SELVAGEM (12 December).
+  text: BREAKPOINT Mixtape (28 March). OG KILLIN' (26 September) starts a release series. First Brazilian Phonk track, NOITE SELVAGEM (12 December).
 - year: '2026'
   text: GOT ME UP 2 passes 1,000,000 streams (22 February); total streams reach 2 million (17 May).
 - year: '2026'
   text: 'First collaborations: Mc Baiano on SE TU QUER (4 September) and MC GW on Toma Jatada (10 October).'
 faq:
 - q: Who is SETTWOR?
-  a: SETTWOR is a music producer from Kryvyi Rih, Ukraine, based in Poland. He makes phonk, Brazilian funk and dance/electronic music and has released music since 2021.
+  a: SETTWOR is a music producer from Kryvyi Rih, Ukraine, based in Poland. He makes phonk, Brazilian Phonk and dance/electronic music and has released music since 2021.
 - q: When was SETTWOR born?
   a: SETTWOR was born on 8 February 2007.
 - q: Where is SETTWOR from?
@@ -48,7 +48,7 @@ faq:
 - q: Where does SETTWOR live?
   a: SETTWOR lives in Poland. He moved there in 2022.
 - q: Which genres does SETTWOR work in?
-  a: Mainly phonk and Brazilian funk, also EDM.
+  a: Mainly phonk and Brazilian Phonk, also EDM.
 - q: What is SETTWOR's most popular track?
   a: GOT ME UP 2, from the album GET IT, Vol.1. It passed 1,000,000 streams across all platforms on 22 February 2026 and is the most successful release of his career.
 - q: When did SETTWOR release his first track?
@@ -57,8 +57,8 @@ faq:
   a: On 8 May 2022, with "LUNATIC".
 - q: What was SETTWOR's first album?
   a: GET IT, Vol.1 (2024) was his first full-length album. The mixtape BREAKPOINT Mixtape followed on 28 March 2025.
-- q: Does SETTWOR make Brazilian funk?
-  a: Yes. His first Brazilian funk track, "NOITE SELVAGEM", came out on 12 December 2025. He treats Brazilian funk as an experiment and does not plan to switch to it completely.
+- q: Does SETTWOR make Brazilian Phonk?
+  a: Yes. His first Brazilian Phonk track, "NOITE SELVAGEM", came out on 12 December 2025. He treats Brazilian Phonk as an experiment and does not plan to switch to it completely.
 - q: Who has SETTWOR collaborated with?
   a: With Mc Baiano on the re-release of "SE TU QUER" (4 September 2026) and with MC GW on "Toma Jatada" (10 October 2026). Both releases were supported by Authentic Records.
 - q: How many streams does SETTWOR have?
@@ -186,7 +186,7 @@ external:
 ---
 ## Brief information
 
-SETTWOR is a music producer who works in [phonk](https://en.wikipedia.org/wiki/Phonk), [Brazilian funk](https://en.wikipedia.org/wiki/Funk_carioca) and [dance/electronic music](https://en.wikipedia.org/wiki/Electronic_dance_music). He comes from [Kryvyi Rih](https://en.wikipedia.org/wiki/Kryvyi_Rih), [Ukraine](https://en.wikipedia.org/wiki/Ukraine), and moved to [Poland](https://en.wikipedia.org/wiki/Poland) in 2022. He is best known for his music, his [YouTube](https://youtube.com/c/settwor) channel and short [TikTok](https://en.wikipedia.org/wiki/TikTok) videos that use his tracks.[\[1\]](#ref-1)[\[14\]](#ref-14)[\[15\]](#ref-15)
+SETTWOR is a music producer who works in [phonk](https://en.wikipedia.org/wiki/Phonk), Brazilian Phonk and [dance/electronic music](https://en.wikipedia.org/wiki/Electronic_dance_music). He comes from [Kryvyi Rih](https://en.wikipedia.org/wiki/Kryvyi_Rih), [Ukraine](https://en.wikipedia.org/wiki/Ukraine), and moved to [Poland](https://en.wikipedia.org/wiki/Poland) in 2022. He is best known for his music, his [YouTube](https://youtube.com/c/settwor) channel and short [TikTok](https://en.wikipedia.org/wiki/TikTok) videos that use his tracks.[\[1\]](#ref-1)[\[14\]](#ref-14)[\[15\]](#ref-15)
 
 On [Pandora](https://en.wikipedia.org/wiki/Pandora_Radio), SETTWOR is among the phonk artists people actively stream. His tracks keep gaining plays and keep reaching new listeners.[\[2\]](#ref-2) SETTWOR is an active and fast-growing artist. In April 2025 he held place 6 among phonk artists on Pandora, and in the [Ledgertone ranking](/top-phonk-artist.html) of 27 October 2026 he holds place 13 in Phonk and place 22 in Brazilian Phonk.
 
@@ -232,7 +232,7 @@ SETTWOR both loved and resented how much of his life music had become. Years of 
 
 ### 2025
 
-Before the mixtape [BREAKPOINT Mixtape](/releases.html#release-breakpoint-mixtape) came out on March 28, 2025, SETTWOR decided to promote his tracks harder than ever. He also hinted that he might leave phonk, partly or completely, to try other directions. That is how it went: the mixtape marked a change of style and a move toward different sounds. He is now working on tracks that lean toward [Brazilian funk](https://en.wikipedia.org/wiki/Funk_carioca), house and [EDM](https://en.wikipedia.org/wiki/Electronic_dance_music).[\[5\]](#ref-5)
+Before the mixtape [BREAKPOINT Mixtape](/releases.html#release-breakpoint-mixtape) came out on March 28, 2025, SETTWOR decided to promote his tracks harder than ever. He also hinted that he might leave phonk, partly or completely, to try other directions. That is how it went: the mixtape marked a change of style and a move toward different sounds. He is now working on tracks that lean toward Brazilian Phonk, house and [EDM](https://en.wikipedia.org/wiki/Electronic_dance_music).[\[5\]](#ref-5)
 
 Soon after the mixtape, [GOT ME UP 2](/releases.html#release-get-it-vol-1) from the earlier album [GET IT, Vol.1](/releases.html#release-get-it-vol-1) reached the most streams in SETTWOR’s history, and it keeps growing. More of his songs are getting attention, streams and playlist spots.[\[6\]](#ref-6)
 
@@ -240,9 +240,9 @@ On September 26, 2025, he released [OG KILLIN'](/releases.html#release-og-killin
 
 It surprised the artist: within the first few days the track had record streams for him. Listener interest in classic old-school phonk was still there.
 
-On December 12, 2025, he released [NOITE SELVAGEM](/releases.html#release-noite-selvagem), his first track in Brazilian funk. The release opened a new direction in his music and showed his interest in trying different sounds and styles.[\[7\]](#ref-7)
+On December 12, 2025, he released [NOITE SELVAGEM](/releases.html#release-noite-selvagem), his first track in Brazilian Phonk. The release opened a new direction in his music and showed his interest in trying different sounds and styles.[\[7\]](#ref-7)
 
-In late 2025, SETTWOR became interested in Brazilian funk and released two tracks in that style. The start of 2026 stayed with funk too, and until spring it was the only genre he released. According to the artist, this period was a test of how his audience would take Brazilian funk. He said he does not plan to move into the genre fully. For him it is an experiment, because Brazilian funk is not his core direction.[\[15\]](#ref-15)[\[20\]](#ref-20)
+In late 2025, SETTWOR became interested in Brazilian Phonk and released two tracks in that style. The start of 2026 stayed with Brazilian Phonk too, and until spring it was the only genre he released. According to the artist, this period was a test of how his audience would take Brazilian Phonk. He said he does not plan to move into the genre fully. For him it is an experiment, because Brazilian Phonk is not his core direction.[\[15\]](#ref-15)[\[20\]](#ref-20)
 
 ### 2026
 
@@ -254,7 +254,7 @@ Growth was steadier in March. In April, total streams passed 200,000 for the mon
 
 On September 4, 2026, [SE TU QUER](https://open.spotify.com/album/4G27W8LQxr3H8mROcotpUQ?si=oyYOnmnaRu6c9dVP1Q6XqA) was re-released as a collaboration with Mc Baiano, whose vocals SETTWOR had already used in the original version. The release came out on Authentic Records. In five years of making music, it is his first collaboration with another artist.[\[8\]](#ref-8)[\[17\]](#ref-17)
 
-On October 10, 2026, [Toma Jatada](https://open.spotify.com/album/00W2qdOjV3whkK3L6W2VxL?si=AMXQNtG0TZa1gZQpQDFLnA) came out, a collaboration between SETTWOR and [MC GW](https://open.spotify.com/artist/0f1IECbrVV952unZkzrsg2?si=hnimUqf2S4yWmN5XUBcApw), a well-known artist and the leading voice of Brazilian funk. The release was supported by Authentic Records.[\[9\]](#ref-9)[\[13\]](#ref-13)[\[18\]](#ref-18)
+On October 10, 2026, [Toma Jatada](https://open.spotify.com/album/00W2qdOjV3whkK3L6W2VxL?si=AMXQNtG0TZa1gZQpQDFLnA) came out, a collaboration between SETTWOR and [MC GW](https://open.spotify.com/artist/0f1IECbrVV952unZkzrsg2?si=hnimUqf2S4yWmN5XUBcApw), a well-known artist and the leading voice of Brazilian Phonk. The release was supported by Authentic Records.[\[9\]](#ref-9)[\[13\]](#ref-13)[\[18\]](#ref-18)
 
 ### Release series
 
@@ -267,7 +267,7 @@ With [OG KILLIN’](/releases.html#release-og-killin), SETTWOR started a regular
 - [GET IT, Vol.1](/releases.html#release-get-it-vol-1) (album, 2024): SETTWOR’s first full-length album.
 - [GOT ME UP 2](/releases.html#release-get-it-vol-1) (2024): the artist’s first track to get a significant number of streams.
 - [BREAKPOINT Mixtape](/releases.html#release-breakpoint-mixtape) (2025): the release that began a shift in his core musical style and a partial move away from phonk.
-- [NOITE SELVAGEM](/releases.html#release-noite-selvagem) (2025): SETTWOR’s first track in the [Brazilian funk](https://en.wikipedia.org/wiki/Funk_carioca) genre.
+- [NOITE SELVAGEM](/releases.html#release-noite-selvagem) (2025): SETTWOR’s first track in the Brazilian Phonk genre.
 - [SE TU QUER](/releases.html#release-se-tu-quer) (2026): SETTWOR’s first work with another artist.
 
 ## Tracks history

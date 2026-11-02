@@ -3,13 +3,33 @@
   the YouTube tiles and the status of the numbers. Platform and year left empty in Pages CMS are not shown.
 {%- endcomment -%}
 {%- include stats-calc.html -%}
+{%- comment -%} 11.43: texts by page language (keys details_*, numbers_earlier; English kept here as the fallback). Variables start with sd_. {%- endcomment -%}
+{%- capture sd_platforms -%}{% include i18n-t.html key="details_platforms" en="Music platforms" %}{%- endcapture -%}
+{%- capture sd_plays -%}{% include i18n-t.html key="details_plays" en="{n} plays" %}{%- endcapture -%}
+{%- capture sd_plays_total -%}{% include i18n-t.html key="details_plays_total" en="plays in total" %}{%- endcapture -%}
+{%- capture sd_dashboard -%}{% include i18n-t.html key="details_dashboard" en="Artist dashboard" %}{%- endcapture -%}
+{%- capture sd_open_on -%}{% include i18n-t.html key="details_open_on" en="Open on {name}" %}{%- endcapture -%}
+{%- capture sd_views -%}{% include i18n-t.html key="details_views" en="{n} views" %}{%- endcapture -%}
+{%- capture sd_whole_channel -%}{% include i18n-t.html key="details_whole_channel" en="Whole channel" %}{%- endcapture -%}
+{%- capture sd_live -%}{% include i18n-t.html key="details_live" en="Live" %}{%- endcapture -%}
+{%- capture sd_channel_total -%}{% include i18n-t.html key="details_channel_total" en="Channel total" %}{%- endcapture -%}
+{%- capture sd_whole_note -%}{% include i18n-t.html key="details_whole_note" en="All views of all videos on the channel. Release videos plus everything else." %}{%- endcapture -%}
+{%- capture sd_open_channel -%}{% include i18n-t.html key="details_open_channel" en="Open the channel" %}{%- endcapture -%}
+{%- capture sd_release_videos -%}{% include i18n-t.html key="details_release_videos" en="Release videos" %}{%- endcapture -%}
+{%- capture sd_release_note -%}{% include i18n-t.html key="details_release_note" en="Videos from the releases playlist" %}{%- endcapture -%}
+{%- capture sd_open_playlist -%}{% include i18n-t.html key="details_open_playlist" en="Open the playlist" %}{%- endcapture -%}
+{%- capture sd_other_videos -%}{% include i18n-t.html key="details_other_videos" en="Other videos" %}{%- endcapture -%}
+{%- capture sd_other_note -%}{% include i18n-t.html key="details_other_note" en="The rest of the channel, without the releases" %}{%- endcapture -%}
+{%- capture sd_earlier -%}{% include i18n-t.html key="numbers_earlier" en="Earlier" %}{%- endcapture -%}
+{%- capture sd_n_total -%}{% include num-full.html n=st_plat_total %}{%- endcapture -%}
+{%- capture sd_n_channel -%}{% include num-full.html n=st_channel %}{%- endcapture -%}
 {%- assign yt = st.youtube -%}
 {%- capture yt_channel_url -%}https://www.youtube.com/@{{ yt.handle | default: "settwor" }}{%- endcapture -%}
 
     {%- if st_plat_total > 0 %}
     <div class="numbers__head" id="platforms">
-        <h2 class="numbers__h">Music platforms</h2>
-        <span class="numbers__sum">{% include num-full.html n=st_plat_total %} plays</span>
+        <h2 class="numbers__h">{{ sd_platforms }}</h2>
+        <span class="numbers__sum">{{ sd_plays | replace: "{n}", sd_n_total }}</span>
     </div>
     <ul class="numbers__plats">
         {%- for r in st_rows %}
@@ -33,21 +53,21 @@
                 <span class="plat__pct">{% if pct < 1 %}&lt;1{% else %}{{ pct }}{% endif %}%</span>
             </div>
             <b class="plat__n" data-count="{{ rn }}">{% include num-full.html n=rn %}</b>
-            <span class="plat__cap">plays in total</span>
+            <span class="plat__cap">{{ sd_plays_total }}</span>
             <span class="bar" aria-hidden="true"><i style="flex-grow: {{ rn }}"></i><i style="flex-grow: {{ p_rest }}"></i></span>
             <ul class="plat__years">
                 {%- for y in st_years -%}
                     {%- if y == "earlier" -%}{%- assign field = "earlier" -%}{%- else -%}{%- assign field = "y" | append: y -%}{%- endif -%}
                     {%- assign v = row[field] | plus: 0 -%}
                     {%- if v > 0 and p_years > 0 %}
-                <li><span>{% if y == "earlier" %}Earlier{% else %}{{ y }}{% endif %}</span><b>{% include num-full.html n=v %}</b></li>
+                <li><span>{% if y == "earlier" %}{{ sd_earlier }}{% else %}{{ y }}{% endif %}</span><b>{% include num-full.html n=v %}</b></li>
                     {%- endif -%}
                 {%- endfor %}
             </ul>
             <div class="plat__foot">
-                <span class="tag">Artist dashboard</span>
+                <span class="tag">{{ sd_dashboard }}</span>
                 {%- if purl != "" %}
-                <a class="plat__link" href="{{ purl }}" rel="me noopener" target="_blank">Open on {{ rp[2] }} <i aria-hidden="true">&nearr;</i></a>
+                <a class="plat__link" href="{{ purl }}" rel="me noopener" target="_blank">{{ sd_open_on | replace: "{name}", rp[2] }} <i aria-hidden="true">&nearr;</i></a>
                 {%- endif %}
             </div>
         </li>
@@ -58,31 +78,31 @@
     {%- if st_channel > 0 %}
     <div class="numbers__head" id="youtube">
         <h2 class="numbers__h">YouTube</h2>
-        <span class="numbers__sum">{% include num-full.html n=st_channel %} views</span>
+        <span class="numbers__sum">{{ sd_views | replace: "{n}", sd_n_channel }}</span>
     </div>
     <ul class="numbers__yt">
         <li class="yt yt--main c-yt_clips">
             <div class="yt__top">
-                <span class="yt__t">Whole channel</span>
-                {%- if st_live %}<span class="tag tag--live"><i></i>Live</span>{% else %}<span class="tag">Channel total</span>{% endif %}
+                <span class="yt__t">{{ sd_whole_channel }}</span>
+                {%- if st_live %}<span class="tag tag--live"><i></i>{{ sd_live }}</span>{% else %}<span class="tag">{{ sd_channel_total }}</span>{% endif %}
             </div>
             <b class="yt__n" data-count="{{ st_channel }}">{% include num-full.html n=st_channel %}</b>
             <span class="bar bar--split" aria-hidden="true"><i class="c-yt_clips" style="flex-grow: {{ st_clips }}"></i><i class="c-yt_other" style="flex-grow: {{ st_other }}"></i></span>
-            <span class="yt__s">All views of all videos on the channel. Release videos plus everything else.</span>
-            <div class="plat__foot"><span class="tag">YouTube</span><a class="plat__link" href="{{ yt_channel_url }}" rel="me noopener" target="_blank">Open the channel <i aria-hidden="true">&nearr;</i></a></div>
+            <span class="yt__s">{{ sd_whole_note }}</span>
+            <div class="plat__foot"><span class="tag">YouTube</span><a class="plat__link" href="{{ yt_channel_url }}" rel="me noopener" target="_blank">{{ sd_open_channel }} <i aria-hidden="true">&nearr;</i></a></div>
         </li>
         <li class="yt c-yt_clips">
-            <span class="yt__t">Release videos</span>
+            <span class="yt__t">{{ sd_release_videos }}</span>
             <b class="yt__n" data-count="{{ st_clips }}">{% include num-full.html n=st_clips %}</b>
-            <span class="yt__s">Videos from the releases playlist</span>
+            <span class="yt__s">{{ sd_release_note }}</span>
             {%- if yt.track_playlist and yt.track_playlist != "" %}
-            <div class="plat__foot"><span></span><a class="plat__link" href="https://www.youtube.com/playlist?list={{ yt.track_playlist }}" rel="me noopener" target="_blank">Open the playlist <i aria-hidden="true">&nearr;</i></a></div>
+            <div class="plat__foot"><span></span><a class="plat__link" href="https://www.youtube.com/playlist?list={{ yt.track_playlist }}" rel="me noopener" target="_blank">{{ sd_open_playlist }} <i aria-hidden="true">&nearr;</i></a></div>
             {%- endif %}
         </li>
         <li class="yt c-yt_other">
-            <span class="yt__t">Other videos</span>
+            <span class="yt__t">{{ sd_other_videos }}</span>
             <b class="yt__n" data-count="{{ st_other }}">{% include num-full.html n=st_other %}</b>
-            <span class="yt__s">The rest of the channel, without the releases</span>
+            <span class="yt__s">{{ sd_other_note }}</span>
         </li>
     </ul>
     {%- endif %}

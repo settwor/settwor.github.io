@@ -47,13 +47,20 @@
 
 {%- if tr_first >= 0 and tr_n > 1 and tr_max > 0 %}
 {%- assign tr_steps = tr_n | minus: 1 -%}
+{%- comment -%} 11.42: texts by page language (keys trend_*, numbers_earlier; English kept here as the fallback). {%- endcomment -%}
+{%- capture tr_t_title -%}{% include i18n-t.html key="trend_title" en="Plays by year" %}{%- endcapture -%}
+{%- capture tr_t_sub -%}{% include i18n-t.html key="trend_sub" en="Music platforms, plays in each year" %}{%- endcapture -%}
+{%- capture tr_t_earlier -%}{% include i18n-t.html key="numbers_earlier" en="Earlier" %}{%- endcapture -%}
+{%- capture tr_t_aria -%}{% include i18n-t.html key="trend_aria" en="Line chart: plays on music platforms in each year, from {from} to {to}. Busiest year: {peak}." %}{%- endcapture -%}
+{%- assign tr_from = tr_list[0] | split: '|' | first -%}
+{%- assign tr_to = tr_list.last | split: '|' | first -%}
 {%- assign tr_line = "" %}
     <div class="numbers__head" id="growth">
-        <h2 class="numbers__h">Plays by year</h2>
-        <span class="numbers__sum">Music platforms, plays in each year</span>
+        <h2 class="numbers__h">{{ tr_t_title }}</h2>
+        <span class="numbers__sum">{{ tr_t_sub }}</span>
     </div>
     <div class="trend">
-        <div class="trend__plot" role="img" aria-label="Line chart: plays on music platforms in each year, from {{ tr_list[0] | split: '|' | first }} to {{ tr_list.last | split: '|' | first }}. Busiest year: {{ tr_peak }}.">
+        <div class="trend__plot" role="img" aria-label="{{ tr_t_aria | replace: "{from}", tr_from | replace: "{to}", tr_to | replace: "{peak}", tr_peak }}">
             <div class="trend__draw">
                 <svg class="trend__svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
                     <line class="trend__grid" x1="0" y1="250" x2="1000" y2="250"/>
@@ -88,7 +95,7 @@
         </div>
         <ul class="trend__rows">
             {%- if tr_earlier > 0 %}
-            <li class="trend__row trend__row--earlier"><span>Earlier</span><i class="trend__bar" aria-hidden="true"></i><b>{% include num-full.html n=tr_earlier %}</b></li>
+            <li class="trend__row trend__row--earlier"><span>{{ tr_t_earlier }}</span><i class="trend__bar" aria-hidden="true"></i><b>{% include num-full.html n=tr_earlier %}</b></li>
             {%- endif %}
             {%- for tr_it in tr_rows %}
             {%- assign tr_v = tr_it | split: "|" -%}

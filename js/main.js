@@ -13,6 +13,13 @@
 (function () {
     'use strict';
 
+    // 11.37: texts that scripts put on the page come from data attributes of #stw-strings (_includes/js-strings.html); English is the fallback
+    function S(name, fallback) {
+        var box = document.getElementById('stw-strings');
+        var v = box && box.getAttribute('data-' + name);
+        return v || fallback;
+    }
+
     var GA_ID = 'G-KG531WJ8DV';
     var STORAGE_KEY = 'settwor-analytics-consent'; // 'granted' | 'denied'
 
@@ -39,7 +46,8 @@
 
     function markMenu(open) {
         burger.setAttribute('aria-expanded', String(open));
-        burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        // 11.33: the texts come from the burger's data-label-* attributes (header.html, language of the page); English is the fallback
+        burger.setAttribute('aria-label', open ? (burger.getAttribute('data-label-close') || 'Close menu') : (burger.getAttribute('data-label-open') || 'Open menu'));
         document.body.classList.toggle('menu-open', open);
         if (open) menu.classList.add('is-open');
     }
@@ -419,14 +427,14 @@
         viewer.className = 'lightbox';
         viewer.setAttribute('role', 'dialog');
         viewer.setAttribute('aria-modal', 'true');
-        viewer.setAttribute('aria-label', 'Photograph');
+        viewer.setAttribute('aria-label', S('photograph', 'Photograph'));
         viewer.hidden = true;
         viewer.innerHTML =
             '<img class="lightbox__img" alt="">' +
-            '<button class="lightbox__btn lightbox__btn--close" type="button" aria-label="Close">&times;</button>' +
-            '<button class="lightbox__btn lightbox__btn--prev" type="button" aria-label="Previous photo">&lsaquo;</button>' +
-            '<button class="lightbox__btn lightbox__btn--next" type="button" aria-label="Next photo">&rsaquo;</button>' +
-            '<p class="lightbox__bar">&copy; SETTWOR &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">CC BY 4.0</a> &middot; <a href="/license.html">How to give credit</a></p>';
+            '<button class="lightbox__btn lightbox__btn--close" type="button" aria-label="' + S('close', 'Close') + '">&times;</button>' +
+            '<button class="lightbox__btn lightbox__btn--prev" type="button" aria-label="' + S('prev-photo', 'Previous photo') + '">&lsaquo;</button>' +
+            '<button class="lightbox__btn lightbox__btn--next" type="button" aria-label="' + S('next-photo', 'Next photo') + '">&rsaquo;</button>' +
+            '<p class="lightbox__bar">&copy; SETTWOR &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">CC BY 4.0</a> &middot; <a href="' + S('license-url', '/license.html') + '">' + S('credit', 'How to give credit') + '</a></p>';
         document.body.appendChild(viewer);
         var pic = viewer.querySelector('.lightbox__img');
         pic.draggable = false;
@@ -1028,6 +1036,7 @@
                 artist: card.getAttribute('data-artist'),
                 date: card.getAttribute('data-date'),
                 kind: kind,
+                kindLabel: card.getAttribute('data-kind-label') || kind,
                 cover: card.getAttribute('data-cover'),
                 details: card.getAttribute('data-details'),
                 links: links,
@@ -1053,12 +1062,12 @@
                 '<div class="rmodal__panel">' +
                 '<img class="rmodal__bg" alt="">' +
                 '<div class="rmodal__grip" aria-hidden="true"></div>' +
-                '<button class="rmodal__btn rmodal__btn--close" type="button" aria-label="Close" data-rclose>&times;</button>' +
+                '<button class="rmodal__btn rmodal__btn--close" type="button" aria-label="' + S('close', 'Close') + '" data-rclose>&times;</button>' +
                 '<div class="rmodal__art"><img class="rmodal__cover" alt=""></div>' +
                 '<div class="rmodal__info"></div>' +
                 '<div class="rmodal__nav">' +
-                '<button class="rmodal__btn" type="button" aria-label="Previous release" data-rstep="-1">&lsaquo;</button>' +
-                '<button class="rmodal__btn" type="button" aria-label="Next release" data-rstep="1">&rsaquo;</button>' +
+                '<button class="rmodal__btn" type="button" aria-label="' + S('prev-release', 'Previous release') + '" data-rstep="-1">&lsaquo;</button>' +
+                '<button class="rmodal__btn" type="button" aria-label="' + S('next-release', 'Next release') + '" data-rstep="1">&rsaquo;</button>' +
                 '</div></div>';
             document.body.appendChild(rModal);
 
@@ -1088,19 +1097,19 @@
         function fillRelease(data) {
             var cover = rModal.querySelector('.rmodal__cover');
             cover.src = data.cover;
-            cover.alt = 'Cover of ' + data.title;
+            cover.alt = S('cover-of', 'Cover of ') + data.title;
             rModal.querySelector('.rmodal__bg').src = data.cover;
 
             var info = rModal.querySelector('.rmodal__info');
             info.textContent = '';
-            info.appendChild(el('p', 'rmodal__kind', data.kind + ' \u00b7 ' + data.date));
+            info.appendChild(el('p', 'rmodal__kind', data.kindLabel + ' \u00b7 ' + data.date));
             var title = el('h2', 'rmodal__title', data.title);
             title.id = 'rmodal-title';
             info.appendChild(title);
             info.appendChild(el('p', 'rmodal__artist', data.artist));
 
             // 1) links we know, 2) search links for the main platforms that are still missing
-            info.appendChild(el('h3', 'rmodal__h', 'Listen'));
+            info.appendChild(el('h3', 'rmodal__h', S('listen', 'Listen')));
             var list = el('ul', 'rmodal__links');
             var known = 0;
             var query = encodeURIComponent('SETTWOR ' + data.title);
@@ -1126,17 +1135,17 @@
                 a.href = SEARCH[key](query);
                 a.target = '_blank';
                 a.rel = 'noopener';
-                a.title = 'Search for this release on ' + name;
+                a.title = S('search-on', 'Search for this release on ') + name;
                 li.appendChild(a);
                 list.appendChild(li);
             });
             info.appendChild(list);
             if (searched) {
-                info.appendChild(el('p', 'rmodal__note', 'Buttons with \u2315 open a search on that platform.'));
+                info.appendChild(el('p', 'rmodal__note', S('search-note', 'Buttons with \u2315 open a search on that platform.')));
             }
 
             if (data.tracks.length) {
-                info.appendChild(el('h3', 'rmodal__h', 'Tracklist'));
+                info.appendChild(el('h3', 'rmodal__h', S('tracklist', 'Tracklist')));
                 var ol = el('ol', 'rmodal__tracks');
                 ol.setAttribute('data-lens', '');   // v9.6: one highlight slides between the rows (js/fluid.js, section 5)
                 data.tracks.forEach(function (name) {
@@ -1144,26 +1153,26 @@
                     li.appendChild(el('span', 'rmodal__trackname', name));
                     var lyricsUrl = findLyrics(name);
                     if (lyricsUrl) {
-                        var lyr = el('a', 'rmodal__lyrics', 'Lyrics');
+                        var lyr = el('a', 'rmodal__lyrics', S('lyrics', 'Lyrics'));
                         lyr.href = lyricsUrl;
-                        lyr.title = 'Open the lyrics of ' + name;
-                        lyr.setAttribute('aria-label', 'Open the lyrics of ' + name);
+                        lyr.title = S('lyrics-of', 'Open the lyrics of ') + name;
+                        lyr.setAttribute('aria-label', S('lyrics-of', 'Open the lyrics of ') + name);
                         li.appendChild(lyr);
                     }
                     ol.appendChild(li);
                 });
                 info.appendChild(ol);
             } else if (data.details) {
-                info.appendChild(el('h3', 'rmodal__h', 'Tracklist'));
+                info.appendChild(el('h3', 'rmodal__h', S('tracklist', 'Tracklist')));
                 var more = el('p');
-                var link = el('a', 'rmodal__link', 'Open the tracklist page');
+                var link = el('a', 'rmodal__link', S('tracklist-page', 'Open the tracklist page'));
                 link.href = data.details;
                 more.appendChild(link);
                 info.appendChild(more);
             } else {
                 // 5.5: no list and no page for it: say so plainly instead of leaving a gap
-                info.appendChild(el('h3', 'rmodal__h', 'Tracklist'));
-                info.appendChild(el('p', 'rmodal__note', 'The tracklist of this release is not added yet.'));
+                info.appendChild(el('h3', 'rmodal__h', S('tracklist', 'Tracklist')));
+                info.appendChild(el('p', 'rmodal__note', S('no-tracklist', 'The tracklist of this release is not added yet.')));
             }
         }
 

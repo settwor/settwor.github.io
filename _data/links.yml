@@ -21,6 +21,33 @@ elsewhere:
   - name: Last.fm
     url: https://www.last.fm/music/SETTWOR
     desc: Artist page and tracks
+  - name: Apple Music
+    url: https://music.apple.com/us/artist/settwor/1526983418
+    desc: Artist page
+  - name: YouTube Music
+    url: https://music.youtube.com/@SETTWOR
+    desc: Artist page
+  - name: Deezer
+    url: https://www.deezer.com/artist/103506422
+    desc: Artist page
+  - name: Amazon Music
+    url: https://www.amazon.com/music/player/artists/B08FH5CSWV/settwor
+    desc: Artist page
+  - name: Shazam
+    url: https://www.shazam.com/artist/settwor/1526983418
+    desc: Artist page
+  - name: TikTok
+    url: https://www.tiktok.com/@settwor
+    desc: Official channel
+  - name: Genius
+    url: https://genius.com/artists/Settwor
+    desc: Artist page
+  - name: Musixmatch
+    url: https://www.musixmatch.com/artist/SETTWOR-1
+    desc: Artist page
+  - name: MusicBrainz
+    url: https://musicbrainz.org/artist/895afe57-dd9f-40f1-a761-b7db0b88e6d4
+    desc: Artist page
 
 # "Background reading": reference pages about the genres and places (left column on wide screens).
 reading:
@@ -29,7 +56,7 @@ reading:
     desc: The genre, on Wikipedia
   - name: Funk carioca
     url: https://en.wikipedia.org/wiki/Funk_carioca
-    desc: Brazilian funk, on Wikipedia
+    desc: Brazilian Phonk, on Wikipedia
   - name: Electronic dance music
     url: https://en.wikipedia.org/wiki/Electronic_dance_music
     desc: EDM, on Wikipedia

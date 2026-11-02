@@ -1,0 +1,8 @@
+{%- comment -%} v11.31. Language code -> Open Graph locale (en -> en_US). Prints nothing for an unknown code. Parameter: code. {%- endcomment -%}
+{%- assign i18n_loc_map = "en:en_US,ru:ru_RU,pl:pl_PL,es:es_ES,pt:pt_BR,uk:uk_UA" | split: "," -%}
+{%- assign i18n_loc_out = "" -%}
+{%- for i18n_loc_item in i18n_loc_map -%}
+{%- assign i18n_loc_pair = i18n_loc_item | split: ":" -%}
+{%- if i18n_loc_pair[0] == include.code -%}{%- assign i18n_loc_out = i18n_loc_pair[1] -%}{%- endif -%}
+{%- endfor -%}
+{{- i18n_loc_out -}}

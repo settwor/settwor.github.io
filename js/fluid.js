@@ -798,7 +798,8 @@
     function pullGo() {
         pullBusy = true;
         pullBadge.classList.add('is-busy');
-        pullSr.textContent = 'Refreshing';
+        var sbox = document.getElementById('stw-strings');   // 11.37: text from _includes/js-strings.html, English fallback
+        pullSr.textContent = (sbox && sbox.getAttribute('data-refreshing')) || 'Refreshing';
         to(pullBadge, { y: PULL_TOP + PULL.arm, o: 1, s: 1 }, { t: 0.3 });
         setTimeout(function () { window.location.reload(); }, PULL.wait);
         setTimeout(function () { pullBusy = false; pullBack(); }, PULL.giveUp);

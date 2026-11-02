@@ -1,0 +1,289 @@
+{%- comment -%}
+  The body of the home page in EVERY language (11.38, Phase 3). Included by index.html (English) and by ru|pl|es|pt|uk/index.html.
+  English: the texts live in _data/home.yml and the links in _data/links.yml (as before, English output is unchanged).
+  Another language: the texts come from _data/i18n_home/<lang>.yml (same structure as home.yml + `labels`, `facts_label`, `key_line`);
+  NOT from _data/i18n/<lang>/ : a folder and the file <lang>.yml of the same name give the same Jekyll data key and the folder would
+  wipe the interface file. Things that are not text (photo, video id, Spotify id, links, numbers) are always read from the English data.
+  Not shown in a translated language until it exists there: the news list (Phase 6). Links to pages that are not translated yet
+  point to the English page (include i18n-urls.html). Variables start with hb_.
+{%- endcomment -%}
+{%- include i18n-lang.html -%}
+{%- assign hb_l = i18n_lang -%}
+{%- assign hb_en = site.data.home -%}
+{%- if hb_l == "en" -%}{%- assign home = hb_en -%}{%- else -%}{%- assign home = site.data.i18n_home[hb_l] | default: hb_en -%}{%- endif -%}
+{%- assign hb_lab = home.labels -%}
+{%- include i18n-urls.html lang=hb_l -%}
+{%- assign first_bio = site.bio | sort: "order" | first -%}
+{%- assign hb_bio = first_bio.url -%}{%- assign hb_biolink = " data-bio-link" -%}
+{%- assign hb_rt = page.releases_total -%}
+{%- if hb_l != "en" -%}
+{%- assign hb_bio = i18n_bio -%}{%- assign hb_biolink = "" -%}
+{%- assign hb_enpage = site.pages | where: "ref", "home" | where: "lang", "en" | first -%}
+{%- assign hb_rt = hb_enpage.releases_total -%}
+{%- endif -%}
+{%- include artist-urls.html -%}
+{%- if hb_l == "en" -%}{%- assign home_url = "/" | absolute_url -%}{%- else -%}{%- assign home_url = page.url | absolute_url -%}{%- endif -%}
+
+        <section class="hero" aria-labelledby="page-title">
+            <span class="hero__ring"><img class="hero__photo" src="{{ hb_en.hero.photo | uri_escape }}" alt="{{ home.hero.photo_alt | escape }}" width="144" height="144" fetchpriority="high"></span>
+            <div class="hero__text">
+                <h1 class="hero__title" id="page-title">{{ home.hero.title }}</h1>
+                <p class="hero__tagline">{{ home.hero.tagline }}</p>
+                <p class="hero__note">{{ home.hero.note }}</p>
+            </div>
+            <div class="hero__actions">
+                <a class="btn btn--solid" href="{{ au_spotify }}" rel="me">{{ home.hero.listen_label | default: "Listen on Spotify" }}</a>
+                <div class="hero__more">
+                    <a class="btn btn--small" href="{{ au_apple }}" rel="me noopener">Apple Music</a>
+                    <a class="btn btn--small" href="{{ au_ytm }}" rel="me noopener">YouTube Music</a>
+                    <a class="btn btn--small" href="{{ au_pandora }}" rel="me noopener">Pandora</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about" aria-labelledby="about-title">
+            <div class="section-head">
+                <h2 class="section-title" id="about-title">{{ home.about_title }}</h2>
+                <a class="section-head__more" href="{{ hb_bio }}"{{ hb_biolink }}>{{ hb_lab.full_bio | default: "Full biography" }}<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <div class="section__body">
+                {{ home.about | markdownify }}
+                {%- comment -%}
+                  The most important facts in one line (moved here from the footer in v10.5). Built from real data, nothing is typed:
+                  the number of releases is the front matter key releases_total of this page (57, typed by the owner; falls back to the count of the folder _releases if empty), the place and the date come from the front matter (lt_*) of top-phonk-artist.html.
+                  "fast-growing" is the owner's wording: confirmations are to be added by the owner.
+                {%- endcomment -%}
+                {%- assign ft_all = site.releases | sort: "date" -%}
+                {%- assign ft_first = ft_all | first -%}
+                {%- assign ft_year = site.time | date: "%Y" -%}
+                {%- assign ft_this = 0 -%}
+                {%- for ft_r in site.releases -%}{%- assign ft_ry = ft_r.date | date: "%Y" -%}{%- if ft_ry == ft_year -%}{%- assign ft_this = ft_this | plus: 1 -%}{%- endif -%}{%- endfor -%}
+                {%- assign ft_top = site.pages | where: "permalink", "/top-phonk-artist.html" | first -%}
+                {%- if ft_first %}
+                {%- if hb_l == "en" %}
+                <p class="callout callout--key">SETTWOR is an active and fast-growing phonk artist and producer: {{ hb_rt | default: ft_all.size }} releases since {{ ft_first.date | date: "%Y" }}{% if ft_this > 0 %}, {{ ft_this }} of them in {{ ft_year }}{% endif %}.{% if ft_top %} <a href="{{ i18n_u_top }}">No. {{ ft_top.lt_phonk_place }} in Phonk{% if ft_top.lt_bphonk_place %} and No. {{ ft_top.lt_bphonk_place }} in Brazilian Phonk{% endif %} on Pandora</a> (Ledgertone, {{ ft_top.lt_snapshot }}).{% endif %}</p>
+                {%- else %}
+                {%- comment -%} Translated key line: the same facts, built from the pieces of home.key_line (no plural forms: the number comes after a colon). The date is written in the language (lt_snapshot_iso of the Ledgertone page). {%- endcomment -%}
+                {%- assign hb_kl = home.key_line -%}
+                {%- assign hb_n = hb_rt | default: ft_all.size -%}
+                {%- assign hb_fy = ft_first.date | date: "%Y" -%}
+                {%- assign hb_t1 = hb_kl.releases | replace: "{y}", hb_fy | replace: "{n}", hb_n -%}
+                {%- assign hb_t2 = "" -%}
+                {%- if ft_this > 0 -%}{%- assign hb_t2 = hb_kl.this_year | replace: "{y}", ft_year | replace: "{n}", ft_this -%}{%- endif -%}
+                <p class="callout callout--key">{{ hb_kl.intro }}. {{ hb_t1 }}{{ hb_t2 }}.{% if ft_top %}{%- assign hb_r1 = hb_kl.rank_phonk | replace: "{p}", ft_top.lt_phonk_place -%}{%- assign hb_r2 = "" -%}{%- if ft_top.lt_bphonk_place -%}{%- assign hb_r2 = hb_kl.rank_bphonk | replace: "{p}", ft_top.lt_bphonk_place -%}{%- assign hb_r2 = hb_kl.join | append: hb_r2 -%}{%- endif -%}{%- capture hb_snap %}{% include i18n-date.html d=ft_top.lt_snapshot_iso lang=hb_l %}{% endcapture -%} <a href="{{ i18n_u_top }}"{% if i18n_u_top == "/top-phonk-artist.html" %} hreflang="en"{% endif %}>{{ hb_r1 }}{{ hb_r2 }}{{ hb_kl.on_pandora }}</a> ({{ hb_kl.source | replace: "{date}", hb_snap }}).{% endif %}</p>
+                {%- endif %}
+                {%- endif %}
+                {%- if home.callout and home.callout != "" %}
+                <p class="callout">{{ home.callout }}</p>
+                {%- endif %}
+
+                <section class="bio-facts bio-facts--home" data-reveal aria-label="{{ home.facts_label | default: "Key facts" | escape }}">
+                    <dl class="bio-facts__list">
+                        {%- for fact in home.facts %}
+                        <div class="bio-facts__item"><dt>{{ fact.label }}</dt><dd>{% if fact.value contains "@" %}<a href="mailto:{{ fact.value }}">{{ fact.value }}</a>{% else %}{{ fact.value }}{% endif %}</dd></div>
+                        {%- endfor %}
+                    </dl>
+                </section>
+            </div>
+        </section>
+
+        {%- comment -%}
+          Order of the home page (todo design 5.1): the visitor comes to listen and to see what is new.
+          7.8 (owner): Hero -> ABOUT (always first) -> latest releases -> listen and watch -> news -> numbers -> photos -> social media -> questions.
+          Every section heading is a row: the title on the left, one secondary link on the right (5.2).
+        {%- endcomment -%}
+
+        {%- comment -%} 5.5: a section with nothing in it is not shown at all (no bare heading over an empty space). {%- endcomment -%}
+        {%- assign home_releases = site.releases | sort: "date" | reverse %}
+        {%- if home_releases.size > 0 %}
+        <section class="section" id="releases" aria-labelledby="releases-title">
+            <div class="section-head">
+                <h2 class="section-title" id="releases-title">{{ hb_lab.releases_title | default: "Latest releases" }}</h2>
+                <a class="section-head__more" href="{{ i18n_u_releases }}">{{ hb_lab.releases_all | default: "All releases" }}<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <!-- The 4 newest releases (folder _releases). Change "limit: 4" to show more or fewer. -->
+            <ul class="release-grid release-grid--home">
+                {%- for release in home_releases limit: 4 %}
+                {%- capture cover -%}{% include image-url.html src=release.cover %}{%- endcapture %}
+                {%- assign hb_rtitle = release.title | escape -%}
+                {%- assign hb_kind = release.kind -%}
+                {%- if release.kind == "Album" -%}{%- assign hb_kind = hb_lab.kind_album | default: "Album" -%}{%- elsif release.kind == "Mixtape" -%}{%- assign hb_kind = hb_lab.kind_mixtape | default: "Mixtape" -%}{%- endif %}
+                <li class="release-mini">
+                    <a class="release-mini__cover" href="{{ i18n_u_releases }}#release-{{ release.slug }}" aria-label="{{ hb_lab.release_aria | default: "{title}: listen and tracklist" | replace: "{title}", hb_rtitle }}"><img src="{% include thumb-url.html src=release.cover %}" alt="{{ hb_lab.cover_of | default: "Cover of {title}" | replace: "{title}", hb_rtitle }}" width="300" height="300" loading="lazy" decoding="async"></a>
+                    <h3 class="release__name">{{ release.title }}</h3>
+                    <p class="release__meta">{{ release.artist }}</p>
+                    <p class="release__meta"><time datetime="{{ release.date | date: "%Y-%m-%d" }}">{% include i18n-date.html d=release.date lang=hb_l %}</time>{% if release.kind and release.kind != "Single" %} · {{ hb_kind }}{% endif %}</p>
+                </li>
+                {%- endfor %}
+            </ul>
+        </section>
+        {%- endif %}
+
+        <!-- The video and the Spotify player are one block (5.1). The old addresses #video and #spotify still land here. -->
+        {%- assign ls_video = hb_en.video.youtube_id | default: "" -%}
+        {%- assign ls_spotify = hb_en.spotify_artist_id | default: "" -%}
+        {%- if ls_video != "" or ls_spotify != "" %}
+        <section class="section" id="listen" aria-labelledby="listen-title">
+            <div class="section-head">
+                <h2 class="section-title" id="listen-title">{{ hb_lab.listen_title | default: "Listen and watch" }}</h2>
+            </div>
+            <div class="listen-watch">
+                {%- if ls_video != "" %}
+                <div class="embed-block">
+                    <div class="embed embed--video" id="video">
+                        <iframe src="https://www.youtube-nocookie.com/embed/{{ ls_video }}?rel=0" title="{{ home.video.title | escape }}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <p class="embed__alt">{{ hb_lab.video_alt_pre | default: "Video not loading?" }} <a href="https://www.youtube.com/watch?v={{ ls_video }}" rel="noopener">{{ hb_lab.video_alt_link | default: "Open it on YouTube" }}</a></p>
+                </div>
+                {%- endif %}
+                {%- if ls_spotify != "" %}
+                <div class="embed-block">
+                    <div class="embed" id="spotify">
+                        <iframe src="https://open.spotify.com/embed/artist/{{ ls_spotify }}" title="{{ hb_lab.spotify_title | default: "SETTWOR on Spotify" | escape }}" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    </div>
+                    <p class="embed__alt">{{ hb_lab.spotify_alt_pre | default: "Player not loading?" }} <a href="{{ au_spotify }}" rel="me noopener">{{ hb_lab.spotify_alt_link | default: "Open it on Spotify" }}</a></p>
+                </div>
+                {%- endif %}
+            </div>
+        </section>
+        {%- endif %}
+
+        {%- comment -%} 11.38: the news list is shown on the English home only; a translated home gets it in Phase 6 (translated articles). {%- endcomment -%}
+        {%- if site.posts.size > 0 and hb_l == "en" %}
+        <section class="section" id="news" aria-labelledby="news-title">
+            <div class="section-head">
+                <h2 class="section-title" id="news-title">Latest news</h2>
+                <a class="section-head__more" href="/news/">All news<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <div class="news-list">
+                {%- for post in site.posts limit: 3 %}
+                {% include news-card.html post=post %}
+                {%- endfor %}
+            </div>
+        </section>
+        {%- endif %}
+
+{%- include stats-block.html %}
+
+        {%- include photos-sorted.html %}
+        {%- if ph_keys.size > 0 %}
+        <section class="section" id="photos" aria-labelledby="photos-title">
+            <div class="section-head">
+                <h2 class="section-title" id="photos-title">{{ hb_lab.photos_title | default: "Photos" }}</h2>
+                <a class="section-head__more" href="{{ i18n_u_photo }}">{{ hb_lab.photos_all | default: "All photos" }}<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <!-- The 9 newest photos of the gallery (_data/gallery.yml) -->
+            <ul class="photo-grid">
+                {%- for ph_key in ph_keys limit: 9 %}
+                {%- include photo-pick.html key=ph_key %}
+                {%- assign hb_pa = photo.alt -%}
+                {%- if hb_l != "en" -%}{%- assign hb_py = photo.date | date: "%Y" -%}{%- assign hb_pa = hb_lab.photo_alt | default: photo.alt | replace: "{y}", hb_py -%}{%- endif %}
+                <li><a href="{{ i18n_u_photo }}#y{{ photo.date | date: "%Y" }}"><img src="{% include thumb-url.html src=photo.image %}" alt="{{ hb_pa | escape }}" width="300" height="300" loading="lazy" decoding="async"></a></li>
+                {%- endfor %}
+            </ul>
+        </section>
+        {%- endif %}
+
+        {%- if site.data.links.follow.size > 0 %}
+        <section class="section" id="social" aria-labelledby="social-title">
+            <div class="section-head">
+                <h2 class="section-title" id="social-title">{{ hb_lab.social_title | default: "Social media" }}</h2>
+            </div>
+            <ul class="social">
+                {%- for item in site.data.links.follow %}
+                <li><a class="btn" href="{{ item.url }}" rel="me">{% if item.icon and item.icon != "" %}<img src="{{ item.icon }}" alt="" width="18" height="18">{% endif %}{{ item.name }}</a></li>
+                {%- endfor %}
+            </ul>
+        </section>
+        {%- endif %}
+
+        {%- if home.faq and home.faq.size > 0 %}
+        <section class="section" id="faq" aria-labelledby="faq-title">
+            <div class="section-head">
+                <h2 class="section-title" id="faq-title">{{ home.faq_title | default: "Questions about SETTWOR" }}</h2>
+                <a class="section-head__more" href="{{ hb_bio }}"{{ hb_biolink }}>{{ hb_lab.faq_more | default: "More in the biography" }}<span class="section-head__arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <div class="faq faq--home">
+                {%- for item in home.faq %}
+                <details class="faq__item">
+                    <summary>{{ item.q }}</summary>
+                    <p>{{ item.a }}</p>
+                </details>
+                {%- endfor %}
+            </div>
+        </section>
+        {%- endif %}
+
+{%- include cdra-awards.html %}
+
+{%- if hb_l == "en" %}
+
+<!-- Structured data: the website, the profile page with the artist inside, the questions, the license of the photo and the Ledgertone organization. -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": "{{ site.url }}/#website",
+            "url": "{{ site.url }}/",
+            "name": "SETTWOR",
+            "alternateName": "SETTWOR Official Site",
+            "inLanguage": "en",
+            "publisher": { "@id": "{{ site.url }}/#artist" }
+        },
+{% include profile-jsonld.html url=home_url name="SETTWOR — Official Site" lang="en" %}
+        {%- if home.faq and home.faq.size > 0 %},
+        {
+            "@type": "FAQPage",
+            "@id": "{{ site.url }}/#faq",
+            "url": "{{ site.url }}/",
+            "inLanguage": "en",
+            "about": { "@id": "{{ site.url }}/#artist" },
+            "mainEntity": [
+                {%- for item in home.faq %}
+                { "@type": "Question", "name": {{ item.q | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | jsonify }} } }{% unless forloop.last %},{% endunless %}
+                {%- endfor %}
+            ]
+        }
+        {%- endif %},
+{% include image-object.html src=home.hero.photo alt=home.hero.photo_alt date="2025-08-08" %},
+{% include ledgertone-jsonld.html %}
+    ]
+}
+</script>
+{%- else %}
+<!-- Structured data of a translated home page (Phase 3): the page, the questions and the photo. The artist and the website are referred to by @id only; their full nodes are on the English home page. -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": "{{ home_url }}#webpage",
+            "url": "{{ home_url }}",
+            "name": {{ page.seo_title | default: page.title | jsonify }},
+            "description": {{ page.description | jsonify }},
+            "inLanguage": {{ hb_l | jsonify }},
+            "isPartOf": { "@id": "{{ site.url }}/#website" },
+            "about": { "@id": "{{ site.url }}/#artist" }
+        }
+        {%- if home.faq and home.faq.size > 0 %},
+        {
+            "@type": "FAQPage",
+            "@id": "{{ home_url }}#faq",
+            "url": "{{ home_url }}",
+            "inLanguage": {{ hb_l | jsonify }},
+            "about": { "@id": "{{ site.url }}/#artist" },
+            "mainEntity": [
+                {%- for item in home.faq %}
+                { "@type": "Question", "name": {{ item.q | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | jsonify }} } }{% unless forloop.last %},{% endunless %}
+                {%- endfor %}
+            ]
+        }
+        {%- endif %},
+{% include image-object.html src=hb_en.hero.photo alt=home.hero.photo_alt date="2025-08-08" %}
+    ]
+}
+</script>
+{%- endif %}

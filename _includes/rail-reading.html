@@ -1,10 +1,13 @@
+{%- include i18n-gate.html -%}
+{%- assign rr_descs = site.data.i18n[i18n_gtl].links_desc -%}
+{%- capture rr_t_title -%}{% include i18n-t.html key="rail_reading" en="Background reading" lang=i18n_gtl %}{%- endcapture -%}
 {%- comment -%} Left column, bottom: reference links. Data: _data/links.yml {%- endcomment -%}
 {%- if site.data.links.reading.size > 0 %}
 <section class="rail-block" aria-labelledby="rail-reading">
-    <h2 class="rail-block__title" id="rail-reading">Background reading</h2>
+    <h2 class="rail-block__title" id="rail-reading">{{ rr_t_title }}</h2>
     <ul class="rail-list">
         {%- for item in site.data.links.reading %}
-        <li><a class="rail-link" href="{{ item.url }}" rel="noopener"><span class="rail-link__name">{{ item.name }}</span>{% if item.desc and item.desc != "" %}<span class="rail-link__desc">{{ item.desc }}</span>{% endif %}</a></li>
+        <li><a class="rail-link" href="{{ item.url }}" rel="noopener"><span class="rail-link__name">{{ item.name }}</span>{% if item.desc and item.desc != "" %}<span class="rail-link__desc">{{ rr_descs[item.desc] | default: item.desc }}</span>{% endif %}</a></li>
         {%- endfor %}
     </ul>
 </section>

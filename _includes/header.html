@@ -1,40 +1,67 @@
 {%- include nav-current.html -%}
 {%- assign nav_val = "page" -%}
 {%- unless nav_exact -%}{%- assign nav_val = "true" -%}{%- endunless -%}
+{%- comment -%}
+  11.33 (languages, Phase 2): addresses and texts of this header by page language. Variables start with hd_ (assign in an include is global).
+  English (i18n_lp empty): the old addresses and the old attribute data-bio-link, so the English output is unchanged.
+  Other languages: /<lang>/releases/ ... (the English address while that page is not ready) and the biography of that language WITHOUT data-bio-link
+  (a page in a language links to the biography of ITS language).
+  Texts: _data/i18n/<lang>.yml, keys menu_* and header_*; the English text stays here as the fallback.
+{%- endcomment -%}
+{%- include i18n-lang.html -%}
+{%- comment -%} 11.39 (Phase 4): the old gate for biography pages is removed; a biography page has the header of its own language. {%- endcomment -%}
+{%- assign hd_tl = i18n_lang -%}{%- assign hd_lp = i18n_lp -%}
+{%- if hd_lp == "" -%}
+{%- assign hd_home = "/" -%}{%- assign hd_releases = "/releases.html" -%}{%- assign hd_news = "/news/" -%}{%- assign hd_streams = "/streams.html" -%}{%- assign hd_photos = "/photo.html" -%}{%- assign hd_bio = "/bio.html" -%}{%- assign hd_biolink = " data-bio-link" -%}
+{%- else -%}
+{%- include i18n-urls.html lang=hd_tl -%}
+{%- assign hd_home = i18n_u_home -%}{%- if page.ref == "home" -%}{%- assign hd_home = page.url -%}{%- endif -%}{%- assign hd_releases = i18n_u_releases -%}{%- assign hd_news = i18n_u_news -%}{%- assign hd_streams = i18n_u_streams -%}{%- assign hd_photos = i18n_u_photo -%}{%- assign hd_bio = i18n_bio -%}{%- assign hd_biolink = "" -%}
+{%- endif -%}
+{%- capture hd_t_releases -%}{% include i18n-t.html key="menu_releases" en="Releases" lang=hd_tl %}{%- endcapture -%}
+{%- capture hd_t_news -%}{% include i18n-t.html key="menu_news" en="News" lang=hd_tl %}{%- endcapture -%}
+{%- capture hd_t_streams -%}{% include i18n-t.html key="menu_streams" en="Streams" lang=hd_tl %}{%- endcapture -%}
+{%- capture hd_t_bio -%}{% include i18n-t.html key="menu_biography" en="Biography" lang=hd_tl %}{%- endcapture -%}
+{%- capture hd_t_photos -%}{% include i18n-t.html key="menu_photos" en="Photos" lang=hd_tl %}{%- endcapture -%}
+{%- capture hd_t_open -%}{% include i18n-t.html key="header_open_menu" en="Open menu" lang=hd_tl %}{%- endcapture -%}
+{%- capture hd_t_close -%}{% include i18n-t.html key="header_close_menu" en="Close menu" lang=hd_tl %}{%- endcapture -%}
+{%- capture hd_t_navstart -%}{% include i18n-t.html key="header_nav_start" en="Releases and news" lang=hd_tl %}{%- endcapture -%}
+{%- capture hd_t_navend -%}{% include i18n-t.html key="header_nav_end" en="About the artist" lang=hd_tl %}{%- endcapture -%}
+{%- capture hd_t_mobile -%}{% include i18n-t.html key="header_mobile_menu" en="Mobile menu" lang=hd_tl %}{%- endcapture -%}
+{%- capture hd_t_home -%}{% include i18n-t.html key="header_home" en="SETTWOR — home" lang=hd_tl %}{%- endcapture -%}
 <!-- ===== Header (one copy for the whole site) =====
      Names and order are the same in the header, the mobile menu and the footer: Releases, News, Streams, Biography, Photos.
      Streams is not in the top bar (owner's decision of v2.5); the logo is the way home (todo design 5.3). -->
 <header class="site-header">
     <div class="site-header__start">
-        <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <button class="burger" id="burger" type="button" aria-label="{{ hd_t_open }}" data-label-open="{{ hd_t_open }}" data-label-close="{{ hd_t_close }}" aria-expanded="false" aria-controls="mobile-menu">
             <span class="burger__line"></span>
             <span class="burger__line"></span>
             <span class="burger__line"></span>
         </button>
-        <nav class="site-nav site-nav--start" aria-label="Releases and news">
+        <nav class="site-nav site-nav--start" aria-label="{{ hd_t_navstart }}">
             <ul>
-                <li><a class="btn btn--sm" href="/releases.html"{% if nav_cur == "releases" %} aria-current="{{ nav_val }}"{% endif %}>Releases</a></li>
-                <li><a class="btn btn--sm" href="/news/"{% if nav_cur == "news" %} aria-current="{{ nav_val }}"{% endif %}>News</a></li>
+                <li><a class="btn btn--sm" href="{{ hd_releases }}"{% if nav_cur == "releases" %} aria-current="{{ nav_val }}"{% endif %}>{{ hd_t_releases }}</a></li>
+                <li><a class="btn btn--sm" href="{{ hd_news }}"{% if nav_cur == "news" %} aria-current="{{ nav_val }}"{% endif %}>{{ hd_t_news }}</a></li>
             </ul>
         </nav>
     </div>
 
-    <a class="brand" href="/" aria-label="SETTWOR — home"{% if page.url == "/" %} aria-current="page"{% endif %}>
+    <a class="brand" href="{{ hd_home }}" aria-label="{{ hd_t_home }}"{% if page.url == hd_home %} aria-current="page"{% endif %}>
         <img src="/images/SETTWOR%20vector.svg" alt="SETTWOR" width="148" height="24">
     </a>
 
-    <nav class="site-nav site-nav--end" aria-label="About the artist">
+    <nav class="site-nav site-nav--end" aria-label="{{ hd_t_navend }}">
         <ul>
-            <li><a class="btn btn--sm" href="/bio.html" data-bio-link{% if nav_cur == "bio" %} aria-current="{{ nav_val }}"{% endif %}>Biography</a></li>
-            <li class="is-desktop"><a class="btn btn--sm" href="/photo.html"{% if nav_cur == "photos" %} aria-current="{{ nav_val }}"{% endif %}>Photos</a></li>
+            <li><a class="btn btn--sm" href="{{ hd_bio }}"{{ hd_biolink }}{% if nav_cur == "bio" %} aria-current="{{ nav_val }}"{% endif %}>{{ hd_t_bio }}</a></li>
+            <li class="is-desktop"><a class="btn btn--sm" href="{{ hd_photos }}"{% if nav_cur == "photos" %} aria-current="{{ nav_val }}"{% endif %}>{{ hd_t_photos }}</a></li>
         </ul>
     </nav>
 </header>
 
-<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
-    <a href="/releases.html"{% if nav_cur == "releases" %} aria-current="{{ nav_val }}"{% endif %}>Releases</a>
-    <a href="/news/"{% if nav_cur == "news" %} aria-current="{{ nav_val }}"{% endif %}>News</a>
-    <a href="/streams.html"{% if nav_cur == "streams" %} aria-current="{{ nav_val }}"{% endif %}>Streams</a>
-    <a href="/bio.html" data-bio-link{% if nav_cur == "bio" %} aria-current="{{ nav_val }}"{% endif %}>Biography</a>
-    <a href="/photo.html"{% if nav_cur == "photos" %} aria-current="{{ nav_val }}"{% endif %}>Photos</a>
+<nav class="mobile-menu" id="mobile-menu" aria-label="{{ hd_t_mobile }}">
+    <a href="{{ hd_releases }}"{% if nav_cur == "releases" %} aria-current="{{ nav_val }}"{% endif %}>{{ hd_t_releases }}</a>
+    <a href="{{ hd_news }}"{% if nav_cur == "news" %} aria-current="{{ nav_val }}"{% endif %}>{{ hd_t_news }}</a>
+    <a href="{{ hd_streams }}"{% if nav_cur == "streams" %} aria-current="{{ nav_val }}"{% endif %}>{{ hd_t_streams }}</a>
+    <a href="{{ hd_bio }}"{{ hd_biolink }}{% if nav_cur == "bio" %} aria-current="{{ nav_val }}"{% endif %}>{{ hd_t_bio }}</a>
+    <a href="{{ hd_photos }}"{% if nav_cur == "photos" %} aria-current="{{ nav_val }}"{% endif %}>{{ hd_t_photos }}</a>
 </nav>

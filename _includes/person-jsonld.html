@@ -18,7 +18,7 @@
             "alternateName": ["Setwor", "Сеттвор", "Сетвор"],
             "url": "{{ site.url }}/",
             "image": "{{ site.url }}/images/main.jpg",
-            "description": "Active music producer specializing in phonk, Brazilian Phonk and dance/electronic music, originally from Ukraine and based in Poland.",
+            "description": "Active phonk artist and music producer specializing in phonk, Brazilian Phonk and dance/electronic music, originally from Ukraine and based in Poland.",
             "location": { "@type": "Place", "name": "Poland" },
             "genre": ["Brazilian Phonk", "Phonk"],
             "knowsAbout": ["Brazilian Phonk", "Phonk", "Electronic dance music", "Music production"],
@@ -32,8 +32,10 @@
                 {{ au_pandora | jsonify }},
                 {{ au_ytm | jsonify }},
                 "https://cdra.settwor.com.pl/"
-                {%- for item in site.data.links.elsewhere %},
+                {%- for item in site.data.links.elsewhere %}
+                {%- unless item.url == au_apple %},
                 {{ item.url | jsonify }}
+                {%- endunless %}
                 {%- endfor %}
                 {%- assign pj_extra = "https://www.shazam.com/artist/settwor/1526983418|https://musicbrainz.org/artist/895afe57-dd9f-40f1-a761-b7db0b88e6d4|https://www.musixmatch.com/artist/SETTWOR-1|https://genius.com/artists/Settwor|https://www.deezer.com/artist/103506422|https://www.amazon.com/music/player/artists/B08FH5CSWV/settwor|https://www.tiktok.com/@settwor|https://music.apple.com/us/artist/settwor/1526983418|https://music.youtube.com/@SETTWOR|https://www.youtube.com/@SETTWOR" | split: "|" %}
                 {%- for pj_url in pj_extra %}

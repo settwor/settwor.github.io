@@ -1,0 +1,40 @@
+{%- comment -%}
+  v11.32. Language switcher: one link for every READY language version of this page (the group of the page, see i18n-alternates.html).
+  Prints NOTHING when the page has no group or fewer than two ready versions, so today's pages are unchanged.
+  Parameter: wrap="footer" prints a <nav class="footer-lang"> with a title (used by footer.html). Biography pages do not use it (they have their own lists).
+  Names: lang_name of the member if it has one, else the table below. A language without a version of this page is not listed
+  (a link to the language home is added in Phase 3, when the language homes exist).
+  Variables start with i18n_ls_ (an assign inside an include is global).
+{%- endcomment -%}
+{%- assign i18n_ls_ref = page.ref -%}
+{%- if page.collection == "bio" -%}{%- assign i18n_ls_ref = "bio" -%}{%- endif -%}
+{%- if i18n_ls_ref and i18n_ls_ref != "" and page.i18n_ready != false -%}
+{%- if i18n_ls_ref == "bio" -%}
+{%- assign i18n_ls_list = site.bio | sort: "order" -%}
+{%- else -%}
+{%- assign i18n_ls_list = site.pages | where: "ref", i18n_ls_ref | sort: "order" -%}
+{%- endif -%}
+{%- assign i18n_ls_n = 0 -%}
+{%- for i18n_ls_it in i18n_ls_list -%}
+{%- unless i18n_ls_it.i18n_ready == false -%}{%- assign i18n_ls_n = i18n_ls_n | plus: 1 -%}{%- endunless -%}
+{%- endfor -%}
+{%- if i18n_ls_n > 1 -%}
+{%- assign i18n_ls_names = "en:English,ru:Русский,pl:Polski,es:Español,pt:Português,uk:Українська" | split: "," -%}
+{%- capture i18n_ls_title -%}{% include i18n-t.html key="footer_language" en="Language" %}{%- endcapture %}
+<nav class="footer-lang" aria-labelledby="footer-lang">
+    <h2 class="footer-title" id="footer-lang">{{ i18n_ls_title }}</h2>
+    <ul class="footer-links">
+        {%- for i18n_ls_it in i18n_ls_list -%}
+        {%- unless i18n_ls_it.i18n_ready == false -%}
+        {%- assign i18n_ls_code = i18n_ls_it.lang | default: "en" -%}
+        {%- assign i18n_ls_name = i18n_ls_it.lang_name -%}
+        {%- unless i18n_ls_name and i18n_ls_name != "" -%}
+        {%- for i18n_ls_pair in i18n_ls_names -%}{%- assign i18n_ls_kv = i18n_ls_pair | split: ":" -%}{%- if i18n_ls_kv[0] == i18n_ls_code -%}{%- assign i18n_ls_name = i18n_ls_kv[1] -%}{%- endif -%}{%- endfor -%}
+        {%- endunless %}
+        <li><a href="{{ i18n_ls_it.url }}" hreflang="{{ i18n_ls_code }}" lang="{{ i18n_ls_code }}"{% if i18n_ls_it.url == page.url %} aria-current="page"{% endif %}>{{ i18n_ls_name | default: i18n_ls_code }}</a></li>
+        {%- endunless -%}
+        {%- endfor %}
+    </ul>
+</nav>
+{%- endif -%}
+{%- endif -%}

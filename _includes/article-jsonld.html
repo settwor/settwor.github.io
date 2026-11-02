@@ -19,9 +19,9 @@
 {%- if page.updated and page.updated != "" %}
     "dateModified": {{ page.updated | date_to_xmlschema | jsonify }},
 {%- endif %}
-    "inLanguage": "en",
-    "author": { "@type": "Person", "@id": "{{ aj_site }}#artist", "name": {{ author_name | jsonify }}, "url": {{ aj_site | jsonify }} },
-    "publisher": { "@type": "Person", "@id": "{{ aj_site }}#artist", "name": "SETTWOR", "url": {{ aj_site | jsonify }} },
+    "inLanguage": {{ page.lang | default: "en" | jsonify }},
+    "author": { "@type": "MusicGroup", "@id": "{{ aj_site }}#artist", "name": {{ author_name | jsonify }}, "url": {{ aj_site | jsonify }} },
+    "publisher": { "@type": "MusicGroup", "@id": "{{ aj_site }}#artist", "name": "SETTWOR", "url": {{ aj_site | jsonify }} },
     "isPartOf": { "@type": "WebSite", "@id": "{{ aj_site }}#website", "name": "SETTWOR", "url": {{ aj_site | jsonify }} }
 }
 </script>
@@ -30,8 +30,8 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "SETTWOR", "item": {{ aj_site | jsonify }} },
-        { "@type": "ListItem", "position": 2, "name": "News", "item": {{ "/news/" | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 1, "name": "SETTWOR", "item": {% if i18n_lang == "en" %}{{ aj_site | jsonify }}{% else %}{{ i18n_u_home | absolute_url | jsonify }}{% endif %} },
+        { "@type": "ListItem", "position": 2, "name": {{ art_t_news | jsonify }}, "item": {{ i18n_u_news | absolute_url | jsonify }} },
         { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }} }
     ]
 }

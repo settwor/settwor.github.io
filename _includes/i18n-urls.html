@@ -1,0 +1,26 @@
+{%- comment -%}
+  v11.38. Addresses of the main pages in one language, with a SAFE FALLBACK to the English address.
+  Parameter: lang (code). Sets (assign in an include is global): i18n_u_releases, i18n_u_news, i18n_u_streams, i18n_u_photo, i18n_u_top, i18n_u_privacy, i18n_u_license (the last two since 11.58).
+  English: the addresses that exist today. Another language: the address of the READY page of that language with the same front matter `ref`
+  (releases, news, streams, photo, top-phonk); while such a page does not exist or has `i18n_ready: false`, the English address is used, so
+  the menu of a translated page never points to a missing page (a 404). The home address is NOT handled here (it is /<lang>/ by the prefix).
+  11.39: also i18n_u_home = the READY home page of that language (ref `home`), else "/" (English), so a live page (a biography) never links to a noindex language home.
+  Prints nothing. Variables start with i18n_u.
+{%- endcomment -%}
+{%- assign i18n_u_l = include.lang | default: "en" -%}
+{%- assign i18n_u_releases = "/releases.html" -%}{%- assign i18n_u_news = "/news/" -%}{%- assign i18n_u_streams = "/streams.html" -%}{%- assign i18n_u_photo = "/photo.html" -%}{%- assign i18n_u_top = "/top-phonk-artist.html" -%}{%- assign i18n_u_home = "/" -%}{%- assign i18n_u_privacy = "/privacy.html" -%}{%- assign i18n_u_license = "/license.html" -%}
+{%- if i18n_u_l != "en" -%}
+{%- assign i18n_u_list = site.pages | where: "lang", i18n_u_l -%}
+{%- for i18n_u_p in i18n_u_list -%}
+{%- unless i18n_u_p.i18n_ready == false -%}
+{%- if i18n_u_p.ref == "home" -%}{%- assign i18n_u_home = i18n_u_p.url -%}{%- endif -%}
+{%- if i18n_u_p.ref == "releases" -%}{%- assign i18n_u_releases = i18n_u_p.url -%}{%- endif -%}
+{%- if i18n_u_p.ref == "news" -%}{%- assign i18n_u_news = i18n_u_p.url -%}{%- endif -%}
+{%- if i18n_u_p.ref == "streams" -%}{%- assign i18n_u_streams = i18n_u_p.url -%}{%- endif -%}
+{%- if i18n_u_p.ref == "photo" -%}{%- assign i18n_u_photo = i18n_u_p.url -%}{%- endif -%}
+{%- if i18n_u_p.ref == "top-phonk" -%}{%- assign i18n_u_top = i18n_u_p.url -%}{%- endif -%}
+{%- if i18n_u_p.ref == "privacy" -%}{%- assign i18n_u_privacy = i18n_u_p.url -%}{%- endif -%}
+{%- if i18n_u_p.ref == "license" -%}{%- assign i18n_u_license = i18n_u_p.url -%}{%- endif -%}
+{%- endunless -%}
+{%- endfor -%}
+{%- endif -%}

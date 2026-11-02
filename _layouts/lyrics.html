@@ -8,7 +8,7 @@ rail: releases
   button next to it (versions like "(sped up)" or "(slowed)" open the same page).
 {%- endcomment -%}
 <article class="lyrics">
-    <p class="back">{% include back-link.html href="/releases.html" label="Releases" %}</p>
+    <p class="back">{% include back-link.html href="/releases.html" label="Releases" lkey="menu_releases" %}</p>
 
     <header class="page-head">
         <h1 class="page-head__title">{{ page.title }}</h1>
@@ -24,5 +24,5 @@ rail: releases
     </div>
     {%- endif %}
 
-    <p class="lyrics__back">{% include back-link.html href="/releases.html" label="Releases" %}</p>
+    <p class="lyrics__back">{% include back-link.html href="/releases.html" label="Releases" lkey="menu_releases" %}</p>
 </article>

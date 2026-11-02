@@ -2,97 +2,13 @@
 layout: page
 rail: releases
 permalink: /releases.html
+lang: en
+ref: releases
+order: 1
 title: Releases
 seo_title: SETTWOR Releases | Songs, Singles and Albums
 description: "Every release by SETTWOR, newest first: singles, albums and mixtapes from 2021 to today, with links to Spotify."
 image: /images/SETTWOR with releases.png
 image_alt: SETTWOR with a part of his releases
 ---
-{%- comment -%}
-  Releases live in the folder _releases, one file per release
-  (Pages CMS: "Releases"). Years and order are made from the dates.
-{%- endcomment -%}
-{%- assign releases = site.releases | sort: "date" | reverse -%}
-{%- assign rp = site.data.pages.releases -%}
-{%- include artist-urls.html -%}
-        <header class="page-head">
-            <h1 class="page-head__title">{{ rp.title }}</h1>
-            <p class="page-head__lead">{{ rp.lead }}</p>
-        </header>
-
-        {%- if rp.image and rp.image != "" %}
-        <figure class="release-hero">
-            <img src="{{ rp.image | uri_escape }}" alt="{{ rp.image_alt | escape }}" loading="lazy" decoding="async">
-            {%- if rp.caption and rp.caption != "" %}
-            <figcaption>{{ rp.caption }}</figcaption>
-            {%- endif %}
-        </figure>
-        {%- endif %}
-
-        {%- if releases.size == 0 %}
-        {%- include empty-state.html title="No releases here yet" text="New music will be listed here as soon as it comes out. You can already listen on Spotify." href=au_spotify label="Listen on Spotify" %}
-        {%- endif %}
-
-        <div class="release-list">
-            {%- assign current_year = "" -%}
-            {%- for release in releases -%}
-            {%- assign release_year = release.date | date: "%Y" -%}
-            {%- if release_year != current_year %}
-            {%- unless forloop.first %}
-                </ul>
-            </section>
-            {%- endunless %}
-            <section class="release-year" id="r{{ release_year }}" aria-labelledby="rt{{ release_year }}">
-                <h2 class="news-year__title" data-reveal id="rt{{ release_year }}">{{ release_year }}</h2>
-                <ul class="release-grid">
-            {%- assign current_year = release_year -%}
-            {%- endif %}
-            {%- capture cover -%}{% include image-url.html src=release.cover %}{%- endcapture %}
-                    <li class="release" id="release-{{ release.slug }}" data-reveal data-slug="{{ release.slug }}" data-title="{{ release.title | escape }}" data-artist="{{ release.artist | escape }}" data-date="{{ release.date | date: "%-d %B %Y" }}" data-kind="{{ release.kind | default: "Single" }}" data-cover="{{ cover | strip }}" data-spotify="{{ release.spotify }}" data-details="{{ release.details }}" data-links="{{ release.links | jsonify | escape }}" data-tracks="{{ release.tracklist | jsonify | escape }}">
-                        <a class="release__cover" href="{% if release.spotify and release.spotify != "" %}{{ release.spotify }}{% else %}#release-{{ release.slug }}{% endif %}" data-release aria-label="{{ release.title | escape }}: links and tracklist"><img src="{% include thumb-url.html src=release.cover %}" alt="Cover of {{ release.title | escape }}" width="300" height="300" loading="lazy" decoding="async"></a>
-                        <h3 class="release__name">{{ release.title }}</h3>
-                        <p class="release__meta">{{ release.artist }}</p>
-                        <p class="release__meta"><time datetime="{{ release.date | date: "%Y-%m-%d" }}">{{ release.date | date: "%-d %B %Y" }}</time>{% if release.kind and release.kind != "Single" %} · {{ release.kind }}{% endif %}</p>
-                        <p class="release__links"><a href="#release-{{ release.slug }}" data-release>Listen &amp; tracklist</a></p>
-                    </li>
-            {%- endfor %}
-            {%- if releases.size > 0 %}
-                </ul>
-            </section>
-            {%- endif %}
-        </div>
-
-{% include lyrics-map.html %}
-
-<!-- Structured data: the list of releases -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "SETTWOR Releases",
-    "url": {{ "/releases.html" | absolute_url | jsonify }},
-    "isPartOf": { "@id": "{{ site.url }}/#website" },
-    "mainEntity": {
-        "@type": "ItemList",
-        "numberOfItems": {{ releases.size }},
-        "itemListElement": [
-            {%- for release in releases %}
-            {%- assign rel_type = "SingleRelease" -%}
-            {%- if release.kind == "Album" or release.kind == "Mixtape" -%}{%- assign rel_type = "AlbumRelease" -%}{%- elsif release.kind == "EP" -%}{%- assign rel_type = "EPRelease" -%}{%- endif %}
-            {
-                "@type": "ListItem",
-                "position": {{ forloop.index }},
-                "item": {
-                    "@type": "MusicAlbum",
-                    "name": {{ release.title | jsonify }},
-                    "albumReleaseType": "https://schema.org/{{ rel_type }}",
-                    "byArtist": { "@type": "MusicGroup", "name": {{ release.artist | jsonify }} },
-                    "datePublished": {{ release.date | date: "%Y-%m-%d" | jsonify }}{% if release.spotify and release.spotify != "" %},
-                    "url": {{ release.spotify | jsonify }}{% endif %}
-                }
-            }{% unless forloop.last %},{% endunless %}
-            {%- endfor %}
-        ]
-    }
-}
-</script>
+{%- include releases-body.html -%}

@@ -1,0 +1,21 @@
+{%- comment -%}
+  v11.38. A date in the language of the page (D4: the month is a WORD in every language).
+  Parameters: d = the date (a date or a string), lang (optional, default the page language).
+  English: "1 November 2026" (the old format `%-d %B %Y`, so English output does not change).
+  Other languages: the pattern is the key date_fmt (for example "{d} {m} {y}" or "{d} de {m} de {y}") and the month names are the key
+  date_months (twelve names separated by commas, in the form that follows a day number) in _data/i18n/<lang>.yml.
+  Without the keys the English format is printed. Prints one line, no spaces around it. Variables start with i18n_d.
+{%- endcomment -%}
+{%- assign i18n_dl = include.lang | default: page.lang | default: site.lang -%}
+{%- assign i18n_dt = site.data.i18n[i18n_dl] -%}
+{%- assign i18n_dm = i18n_dt.date_months | split: "," -%}
+{%- if i18n_dl == "en" or i18n_dm.size != 12 -%}
+{{- include.d | date: "%-d %B %Y" -}}
+{%- else -%}
+{%- assign i18n_dn = include.d | date: "%-m" | plus: 0 | minus: 1 -%}
+{%- assign i18n_dmon = i18n_dm[i18n_dn] | strip -%}
+{%- assign i18n_dday = include.d | date: "%-d" -%}
+{%- assign i18n_dyear = include.d | date: "%Y" -%}
+{%- assign i18n_dfmt = i18n_dt.date_fmt | default: "{d} {m} {y}" -%}
+{{- i18n_dfmt | replace: "{d}", i18n_dday | replace: "{m}", i18n_dmon | replace: "{y}", i18n_dyear -}}
+{%- endif -%}

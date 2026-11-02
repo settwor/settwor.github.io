@@ -5,6 +5,39 @@
 {%- assign first_bio = site.bio | sort: "order" | first -%}
 {%- include nav-current.html -%}
 {%- assign nav_val = "page" -%}{%- unless nav_exact -%}{%- assign nav_val = "true" -%}{%- endunless -%}
+{%- include i18n-gate.html -%}
+{%- comment -%} v11.51: the news lists of this column follow the page language: English = site.posts, another language = ready articles of site.news_tr (rs_np). The "#news" link of the home page only exists on the English home (home-body.html lists news for English only). {%- endcomment -%}
+{%- assign rs_nl = page.lang | default: site.lang -%}
+{%- if rs_nl == "en" -%}{%- assign rs_np = site.posts -%}{%- else -%}{%- assign rs_np = site.news_tr | where: "lang", rs_nl | where: "i18n_ready", true | sort: "date" | reverse -%}{%- endif -%}
+{%- capture rs_t_onpage -%}{% include i18n-t.html key="rail_on_page" en="On this page" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_about -%}{% include i18n-t.html key="toc_about" en="About" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_rel -%}{% include i18n-t.html key="toc_releases" en="Latest releases" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_listen -%}{% include i18n-t.html key="toc_listen" en="Listen and watch" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_news -%}{% include i18n-t.html key="toc_news" en="Latest news" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_num -%}{% include i18n-t.html key="toc_numbers" en="In numbers" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_photos -%}{% include i18n-t.html key="menu_photos" en="Photos" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_social -%}{% include i18n-t.html key="toc_social" en="Social media" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_faq -%}{% include i18n-t.html key="toc_faq" en="Questions" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_biotoc -%}{% include i18n-t.html key="rail_bio_toc" en="In this biography" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_byyear -%}{% include i18n-t.html key="rail_by_year" en="By year" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_year -%}{% include i18n-t.html key="rail_year" en="Year" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_total -%}{% include i18n-t.html key="toc_total" en="Total" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_plat -%}{% include i18n-t.html key="toc_platforms" en="Music platforms" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_profiles -%}{% include i18n-t.html key="toc_profiles" en="Official profiles" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_bioin -%}{% include i18n-t.html key="rail_bio_in" en="Biography in" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_onsite -%}{% include i18n-t.html key="rail_on_site" en="On this site" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_m_rel -%}{% include i18n-t.html key="menu_releases" en="Releases" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_m_news -%}{% include i18n-t.html key="menu_news" en="News" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_m_str -%}{% include i18n-t.html key="menu_streams" en="Streams" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_m_bio -%}{% include i18n-t.html key="menu_biography" en="Biography" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rs_t_top -%}{% include i18n-t.html key="menu_top_phonk" en="Top phonk artist" lang=i18n_gtl %}{%- endcapture -%}
+{%- comment -%} 11.35 addresses by language (the gate gives the English ones for biography pages). {%- endcomment -%}
+{%- if i18n_glp == "" -%}
+{%- assign rs_releases = "/releases.html" -%}{%- assign rs_news = "/news/" -%}{%- assign rs_streams = "/streams.html" -%}{%- assign rs_photos = "/photo.html" -%}{%- assign rs_top = "/top-phonk-artist.html" -%}{%- assign rs_biolink = " data-bio-link" -%}{%- assign rs_bio = first_bio.url -%}
+{%- else -%}
+{%- include i18n-urls.html lang=i18n_gtl -%}
+{%- assign rs_releases = i18n_u_releases -%}{%- assign rs_news = i18n_u_news -%}{%- assign rs_streams = i18n_u_streams -%}{%- assign rs_photos = i18n_u_photo -%}{%- assign rs_top = i18n_u_top -%}{%- assign rs_biolink = "" -%}{%- assign rs_bio = i18n_bio -%}
+{%- endif -%}
 
 {%- if page.rail == "home" %}
 {%- comment -%} todo design 5.5: a section with nothing in it is not on the page, so it is not in this list either. {%- endcomment -%}
@@ -15,43 +48,43 @@
 {%- assign rh_photos = site.data.gallery.photos | size -%}
 {%- assign rh_social = site.data.links.follow | size -%}
 <nav class="rail-block" aria-labelledby="toc-title" data-toc>
-    <h2 class="rail-block__title" id="toc-title">On this page</h2>
+    <h2 class="rail-block__title" id="toc-title">{{ rs_t_onpage }}</h2>
     <ul class="rail-list">
-        <li><a class="rail-link" href="#about"><span class="rail-link__name">About</span></a></li>
+        <li><a class="rail-link" href="#about"><span class="rail-link__name">{{ rs_t_about }}</span></a></li>
         {%- if site.releases.size > 0 %}
-        <li><a class="rail-link" href="#releases"><span class="rail-link__name">Latest releases</span></a></li>
+        <li><a class="rail-link" href="#releases"><span class="rail-link__name">{{ rs_t_rel }}</span></a></li>
         {%- endif %}
         {%- if rh_video != "" or rh_spotify != "" %}
-        <li><a class="rail-link" href="#listen"><span class="rail-link__name">Listen and watch</span></a></li>
+        <li><a class="rail-link" href="#listen"><span class="rail-link__name">{{ rs_t_listen }}</span></a></li>
         {%- endif %}
-        {%- if site.posts.size > 0 %}
-        <li><a class="rail-link" href="#news"><span class="rail-link__name">Latest news</span></a></li>
+        {%- if site.posts.size > 0 and rs_nl == "en" %}
+        <li><a class="rail-link" href="#news"><span class="rail-link__name">{{ rs_t_news }}</span></a></li>
         {%- endif %}
         {%- if st_panel_total > 0 %}
-        <li><a class="rail-link" href="#numbers"><span class="rail-link__name">In numbers</span></a></li>
+        <li><a class="rail-link" href="#numbers"><span class="rail-link__name">{{ rs_t_num }}</span></a></li>
         {%- endif %}
         {%- if rh_photos > 0 %}
-        <li><a class="rail-link" href="#photos"><span class="rail-link__name">Photos</span></a></li>
+        <li><a class="rail-link" href="#photos"><span class="rail-link__name">{{ rs_t_photos }}</span></a></li>
         {%- endif %}
         {%- if rh_social > 0 %}
-        <li><a class="rail-link" href="#social"><span class="rail-link__name">Social media</span></a></li>
+        <li><a class="rail-link" href="#social"><span class="rail-link__name">{{ rs_t_social }}</span></a></li>
         {%- endif %}
         {%- if rh_home.faq and rh_home.faq.size > 0 %}
-        <li><a class="rail-link" href="#faq"><span class="rail-link__name">Questions</span></a></li>
+        <li><a class="rail-link" href="#faq"><span class="rail-link__name">{{ rs_t_faq }}</span></a></li>
         {%- endif %}
     </ul>
 </nav>
 {%- elsif page.rail == "bio" %}
 <nav class="rail-block" aria-labelledby="toc-title" data-toc data-toc-auto>
-    <h2 class="rail-block__title" id="toc-title">In this biography</h2>
+    <h2 class="rail-block__title" id="toc-title">{{ rs_t_biotoc }}</h2>
     <ul class="rail-list"></ul>
 </nav>
-{%- elsif page.rail == "news" and site.posts.size > 0 %}
+{%- elsif page.rail == "news" and rs_np.size > 0 %}
 <nav class="rail-block" aria-labelledby="rail-years">
-    <h2 class="rail-block__title" id="rail-years">By year</h2>
+    <h2 class="rail-block__title" id="rail-years">{{ rs_t_byyear }}</h2>
     <ul class="rail-list">
         {%- assign seen_years = "" -%}
-        {%- for post in site.posts -%}
+        {%- for post in rs_np -%}
         {%- assign post_year = post.date | date: "%Y" -%}
         {%- unless seen_years contains post_year %}
         <li><a class="rail-link" href="#y-{{ post_year }}"><span class="rail-link__name">{{ post_year }}</span></a></li>
@@ -62,7 +95,7 @@
 </nav>
 {%- elsif page.rail == "photos" and site.data.gallery.photos.size > 0 %}
 <nav class="rail-block" aria-labelledby="rail-years">
-    <h2 class="rail-block__title" id="rail-years">Year</h2>
+    <h2 class="rail-block__title" id="rail-years">{{ rs_t_year }}</h2>
     <ul class="rail-list" data-year-links>
         {%- assign seen_years = "" -%}
         {%- assign rail_photos = site.data.gallery.photos | sort: "date" | reverse -%}
@@ -77,24 +110,24 @@
 </nav>
 {%- elsif page.rail == "streams" %}
 <nav class="rail-block" aria-labelledby="rail-streams">
-    <h2 class="rail-block__title" id="rail-streams">On this page</h2>
+    <h2 class="rail-block__title" id="rail-streams">{{ rs_t_onpage }}</h2>
     {%- include stats-calc.html -%}
     <ul class="rail-list">
         {%- if st_panel_total > 0 %}
-        <li><a class="rail-link" href="#numbers"><span class="rail-link__name">Total</span></a></li>
+        <li><a class="rail-link" href="#numbers"><span class="rail-link__name">{{ rs_t_total }}</span></a></li>
         {%- endif %}
         {%- if st_plat_total > 0 %}
-        <li><a class="rail-link" href="#platforms"><span class="rail-link__name">Music platforms</span></a></li>
+        <li><a class="rail-link" href="#platforms"><span class="rail-link__name">{{ rs_t_plat }}</span></a></li>
         {%- endif %}
         {%- if st_channel > 0 %}
         <li><a class="rail-link" href="#youtube"><span class="rail-link__name">YouTube</span></a></li>
         {%- endif %}
-        <li><a class="rail-link" href="#profiles"><span class="rail-link__name">Official profiles</span></a></li>
+        <li><a class="rail-link" href="#profiles"><span class="rail-link__name">{{ rs_t_profiles }}</span></a></li>
     </ul>
 </nav>
 {%- elsif page.rail == "releases" and site.releases.size > 0 %}
 <nav class="rail-block" aria-labelledby="rail-years">
-    <h2 class="rail-block__title" id="rail-years">By year</h2>
+    <h2 class="rail-block__title" id="rail-years">{{ rs_t_byyear }}</h2>
     <ul class="rail-list">
         {%- assign seen_years = "" -%}
         {%- assign rail_releases = site.releases | sort: "date" | reverse -%}
@@ -111,7 +144,7 @@
 
 {%- if page.rail == "home" or page.rail == "bio" %}
 <nav class="rail-block" aria-labelledby="lang-title">
-    <h2 class="rail-block__title" id="lang-title">Biography in</h2>
+    <h2 class="rail-block__title" id="lang-title">{{ rs_t_bioin }}</h2>
     <ul class="rail-list">
         {%- assign bio_list = site.bio | sort: "order" %}
         {%- for item in bio_list %}
@@ -121,14 +154,14 @@
 </nav>
 {%- else %}
 <nav class="rail-block" aria-labelledby="rail-site">
-    <h2 class="rail-block__title" id="rail-site">On this site</h2>
+    <h2 class="rail-block__title" id="rail-site">{{ rs_t_onsite }}</h2>
     <ul class="rail-list">
-        <li><a class="rail-link" href="/releases.html"{% if nav_cur == "releases" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">Releases</span></a></li>
-        <li><a class="rail-link" href="/news/"{% if nav_cur == "news" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">News</span></a></li>
-        <li><a class="rail-link" href="/streams.html"{% if nav_cur == "streams" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">Streams</span></a></li>
-        <li><a class="rail-link" href="{{ first_bio.url }}" data-bio-link{% if nav_cur == "bio" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">Biography</span></a></li>
-        <li><a class="rail-link" href="/photo.html"{% if nav_cur == "photos" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">Photos</span></a></li>
-        <li><a class="rail-link" href="/top-phonk-artist.html"{% if page.url == "/top-phonk-artist.html" %} aria-current="page"{% endif %}><span class="rail-link__name">Top phonk artist</span></a></li>
+        <li><a class="rail-link" href="{{ rs_releases }}"{% if nav_cur == "releases" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">{{ rs_t_m_rel }}</span></a></li>
+        <li><a class="rail-link" href="{{ rs_news }}"{% if nav_cur == "news" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">{{ rs_t_m_news }}</span></a></li>
+        <li><a class="rail-link" href="{{ rs_streams }}"{% if nav_cur == "streams" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">{{ rs_t_m_str }}</span></a></li>
+        <li><a class="rail-link" href="{{ rs_bio }}"{{ rs_biolink }}{% if nav_cur == "bio" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">{{ rs_t_m_bio }}</span></a></li>
+        <li><a class="rail-link" href="{{ rs_photos }}"{% if nav_cur == "photos" %} aria-current="{{ nav_val }}"{% endif %}><span class="rail-link__name">{{ rs_t_photos }}</span></a></li>
+        <li><a class="rail-link" href="{{ rs_top }}"{% if page.url == rs_top %} aria-current="page"{% endif %}><span class="rail-link__name">{{ rs_t_top }}</span></a></li>
     </ul>
 </nav>
 {%- endif %}

@@ -1,0 +1,92 @@
+# Texts of the home page, Polski (v11.38, Phase 3). Same structure as _data/home.yml, plus `labels`, `facts_label` and `key_line`.
+# CREATE ONLY IF MISSING: this file is new in 11.38. If it already exists on the live site, merge, never overwrite.
+# Why this folder and not _data/i18n/<lang>/: a folder and the file <lang>.yml of the same name give the same Jekyll data key, the folder would wipe the interface file.
+# Status: AI draft, NOT read by the owner yet. The page in this language stays out of Google (i18n_ready: false) until it is read.
+# Not translated on purpose: SETTWOR, release and track names, platform names, e-mail. Photo, video id, Spotify id and links are read from the English data.
+hero:
+  photo_alt: "Portret SETTWOR, artysty i producenta phonk"
+  title: SETTWOR
+  tagline: "Artysta i producent phonk"
+  note: "Oficjalna strona. Pochodzi z Krzywego Rogu na Ukrainie, mieszka w Polsce, aktywny od 2021 roku."
+  listen_label: "Słuchaj na Spotify"
+
+about_title: "O SETTWOR"
+# Markdown: a blank line starts a new paragraph, [text](https://address) makes a link.
+about: |
+  SETTWOR to artysta i producent [phonk](https://en.wikipedia.org/wiki/Phonk), który tworzy też [brazylijski funk](https://en.wikipedia.org/wiki/Funk_carioca) oraz muzykę taneczną i elektroniczną. Pochodzi z [Krzywego Rogu](https://en.wikipedia.org/wiki/Kryvyi_Rih) na Ukrainie, w 2022 roku przeprowadził się do Polski.
+
+  Jest najbardziej znany ze swojej muzyki, kanału na YouTube oraz krótkich filmów na TikToku z jego utworami. Jest też właścicielem jednego z popularnych kanałów z muzyką 8D.
+callout: "SETTWOR to jeden z najpopularniejszych artystów phonk na Pandorze."
+
+facts_label: "Najważniejsze fakty"
+facts:
+  - label: "Zawód"
+    value: "Artysta i producent phonk"
+  - label: "Data urodzenia"
+    value: "8 lutego 2007"
+  - label: "Miejsce urodzenia"
+    value: "Krzywy Róg, Ukraina"
+  - label: "Obywatelstwo"
+    value: "ukraińskie"
+  - label: "Mieszka w"
+    value: "Polsce"
+  - label: "Gatunki"
+    value: "brazylijski funk, phonk"
+  - label: "Aktywny od"
+    value: "2021"
+  - label: "E-mail"
+    value: "settwor@gmail.com"
+
+video:
+  title: "SETTWOR — popularny film na YouTube"
+
+faq_title: "Pytania o SETTWOR"
+faq:
+  - q: "Kim jest SETTWOR?"
+    a: "SETTWOR to artysta i producent phonk z Krzywego Rogu na Ukrainie, mieszkający w Polsce. Tworzy phonk, brazylijski funk oraz muzykę taneczną i elektroniczną, a muzykę wydaje od 2021 roku."
+  - q: "W jakich gatunkach tworzy SETTWOR?"
+    a: "Głównie w phonku i brazylijskim funku, a także w EDM."
+  - q: "Jaki jest najpopularniejszy utwór SETTWOR?"
+    a: "GOT ME UP 2, z albumu GET IT, Vol.1. 22 lutego 2026 roku przekroczył 1,000,000 odtworzeń na wszystkich platformach i jest najbardziej udanym wydawnictwem w jego karierze."
+  - q: "Kiedy SETTWOR wydał pierwszy utwór?"
+    a: "W 2021 roku, utworem „Light Wave”. Pseudonim SETTWOR przyjął i założył kanał na YouTube w 2020 roku."
+  - q: "Z kim współpracował SETTWOR?"
+    a: "Z Mc Baiano przy reedycji „SE TU QUER” (4 września 2026) oraz z MC GW przy utworze „Toma Jatada” (10 października 2026). Oba wydawnictwa wsparło Authentic Records."
+  - q: "Gdzie można słuchać SETTWOR?"
+    a: "Na Spotify, Apple Music, YouTube i innych platformach. Linki do każdego wydawnictwa są na stronie „Wydania” tej witryny."
+  - q: "Jakie są oficjalne media społecznościowe SETTWOR?"
+    a: "Spotify, YouTube (youtube.com/c/settwor), Instagram (instagram.com/settwor) i Telegram (settw0r.t.me). Wszystkie są podlinkowane na tej stronie."
+  - q: "Jak skontaktować się z SETTWOR?"
+    a: "Pisząc na adres e-mail settwor@gmail.com."
+
+# The key line of the About block. Pieces, no plural forms (the number comes after a colon). {y} = year, {n} = number, {p} = place, {date} = date in the language.
+key_line:
+  intro: "SETTWOR to aktywny i szybko rozwijający się artysta i producent phonk"
+  releases: "Wydań od {y} roku: {n}"
+  this_year: ", w tym w {y} roku: {n}"
+  rank_phonk: "Nr {p} w Phonk"
+  rank_bphonk: "nr {p} w Brazilian Phonk"
+  join: " i "
+  on_pandora: " na Pandorze"
+  source: "Ledgertone, {date}"
+
+# Section titles, links and small texts of the home page. {title} = release title, {y} = year.
+labels:
+  full_bio: "Pełna biografia"
+  releases_title: "Najnowsze wydania"
+  releases_all: "Wszystkie wydania"
+  release_aria: "{title}: posłuchaj i zobacz listę utworów"
+  cover_of: "Okładka: {title}"
+  listen_title: "Słuchaj i oglądaj"
+  video_alt_pre: "Film się nie ładuje?"
+  video_alt_link: "Otwórz na YouTube"
+  spotify_title: "SETTWOR na Spotify"
+  spotify_alt_pre: "Odtwarzacz się nie ładuje?"
+  spotify_alt_link: "Otwórz na Spotify"
+  photos_title: "Zdjęcia"
+  photos_all: "Wszystkie zdjęcia"
+  photo_alt: "SETTWOR, zdjęcie z {y} roku"
+  social_title: "Media społecznościowe"
+  faq_more: "Więcej w biografii"
+  kind_album: "Album"
+  kind_mixtape: "Mixtape"

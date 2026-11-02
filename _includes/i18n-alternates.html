@@ -1,0 +1,40 @@
+{%- comment -%}
+  v11.30. Prints the hreflang links of ONE translation group.
+  Parameters: ref = the group name (the front matter field `ref`; "bio" for the biographies),
+              mode = "head" (default), "sitemap" or "og" (og:locale:alternate; also give cur = language of the current page).
+  Members of a group:
+    - ref "bio": every file of the collection _bio (they need no `ref` field).
+    - any other ref: every page in site.pages with the same `ref`. English pages of a group must have `lang: en`.
+  A page with `i18n_ready: false` is left out (it is noindex and unreviewed). x-default = the member with lang en.
+  Variables start with i18n_ (an assign inside an include is global).
+{%- endcomment -%}
+{%- assign i18n_ref = include.ref -%}
+{%- assign i18n_mode = include.mode | default: "head" -%}
+{%- comment -%}
+  v11.52: a news article group. The group name is the slug of the English post (the file name without date and extension); every translated article of the
+  collection news_tr has the same `ref`. English posts need no front matter. Nothing is printed while the group has no READY translation.
+{%- endcomment -%}
+{%- assign i18n_ntr = "" | split: "," -%}
+{%- if i18n_ref and i18n_ref != "" and i18n_ref != "bio" -%}{%- assign i18n_ntr = site.news_tr | where: "ref", i18n_ref | where: "i18n_ready", true -%}{%- endif -%}
+{%- if i18n_ref and i18n_ref != "" -%}
+{%- if i18n_ntr.size > 0 -%}
+{%- assign i18n_npost = site.posts | where: "slug", i18n_ref | first -%}
+{%- if i18n_npost -%}{%- include i18n-alt-line.html code="en" url=i18n_npost.url mode=i18n_mode cur=include.cur -%}{%- endif -%}
+{%- for i18n_nt in i18n_ntr -%}{%- include i18n-alt-line.html code=i18n_nt.lang url=i18n_nt.url mode=i18n_mode cur=include.cur -%}{%- endfor -%}
+{%- if i18n_npost -%}{%- include i18n-alt-line.html code="x-default" url=i18n_npost.url mode=i18n_mode cur=include.cur -%}{%- endif -%}
+{%- assign i18n_list = "" | split: "," -%}
+{%- elsif i18n_ref == "bio" -%}
+{%- assign i18n_list = site.bio -%}
+{%- else -%}
+{%- assign i18n_list = site.pages | where: "ref", i18n_ref -%}
+{%- endif -%}
+{%- for i18n_it in i18n_list -%}
+{%- unless i18n_it.i18n_ready == false -%}
+{%- include i18n-alt-line.html code=i18n_it.lang url=i18n_it.url mode=i18n_mode cur=include.cur -%}
+{%- endunless -%}
+{%- endfor -%}
+{%- assign i18n_def = i18n_list | where: "lang", "en" | first -%}
+{%- if i18n_def -%}
+{%- include i18n-alt-line.html code="x-default" url=i18n_def.url mode=i18n_mode cur=include.cur -%}
+{%- endif -%}
+{%- endif -%}

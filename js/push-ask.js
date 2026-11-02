@@ -111,9 +111,28 @@
         return Notification.permission === 'granted';
     }
 
+    function fail() {
+        yes.disabled = false;
+        show('error');
+        var closeButton = root.querySelector('[data-push-view="error"] [data-push-close]');
+        if (closeButton) closeButton.focus();
+    }
+
     function accept() {
         yes.disabled = true;
+        // OneSignal did not start (wrong Site URL for this domain, blocked script): its question would never
+        // appear and the button would stay grey for ever. Say so instead.
+        if (window.__oneSignalOk === false) { fail(); return; }
+        var settled = false;
+        var timer = setTimeout(function () {
+            if (settled) return;
+            settled = true;
+            fail();
+        }, 15000);
         push.Notifications.requestPermission().then(function () {
+            if (settled) return;
+            settled = true;
+            clearTimeout(timer);
             if (Notification.permission === 'granted') {
                 write({ done: true });
                 show('done');
@@ -128,8 +147,10 @@
                 notNow();
             }
         }).catch(function () {
-            yes.disabled = false;
-            notNow();
+            if (settled) return;
+            settled = true;
+            clearTimeout(timer);
+            fail();
         });
     }
 

@@ -744,23 +744,24 @@ main:focus {
 }
 
 .news-card__link {
-    display: grid;
-    grid-template-columns: 5.5rem minmax(0, 1fr);
+    display: flex;
+    align-items: flex-start;
     gap: var(--space-4);
-    align-items: start;
+    width: 100%;
     padding: var(--space-4) 0;
 }
 
+/* The text always takes the rest of the row. Flex (not a fixed grid column) so a card without a picture
+   can never be squeezed into the picture column, with or without the --noimg class (11.21). */
 .news-card__text {
+    flex: 1 1 0;
+    width: 100%;
     min-width: 0;
-    overflow-wrap: anywhere;
-}
-
-.news-card__link--noimg {
-    grid-template-columns: 1fr;
+    overflow-wrap: break-word;
 }
 
 .news-card__img {
+    flex: 0 0 5.5rem;
     width: 5.5rem;
     height: 5.5rem;
     border-radius: var(--radius-xs);
@@ -838,7 +839,7 @@ main:focus {
     height: auto;
     aspect-ratio: auto 16 / 9;   /* 7.6: room is kept before the picture loads (16:9), then the real ratio is used */
     border-radius: var(--radius-xs);
-    background: var(--color-surface);
+    background: none;   /* 11.22: transparent parts of a picture stay transparent (no grey fill) */
 }
 
 .article__cover figcaption {
@@ -1553,17 +1554,12 @@ a.release__cover:hover img {
     }
 
     .news-card__link {
-        grid-template-columns: 7rem 1fr;
         gap: 1.25rem;
         padding-block: 1.1rem;
     }
 
-    /* An entry without a picture keeps ONE column; the rule above would otherwise put its text into the 7rem column (11.19). */
-    .news-card__link--noimg {
-        grid-template-columns: 1fr;
-    }
-
     .news-card__img {
+        flex-basis: 7rem;
         width: 7rem;
         height: 7rem;
     }
@@ -4949,4 +4945,76 @@ html.ptr-on {
 
 [data-theme="light"] .cdra__frame--dark {
     display: none;
+}
+
+/* 11.32: language switcher under the footer columns (printed only when the page has ready translations) */
+.footer-lang {
+    width: min(100%, var(--wide-w));
+    margin: var(--space-5) auto 0;
+}
+
+.footer-lang .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+}
+
+.footer-lang .footer-links li+li {
+    margin-top: 0;
+}
+
+.footer-lang a[aria-current="page"] {
+    font-weight: 600;
+}
+
+/* ---------- 11.40: quiet bar "This page is also in <language>" (_includes/lang-suggest.html) ----------
+   Not fixed: it sits in the normal flow just above the footer (11.71; it was above the header before), so it never covers the cookie banner or the notification card.
+   It is made by a script only for an English page with a ready translation and a visitor whose browser language matches. */
+.lang-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.5rem 2.75rem 0.5rem 1rem;
+    position: relative;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border-top: 1px solid var(--color-line-soft);
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    text-align: center;
+}
+.lang-hint__text {
+    margin: 0;
+}
+.lang-hint__link {
+    color: var(--color-text);
+    font-weight: var(--fw-semibold);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+.lang-hint__close {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-text-soft);
+    font: inherit;
+    font-size: 1.375rem;
+    line-height: 1;
+    cursor: pointer;
+}
+.lang-hint__close:hover {
+    background: var(--color-hover);
+}
+.lang-hint__close:focus-visible,
+.lang-hint__link:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
 }

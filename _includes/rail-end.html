@@ -3,21 +3,29 @@
   channels, contact, other places on the web and (on some pages) the photo license note.
 {%- endcomment -%}
 {% include rail-follow.html %}
+{%- include i18n-gate.html -%}
+{%- comment -%} 11.38: the small descriptions of the links are translated by the hash links_desc (key = the English text) of _data/i18n/<lang>.yml; no hash = the English text. {%- endcomment -%}
+{%- assign re_descs = site.data.i18n[i18n_gtl].links_desc -%}
+{%- capture re_t_else -%}{% include i18n-t.html key="rail_elsewhere" en="Also on the web" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture re_t_ph -%}{% include i18n-t.html key="rail_photos_title" en="Using the photos" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture re_t_phtext -%}{% include i18n-t.html key="rail_photos_text" en="Photographs on this site are free to use with credit." lang=i18n_gtl %}{%- endcapture -%}
+{%- capture re_t_lic -%}{% include i18n-t.html key="rail_license_link" en="Read the license" lang=i18n_gtl %}{%- endcapture -%}
 
 {%- if site.data.links.elsewhere.size > 0 %}
 <section class="rail-block" aria-labelledby="rail-elsewhere">
-    <h2 class="rail-block__title" id="rail-elsewhere">Also on the web</h2>
+    <h2 class="rail-block__title" id="rail-elsewhere">{{ re_t_else }}</h2>
     <ul class="rail-list">
         {%- for item in site.data.links.elsewhere %}
-        <li><a class="rail-link" href="{{ item.url }}" rel="noopener"><span class="rail-link__name">{{ item.name }}</span>{% if item.desc and item.desc != "" %}<span class="rail-link__desc">{{ item.desc }}</span>{% endif %}</a></li>
+        <li><a class="rail-link" href="{{ item.url }}" rel="noopener"><span class="rail-link__name">{{ item.name }}</span>{% if item.desc and item.desc != "" %}<span class="rail-link__desc">{{ re_descs[item.desc] | default: item.desc }}</span>{% endif %}</a></li>
         {%- endfor %}
     </ul>
 </section>
 {%- endif %}
 
 {%- if page.license_note %}
+{%- include i18n-urls.html lang=i18n_gtl -%}
 <section class="rail-block" aria-labelledby="rail-photos">
-    <h2 class="rail-block__title" id="rail-photos">Using the photos</h2>
-    <p class="rail-text">Photographs on this site are free to use with credit. <a href="/license.html">Read the license</a>.</p>
+    <h2 class="rail-block__title" id="rail-photos">{{ re_t_ph }}</h2>
+    <p class="rail-text">{{ re_t_phtext }} <a href="{{ i18n_u_license }}">{{ re_t_lic }}</a>.</p>
 </section>
 {%- endif %}

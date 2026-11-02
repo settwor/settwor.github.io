@@ -1,0 +1,12 @@
+{%- comment -%}
+  v11.31. Sets two variables for the page (assign in an include is global): i18n_lang = the page language (page.lang, else site.lang),
+  i18n_lp = the address prefix: empty for English, "/ru", "/pl" ... for the other languages,
+  i18n_bio (11.33) = address of the biography in the page language (found in site.bio by `lang`; "/bio.html" when there is none).
+  Prints nothing.
+  Use: {% include i18n-lang.html %} then href="{{ i18n_lp }}/news/". The prefix is for the pages of this plan (/<lang>/...);
+  the old biography addresses (/bioRU.html, /bio/es/ ...) are never built from it.
+{%- endcomment -%}
+{%- assign i18n_lang = page.lang | default: site.lang -%}
+{%- if i18n_lang == "en" -%}{%- assign i18n_lp = "" -%}{%- else -%}{%- assign i18n_lp = "/" | append: i18n_lang -%}{%- endif -%}
+{%- assign i18n_bio = "/bio.html" -%}
+{%- for i18n_b in site.bio -%}{%- if i18n_b.lang == i18n_lang -%}{%- assign i18n_bio = i18n_b.url -%}{%- endif -%}{%- endfor -%}

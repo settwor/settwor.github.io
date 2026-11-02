@@ -1,0 +1,124 @@
+{%- comment -%}
+  v11.47. The body of the Top Phonk page for EVERY language (made from top-phonk-artist.html, which is now only front matter + this include).
+  THE NUMBERS LIVE IN ONE PLACE: the front matter (lt_*) of top-phonk-artist.html. Every language reads them from that page (tp_src), never a copy.
+  English reads the texts kept here; another language reads the block `top_phonk` of _data/i18n_pages/<lang>.yml (missing key = the English text).
+  Placeholders in the texts: {snapshot} {listeners} {phonk_place} {phonk_total} {bphonk_place} {bphonk_total} (filled by top-phonk-fill.html).
+  A page about the artist's place in the Ledgertone ranking (https://ledgertone.settwor.com.pl/).
+  Only figures that Ledgertone itself shows. Ledgertone is run by SETTWOR and the page says so.
+  Growth is claimed on the home page by the owner; the confirmations (a second snapshot) are to be added here by the owner.
+  Variables start with tp_.
+{%- endcomment -%}
+{%- include i18n-lang.html -%}
+{%- include i18n-urls.html lang=i18n_lang -%}
+{%- assign tp_src = site.pages | where: "permalink", "/top-phonk-artist.html" | first -%}
+{%- assign tp_t = site.data.i18n_pages[i18n_lang].top_phonk -%}
+{%- if i18n_lang == "en" -%}{%- assign tp_snap = tp_src.lt_snapshot -%}{%- else -%}{%- capture tp_snap %}{% include i18n-date.html d=tp_src.lt_snapshot_iso lang=i18n_lang %}{% endcapture -%}{%- endif -%}
+{%- assign tp_hl_s = "" -%}{%- assign tp_hl_r = "" -%}
+{%- if i18n_lang != "en" -%}{%- if i18n_u_streams == "/streams.html" -%}{%- assign tp_hl_s = ' hreflang="en"' -%}{%- endif -%}{%- if i18n_u_releases == "/releases.html" -%}{%- assign tp_hl_r = ' hreflang="en"' -%}{%- endif -%}{%- endif -%}
+{%- assign tp_url = page.url | absolute_url -%}
+{%- assign tp_home = i18n_u_home | absolute_url -%}
+{%- assign tp_x = tp_t.title | default: "SETTWOR: a top phonk artist on Pandora" -%}
+<div class="prose">
+            <h1>{{ tp_x }}</h1>
+            {%- assign tp_x = tp_t.meta | default: "Ledgertone snapshot of {snapshot}" %}
+            <p class="meta">{% include top-phonk-fill.html s=tp_x %}</p>
+
+            {%- assign tp_x = tp_t.intro_a | default: "This information is from {snapshot}. SETTWOR is a phonk artist and producer from Ukraine based in Poland. In the " -%}
+            {%- assign tp_y = tp_t.intro_b | default: ", he is number {phonk_place} in Phonk and number {bphonk_place} in Brazilian Phonk, with {listeners} listeners over 28 days." %}
+            <p>{% include top-phonk-fill.html s=tp_x %}<a href="https://ledgertone.settwor.com.pl/settwor.html" rel="noopener">{{ tp_t.intro_link | default: "Ledgertone ranking of Pandora artists" }}</a>{% include top-phonk-fill.html s=tp_y %}</p>
+
+            <h2>{{ tp_t.numbers_h | default: "The numbers" }}</h2>
+            <ul>
+                {%- assign tp_x = tp_t.li_phonk_t | default: "place {phonk_place} of {phonk_total} artists in the genre" -%}
+                {%- assign tp_y = tp_t.li_bphonk_t | default: "place {bphonk_place} of {bphonk_total} artists in the genre" %}
+                <li><strong>{{ tp_t.li_listeners_l | default: "28-day listeners on Pandora:" }}</strong> {{ tp_src.lt_listeners }}</li>
+                <li><strong>{{ tp_t.li_phonk_l | default: "Phonk:" }}</strong> {% include top-phonk-fill.html s=tp_x %}</li>
+                <li><strong>{{ tp_t.li_bphonk_l | default: "Brazilian Phonk:" }}</strong> {% include top-phonk-fill.html s=tp_y %}</li>
+                <li><strong>{{ tp_t.li_date_l | default: "Date of these numbers:" }}</strong> {{ tp_snap }}</li>
+            </ul>
+
+            <h2>{{ tp_t.read_h | default: "How to read these numbers" }}</h2>
+            {%- assign tp_x = tp_t.read_1_strong | default: "{listeners} listeners in 28 days" -%}
+            {%- assign tp_y = tp_t.read_1_rest | default: "is how many people played SETTWOR on Pandora in the 28 days before {snapshot}, as shown on his artist profile. With it he is number {phonk_place} among the {phonk_total} artists in the genre." %}
+            <p><strong>{% include top-phonk-fill.html s=tp_x %}</strong> {% include top-phonk-fill.html s=tp_y %}</p>
+
+            <p>{{ tp_t.read_2 | default: "It is not the first time he is at the very top. In April 2025 SETTWOR held place 6 among all phonk artists on Pandora." }}</p>
+
+            <p>{{ tp_t.read_3 | default: "The figure is a record of one moment. It is not live and it does not come from the Pandora API, so it may differ from what Pandora shows today." }}</p>
+
+            <h2>{{ tp_t.who_h | default: "Who runs Ledgertone" }}</h2>
+            <p>{{ tp_t.who_p | default: "Ledgertone is an independent project run by SETTWOR, and he is listed in the ranking. He is placed by the same rule as every other artist: by the 28-day listeners number in the snapshot. Ledgertone is not affiliated with Pandora. Pandora is a trademark of its respective owner." }}</p>
+
+            <h2>{{ tp_t.more_h | default: "Listen and read more" }}</h2>
+            <ul>
+                <li><a href="https://www.pandora.com/artist/settwor/ARZ4r4pddcgPq3c" rel="noopener">{{ tp_t.more_pandora | default: "SETTWOR on Pandora" }}</a></li>
+                <li><a href="https://open.spotify.com/artist/5BD8hsAGp1fwJKcnlQWjGf" rel="noopener">{{ tp_t.more_spotify | default: "SETTWOR on Spotify" }}</a></li>
+                <li><a href="https://ledgertone.settwor.com.pl/settwor.html" rel="noopener">{{ tp_t.more_lt | default: "SETTWOR on Pandora: 28-day listeners (Ledgertone)" }}</a>{% if i18n_lang == "en" %}, <a href="https://ledgertone.settwor.com.pl/settwor-ru.html" rel="noopener" hreflang="ru" lang="ru">по-русски</a>{% endif %}</li>
+                <li><a href="https://ledgertone.settwor.com.pl/index.html" rel="noopener">{{ tp_t.more_full | default: "Full Ledgertone ranking" }}</a></li>
+                <li><a href="{{ i18n_u_streams }}"{{ tp_hl_s }}>{{ tp_t.more_streams | default: "Plays and views on every platform" }}</a>{{ tp_t.more_and | default: " and " }}<a href="{{ i18n_u_releases }}"{{ tp_hl_r }}>{{ tp_t.more_releases | default: "all releases" }}</a></li>
+            </ul>
+
+            <h2>{{ tp_t.faq_h | default: "Questions" }}</h2>
+            {%- assign tp_q1 = tp_t.q1 | default: "Is SETTWOR one of the top phonk artists on Pandora?" -%}
+            {%- assign tp_a1 = tp_t.a1 | default: "In the Ledgertone snapshot of {snapshot} he is place {phonk_place} in Phonk among {phonk_total} artists, with {listeners} listeners over 28 days." -%}
+            {%- assign tp_q2 = tp_t.q2 | default: "Is SETTWOR in the top of Brazilian phonk?" -%}
+            {%- assign tp_a2 = tp_t.a2 | default: "In the same snapshot he is place {bphonk_place} in Brazilian Phonk among {bphonk_total} artists." -%}
+            {%- assign tp_q3 = tp_t.q3 | default: "Where do these numbers come from?" -%}
+            {%- assign tp_a3 = tp_t.a3 | default: "From the 28-day listeners figure on the Pandora artist profile, recorded by Ledgertone on {snapshot}. It is a snapshot, not live data." -%}
+            {%- assign tp_q4 = tp_t.q4 | default: "Who runs Ledgertone?" -%}
+            {%- assign tp_a4 = tp_t.a4 | default: "SETTWOR runs it and is placed in it by the same rule as every other artist." %}
+            <h3>{{ tp_q1 }}</h3>
+            <p>{% include top-phonk-fill.html s=tp_a1 %}</p>
+            <h3>{{ tp_q2 }}</h3>
+            <p>{% include top-phonk-fill.html s=tp_a2 %}</p>
+            <h3>{{ tp_q3 }}</h3>
+            <p>{% include top-phonk-fill.html s=tp_a3 %}</p>
+            <h3>{{ tp_q4 }}</h3>
+            <p>{% include top-phonk-fill.html s=tp_a4 %}</p>
+</div>
+
+<!-- Structured data: this page, the questions and the artist it is about -->
+{%- capture tp_ja1 %}{% include top-phonk-fill.html s=tp_a1 %}{% endcapture -%}
+{%- capture tp_ja2 %}{% include top-phonk-fill.html s=tp_a2 %}{% endcapture -%}
+{%- capture tp_ja3 %}{% include top-phonk-fill.html s=tp_a3 %}{% endcapture -%}
+{%- capture tp_ja4 %}{% include top-phonk-fill.html s=tp_a4 %}{% endcapture %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": {{ tp_url | append: "#page" | jsonify }},
+            "url": {{ tp_url | jsonify }},
+            "name": {{ page.seo_title | jsonify }},
+            "description": {{ page.description | jsonify }},
+            "inLanguage": {{ i18n_lang | jsonify }},
+            "dateModified": {{ tp_src.lt_snapshot_iso | jsonify }},
+            "isPartOf": { "@id": "{{ site.url }}/#website" },
+            "about": { "@id": "{{ site.url }}/#artist" },
+            "citation": { "@type": "WebPage", "@id": "https://ledgertone.settwor.com.pl/settwor.html#page", "url": "https://ledgertone.settwor.com.pl/settwor.html" },
+            "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "SETTWOR", "item": {{ tp_home | jsonify }} },
+                    { "@type": "ListItem", "position": 2, "name": {{ tp_t.crumb | default: "Top phonk artist" | jsonify }}, "item": {{ tp_url | jsonify }} }
+                ]
+            }
+        },
+        {
+            "@type": "FAQPage",
+            "@id": {{ tp_url | append: "#faq" | jsonify }},
+            "url": {{ tp_url | jsonify }},
+            "inLanguage": {{ i18n_lang | jsonify }},
+            "about": { "@id": "{{ site.url }}/#artist" },
+            "mainEntity": [
+                { "@type": "Question", "name": {{ tp_q1 | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ tp_ja1 | jsonify }} } },
+                { "@type": "Question", "name": {{ tp_q2 | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ tp_ja2 | jsonify }} } },
+                { "@type": "Question", "name": {{ tp_q3 | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ tp_ja3 | jsonify }} } },
+                { "@type": "Question", "name": {{ tp_q4 | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ tp_ja4 | jsonify }} } }
+            ]
+        },
+{% include person-jsonld.html %}
+    ]
+}
+</script>

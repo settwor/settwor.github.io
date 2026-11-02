@@ -502,6 +502,7 @@ for fn in sorted(os.listdir(os.path.join(SRC, "_posts"))):
     if post.get("published") is False:
         continue
     post["layout"] = post.get("layout", "article")
+    post["slug"] = slug
     dt = as_dt(post["date"]) if post.get("date") else datetime.datetime(int(y), int(mo), int(d), tzinfo=TZ)
     post["date"] = dt
     if post.get("updated"):

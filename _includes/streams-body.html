@@ -1,0 +1,98 @@
+{%- comment -%}
+  v11.44. The body of the Streams page for EVERY language (made from streams.html, which is now only front matter + this include).
+  English reads the texts kept in the templates and _data/pages.yml; another language reads _data/i18n_pages/<lang>.yml (block `streams`)
+  and _data/i18n/<lang>.yml. Do not copy this body into another page: one body, one place to fix.
+{%- endcomment -%}
+{%- comment -%}
+  Numbers of plays. Music platforms: Pages CMS > Streams (one file per platform, one line per year).
+  YouTube: automatic (tools/fetch-stats.py). Heading texts: Pages CMS > Site > Page texts.
+  The black panel, the cards and the status are made by _includes/stats-*.html
+{%- endcomment -%}
+{%- include stats-calc.html -%}
+{%- comment -%}
+  v11.41 (Phase 5, part 1): the own texts of this page can be read in another language from _data/i18n_pages/<lang>.yml (block `streams`),
+  with the English text as the fallback. The English page has no `lang`, so it reads exactly what it read before. Variable prefix s5_.
+{%- endcomment -%}
+{%- include i18n-lang.html -%}
+{%- assign sp = site.data.pages.streams -%}
+{%- assign s5_t = site.data.i18n_pages[i18n_lang].streams -%}
+{%- comment -%} todo design 5.5: if there are no numbers at all, say so calmly instead of showing a bare page. {%- endcomment -%}
+{%- assign sh_any = st_panel_total | plus: st_plat_total | plus: st_channel -%}
+        <header class="page-head">
+            <h1 class="page-head__title">{{ s5_t.title | default: sp.title | default: "Streams" }}</h1>
+            <p class="page-head__lead">{{ s5_t.lead | default: sp.lead | default: "How many times the music of SETTWOR has been played, platform by platform, and how many people watched the videos on YouTube." }}</p>
+        </header>
+
+        <div class="numbers numbers--page" id="numbers">
+            {%- if sh_any > 0 %}
+            <p class="status{% if st_live %} status--live{% endif %}" role="status">
+                <span class="status__badge"><i class="status__dot"></i>{% if st_live %}{{ s5_t.live | default: "Live" }}{% else %}{{ s5_t.verified | default: "Verified" }}{% endif %}</span>
+            </p>
+
+            {%- include stats-panel.html %}
+            {%- include stats-trend.html %}
+            {%- include stats-details.html %}
+            {%- else %}
+            {%- capture s5_et %}{{ s5_t.empty_title | default: "The numbers are not ready yet" }}{% endcapture -%}
+            {%- capture s5_ex %}{{ s5_t.empty_text | default: "Stream counts will appear here. In the meantime, the music is on every platform." }}{% endcapture -%}
+            {%- capture s5_el %}{{ s5_t.empty_label | default: "Listen on Spotify" }}{% endcapture -%}
+            {%- include empty-state.html title=s5_et text=s5_ex href=au_spotify label=s5_el %}
+            {%- endif %}
+
+            <div class="numbers__head" id="profiles">
+                <h2 class="numbers__h">{{ s5_t.profiles_title | default: "Official profiles" }}</h2>
+                <span class="numbers__sum">{{ s5_t.profiles_note | default: "Verified links" }}</span>
+            </div>
+            {%- assign seen = "" %}
+            <ul class="profiles">
+                {%- for item in site.data.links.follow %}
+                {%- assign seen = seen | append: item.url | append: " " %}
+                <li><a class="profile" href="{{ item.url }}" rel="me noopener" target="_blank"><span class="profile__name">{{ item.name }}</span><span class="profile__host">{{ item.url | remove: "https://" | remove: "http://" | remove: "www." }}</span><i aria-hidden="true">&nearr;</i></a></li>
+                {%- endfor %}
+                {%- for item in site.data.links.elsewhere %}
+                {%- assign seen = seen | append: item.url | append: " " %}
+                <li><a class="profile" href="{{ item.url }}" rel="me noopener" target="_blank"><span class="profile__name">{{ item.name }}</span><span class="profile__host">{{ item.url | remove: "https://" | remove: "http://" | remove: "www." }}</span><i aria-hidden="true">&nearr;</i></a></li>
+                {%- endfor %}
+                {%- for key in st_plat_keys %}
+                {%- assign row = st_data[key] %}
+                {%- assign purl = row.url | default: "" %}
+                {%- if purl == "" and key == "apple_music" %}{%- assign purl = au_apple %}{%- endif %}
+                {%- if purl == "" and key == "pandora" %}{%- assign purl = au_pandora %}{%- endif %}
+                {%- if purl == "" and key == "youtube_music" %}{%- assign purl = au_ytm %}{%- endif %}
+                {%- if purl != "" %}{%- unless seen contains purl %}
+                {%- assign seen = seen | append: purl | append: " " %}
+                <li><a class="profile" href="{{ purl }}" rel="me noopener" target="_blank"><span class="profile__name">{{ st_plat_names[forloop.index0] }}</span><span class="profile__host">{{ purl | remove: "https://" | remove: "http://" | remove: "www." }}</span><i aria-hidden="true">&nearr;</i></a></li>
+                {%- endunless %}{%- endif %}
+                {%- endfor %}
+            </ul>
+
+        </div>
+        <script src="/js/stats.js" defer></script>
+
+<!-- Structured data: this page and the artist it is about -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": {{ page.url | absolute_url | append: "#page" | jsonify }},
+            "url": {{ page.url | absolute_url | jsonify }},
+            "name": {{ s5_t.schema_name | default: "SETTWOR Streams" | jsonify }},
+            "description": {{ page.description | jsonify }},
+            "inLanguage": {{ i18n_lang | jsonify }},
+            "dateModified": {{ site.time | date_to_xmlschema | jsonify }},
+            "isPartOf": { "@id": "{{ site.url }}/#website" },
+            "about": { "@id": "{{ site.url }}/#artist" },
+            "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "SETTWOR", "item": "{{ site.url }}/" },
+                    { "@type": "ListItem", "position": 2, "name": {{ s5_t.title | default: "Streams" | jsonify }}, "item": {{ page.url | absolute_url | jsonify }} }
+                ]
+            }
+        },
+{% include person-jsonld.html %}
+    ]
+}
+</script>

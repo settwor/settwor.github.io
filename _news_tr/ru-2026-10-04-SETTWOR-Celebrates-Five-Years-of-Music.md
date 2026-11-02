@@ -1,0 +1,62 @@
+---
+layout: article
+lang: ru
+ref: SETTWOR-Celebrates-Five-Years-of-Music
+# false = noindex, out of every hreflang set, out of the sitemap. Turn it to true only after the text is read (todo i18n.md D7; ru: the owner can read it himself).
+i18n_ready: true
+title: "SETTWOR отмечает пять лет музыки"
+description: "От первого трека в 14 лет до растущей аудитории: SETTWOR оглядывается на пять лет своего музыкального пути."
+date: 2026-10-04T22:44
+permalink: /ru/news/2026/10/SETTWOR-Celebrates-Five-Years-of-Music/
+image: /images/releases/Light Wave.jpg
+image_alt: "Обложка Light Wave, дебютного релиза SETTWOR от 4 октября 2021 года."
+image_caption: "Обложка Light Wave, дебютного релиза SETTWOR от 4 октября 2021 года."
+listen_url: https://open.spotify.com/album/3UrdnEuxVtAhYsTRBQ3ueO?si=TqomPl_lSaqKQsTdLuFqhw&utm_source=copy-link
+sources:
+- title: "Light Wave"
+  url: "https://open.spotify.com/album/3UrdnEuxVtAhYsTRBQ3ueO"
+  site: "Spotify"
+- title: "Все релизы SETTWOR"
+  url: "/releases.html"
+  site: "settwor.com.pl"
+- title: "Биография SETTWOR"
+  url: "/bioRU.html"
+  site: "settwor.com.pl"
+- title: "SETTWOR — канал на YouTube"
+  url: "https://youtube.com/c/settwor"
+  site: "YouTube"
+- title: "Phonk"
+  url: "https://en.wikipedia.org/wiki/Phonk"
+  site: "Wikipedia"
+- title: "Funk carioca"
+  url: "https://en.wikipedia.org/wiki/Funk_carioca"
+  site: "Wikipedia"
+- title: "Electronic dance music"
+  url: "https://en.wikipedia.org/wiki/Electronic_dance_music"
+  site: "Wikipedia"
+---
+4 октября 2026 года исполнилось пять лет с тех пор, как SETTWOR выпустил [*Light Wave*](https://open.spotify.com/album/3UrdnEuxVtAhYsTRBQ3ueO), свой первый официальный трек. Daniil Shulha было 14 лет, когда он вышел 4 октября 2021 года.[\[1\]](#ref-1)
+
+Интерес к музыке появился у него раньше. [*Light Wave*](/releases.html#release-light-wave) стал первым случаем, когда он официально поделился своей работой.
+
+**От простых битов к музыкальной карьере**
+
+SETTWOR начал учиться музыкальному продакшну с нуля в 2018 году. Он начинал с простых битов и разбирался на практике, методом проб и ошибок, в основном самостоятельно. Ему хотелось понять, как делаются треки.[\[3\]](#ref-3)
+
+В 2020 году он взял имя SETTWOR и открыл [канал на YouTube](https://youtube.com/c/settwor). На следующий год вышел *Light Wave*.
+
+Как он говорит в [своей биографии](/bioRU.html), слышать, что люди слушают его треки, казалось почти нереальным. Каждый стрим давал ему повод идти дальше.
+
+**В поисках своего звучания**
+
+8 мая 2022 года он выпустил [*LUNATIC*](/releases.html#release-lunatic), свой первый трек в жанре [phonk](https://en.wikipedia.org/wiki/Phonk). Phonk стал основным направлением его ранних релизов.
+
+Его звучание начало меняться с [*DON’T STOP*](/releases.html#release-don-t-stop) в декабре 2023 года. В 2024 году он выпустил свой первый полноформатный альбом, [*GET IT, Vol.1*](/releases.html#release-get-it-vol-1). В него вошёл *GOT ME UP 2*, позже ставший его самым успешным треком. 28 марта 2025 года он выпустил [*BREAKPOINT Mixtape*](/releases.html#release-breakpoint-mixtape). После него он начал исследовать Brazilian Phonk, хаус и [EDM](https://en.wikipedia.org/wiki/Electronic_dance_music).[\[2\]](#ref-2)[\[5\]](#ref-5)[\[6\]](#ref-6)[\[7\]](#ref-7)
+
+**Пять лет роста**
+
+Его канал на YouTube рос, каталог рос, а релизы доходили до всё большего числа слушателей на стриминговых платформах.[\[4\]](#ref-4)
+
+В октябре 2025 года SETTWOR достиг одного миллиона стримов суммарно на цифровых платформах, считая с первого релиза. В 2026 году *GOT ME UP 2* сам по себе превысил миллион стримов, а новые релизы поставили для него новые рекорды.
+
+Его первая совместная работа с другим артистом появилась в сентябре 2026 года, когда [*SE TU QUER* был перевыпущен с Mc Baiano](/ru/news/2026/09/SETTWOR-Re-releases-SE-TU-QUER-with-Mc-Baiano/).

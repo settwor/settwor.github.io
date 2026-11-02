@@ -1,0 +1,97 @@
+# Texts of the list pages, Español (v11.41, Phase 5). Same idea as _data/pages.yml (headings and introductions), plus the small labels of each page.
+# CREATE ONLY IF MISSING: this file is new in 11.41. If it already exists on the live site, merge the keys, never overwrite.
+# Why this folder and not _data/i18n/<lang>/: a folder and the file <lang>.yml of the same name give the same Jekyll data key.
+# Status: AI draft, NOT read by the owner yet. A page in this language stays out of Google (i18n_ready: false) until it is read.
+# Not translated on purpose: SETTWOR, release and track names, platform names.
+# Missing key = the template falls back to the English text.
+
+streams:
+  title: "Streams"
+  lead: "Cuántas veces se ha escuchado la música de SETTWOR, plataforma por plataforma, y cuánta gente ha visto los vídeos en YouTube."
+  live: "En vivo"
+  verified: "Verificado"
+  profiles_title: "Perfiles oficiales"
+  profiles_note: "Enlaces verificados"
+  empty_title: "Los números aún no están listos"
+  empty_text: "Aquí aparecerá el número de reproducciones. Mientras tanto, la música está en todas las plataformas."
+  empty_label: "Escuchar en Spotify"
+  schema_name: "Streams de SETTWOR"
+
+# Releases page (v11.45). {title} = the release name (filled in by the template). Release and track names are never translated.
+releases:
+  title: "Todos los lanzamientos de SETTWOR"
+  lead: "Lanzamientos de todos los años de su carrera, los más recientes primero."
+  image_alt: "SETTWOR con una parte de sus lanzamientos"
+  caption: "SETTWOR con una parte de sus lanzamientos"
+  empty_title: "Aún no hay lanzamientos aquí"
+  empty_text: "La música nueva aparecerá aquí en cuanto salga. Ya puedes escucharla en Spotify."
+  empty_label: "Escuchar en Spotify"
+  cover_of: "Portada de {title}"
+  aria: "{title}: enlaces y lista de temas"
+  listen: "Escuchar y lista de temas"
+  kind_single: "Sencillo"
+  kind_album: "Álbum"
+  kind_mixtape: "Mixtape"
+  schema_name: "Lanzamientos de SETTWOR"
+
+# Photo page (v11.46). The alt text of each photo in this language is the pattern `labels.photo_alt` of _data/i18n_home/<lang>.yml ({y} = year).
+photo:
+  title: "Fotografías"
+  lead: "Fotografías oficiales de SETTWOR. Elige un año. Todas las fotos se pueden usar libremente citando al autor."
+  empty_title: "Aún no hay fotos aquí"
+  empty_text: "Las fotos oficiales aparecerán aquí, ordenadas por año."
+  empty_label: "Ir a la página de inicio"
+  tabs_aria: "Elige un año"
+  note_a: "Todas las fotografías © SETTWOR, con licencia"
+  note_b: ": libres de compartir y adaptar citando al autor."
+  note_credit: "Cómo dar el crédito"
+  credit: "Foto de SETTWOR"
+
+# Top Phonk page (v11.47). Placeholders {snapshot} {listeners} {phonk_place} {phonk_total} {bphonk_place} {bphonk_total} are filled by the template. AI draft, not read by the owner.
+top_phonk:
+  title: "SETTWOR: un artista de phonk en el top de Pandora"
+  meta: "Corte de Ledgertone del {snapshot}"
+  intro_a: "Esta información es del {snapshot}. SETTWOR es un artista y productor de phonk de Ucrania que vive en Polonia. En el "
+  intro_link: "ranking de artistas de Pandora de Ledgertone"
+  intro_b: " ocupa el puesto {phonk_place} en Phonk y el puesto {bphonk_place} en Brazilian Phonk, con {listeners} oyentes en 28 días."
+  numbers_h: "Las cifras"
+  li_listeners_l: "Oyentes en 28 días en Pandora:"
+  li_phonk_l: "Phonk:"
+  li_phonk_t: "puesto {phonk_place} de {phonk_total} artistas del género"
+  li_bphonk_l: "Brazilian Phonk:"
+  li_bphonk_t: "puesto {bphonk_place} de {bphonk_total} artistas del género"
+  li_date_l: "Fecha de estas cifras:"
+  read_h: "Cómo leer estas cifras"
+  read_1_strong: "{listeners} oyentes en 28 días"
+  read_1_rest: "es cuántas personas escucharon a SETTWOR en Pandora en los 28 días anteriores al {snapshot}, según su perfil de artista. Con esa cifra ocupa el puesto {phonk_place} entre los {phonk_total} artistas del género."
+  read_2: "No es la primera vez que está en lo más alto. En abril de 2025 SETTWOR ocupó el puesto 6 entre todos los artistas de phonk en Pandora."
+  read_3: "La cifra es el registro de un momento. No está en vivo ni viene de la API de Pandora, así que puede diferir de lo que Pandora muestra hoy."
+  who_h: "Quién dirige Ledgertone"
+  who_p: "Ledgertone es un proyecto independiente dirigido por SETTWOR, y él también aparece en el ranking. Se le coloca con la misma regla que a cualquier otro artista: por el número de oyentes en 28 días del corte. Ledgertone no está afiliado a Pandora. Pandora es una marca registrada de su respectivo propietario."
+  more_h: "Escucha y sigue leyendo"
+  more_pandora: "SETTWOR en Pandora"
+  more_spotify: "SETTWOR en Spotify"
+  more_lt: "SETTWOR en Pandora: oyentes en 28 días (Ledgertone)"
+  more_full: "Ranking completo de Ledgertone"
+  more_streams: "Reproducciones y vistas en cada plataforma"
+  more_and: " y "
+  more_releases: "todos los lanzamientos"
+  faq_h: "Preguntas"
+  q1: "¿Es SETTWOR uno de los mejores artistas de phonk en Pandora?"
+  a1: "En el corte de Ledgertone del {snapshot} ocupa el puesto {phonk_place} en Phonk entre {phonk_total} artistas, con {listeners} oyentes en 28 días."
+  q2: "¿Está SETTWOR en el top del phonk brasileño?"
+  a2: "En el mismo corte ocupa el puesto {bphonk_place} en Brazilian Phonk entre {bphonk_total} artistas."
+  q3: "¿De dónde salen estas cifras?"
+  a3: "Del número de oyentes en 28 días del perfil de artista en Pandora, registrado por Ledgertone el {snapshot}. Es una instantánea, no datos en vivo."
+  q4: "¿Quién dirige Ledgertone?"
+  a4: "Lo dirige SETTWOR y se le coloca con la misma regla que a cualquier otro artista."
+  crumb: "Artista de phonk en el top"
+
+# News list page (v11.50)
+news:
+  title: "Noticias"
+  lead: "Anuncios oficiales de SETTWOR: nuevos lanzamientos, hitos y lo que viene después."
+  empty_title: "Aún no hay noticias"
+  empty_text: "Aquí se publicarán los anuncios y las noticias de lanzamientos."
+  empty_label: "Ver los lanzamientos"
+  schema_name: "Noticias de SETTWOR"

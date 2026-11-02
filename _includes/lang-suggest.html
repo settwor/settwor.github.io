@@ -1,0 +1,92 @@
+{%- comment -%}
+  v11.39 (languages, Phase 4). Replaces bio-router.html. NO automatic redirect by browser language any more (Google advises against it; todo i18n D5).
+  What this script does:
+  1. Remembers the language the visitor picks in a language list (a link with hreflang), key `settwor-bio-lang` (the same key as before).
+  2. Links marked data-bio-link (the Biography links of English pages) lead to the biography of the REMEMBERED language only; without a remembered
+     choice they keep the English address that is in the HTML.
+  3. On an ENGLISH page that has ready versions in other languages (its translation group: the biographies today, more pages later), a visitor whose
+     browser language is one of those languages sees one quiet, dismissable bar just above the footer (11.71; it was above the header before): "This page is also in <language>" with a plain link. The visitor is
+     never moved by script. A dismissed bar stays hidden (key `settwor-lang-hint`).
+  A Ukrainian browser is never offered Russian when a Ukrainian version is missing (rule kept from 2.4).
+  The group is found like in lang-switch.html (page.ref; the biographies are the group "bio"). Only READY versions are listed (i18n_ready: false is left out).
+  Variables start with i18n_sg_ (an assign inside an include is global).
+{%- endcomment -%}
+{%- assign i18n_sg_ref = page.ref -%}
+{%- if page.collection == "bio" -%}{%- assign i18n_sg_ref = "bio" -%}{%- endif -%}
+{%- assign i18n_sg_names = "en:English,ru:Русский,pl:Polski,es:Español,pt:Português,uk:Українська" | split: "," -%}
+    <script>
+    (function () {
+        var BIO = { {% for item in site.bio %}{{ item.lang | jsonify }}: {{ item.url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %} };
+        var ALT = { {%- if i18n_sg_ref and i18n_sg_ref != "" and page.i18n_ready != false -%}
+{%- if i18n_sg_ref == "bio" -%}{%- assign i18n_sg_list = site.bio -%}{%- else -%}{%- assign i18n_sg_list = site.pages | where: "ref", i18n_sg_ref -%}{%- endif -%}
+{%- assign i18n_sg_first = true -%}
+{%- for i18n_sg_it in i18n_sg_list -%}{%- unless i18n_sg_it.i18n_ready == false -%}{%- assign i18n_sg_code = i18n_sg_it.lang | default: "en" -%}{%- assign i18n_sg_name = i18n_sg_it.lang_name -%}
+{%- unless i18n_sg_name and i18n_sg_name != "" -%}{%- for i18n_sg_pair in i18n_sg_names -%}{%- assign i18n_sg_kv = i18n_sg_pair | split: ":" -%}{%- if i18n_sg_kv[0] == i18n_sg_code -%}{%- assign i18n_sg_name = i18n_sg_kv[1] -%}{%- endif -%}{%- endfor -%}{%- endunless -%}
+{%- unless i18n_sg_first %}, {% endunless -%}{%- assign i18n_sg_first = false -%}
+{{ i18n_sg_code | jsonify }}: [{{ i18n_sg_it.url | jsonify }}, {{ i18n_sg_name | default: i18n_sg_code | jsonify }}]
+{%- endunless -%}{%- endfor -%}
+{%- endif %} };
+        var HERE = {{ page.lang | default: "en" | jsonify }};
+        var DEF = 'en', KEY = 'settwor-bio-lang', HIDE = 'settwor-lang-hint';
+        var TEXT = {
+            ru: ['Эта страница есть на русском', 'Закрыть'],
+            pl: ['Ta strona jest dostępna po polsku', 'Zamknij'],
+            es: ['Esta página está disponible en español', 'Cerrar'],
+            pt: ['Esta página está disponível em português', 'Fechar'],
+            uk: ['Ця сторінка є українською', 'Закрити']
+        };
+        function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+        function put(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* storage unavailable */ } }
+        function pointLinks() {
+            var saved = get(KEY);
+            if (!saved || !BIO[saved]) return;
+            Array.prototype.forEach.call(document.querySelectorAll('a[data-bio-link]'), function (a) { a.setAttribute('href', BIO[saved]); });
+        }
+        function suggested() {
+            var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || DEF];
+            for (var i = 0; i < list.length; i++) {
+                var code = String(list[i]).toLowerCase().split('-')[0];
+                if (code === DEF) return null;
+                if (ALT[code] && TEXT[code]) return code;
+                if (code === 'uk') return null;
+            }
+            return null;
+        }
+        function bar() {
+            if (HERE !== DEF || get(HIDE) === '1') return;
+            var code = suggested();
+            var anchor = document.querySelector('.site-footer');
+            if (!code || !anchor || !anchor.parentNode) return;
+            var box = document.createElement('div');
+            box.className = 'lang-hint';
+            box.setAttribute('role', 'region');
+            box.setAttribute('lang', code);
+            box.setAttribute('aria-label', TEXT[code][0]);
+            var p = document.createElement('p');
+            p.className = 'lang-hint__text';
+            p.appendChild(document.createTextNode(TEXT[code][0] + ': '));
+            var a = document.createElement('a');
+            a.className = 'lang-hint__link';
+            a.setAttribute('href', ALT[code][0]);
+            a.setAttribute('hreflang', code);
+            a.setAttribute('lang', code);
+            a.textContent = ALT[code][1];
+            p.appendChild(a);
+            var b = document.createElement('button');
+            b.className = 'lang-hint__close';
+            b.type = 'button';
+            b.setAttribute('aria-label', TEXT[code][1]);
+            b.textContent = '×';
+            b.addEventListener('click', function () { put(HIDE, '1'); box.parentNode.removeChild(box); });
+            box.appendChild(p);
+            box.appendChild(b);
+            anchor.parentNode.insertBefore(box, anchor);
+        }
+        document.addEventListener('DOMContentLoaded', function () { pointLinks(); bar(); });
+        document.addEventListener('click', function (event) {
+            var a = event.target.closest && event.target.closest('a[hreflang]');
+            var code = a && a.getAttribute('hreflang');
+            if (code && BIO[code]) { put(KEY, code); pointLinks(); }
+        });
+    })();
+    </script>

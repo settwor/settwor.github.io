@@ -1,6 +1,10 @@
+{%- include i18n-gate.html -%}
+{%- capture rf_t_follow -%}{% include i18n-t.html key="rail_follow" en="Follow SETTWOR" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rf_t_listen -%}{% include i18n-t.html key="rail_listen" en="Listen to SETTWOR" lang=i18n_gtl %}{%- endcapture -%}
+{%- capture rf_t_contact -%}{% include i18n-t.html key="rail_contact" en="Contact" lang=i18n_gtl %}{%- endcapture -%}
 {%- comment -%} Right column, top: the official channels and the email. Data: _data/links.yml {%- endcomment -%}
 <section class="rail-block" aria-labelledby="rail-follow">
-    <h2 class="rail-block__title" id="rail-follow">Follow SETTWOR</h2>
+    <h2 class="rail-block__title" id="rail-follow">{{ rf_t_follow }}</h2>
     <ul class="rail-list">
         {%- for item in site.data.links.follow %}
         <li><a class="rail-link" href="{{ item.url }}" rel="me"><span class="rail-link__name">{{ item.name }}</span></a></li>
@@ -10,7 +14,7 @@
 
 {%- include artist-urls.html -%}
 <section class="rail-block" aria-labelledby="rail-listen">
-    <h2 class="rail-block__title" id="rail-listen">Listen to SETTWOR</h2>
+    <h2 class="rail-block__title" id="rail-listen">{{ rf_t_listen }}</h2>
     <ul class="rail-list">
         <li><a class="rail-link" href="{{ au_spotify }}" rel="me noopener"><span class="rail-link__name">Spotify</span></a></li>
         <li><a class="rail-link" href="{{ au_apple }}" rel="me noopener"><span class="rail-link__name">Apple Music</span></a></li>
@@ -20,6 +24,6 @@
 </section>
 
 <section class="rail-block" aria-labelledby="rail-contact">
-    <h2 class="rail-block__title" id="rail-contact">Contact</h2>
+    <h2 class="rail-block__title" id="rail-contact">{{ rf_t_contact }}</h2>
     <p class="rail-text"><a href="mailto:{{ site.data.links.email }}">{{ site.data.links.email }}</a></p>
 </section>

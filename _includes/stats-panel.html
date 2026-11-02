@@ -5,18 +5,27 @@
 {%- endcomment -%}
 {%- include stats-calc.html -%}
 {%- if st_panel_total > 0 %}
+{%- comment -%} 11.38: texts by page language (keys numbers_*, English kept here as the fallback). Variables start with sp_. {%- endcomment -%}
+{%- capture sp_total -%}{% include i18n-t.html key="numbers_total" en="Total streams" %}{%- endcapture -%}
+{%- capture sp_both -%}{% include i18n-t.html key="numbers_across_both" en="across music platforms and YouTube release videos" %}{%- endcapture -%}
+{%- capture sp_music -%}{% include i18n-t.html key="numbers_across_music" en="across all music platforms" %}{%- endcapture -%}
+{%- capture sp_clips -%}{% include i18n-t.html key="numbers_yt_clips" en="YouTube release videos" %}{%- endcapture -%}
+{%- capture sp_allvid -%}{% include i18n-t.html key="numbers_all_videos" en="with all videos on the YouTube channel" %}{%- endcapture -%}
+{%- capture sp_cta -%}{% include i18n-t.html key="numbers_cta" en="All streams by platform" %}{%- endcapture -%}
+{%- capture sp_aria_t -%}{% include i18n-t.html key="numbers_aria" en="SETTWOR in numbers: {n} streams. Open all streams by platform" %}{%- endcapture -%}
+{%- capture sp_big_txt -%}{% include num-full.html n=st_panel_total %}{%- endcapture -%}
 {%- comment -%} The big number = music platforms + YouTube release videos. The smaller number under it = music platforms + the whole YouTube channel (release videos and all other videos). The bar and the list show only music platforms and the release videos. {%- endcomment -%}
 {%- assign big = st_panel_total -%}
 {%- if include.link %}
-    <a class="numbers__hero numbers__hero--link" href="{{ include.link }}" aria-label="SETTWOR in numbers: {% include num-full.html n=big %} streams. Open all streams by platform">
+    <a class="numbers__hero numbers__hero--link" href="{{ include.link }}" aria-label="{{ sp_aria_t | replace: "{n}", sp_big_txt }}">
 {%- else %}
     <div class="numbers__hero">
 {%- endif %}
-        <span class="numbers__eyebrow">Total streams</span>
+        <span class="numbers__eyebrow">{{ sp_total }}</span>
         <span class="numbers__value" data-count="{{ big }}">{% include num-full.html n=big %}</span>
-        <span class="numbers__label">{% if st_plat_total > 0 and st_clips > 0 %}across music platforms and YouTube release videos{% elsif st_plat_total > 0 %}across all music platforms{% else %}YouTube release videos{% endif %}</span>
+        <span class="numbers__label">{% if st_plat_total > 0 and st_clips > 0 %}{{ sp_both }}{% elsif st_plat_total > 0 %}{{ sp_music }}{% else %}{{ sp_clips }}{% endif %}</span>
         {%- if st_other > 0 %}
-        <span class="numbers__plus"><b data-count="{{ st_total }}">{% include num-full.html n=st_total %}</b><span>with all videos on the YouTube channel</span></span>
+        <span class="numbers__plus"><b data-count="{{ st_total }}">{% include num-full.html n=st_total %}</b><span>{{ sp_allvid }}</span></span>
         {%- endif %}
         <span class="numbers__split" aria-hidden="true">
             {%- for r in st_rows_all %}
@@ -32,7 +41,7 @@
             {%- endfor %}
         </ul>
 {%- if include.link %}
-        <span class="numbers__cta">All streams by platform<i class="numbers__arrow" aria-hidden="true">&rarr;</i></span>
+        <span class="numbers__cta">{{ sp_cta }}<i class="numbers__arrow" aria-hidden="true">&rarr;</i></span>
     </a>
 {%- else %}
     </div>
