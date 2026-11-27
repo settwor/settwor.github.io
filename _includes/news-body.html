@@ -48,13 +48,13 @@
     "@type": "CollectionPage",
     "name": {{ nb_t.schema_name | default: "SETTWOR News" | jsonify }},
     "inLanguage": {{ i18n_lang | jsonify }},
-    "url": {{ page.url | absolute_url | jsonify }},
+    "url": {{ page.url | replace: ".html", "" | absolute_url | jsonify }},
     "isPartOf": { "@id": "{{ site.url }}/#website" },
     "mainEntity": {
         "@type": "ItemList",
         "itemListElement": [
             {%- for post in nb_pool %}
-            { "@type": "ListItem", "position": {{ forloop.index }}, "url": {{ post.legacy_url | default: post.url | uri_escape | absolute_url | jsonify }}, "name": {{ post.title | jsonify }} }{% unless forloop.last %},{% endunless %}
+            { "@type": "ListItem", "position": {{ forloop.index }}, "url": {{ post.legacy_url | default: post.url | replace: ".html", "" | uri_escape | absolute_url | jsonify }}, "name": {{ post.title | jsonify }} }{% unless forloop.last %},{% endunless %}
             {%- endfor %}
         ]
     }

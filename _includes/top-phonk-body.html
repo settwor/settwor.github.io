@@ -15,7 +15,7 @@
 {%- if i18n_lang == "en" -%}{%- assign tp_snap = tp_src.lt_snapshot -%}{%- else -%}{%- capture tp_snap %}{% include i18n-date.html d=tp_src.lt_snapshot_iso lang=i18n_lang %}{% endcapture -%}{%- endif -%}
 {%- assign tp_hl_s = "" -%}{%- assign tp_hl_r = "" -%}
 {%- if i18n_lang != "en" -%}{%- if i18n_u_streams == "/streams.html" -%}{%- assign tp_hl_s = ' hreflang="en"' -%}{%- endif -%}{%- if i18n_u_releases == "/releases.html" -%}{%- assign tp_hl_r = ' hreflang="en"' -%}{%- endif -%}{%- endif -%}
-{%- assign tp_url = page.url | absolute_url -%}
+{%- assign tp_url = page.url | replace: ".html", "" | absolute_url -%}
 {%- assign tp_home = i18n_u_home | absolute_url -%}
 {%- assign tp_x = tp_t.title | default: "SETTWOR: a top phonk artist on Pandora" -%}
 <div class="prose">

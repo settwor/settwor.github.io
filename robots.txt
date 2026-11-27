@@ -3,6 +3,7 @@ layout: null
 ---
 User-agent: *
 Allow: /
+Disallow: /cdn-cgi/
 
 Sitemap: {{ "/sitemap.xml" | absolute_url }}
 Sitemap: https://settwor.com.pl/projects/sitemap.xml

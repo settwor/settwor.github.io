@@ -1,6 +1,6 @@
 {%- comment -%} One language link. mode "head" = <link> for the page head, "sitemap" = <xhtml:link> for sitemap.xml, "og" = <meta og:locale:alternate> (needs cur = the language of the current page). Used only by i18n-alternates.html. {%- endcomment -%}
 {%- if include.mode == "sitemap" %}
-        <xhtml:link rel="alternate" hreflang="{{ include.code }}" href="{{ include.url | absolute_url | xml_escape }}"/>
+        <xhtml:link rel="alternate" hreflang="{{ include.code }}" href="{{ include.url | replace: ".html", "" | absolute_url | xml_escape }}"/>
 {%- elsif include.mode == "og" -%}
 {%- if include.code != "x-default" and include.code != include.cur -%}
 {%- capture i18n_al_loc %}{% include i18n-locale.html code=include.code %}{% endcapture -%}
@@ -10,5 +10,5 @@
 {%- endif -%}
 {%- endif -%}
 {%- else %}
-    <link rel="alternate" hreflang="{{ include.code }}" href="{{ include.url | absolute_url }}">
+    <link rel="alternate" hreflang="{{ include.code }}" href="{{ include.url | replace: ".html", "" | absolute_url }}">
 {%- endif -%}

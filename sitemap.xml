@@ -7,7 +7,7 @@ layout: null
 {%- comment -%} Biographies: one entry per language file in the folder _bio, each one lists all language versions (hreflang, include i18n-alternates.html). {%- endcomment -%}
 {%- for item in site.bio %}
     <url>
-        <loc>{{ item.url | absolute_url | xml_escape }}</loc>
+        <loc>{{ item.url | replace: ".html", "" | absolute_url | xml_escape }}</loc>
         {%- include i18n-alternates.html ref="bio" mode="sitemap" %}
     </url>
 {%- endfor %}
@@ -18,7 +18,7 @@ layout: null
 {%- for item in site.pages %}
 {%- if item.ref and item.ref != "" and item.i18n_ready != false %}
     <url>
-        <loc>{{ item.url | absolute_url | xml_escape }}</loc>
+        <loc>{{ item.url | replace: ".html", "" | absolute_url | xml_escape }}</loc>
         {%- include i18n-alternates.html ref=item.ref mode="sitemap" %}
     </url>
 {%- endif %}
@@ -26,7 +26,7 @@ layout: null
 {%- comment -%} News articles. Entries that point to an old page use that old address. {%- endcomment -%}
 {%- for post in site.posts %}
     <url>
-        <loc>{{ post.legacy_url | default: post.url | uri_escape | absolute_url | xml_escape }}</loc>
+        <loc>{{ post.legacy_url | default: post.url | replace: ".html", "" | uri_escape | absolute_url | xml_escape }}</loc>
         {%- if post.updated and post.updated != "" %}
         <lastmod>{{ post.updated | date_to_xmlschema }}</lastmod>
         {%- endif %}
@@ -37,7 +37,7 @@ layout: null
 {%- for item in site.news_tr %}
 {%- unless item.i18n_ready == false %}
     <url>
-        <loc>{{ item.url | uri_escape | absolute_url | xml_escape }}</loc>
+        <loc>{{ item.url | replace: ".html", "" | uri_escape | absolute_url | xml_escape }}</loc>
         {%- include i18n-alternates.html ref=item.ref mode="sitemap" %}
     </url>
 {%- endunless %}
@@ -45,6 +45,6 @@ layout: null
 {%- comment -%} Song lyrics pages (folder "lyrics", layout "lyrics"). {%- endcomment -%}
 {%- assign sm_lyrics = site.pages | where: "layout", "lyrics" -%}
 {%- for item in sm_lyrics %}
-    <url><loc>{{ item.url | absolute_url | xml_escape }}</loc></url>
+    <url><loc>{{ item.url | replace: ".html", "" | absolute_url | xml_escape }}</loc></url>
 {%- endfor %}
 </urlset>

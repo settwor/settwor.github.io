@@ -8,7 +8,7 @@ rail: bio
 {%- assign bio_moments_title = ui.moments_title -%}
 {%- comment -%} Ukrainian texts are built in, so no data file has to be shipped. A block "uk" in _data/bioui.yml still wins. {%- endcomment -%}
 {%- unless site.data.bioui.uk -%}{%- if page.lang == "uk" -%}{%- assign bio_facts_title = "Головне" -%}{%- assign bio_moments_title = "Ключові моменти" -%}{%- endif -%}{%- endunless -%}
-{%- assign bio_url = page.url | absolute_url -%}
+{%- assign bio_url = page.url | replace: ".html", "" | absolute_url -%}
 {%- assign bio_name = page.seo_title | default: page.title -%}
 <article class="bio">
     <header class="page-head">

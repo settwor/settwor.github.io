@@ -22,7 +22,7 @@
 {%- assign hb_rt = hb_enpage.releases_total -%}
 {%- endif -%}
 {%- include artist-urls.html -%}
-{%- if hb_l == "en" -%}{%- assign home_url = "/" | absolute_url -%}{%- else -%}{%- assign home_url = page.url | absolute_url -%}{%- endif -%}
+{%- if hb_l == "en" -%}{%- assign home_url = "/" | absolute_url -%}{%- else -%}{%- assign home_url = page.url | replace: ".html", "" | absolute_url -%}{%- endif -%}
 
         <section class="hero" aria-labelledby="page-title">
             <span class="hero__ring"><img class="hero__photo" src="{{ hb_en.hero.photo | uri_escape }}" alt="{{ home.hero.photo_alt | escape }}" width="144" height="144" fetchpriority="high"></span>

@@ -20,7 +20,7 @@ layout: null
         <uri>{{ "/" | absolute_url }}</uri>
     </author>
 {%- for post in site.posts limit: 20 %}
-{%- assign entry_url = post.legacy_url | default: post.url | uri_escape | absolute_url %}
+{%- assign entry_url = post.legacy_url | default: post.url | replace: ".html", "" | uri_escape | absolute_url %}
     <entry>
         <title>{{ post.title | xml_escape }}</title>
         <link rel="alternate" type="text/html" href="{{ entry_url | xml_escape }}"/>

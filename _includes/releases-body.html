@@ -76,7 +76,7 @@
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": {{ rl_t.schema_name | default: "SETTWOR Releases" | jsonify }},
-    "url": {{ page.url | absolute_url | jsonify }},
+    "url": {{ page.url | replace: ".html", "" | absolute_url | jsonify }},
     "inLanguage": {{ i18n_lang | jsonify }},
     "isPartOf": { "@id": "{{ site.url }}/#website" },
     "mainEntity": {

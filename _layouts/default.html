@@ -22,9 +22,9 @@
 {%- endif -%}
 {%- capture canonical -%}
 {%- if page.legacy_url and page.legacy_url != "" -%}
-{{ page.legacy_url | uri_escape | absolute_url }}
+{{ page.legacy_url | replace: ".html", "" | uri_escape | absolute_url }}
 {%- else -%}
-{{ page.url | absolute_url }}
+{{ page.url | replace: ".html", "" | absolute_url }}
 {%- endif -%}
 {%- endcapture -%}
 {%- assign canonical = canonical | strip -%}
@@ -51,7 +51,6 @@
     <title>{{ full_title | escape }}</title>
     <meta name="description" content="{{ meta_description | escape }}">
 {%- if page.legacy_url and page.legacy_url != "" %}
-    <meta name="robots" content="noindex, follow">
     <meta http-equiv="refresh" content="0; url={{ canonical }}">
 {%- elsif page.i18n_ready == false %}
     <meta name="robots" content="noindex, follow">

@@ -76,8 +76,8 @@
     "@graph": [
         {
             "@type": "WebPage",
-            "@id": {{ page.url | absolute_url | append: "#page" | jsonify }},
-            "url": {{ page.url | absolute_url | jsonify }},
+            "@id": {{ page.url | replace: ".html", "" | absolute_url | append: "#page" | jsonify }},
+            "url": {{ page.url | replace: ".html", "" | absolute_url | jsonify }},
             "name": {{ s5_t.schema_name | default: "SETTWOR Streams" | jsonify }},
             "description": {{ page.description | jsonify }},
             "inLanguage": {{ i18n_lang | jsonify }},
@@ -88,7 +88,7 @@
                 "@type": "BreadcrumbList",
                 "itemListElement": [
                     { "@type": "ListItem", "position": 1, "name": "SETTWOR", "item": "{{ site.url }}/" },
-                    { "@type": "ListItem", "position": 2, "name": {{ s5_t.title | default: "Streams" | jsonify }}, "item": {{ page.url | absolute_url | jsonify }} }
+                    { "@type": "ListItem", "position": 2, "name": {{ s5_t.title | default: "Streams" | jsonify }}, "item": {{ page.url | replace: ".html", "" | absolute_url | jsonify }} }
                 ]
             }
         },
